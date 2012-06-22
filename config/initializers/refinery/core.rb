@@ -32,7 +32,7 @@ Refinery::Core.configure do |config|
 
   # Should set this if concerned about DOS attacks. See
   # http://markevans.github.com/dragonfly/file.Configuration.html#Configuration
-  # config.dragonfly_secret = "05c079978bc2ff922040aca9cd9b63e11a713403decf2bad"
+  # config.dragonfly_secret = "afd786815af49c2939039a348049b8c1473af0ac5f3de112"
 
   # Show/hide IE6 upgrade message in the backend
   # config.ie6_upgrade_message_enabled = true
