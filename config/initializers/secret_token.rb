@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Afcrpv::Application.config.secret_token = '339412d7f749b16ea93b3946b4ae41b94d723dc83ec1de14f7b2181f0b0ccde46a8373a2ccea32b7bc3f2f0ce8b1e53a3fb9519df6e9c39e9ae6024920843214'
+Afcrpv::Application.config.secret_token = '50b3831c5eebf038a1d94f528b65ea8012b5baea4b5d5b5fbe14869a68d4ea94559e7450003608080743d60f970b7c2d9c9532c42600a81e19d684b0a2a5bdb5'
