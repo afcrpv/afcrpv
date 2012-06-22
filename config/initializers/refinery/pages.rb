@@ -20,10 +20,10 @@ Refinery::Pages.configure do |config|
   # config.pages_per_admin_index = 20
 
   # Configure whether to strip diacritics from Western characters
-  # config.approximate_ascii = false
+  config.approximate_ascii = true
 
   # Configure whether to strip non-ASCII characters from the friendly_id string
-  # config.strip_non_ascii = false
+  config.strip_non_ascii = true
 
   # Set this to true if you want to override slug which automatically gets generated
   # when you create a page
