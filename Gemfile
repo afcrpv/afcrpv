@@ -18,6 +18,8 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'bootstrap-sass'
+  gem 'compass-rails'
 end
 
 gem 'jquery-rails'
@@ -52,3 +54,5 @@ gem 'heroku'
 
 # Fog allows you to use S3 assets (added for Heroku)
 gem 'fog'
+
+gem 'haml-rails'
