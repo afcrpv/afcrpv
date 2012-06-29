@@ -1,0 +1,6 @@
+.footer_wrap
+  %ul.legal_stuff
+    %li= link_to "Contact", "/contact", title: "Contact"
+    %li= link_to "Mention Légales", "/mention-legales", title: "Mention Légales"
+
+  %p= t('.copyright', year: Time.now.year, site_name: Refinery::Core.site_name)
