@@ -1,3 +1,59 @@
+body
+  background: image-url("page_bg.png") repeat-x scroll 50% 0 #5397BB
+
+#logo
+  +clearfix
+  margin-top: 10px
+  font-size: 18px
+  a
+    float: right
+    color: white
+  span
+    float: left
+    display: block
+    background: transparent image-url("logo-afcrpv.png") no-repeat left top
+    a
+      width: 150px
+      height: 132px
+      color: transparent
+
+.navbar.static
+  +border-top-radius(15px)
+  background-color: #CBCDCF
+  background-image: -moz-linear-gradient(center top , #e5e5e5 0%, #CBCDCF 100%)
+  background-repeat: repeat-x
+  border-top: 1px solid white
+  padding: 5px
+  margin: -40px 10px 0 170px
+  .navbar-inner
+    background-color: transparent
+    background-image: none
+    border-radius: 0
+    box-shadow: none
+    min-height: 40px
+    padding-left: 20px
+    padding-right: 20px
+
+.navbar .nav .active > a, .navbar .nav .active > a:hover
+  background-color: transparent
+  color: #5F6B7C
+  text-decoration: none
+  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.25)
+
+.navbar .nav > li > a
+  font-weight: bold
+  color: white
+  border: 1px solid transparent
+  +border-radius(10px, 10px)
+  &:hover
+    +single-box-shadow(#999, 1px, 1px, 5px, 0, inset)
+
+#main_container
+  +single-box-shadow
+  +border-radius(15px, 15px)
+  border: 1px solid white
+  background: #CBCDCF
+
 #page_footer
   width: 100%
   .footer_wrap
@@ -9,11 +65,3 @@
     +delimited-list(" |")
     width: 80%
     margin: 0 auto
-
-body
-  background: image-url("page_bg.png") repeat-x scroll 50% 0 #5397BB
-
-#main_container
-  +border-radius(15px, 15px)
-  border: 1px solid white
-  background: #CBCDCF
