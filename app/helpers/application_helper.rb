@@ -5,7 +5,11 @@ module ApplicationHelper
 
     css = []
     css << 'active' if selected_page_or_descendant_page_selected?(local_assigns[:menu_branch])
-    css << 'dropdown' if (local_assigns[:menu_branch].children unless local_assigns[:hide_chilren]).any?
+    if (local_assigns[:menu_branch].children unless local_assigns[:hide_chilren]).any? and local_assigns[:menu_branch].ancestors.length < local_assigns[:menu_levels]
+      css << 'dropdown'
+    else
+      css << 'nav-header' unless local_assigns[:menu_branch].ancestors.length == 0
+    end
     css
   end
 end

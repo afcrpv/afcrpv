@@ -19,8 +19,8 @@ body
 
 .navbar.static
   +border-top-radius(15px)
-  background-color: #CBCDCF
-  background-image: -moz-linear-gradient(center top , #e5e5e5 0%, #CBCDCF 100%)
+  background-color: #9B9D9F
+  background-image: -moz-linear-gradient(center top , #e5e5e5 0%, #9B9D9F 100%)
   background-repeat: repeat-x
   border-top: 1px solid white
   padding: 5px
@@ -45,8 +45,66 @@ body
   color: white
   border: 1px solid transparent
   +border-radius(10px, 10px)
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
   &:hover
     +single-box-shadow(#999, 1px, 1px, 5px, 0, inset)
+
+.navbar .nav li.dropdown.active > .dropdown-toggle:hover
+  color: #5F6B7C
+
+.dropdown-menu
+  background-color: #F5F5F5
+  border: 1px solid rgba(0, 0, 0, 0.2)
+  +border-radius(5px, 5px)
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+  display: none
+  float: left
+  left: 0
+  list-style: none outside none
+  margin: 1px 0 0
+  min-width: 160px
+  padding: 4px 0
+  position: absolute
+  top: 100%
+  z-index: 1000
+
+.nav .nav-header
+  margin: 10px
+  padding: 0
+  font-size: inherit
+  text-transform: none
+  border: 1px solid #bbb
+  +border-radius(5px, 5px)
+  background-color: white
+  a
+    padding: 3px 10px
+
+.dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover
+  background-color: #0088CC
+  color: white
+  text-decoration: none
+  border: #0088CC
+  text-shadow: none
+  +border-radius(5px, 5px)
+
+li.grand-children ul
+  list-style: none
+  margin-left: 0
+  padding-left: 0
+  li
+    margin-left: 1em
+    padding-left: 5px
+    a
+      font-size: 11px
+      padding: 0 10px 0 15px
+      background: image-url("menu_level3_item.png") no-repeat scroll 3px 6px transparent
+      &:hover
+        text-decoration: underline
+        color: black
+        background-position: 3px -12px
+
+.nav-header + .grand-children
+  margin-top: -10px
 
 #main_container
   +single-box-shadow

@@ -1,24 +1,34 @@
 <%
+  has_children = (children = menu_branch.children unless hide_children).present?
+  is_first_level = !local_assigns[:menu_levels] || menu_branch.ancestors.length < local_assigns[:menu_levels]
+  branch_css = has_children && is_first_level ? "dropdown-toggle" : nil
+  branch_data_toggle = has_children && is_first_level ? "dropdown" : nil
+  branch_data_target = has_children && is_first_level ? "#" : nil
+  branch_link_name = has_children && is_first_level ? "#{menu_branch.title}<b class='caret'></b>".html_safe : menu_branch.title
   if !!local_assigns[:apply_css] and (classes = custom_menu_branch_css(local_assigns)).any?
     css = "class='#{classes.join(' ')}'".html_safe
   end
 -%>
 <li<%= ['', css].compact.join(' ').gsub(/\ *$/, '').html_safe %>>
-<% has_children = (children = menu_branch.children unless hide_children).present? && menu_branch.ancestors.length < local_assigns[:menu_levels] %>
-<% branch_link_path = has_children ? "#" : refinery.url_for(menu_branch.url) %>
-<% branch_css = has_children ? "dropdown-toggle" : nil %>
-<% branch_data_toggle = has_children ? "dropdown" : nil %>
-<% branch_link_name = has_children ? "#{menu_branch.title}<b class='caret'></b>".html_safe : menu_branch.title %>
-<%= link_to branch_link_name, branch_link_path, class: branch_css, "data-toggle" => branch_data_toggle -%>
-  <% if ( has_children &&
-          (!local_assigns[:menu_levels] || menu_branch.ancestors.length < local_assigns[:menu_levels]) ) -%>
-    <ul class='dropdown-menu'>
-      <%= render :partial => '/refinery/menu_branch', :collection => children,
-                 :locals => {
-                   :apply_css => local_assigns[:apply_css],
-                   :hide_children => !!hide_children,
-                   :menu_levels => 1
-                 } -%>
-    </ul>
+<%= link_to branch_link_name, refinery.url_for(menu_branch.url), class: branch_css, "data-toggle" => branch_data_toggle, "data-target" => branch_data_target -%>
+  <% if has_children -%>
+    <% if is_first_level %>
+      <ul class='dropdown-menu'>
+        <%= render :partial => '/refinery/menu_branch', :collection => children,
+                   :locals => {
+                     :apply_css => local_assigns[:apply_css],
+                     :hide_children => !!hide_children,
+                     :menu_levels => 1
+                   } -%>
+      </ul>
+    <% else %>
+      <li class="grand-children">
+        <ul>
+          <% children.each do |child|%>
+            <li><%= link_to child.title, refinery.url_for(child.url) %></li>
+          <% end -%>
+        </ul>
+      </li>
+    <% end -%>
   <% end -%>
 </li>
