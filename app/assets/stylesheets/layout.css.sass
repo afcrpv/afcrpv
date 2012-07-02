@@ -43,6 +43,9 @@ body
   text-decoration: none
   text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.25)
 
+.active.dropdown .caret
+  border-top-color: #5F6B7C !important
+
 .navbar .nav > li > a
   font-weight: bold
   color: white
@@ -50,13 +53,22 @@ body
   +border-radius(10px, 10px)
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
   &:hover
-    +single-box-shadow(#999, 1px, 1px, 5px, 0, inset)
+    +single-box-shadow(#999, 1px, 1px, 3px, 0, inset)
+
+.caret
+  @include opacity(1)
 
 .navbar .nav li.dropdown.active > .dropdown-toggle:hover
   color: #5F6B7C
 
+.navbar .nav .active > a, .navbar .nav .active > a:hover
+  background-color: white
+  color: #5F6B7C
+  text-decoration: none
+  border: 1px solid #bbb
+  +border-radius(10px, 10px)
+
 .dropdown-menu
-  background-color: #F5F5F5
   border: 1px solid rgba(0, 0, 0, 0.2)
   +border-radius(5px, 5px)
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
@@ -76,17 +88,17 @@ body
   padding: 0
   font-size: inherit
   text-transform: none
-  border: 1px solid #bbb
-  +border-radius(5px, 5px)
   background-color: white
   a
+    border: 1px solid #bbb
+    +border-radius(5px, 5px)
     padding: 3px 10px
 
 .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover
   background-color: $dropdownLinkBackgroundHover
   color: $dropdownLinkColorHover
   text-decoration: none
-  border: #0088CC
+  border-color: transparent
   text-shadow: none
   +border-radius(5px, 5px)
 
