@@ -1,0 +1,7 @@
+.search-wrap.pull-right
+  = form_tag refinery.search_path, class: "navbar-search" do
+    %span.add-on &nbsp;
+    = text_field_tag :query, {}, {:type => "search",
+                   :placeholder => "Rechercher...",
+                   :value => (params[:query] if params[:query]),
+                   class: "search-query span2"}
