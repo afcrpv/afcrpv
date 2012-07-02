@@ -1,3 +1,5 @@
+$containerWidth: $gridColumnWidth * $gridColumns + $gridGutterWidth * ($gridColumns - 1)
+
 body
   background: image-url("page_bg.png") repeat-x scroll 50% 0 #5397BB
 
@@ -25,6 +27,7 @@ body
   border-top: 1px solid white
   padding: 5px
   margin: -40px 10px 0 170px
+  margin-bottom: 0
   .navbar-inner
     background-color: transparent
     background-image: none
@@ -108,16 +111,46 @@ li.grand-children ul
 .nav-header + .grand-children
   margin-top: -10px
 
+// default
+
+$mainWrapDelta: 0.06
+
 #main_wrap
-  width: 980px
+  width: $gridRowWidth + $gridRowWidth * $mainWrapDelta
   margin: auto
   +single-box-shadow
   +border-radius(15px, 15px)
   border: 1px solid white
   background: #CBCDCF
 
+/* Landscape phones and down */
+@media (max-width: 480px)
+  #logo
+    font-size: 14px
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px)
+  #logo
+    font-size: 14px
+
+// portrait tablet to default desktop
+@media (min-width: 768px) and (max-width: 979px)
+  #logo
+    font-size: 14px
+  $gridRowWidthTablet: $gridColumnWidthTablet * $gridColumns + $gridGutterWidthTablet * ($gridColumns - 1)
+  #main_wrap
+    width: $gridRowWidthTablet + $gridRowWidthTablet * $mainWrapDelta
+
+// Large desktop
+@media (min-width: 1200px)
+  $gridRowWidthLarge: $gridColumnWidthLarge * $gridColumns + $gridGutterWidthLarge * ($gridColumns - 1)
+  #main_wrap
+    width: $gridRowWidthLarge + $gridRowWidthLarge * $mainWrapDelta
+
+
 #page
   margin: 10px
+  padding-top: 10px
   +single-box-shadow
   +border-radius(8px, 8px)
   background: white
