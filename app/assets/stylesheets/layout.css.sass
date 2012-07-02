@@ -101,16 +101,25 @@ li.grand-children ul
       &:hover
         text-decoration: underline
         color: black
+        background-color: transparent
         background-position: 3px -12px
 
 .nav-header + .grand-children
   margin-top: -10px
 
-#main_container
+#main_wrap
+  width: 980px
+  margin: auto
   +single-box-shadow
   +border-radius(15px, 15px)
   border: 1px solid white
   background: #CBCDCF
+
+#page
+  margin: 10px
+  +single-box-shadow
+  +border-radius(8px, 8px)
+  background: white
 
 #page_footer
   width: 100%

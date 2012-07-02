@@ -10,9 +10,11 @@
         <%= render '/refinery/header' -%>
       </header>
     </div>
-    <div class="container" id="main_container">
+    <div id="main_wrap">
       <section id="page">
-        <%= yield %>
+        <div class="container">
+          <%= yield %>
+        </div>
       </section>
       <footer id="page_footer">
         <%= render '/refinery/footer' -%>
