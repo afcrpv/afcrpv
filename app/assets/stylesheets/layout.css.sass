@@ -80,8 +80,8 @@ body
     padding: 3px 10px
 
 .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover
-  background-color: #0088CC
-  color: white
+  background-color: $dropdownLinkBackgroundHover
+  color: $dropdownLinkColorHover
   text-decoration: none
   border: #0088CC
   text-shadow: none
@@ -98,9 +98,10 @@ li.grand-children ul
       font-size: 11px
       padding: 0 10px 0 15px
       background: image-url("menu_level3_item.png") no-repeat scroll 3px 6px transparent
+      color: $linkColor
       &:hover
         text-decoration: underline
-        color: black
+        color: $linkColorHover
         background-color: transparent
         background-position: 3px -12px
 
