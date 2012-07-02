@@ -1,0 +1,6 @@
+- if sitemap_branch.show_in_menu?
+  %li
+    = link_to sitemap_branch.title, sitemap_branch.url
+    - if sitemap_branch.children.any?
+      %ul.sitemap
+        = render partial: "/refinery/pages/sitemap_branch", collection: sitemap_branch.children
