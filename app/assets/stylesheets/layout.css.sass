@@ -125,41 +125,66 @@ li.grand-children ul
 .nav-header + .grand-children
   margin-top: -10px
 
-.search-wrap
-  overflow: hidden
-  background-color: white
-  +border-radius(14px, 14px)
-  margin-top: 9px
-  height: 24px
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.15)
-
 .navbar-search
-  margin-top: 0
-  #query
-    +border-radius(0)
-    border: none
-    box-shadow: none
-    padding: 4px 0
-  .add-on
-    margin-top: 2px
-    margin-left: 5px
-    display: inline-block
+  margin-top: 9px
+  position: relative
+  .search-magnifier
+    display: block
+    height: 26px
+    position: absolute
+    right: 2px
+    top: 0
+    width: 26px
+    z-index: 3
+
+  .nav-search
+    margin-left: 7px
+    margin-top: 3px
+    background-position: -48px 0
     height: 14px
-    line-height: 14px
-    vertical-align: text-top
     width: 14px
     background-image: image-url("glyphicons-halflings.png")
-    background-position: -48px 0
     background-repeat: no-repeat
+    display: inline-block
+    vertical-align: text-top
+  button
+    position: absolute
+    right: 2px
+    top: 4px
+    background: transparent
+    border: none
+    width: 26px
+    height: 26px
 
-.navbar-search .search-query:focus, .navbar-search .search-query.focused
-  background-color: white
-  border: 1px solid #B3B3B3
-  box-shadow: none
-  color: #333333
-  outline: 0 none
-  padding: 4px 4px
-  text-shadow: 0 1px 0 white
+  .search-input
+    border: 0 none
+    +border-radius(14px, 14px)
+    background-color: #EEE
+    padding: 4px 27px 4px 12px
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset
+    position: absolute
+    right: 0
+    top: 0
+    z-index: 2
+    -moz-transition: all 0.2s ease-in-out 0s
+    color: #444444
+    font-size: 12px
+    height: 14px
+    line-height: 1
+    &:-moz-placeholder
+      color: #666666
+    &:focus
+      background-color: white
+      box-shadow: none
+
+//.navbar-search .search-query:focus, .navbar-search .search-query.focused
+  //background-color: white
+  //border: 1px solid #B3B3B3
+  //box-shadow: none
+  //color: #333333
+  //outline: 0 none
+  //padding: 4px 4px
+  //text-shadow: 0 1px 0 white
 
 // default
 
