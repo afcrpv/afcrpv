@@ -59,3 +59,5 @@ gem 'heroku'
 gem 'fog'
 
 gem 'haml-rails'
+
+gem 'refinerycms-news_categories', :path => 'vendor/extensions'

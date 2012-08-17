@@ -1,0 +1,2 @@
+<%= will_paginate @news_categories if Refinery::NewsCategories::Admin::NewsCategoriesController.pageable? %>
+<%= render 'sortable_list' %>

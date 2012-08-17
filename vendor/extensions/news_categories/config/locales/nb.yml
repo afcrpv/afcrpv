@@ -1,0 +1,27 @@
+nb:
+  refinery:
+    plugins:
+      news_categories:
+        title: News Categories
+    news_categories:
+      admin:
+        news_categories:
+          actions:
+            create_new: Lag en ny News Category
+            reorder: Endre rekkefølgen på News Categories
+            reorder_done: Ferdig å endre rekkefølgen News Categories
+          records:
+            title: News Categories
+            sorry_no_results: Beklager! Vi fant ikke noen resultater.
+            no_items_yet: Det er ingen News Categories enda. Klikk på "Lag en ny News Category" for å legge til din første news category.
+          news_category:
+            view_live_html: Vis hvordan denne news category ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+            edit: Rediger denne news category
+            delete: Fjern denne news category permanent
+      news_categories:
+        show:
+          other: Andre News Categories
+  activerecord:
+    attributes:
+      'refinery/news_categories/news_category':
+        name: Name
