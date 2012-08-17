@@ -1,0 +1,31 @@
+#carousel
+  .tabbbale.tabs-left
+    %ul.nav.nav-tabs
+      - (sections = {"section1" => "sec1", "section2" => "sec2", "section3" => "sec3"}).each do |name, target|
+        %li= link_to name, "#" + target, data: {toggle: "tab"}
+    .tab-content.fade.in
+      - sections.each do |name, target|
+        .tab-pane{id: target}
+          %p Hello from #{name}!
+
+%hr
+
+#actualites_pv
+  %section
+    %header
+      %h1= link_to "Actualités de la Pharmacovigilance", "/actualites"
+    %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.
+
+%hr
+
+#actualites_colonnes.row
+  - (actualites = {"HAS" => "dernières synthèses d'avis", "ANSM" => "dernières informations de sécurité", "FDA" => "medwatch safety alerts"}).each do |title, subtitle|
+    .actualite.span4
+      %aside
+        %header
+          %h1= title
+          %h2= subtitle
+        %hr
+        %ul
+          - (1..7).each  do |i|
+            %li= link_to "item#{i}", "#"
