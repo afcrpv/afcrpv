@@ -192,6 +192,14 @@ $mainWrapDelta: 0.06
   border-top: 1px solid white
   background: #CBCDCF
 
+  #page
+    margin: 10px
+    padding-top: 20px
+    padding-bottom: 20px
+    +single-box-shadow
+    +border-radius(8px)
+    background: white
+
 /* Landscape phones and down */
 @media (max-width: 480px)
   #logo
@@ -216,15 +224,8 @@ $mainWrapDelta: 0.06
   #main_wrap
     width: $gridRowWidthLarge + $gridRowWidthLarge * $mainWrapDelta
 
-
-#page
-  margin: 10px
-  padding-top: 10px
-  +single-box-shadow
-  +border-radius(8px, 8px)
-  background: white
-
 #page_footer
+  margin-top: 10px
   padding-bottom: 1em
   color: #646464
   text-shadow: 0 1px 1px #FFFFFF
