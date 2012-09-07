@@ -1,0 +1,25 @@
+<ul>
+  <% if ::Refinery::Agences::Admin::AgencesController.searchable? %>
+    <li>
+      <%= render '/refinery/admin/search', :url => refinery.agences_admin_agences_path %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to t('.create_new'), refinery.new_agences_admin_agence_path,
+                 :class => "add_icon" %>
+  </li>
+<% if !searching? && ::Refinery::Agences::Admin::AgencesController.sortable? && ::Refinery::Agences::Agence.any? %>
+  <li>
+    <%= link_to t('.reorder', :what => "Agences"),
+                 refinery.agences_admin_agences_path,
+                 :id => "reorder_action",
+                 :class => "reorder_icon" %>
+
+    <%= link_to t('.reorder_done', :what => "Agences"),
+                 refinery.agences_admin_agences_path,
+                 :id => "reorder_action_done",
+                 :style => "display: none;",
+                 :class => "reorder_icon" %>
+  </li>
+<% end %>
+</ul>

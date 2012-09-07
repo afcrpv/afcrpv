@@ -24,12 +24,12 @@
     .actualite.span4
       %aside
         %header
-          %h1= agence[:name]
-          %h2= agence[:description]
+          %h1= agence.name
+          %h2= agence.description
         %hr
         %ul
-          - if agence[:news]
-            - agence[:news].each do |entry|
-              %li= link_to entry.title, entry.link, target: "_BLANK"
+          - if agence.feeds
+            - agence.feeds.each do |feed|
+              %li= link_to feed.title, feed.link, target: "_BLANK"
           - else
             Aucune actualité

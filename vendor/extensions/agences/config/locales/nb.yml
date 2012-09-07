@@ -1,0 +1,29 @@
+nb:
+  refinery:
+    plugins:
+      agences:
+        title: Agences
+    agences:
+      admin:
+        agences:
+          actions:
+            create_new: Lag en ny Agence
+            reorder: Endre rekkefølgen på Agences
+            reorder_done: Ferdig å endre rekkefølgen Agences
+          records:
+            title: Agences
+            sorry_no_results: Beklager! Vi fant ikke noen resultater.
+            no_items_yet: Det er ingen Agences enda. Klikk på "Lag en ny Agence" for å legge til din første agence.
+          agence:
+            view_live_html: Vis hvordan denne agence ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+            edit: Rediger denne agence
+            delete: Fjern denne agence permanent
+      agences:
+        show:
+          other: Andre Agences
+  activerecord:
+    attributes:
+      'refinery/agences/agence':
+        name: Name
+        description: Description
+        feed_url: Feed Url

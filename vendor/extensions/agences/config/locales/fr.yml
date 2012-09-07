@@ -1,0 +1,29 @@
+fr:
+  refinery:
+    plugins:
+      agences:
+        title: Agences
+    agences:
+      admin:
+        agences:
+          actions:
+            create_new: Créer une nouvelle Agence
+            reorder: Réordonner les Agences
+            reorder_done: Fin de réordonnancement des Agences
+          records:
+            title: Agences
+            sorry_no_results: "Désolé ! Aucun résultat."
+            no_items_yet: 'Il n''y a actuellement aucune Agence. Cliquer sur "Créer une nouvelle Agence" pour créer votre première agence.'
+          agence:
+            view_live_html: Voir cette agence <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier cette agence
+            delete: Supprimer définitivement cette agence
+      agences:
+        show:
+          other: Autres Agences
+  activerecord:
+    attributes:
+      'refinery/agences/agence':
+        name: Name
+        description: Description
+        feed_url: Adresse RSS

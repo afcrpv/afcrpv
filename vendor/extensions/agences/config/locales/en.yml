@@ -1,0 +1,29 @@
+en:
+  refinery:
+    plugins:
+      agences:
+        title: Agences
+    agences:
+      admin:
+        agences:
+          actions:
+            create_new: Add New Agence
+            reorder: Reorder Agences
+            reorder_done: Done Reordering Agences
+          records:
+            title: Agences
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Agences yet. Click "Add New Agence" to add your first agence.
+          agence:
+            view_live_html: View this agence live <br/><em>(opens in a new window)</em>
+            edit: Edit this agence
+            delete: Remove this agence forever
+      agences:
+        show:
+          other: Other Agences
+  activerecord:
+    attributes:
+      'refinery/agences/agence':
+        name: Name
+        description: Description
+        feed_url: Feed Url

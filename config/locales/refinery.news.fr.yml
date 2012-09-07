@@ -2,7 +2,7 @@ fr:
   refinery:
     plugins:
       refinerycms_news:
-        title: Actualités des agences
+        title: Actualités PV
         description: 'Fournit une rubrique "Actualités"'
     news:
       admin:

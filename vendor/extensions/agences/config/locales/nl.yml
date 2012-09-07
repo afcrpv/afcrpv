@@ -1,0 +1,29 @@
+nl:
+  refinery:
+    plugins:
+      agences:
+        title: Agences
+    agences:
+      admin:
+        agences:
+          actions:
+            create_new: Maak een nieuwe Agence
+            reorder: Wijzig de volgorde van de Agences
+            reorder_done: Klaar met het wijzingen van de volgorde van de Agences
+          records:
+            title: Agences
+            sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+            no_items_yet: Er zijn nog geen Agences. Druk op 'Maak een nieuwe Agence' om de eerste aan te maken.
+          agence:
+            view_live_html: Bekijk deze agence op de website <br/><em>(opent een nieuw venster)</em>
+            edit: Bewerk deze agence
+            delete: Verwijder deze agence voor eeuwig
+      agences:
+        show:
+          other: Andere Agences
+  activerecord:
+    attributes:
+      'refinery/agences/agence':
+        name: Name
+        description: Description
+        feed_url: Feed Url
