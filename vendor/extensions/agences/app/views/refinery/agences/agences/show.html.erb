@@ -4,36 +4,24 @@
 
 <% content_for :body do %>
   <section>
-    <h1>Name</h1>
-    <p>
-      <%=raw @agence.name %>
-    </p>
-  </section>
-  <section>
-    <h1>Description</h1>
-    <p>
+    <h2>
       <%=raw @agence.description %>
-    </p>
+    </h2>
   </section>
+  <hr>
   <section>
-    <h1>Feed Url</h1>
-    <p>
-      <%=raw @agence.feed_url %>
-    </p>
-  </section>
-<% end %>
+    <% if @agence.feeds -%>
+      <ul>
+        <% @agence.feeds(-1).each do |feed| -%>
+          <li>
+          <%= link_to feed.title, feed.link, target: "_BLANK" %>
+          </li>
+        <% end -%>
+    <% else %>
+      Aucune actualité
+    <% end %>
 
-<% content_for :side_body do %>
-  <aside>
-    <h2><%= t('.other') %></h2>
-    <ul id="agences">
-      <% @agences.each do |agence| %>
-        <li>
-          <%= link_to agence.name, refinery.agences_agence_path(agence) %>
-        </li>
-      <% end %>
-    </ul>
-  </aside>
+  </section>
 <% end %>
 
 <%= render '/refinery/content_page' %>
