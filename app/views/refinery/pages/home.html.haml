@@ -27,9 +27,4 @@
           %h1= agence.name
           %h2= agence.description
         %hr
-        - if agence.feeds
-          %ul
-            - agence.feeds.each do |feed|
-              %li= link_to feed.title, feed.link, target: "_BLANK"
-        - else
-          Aucune actualité
+        = get_agence_feeds(agence, 5)

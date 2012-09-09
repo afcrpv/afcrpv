@@ -7,6 +7,8 @@ module Refinery
     class Agence < Refinery::Core::BaseModel
       extend FriendlyId
 
+      default_scope order("name")
+
       friendly_id :name, use: :slugged
 
       self.table_name = 'refinery_agences'
@@ -18,7 +20,7 @@ module Refinery
       validates :name, :presence => true, :uniqueness => true
 
       def feeds(limit=5)
-        get_rss_entries(feed_url, limit)
+        get_rss_entries(feed_url, limit) rescue nil
       end
 
       private

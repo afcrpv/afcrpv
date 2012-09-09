@@ -22,7 +22,7 @@ module Refinery
     protected
 
       def find_all_agences
-        @agences = Agence.order('position ASC')
+        @agences = Agence.order('LOWER(name) ASC')
       end
 
       def find_page

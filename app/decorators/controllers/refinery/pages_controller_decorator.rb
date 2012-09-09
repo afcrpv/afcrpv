@@ -7,7 +7,11 @@ Refinery::PagesController.class_eval do
   protected
 
   def find_agences
-    @agences ||= Refinery::Agences::Agence.all
+    selected_agences = []
+    %w(ANSM HAS FDA).each do |name|
+      selected_agences << Refinery::Agences::Agence.find_by_name(name)
+    end
+    @agences ||= selected_agences
   end
 
   def find_pv_news
