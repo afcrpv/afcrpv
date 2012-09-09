@@ -1,0 +1,9 @@
+fr:
+  refinery:
+    plugins:
+      refinerycms_search:
+        title: Recherche
+        description: Extra search handling for Refinery CMS
+    search:
+      show:
+        search_results_for: "Résultats de la recherche : '%{what}'"
