@@ -1,7 +1,7 @@
 Refinery::Core::Engine.routes.append do
 
   # Frontend routes
-  namespace :events do
+  namespace :events, path: 'agenda' do
     resources :events, :path => '', :only => [:index, :show]
   end
 
