@@ -94,3 +94,5 @@ vendor/extensions/**/spec/dummy
 
 #rbenv
 .rbenv-version
+
+*.dump
