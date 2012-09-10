@@ -1,0 +1,31 @@
+fr:
+  refinery:
+    plugins:
+      events:
+        title: Agenda
+    events:
+      admin:
+        events:
+          actions:
+            create_new: "Créer un nouvel Événement"
+            reorder: "Réordonner les Événements"
+            reorder_done: "Fin de réordonnancement des Événements"
+          records:
+            title: "Agenda"
+            sorry_no_results: "Désolé ! Aucun résultat."
+            no_items_yet: 'Il n''y a actuellement aucun Événement. Cliquer sur "Créer un nouvel Événement" pour créer votre premier événement.'
+          event:
+            view_live_html: "Voir cet événement <br/><em>(Ouvre une nouvelle fenêtre)</em>"
+            edit: "Modifier cet événement"
+            delete: "Supprimer définitivement cet événement"
+      events:
+        show:
+          other: "Autres Événements"
+  activerecord:
+    attributes:
+      'refinery/events/event':
+        title: Titre
+        category_id: "Catégorie"
+        start_date: Date de début
+        end_date: Date de fin
+        description: Description

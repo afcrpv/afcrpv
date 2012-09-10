@@ -1,0 +1,25 @@
+<ul>
+  <% if ::Refinery::Events::Admin::EventsController.searchable? %>
+    <li>
+      <%= render '/refinery/admin/search', :url => refinery.events_admin_events_path %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to t('.create_new'), refinery.new_events_admin_event_path,
+                 :class => "add_icon" %>
+  </li>
+<% if !searching? && ::Refinery::Events::Admin::EventsController.sortable? && ::Refinery::Events::Event.any? %>
+  <li>
+    <%= link_to t('.reorder', :what => "Events"),
+                 refinery.events_admin_events_path,
+                 :id => "reorder_action",
+                 :class => "reorder_icon" %>
+
+    <%= link_to t('.reorder_done', :what => "Events"),
+                 refinery.events_admin_events_path,
+                 :id => "reorder_action_done",
+                 :style => "display: none;",
+                 :class => "reorder_icon" %>
+  </li>
+<% end %>
+</ul>

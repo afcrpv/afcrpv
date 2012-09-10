@@ -1,0 +1,51 @@
+<% content_for :body_content_title do %>
+  <%= @event.title %>
+<% end %>
+
+<% content_for :body do %>
+  <section>
+    <h1>Title</h1>
+    <p>
+      <%=raw @event.title %>
+    </p>
+  </section>
+  <section>
+    <h1>Category</h1>
+    <p>
+      <%=raw @event.category_id %>
+    </p>
+  </section>
+  <section>
+    <h1>Start Date</h1>
+    <p>
+      <%=raw @event.start_date %>
+    </p>
+  </section>
+  <section>
+    <h1>End Date</h1>
+    <p>
+      <%=raw @event.end_date %>
+    </p>
+  </section>
+  <section>
+    <h1>Description</h1>
+    <p>
+      <%=raw @event.description %>
+    </p>
+  </section>
+<% end %>
+
+<% content_for :side_body do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="events">
+      <% @events.each do |event| %>
+        <li>
+          <%= link_to event.title, refinery.events_event_path(event) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render '/refinery/content_page' %>

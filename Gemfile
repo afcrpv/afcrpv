@@ -63,3 +63,5 @@ gem 'haml-rails'
 gem "simple-rss"
 
 gem 'refinerycms-agences', :path => 'vendor/extensions'
+
+gem 'refinerycms-events', :path => 'vendor/extensions'
