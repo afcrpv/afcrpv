@@ -49,7 +49,7 @@ gem 'refinerycms-i18n', '~> 2.0.0'
 #  gem 'refinerycms-inquiries', '~> 2.0.0'
 #  gem 'refinerycms-search', '~> 2.0.0'
 gem 'refinerycms-search', '~> 2.0.0', :git => 'git://github.com/resolve/refinerycms-search.git', :branch => '2-0-stable'
-gem "refinerycms-news", '~> 2.0.0'
+#gem "refinerycms-news", '~> 2.0.0'
 #  gem 'refinerycms-page-images', '~> 2.0.0'
 
 # The Heroku gem allows you to interface with Heroku's API
@@ -59,8 +59,6 @@ gem 'heroku'
 gem 'fog'
 
 gem 'haml-rails'
-
-gem 'refinerycms-news_categories', :path => 'vendor/extensions'
 
 gem "simple-rss"
 

@@ -14,7 +14,7 @@
   %section
     %header
       %h1= link_to "Actualités de la Pharmacovigilance", "/actualites"
-    - if @pv_news.any?
+    - if @pv_news && @pv_news.any?
     - else
       %p Aucune actualité.
 %hr
