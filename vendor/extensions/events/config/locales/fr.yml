@@ -1,31 +1,55 @@
 fr:
   refinery:
     plugins:
+      categories:
+        title: Catégories d'evenements
       events:
         title: Agenda
+    categories:
+      admin:
+        categories:
+          actions:
+            create_new: Créer une nouvelle Catégorie d'événements
+            reorder: Réordonner les Catégories d'événements
+            reorder_done: Fin de réordonnancement des Catégories d'événements
+          records:
+            title: Catégories d'événements
+            sorry_no_results: Désolé ! Aucun résultat.
+            no_items_yet: Il n'y a actuellement aucune Catégorie d'evenements. Cliquer sur "Créer
+              un nouvelle Catégorie d'evenements" pour créer votre première catégorie d'evenements.
+          category:
+            view_live_html: Voir cette catégorie d'evenements <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier cette catégorie d'evenements
+            delete: Supprimer définitivement cette catégorie d'evenements
+      categories:
+        show:
+          other: Autres Catégories d'evenements
     events:
       admin:
         events:
           actions:
-            create_new: "Créer un nouvel Événement"
-            reorder: "Réordonner les Événements"
-            reorder_done: "Fin de réordonnancement des Événements"
+            create_new: Créer un nouvel Événement
+            reorder: Réordonner les Événements
+            reorder_done: Fin de réordonnancement des Événements
           records:
-            title: "Agenda"
-            sorry_no_results: "Désolé ! Aucun résultat."
-            no_items_yet: 'Il n''y a actuellement aucun Événement. Cliquer sur "Créer un nouvel Événement" pour créer votre premier événement.'
+            title: Agenda
+            sorry_no_results: Désolé ! Aucun résultat.
+            no_items_yet: Il n'y a actuellement aucun Événement. Cliquer sur "Créer
+              un nouvel Événement" pour créer votre premier événement.
           event:
-            view_live_html: "Voir cet événement <br/><em>(Ouvre une nouvelle fenêtre)</em>"
-            edit: "Modifier cet événement"
-            delete: "Supprimer définitivement cet événement"
+            view_live_html: Voir cet événement <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier cet événement
+            delete: Supprimer définitivement cet événement
       events:
         show:
-          other: "Autres Événements"
+          other: Autres Événements
   activerecord:
     attributes:
-      'refinery/events/event':
+      refinery/categories/category:
         title: Titre
-        category_id: "Catégorie"
+      refinery/events/event:
+        title: Titre
+        category_id: Catégorie
         start_date: Date de début
         end_date: Date de fin
         description: Description

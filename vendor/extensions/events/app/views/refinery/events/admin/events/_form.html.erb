@@ -12,7 +12,7 @@
   
   <div class='field'>
     <%= f.label :category_id -%>
-    <%= f.number_field :category_id  -%>
+    <%= f.collection_select :category_id, ::Refinery::Categories::Category.all, :id, :title, include_blank: true  -%>
 
   </div>
   
