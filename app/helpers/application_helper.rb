@@ -25,7 +25,23 @@ module ApplicationHelper
     end
   end
 
+  def link_to_event(event)
+    content_tag :li do
+      (event.start_date.strftime('%d/%m/%Y') + " " + content_tag(:span, event.category.to_s.upcase, class: label_class(event))).html_safe + " " +
+      link_to(event.title, refinery.events_event_path(event))
+    end
+  end
+
   private
+
+  def label_class(event)
+    label_css = "label "
+    label_css += case event.category.title
+                when "congres" then ""
+                when "formation" then "label-info"
+                when "prix" then "label-success"
+                end
+  end
 
   def feed_error
     content_tag :div, class: "alert alert-error" do

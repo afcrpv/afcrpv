@@ -3,8 +3,10 @@ module Refinery
     class Event < Refinery::Core::BaseModel
       self.table_name = 'refinery_events'
 
+      default_scope order("created_at DESC")
+
       attr_accessible :title, :category_id, :start_date, :end_date, :description, :position
-      belongs_to :category
+      belongs_to :category, class_name: "::Refinery::Categories::Category"
 
       acts_as_indexed :fields => [:title, :description]
 

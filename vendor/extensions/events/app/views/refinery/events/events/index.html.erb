@@ -1,9 +1,7 @@
 <% content_for :body do %>
   <ul id="events">
     <% @events.each do |event| %>
-      <li>
-        <%= link_to event.title, refinery.events_event_path(event) %>
-      </li>
+      <%= link_to_event event %>
     <% end %>
   </ul>
 <% end %>
