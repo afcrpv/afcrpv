@@ -4,34 +4,9 @@
 
 <% content_for :body do %>
   <section>
-    <h1>Title</h1>
-    <p>
-      <%=raw @event.title %>
-    </p>
-  </section>
+    <%= event_date(@event) %>
   <section>
-    <h1>Category</h1>
-    <p>
-      <%=raw @event.category_id %>
-    </p>
-  </section>
-  <section>
-    <h1>Start Date</h1>
-    <p>
-      <%=raw @event.start_date %>
-    </p>
-  </section>
-  <section>
-    <h1>End Date</h1>
-    <p>
-      <%=raw @event.end_date %>
-    </p>
-  </section>
-  <section>
-    <h1>Description</h1>
-    <p>
-      <%=raw @event.description %>
-    </p>
+    <%=raw @event.description %>
   </section>
 <% end %>
 
@@ -40,9 +15,7 @@
     <h2><%= t('.other') %></h2>
     <ul id="events">
       <% @events.each do |event| %>
-        <li>
-          <%= link_to event.title, refinery.events_event_path(event) %>
-        </li>
+        <%= link_to_event(event) %>
       <% end %>
     </ul>
   </aside>

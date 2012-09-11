@@ -26,15 +26,27 @@ module ApplicationHelper
   end
 
   def link_to_event(event)
-    content_tag :li do
-      (event.start_date.strftime('%d/%m/%Y') + " " + content_tag(:span, event.category.to_s.upcase, class: label_class(event))).html_safe + " " +
-      link_to(event.title, refinery.events_event_path(event))
+    content_tag :li, class: "event-item" do
+      [
+        event_date(event),
+        category_label(event),
+        link_to(event.title, refinery.events_event_path(event))
+      ].join("").html_safe
     end
+  end
+
+  def event_date(event)
+    content_tag :span, I18n.l(event.start_date.to_date, format: :perso), class: "event"
+  end
+
+  def category_label(event)
+    content_tag(:span, event.category.to_s.upcase, class: label_class(event))
   end
 
   private
 
   def label_class(event)
+
     label_css = "label "
     label_css += case event.category.title
                 when "congres" then ""
