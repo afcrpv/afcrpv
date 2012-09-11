@@ -1,12 +1,12 @@
-.row
-  .span8
+.row-fluid
+  .span10
     %ul.legal_stuff
       %li= link_to "Contact", "/contact", title: "Contact"
       %li= link_to "Mention Légales", "/mention-legales", title: "Mention Légales"
       %li= link_to "Plan du site", "/plan-du-site", title: "Plan du site"
 
     %p= t('.copyright', year: Time.now.year, site_name: Refinery::Core.site_name)
-  .span3.offset1
+  .span2
     %p.pull-right
       = link_to "#header", class: "btn anchor" do
         %i.icon-chevron-up

@@ -13,11 +13,7 @@
     <div id="main_wrap">
       <div id="page">
         <div class="container-fluid">
-          <%= render '/refinery/breadcrumb' %>
-          <div class="row-fluid">
-            <div class="span10"><%= yield %></div>
-            <div class="span2"><%= render '/refinery/toc' %></div>
-          </div>
+          <%= yield %>
         </div>
       </div>
       <div class="container-fluid">
