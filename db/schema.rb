@@ -11,16 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911080155) do
+ActiveRecord::Schema.define(:version => 20120913083818) do
 
   create_table "refinery_agences", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.string   "feed_url"
     t.integer  "position"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "slug"
+    t.boolean  "show_on_home"
   end
 
   create_table "refinery_categories", :force => true do |t|

@@ -13,7 +13,7 @@ module Refinery
 
       self.table_name = 'refinery_agences'
 
-      attr_accessible :name, :description, :feed_url, :position, :slug
+      attr_accessible :name, :description, :feed_url, :position, :slug, :show_on_home
 
       acts_as_indexed :fields => [:name, :description, :feed_url]
 
@@ -21,6 +21,10 @@ module Refinery
 
       def feeds(limit=5)
         get_rss_entries(feed_url, limit) rescue nil
+      end
+
+      def self.showable_on_home
+        where(show_on_home: true).limit(3)
       end
 
       private
