@@ -42,6 +42,14 @@ body
 .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle
   background-color: white
 
+.navbar .nav li.dropdown.open > .dropdown-toggle .caret, .navbar .nav li.dropdown.active > .dropdown-toggle .caret, .navbar .nav li.dropdown.open.active > .dropdown-toggle .caret
+  border-bottom-color: #5F6B7C
+  border-top-color: #5F6B7C
+
+.navbar .nav li.dropdown > .dropdown-toggle .caret
+  border-bottom-color: #FFF
+  border-top-color: #FFF
+
 .navbar .nav .active > a, .navbar .nav .active > a:hover
   background-color: transparent
   color: #5F6B7C
@@ -60,6 +68,12 @@ body
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
   &:hover
     +single-box-shadow(#999, 1px, 1px, 3px, 0, inset)
+    color: white
+
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle
+  background-color: white
+  color: #5F6B7C
+  text-shadow: none
 
 .caret
   @include opacity(1)
