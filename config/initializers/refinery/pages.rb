@@ -44,7 +44,7 @@ Refinery::Pages.configure do |config|
 
   config.layout_template_whitelist = ["application", "home"]
 
-  config.view_template_whitelist = ["show", "home", "sitemap"]
+  config.view_template_whitelist = ["show", "home", "sitemap", "actualites"]
 
   config.use_layout_templates = true
 
