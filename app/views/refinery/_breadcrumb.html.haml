@@ -1,10 +1,10 @@
 %ul.breadcrumb
   %li
-    = link_to root_url(:only_path => true) do
+    = link_to "/" do
       %i.icon-home
       Accueil
     %span.divider &gt;
-  - [@page.ancestors, @page].flatten.collect do |p|
+  - @page.self_and_ancestors.each do |p|
     %li
-      = link_to_unless_current p.menu_title, p.url
+      = link_to_unless p.id == @page.id, p.menu_title || p.title, p.nested_path
       %span.divider= "&gt;".html_safe unless p.id == @page.id
