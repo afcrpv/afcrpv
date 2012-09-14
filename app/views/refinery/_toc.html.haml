@@ -1,8 +1,8 @@
 %aside
   #toc
     %header
-      %h1= link_to_toc_branch(root = @page.self_and_ancestors.first)
+      %h1= link_to_toc_branch(root = @page.self_and_ancestors.first, 0)
       %hr
-      - if root.children.any?
-        %ul.toc
-          = render partial: "/refinery/toc_branch", collection: root.children.live.in_menu
+    - if root.children.any?
+      %ul.nav.nav-list.toc
+        = render partial: "/refinery/toc_branch", collection: root.children.live.in_menu, locals: {level: 1}

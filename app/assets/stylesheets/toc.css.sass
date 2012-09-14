@@ -1,0 +1,46 @@
+#toc
+  +border-radius(8px)
+  +single-box-shadow(#333, 0, 0, 3px)
+  background: #eff4ef
+  padding: 10px 7px
+  margin-left: 10px
+  min-height: 500px
+  h1, h2
+    text-align: center
+    margin-bottom: 0
+    color: #5e5e5e
+  h1
+    font-size: 18px
+    line-height: 18px
+  h2
+    font-weight: normal
+    text-transform: uppercase
+    font-size: 12px
+    line-height: 12px
+  hr
+    margin: 9px 0
+
+.nav-list.nested
+  background: white
+  & > li > a:hover
+    background-color: transparent
+    color: black
+  & > .active > a, & > .active > a:hover
+    background-color: transparent
+    color: black
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2)
+
+.toc .icon-chevron-left
+  opacity: 0.25
+  margin-left: -10px
+  margin-right: 10px
+
+.icon-white, .nav-tabs > .active > a > [class^="icon-"], .nav-tabs > .active > a > [class*=" icon-"], .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active > a > [class*=" icon-"], .nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"], .navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], .dropdown-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:hover > [class*=" icon-"], .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu > .active > a > [class*=" icon-"]
+  background-image: $iconWhiteSpritePath
+
+.toc a:hover .icon-chevron-left
+  opacity: 0.5
+
+.toc .active .icon-chevron-left, .toc .active a:hover .icon-chevron-left
+  background-image: $iconWhiteSpritePath
+  opacity: 1
