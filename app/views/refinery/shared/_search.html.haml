@@ -1,9 +1,8 @@
-.pull-right
-  = form_tag refinery.search_path, class: "navbar-search" do
-    %span.search-magnifier
-      %i.nav-search
-      = button_tag "", class: "hidden-submit"
+= form_tag refinery.search_path, class: "navbar-search form-search pull-right" do
+  .input-append
     = text_field_tag :query, {}, {:type => "search",
-                   :placeholder => "Rechercher...",
-                   :value => (params[:query] if params[:query]),
-                   class: "search-input span2", autocomplete: "off"}
+                 :placeholder => "Rechercher...",
+                 :value => (params[:query] if params[:query]),
+                 class: "search-query", autocomplete: "off"}
+    = button_tag type: :submit, name: nil, class: "btn" do
+      %i.icon-search

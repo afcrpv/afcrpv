@@ -19,14 +19,17 @@ body
       height: 137px
       color: transparent
 
-.navbar.static
+.navbar-inner
+  border: none
+
+.navbar-static-top
   +border-top-radius(15px)
   background-color: #9B9D9F
   background-image: -moz-linear-gradient(center top , #e5e5e5 0%, #9B9D9F 100%)
   background-repeat: repeat-x
   border-top: 1px solid white
   padding: 5px
-  margin: -40px 10px 0 170px
+  //margin: -40px 10px 0 170px
   margin-bottom: 0
   .navbar-inner
     background-color: transparent
@@ -126,59 +129,8 @@ li.grand-children ul
 .nav-header + .grand-children
   margin-top: -10px
 
-.navbar-search
-  margin-top: 3px
-  position: relative
-  .search-magnifier
-    display: block
-    height: 26px
-    position: absolute
-    right: 2px
-    top: 0
-    width: 26px
-    z-index: 3
-
-  .nav-search
-    margin-left: 7px
-    margin-top: 3px
-    background-position: -48px 0
-    height: 14px
-    width: 14px
-    background-image: image-url("glyphicons-halflings.png")
-    background-repeat: no-repeat
-    display: inline-block
-    vertical-align: text-top
-  button
-    position: absolute
-    right: 2px
-    top: 4px
-    background: transparent
-    border: none
-    width: 26px
-    height: 26px
-
-  .search-input
-    border: 1 0 0
-    border-color: #aaa
-    border-style: solid none none
-    +border-radius(14px, 14px)
-    background-color: #EEE
-    padding: 4px 27px 4px 12px
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset
-    position: absolute
-    right: 0
-    top: 0
-    z-index: 2
-    -moz-transition: all 0.2s ease-in-out 0s
-    color: #444444
-    font-size: 12px
-    height: 14px
-    line-height: 1
-    &:-moz-placeholder
-      color: #666666
-    &:focus
-      background-color: white
-      box-shadow: none
+.navbar .btn
+  margin-top: 0
 
 // default
 
@@ -187,10 +139,12 @@ $mainWrapDelta: 0.06
 #main_wrap
   width: $gridRowWidth + $gridRowWidth * $mainWrapDelta
   margin: auto
-  +single-box-shadow
-  +border-radius(15px, 15px)
-  border-top: 1px solid white
-  background: #CBCDCF
+
+  #page-wrap
+    +single-box-shadow
+    +border-radius(15px, 15px)
+    border-top: 1px solid white
+    background: #CBCDCF
 
   #page
     margin: 10px
