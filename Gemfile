@@ -53,7 +53,6 @@ gem 'refinerycms-search', '~> 2.0.0', :git => 'git://github.com/resolve/refinery
 #  gem 'refinerycms-page-images', '~> 2.0.0'
 
 # The Heroku gem allows you to interface with Heroku's API
-gem 'heroku'
 
 # Fog allows you to use S3 assets (added for Heroku)
 gem 'fog'
