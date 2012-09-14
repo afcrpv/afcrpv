@@ -1,0 +1,6 @@
+- if toc_branch.show_in_menu?
+  %li
+    = link_to_toc_branch(toc_branch)
+    - if toc_branch.children.any?
+      %ul.toc
+        = render partial: "/refinery/toc_branch", collection: toc_branch.children, locals: {level: 2}

@@ -1,1 +1,8 @@
-TEST FOR TOC
+%aside
+  #toc
+    %header
+      %h1= link_to_toc_branch(root = @page.self_and_ancestors.first)
+      %hr
+      - if root.children.any?
+        %ul.toc
+          = render partial: "/refinery/toc_branch", collection: root.children.live.in_menu

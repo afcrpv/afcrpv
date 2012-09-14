@@ -15,6 +15,11 @@ module ApplicationHelper
     css
   end
 
+  def link_to_toc_branch(branch)
+    branch_title = branch.menu_title.blank? ? branch.title : branch.menu_title
+    link_to_unless branch.skip_to_first_child && branch.children.order('lft ASC').live.first, branch_title, branch.nested_path
+  end
+
   def get_agence_feeds(agence, limit)
     feeds = agence.feeds
     return feed_error if feeds.nil?
