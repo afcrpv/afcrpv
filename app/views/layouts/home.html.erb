@@ -5,23 +5,27 @@
   <body class=<%= @page.title.downcase %>>
     <%= site_bar -%>
     <%= render '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
-    <div class="container" id="header_container">
-      <header id="header">
-        <%= render '/refinery/header' -%>
-      </header>
-    </div>
     <div id="main_wrap">
-      <div id="page">
-        <div class="container-fluid">
-          <%= yield %>
+      <div class="container-fluid" id="header_container">
+        <div class="row-fluid">
+          <header id="header">
+            <%= render '/refinery/header' -%>
+          </header>
         </div>
       </div>
-      <div class="container-fluid">
-        <footer id="page_footer">
-          <%= render '/refinery/footer' -%>
-        </footer>
-      </div>
-    </div>
+      <div id="page-wrap">
+        <div id="page">
+          <div class="container-fluid">
+            <%= yield %>
+          </div>
+        </div><!--page-->
+        <div class="container-fluid">
+          <footer id="page_footer">
+            <%= render '/refinery/footer' -%>
+          </footer>
+        </div><!--container-fluid-footer-->
+      </div><!--page-wrap-->
+    </div><!--main-wrap-->
     <%= render '/refinery/javascripts' %>
   </body>
 </html>
