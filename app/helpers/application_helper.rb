@@ -15,6 +15,35 @@ module ApplicationHelper
     css
   end
 
+  def news_item(news)
+    klass_name = news.class.parent.name.downcase.demodulize
+    link_to_news(news, klass_name)
+  end
+
+  def link_to_news(news, klass_name)
+    title = case klass_name
+    when "events"
+      news.send(:title)
+    else
+      news.send(:name)
+    end
+    content_tag :li, class: "news-item" do
+      [
+        news_date(news),
+        category_label(news),
+        link_to(title, refinery.polymorphic_path([klass_name, news]))
+      ].join("").html_safe
+    end
+  end
+
+  def news_date(news)
+    content_tag :span, I18n.l(news.created_at.to_date, format: :perso), class: "date"
+  end
+
+  def category_label(event)
+    content_tag(:span, event.category.to_s.upcase, class: label_class(event))
+  end
+
   def link_to_toc_branch(branch, level)
     branch_title = level == 1 ? content_tag(:i, nil, class: "icon-chevron-left") : ""
     branch_title += branch.menu_title.blank? ? branch.title : branch.menu_title
@@ -59,33 +88,16 @@ module ApplicationHelper
     end
   end
 
-  def link_to_event(event)
-    content_tag :li, class: "event-item" do
-      [
-        event_date(event),
-        category_label(event),
-        link_to(event.title, refinery.events_event_path(event))
-      ].join("").html_safe
-    end
-  end
-
-  def event_date(event)
-    content_tag :span, I18n.l(event.start_date.to_date, format: :perso), class: "event"
-  end
-
-  def category_label(event)
-    content_tag(:span, event.category.to_s.upcase, class: label_class(event))
-  end
-
   private
 
-  def label_class(event)
-
+  def label_class(news)
+    category = news.respond_to?(:category) ? news.category.title : "autre"
     label_css = "label "
-    label_css += case event.category.title
-                when "congres" then ""
-                when "formation" then "label-info"
-                when "prix" then "label-success"
+    label_css += case category
+                when "congres", "formation", "prix" then "label-info"
+                when "emploi" then "label-success"
+                else
+                  ""
                 end
   end
 

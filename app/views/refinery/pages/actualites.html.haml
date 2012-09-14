@@ -1,5 +1,5 @@
+%h1#body_content_title Actualités de la pharmacovigilance
 - if @pv_news.any?
-  %ul
+  %ul#news
     - @pv_news.each do |news|
-      %li
-        = link_to news.title, refinery.polymorphic_path([news.class.parent.name.downcase.demodulize, news])
+      = news_item(news)
