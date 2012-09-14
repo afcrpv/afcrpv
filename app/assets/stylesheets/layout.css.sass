@@ -215,15 +215,15 @@ $mainWrapDelta: 0.06
 @media (min-width: 768px) and (max-width: 979px)
   #logo
     font-size: 14px
-  $gridRowWidthTablet: $gridColumnWidthTablet * $gridColumns + $gridGutterWidthTablet * ($gridColumns - 1)
+  $gridRowWidth768: $gridColumnWidth768 * $gridColumns + $gridGutterWidth768 * ($gridColumns - 1)
   #main_wrap
-    width: $gridRowWidthTablet + $gridRowWidthTablet * $mainWrapDelta
+    width: $gridRowWidth768 + $gridRowWidth768 * $mainWrapDelta
 
 // Large desktop
 @media (min-width: 1200px)
-  $gridRowWidthLarge: $gridColumnWidthLarge * $gridColumns + $gridGutterWidthLarge * ($gridColumns - 1)
+  $gridRowWidth1200: $gridColumnWidth1200 * $gridColumns + $gridGutterWidth1200 * ($gridColumns - 1)
   #main_wrap
-    width: $gridRowWidthLarge + $gridRowWidthLarge * $mainWrapDelta
+    width: $gridRowWidth1200 + $gridRowWidth1200 * $mainWrapDelta
 
 #page_footer
   margin-top: 10px
@@ -242,8 +242,8 @@ $mainWrapDelta: 0.06
     text-align: center
     width: 70px
   .date
+    font-size: 80%
     display: inline-block
-    width: 116px
   .news-item
     span + span, span + a
       margin-left: 2px
