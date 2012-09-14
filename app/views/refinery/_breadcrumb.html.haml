@@ -5,6 +5,6 @@
       Accueil
     %span.divider &gt;
   - @page.self_and_ancestors.each do |p|
-    %li
-      = link_to_unless p.id == @page.id, p.menu_title || p.title, p.nested_path
+    %li{class: p.id == @page.id ? "active" : nil}
+      = link_to p.refinery_menu_title, p.nested_path
       %span.divider= "&gt;".html_safe unless p.id == @page.id
