@@ -7,10 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Added by Refinery CMS Pages extension
-Refinery::Pages::Engine.load_seed
+#Refinery::Pages::Engine.load_seed
 
 # Added by Refinery CMS Agences extension
 Refinery::Agences::Engine.load_seed
 
 # Added by Refinery CMS Events extension
 Refinery::Events::Engine.load_seed
+
+# Added by Refinery CMS Inquiries engine
+Refinery::Inquiries::Engine.load_seed

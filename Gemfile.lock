@@ -78,6 +78,7 @@ GEM
     excon (0.13.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    filters_spam (0.3)
     fog (1.3.1)
       builder
       excon (~> 0.13.0)
@@ -196,6 +197,10 @@ GEM
       dragonfly (~> 0.9.8)
       rack-cache (>= 0.5.3)
       refinerycms-core (= 2.0.5)
+    refinerycms-inquiries (2.0.3)
+      filters_spam (~> 0.2)
+      refinerycms-core (~> 2.0.1)
+      refinerycms-settings (~> 2.0.1)
     refinerycms-pages (2.0.5)
       awesome_nested_set (~> 2.1.3)
       babosa (!= 0.3.6)
@@ -205,6 +210,8 @@ GEM
       dragonfly (~> 0.9.8)
       rack-cache (>= 0.5.3)
       refinerycms-core (= 2.0.5)
+    refinerycms-settings (2.0.2)
+      refinerycms-core (~> 2.0.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     routing-filter (0.3.1)
@@ -255,6 +262,7 @@ DEPENDENCIES
   refinerycms-agences!
   refinerycms-events!
   refinerycms-i18n (~> 2.0.0)
+  refinerycms-inquiries (~> 2.0.0)
   refinerycms-search (~> 2.0.0)!
   sass-rails (~> 3.2.3)
   simple-rss
