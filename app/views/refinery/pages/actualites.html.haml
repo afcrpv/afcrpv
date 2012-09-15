@@ -1,5 +1,5 @@
 %h1#body_content_title Actualités de la pharmacovigilance
 - if @pv_news.any?
-  %ul#news
+  %table.table.table-striped.table-condensed
     - @pv_news.each do |news|
-      = news_item(news)
+      = news_line(news)
