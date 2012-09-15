@@ -9,30 +9,24 @@ module ApplicationHelper
     css << 'active' if selected_page_or_descendant_page_selected?(local_assigns[:menu_branch])
     if (local_assigns[:menu_branch].children unless local_assigns[:hide_chilren]).any? and local_assigns[:menu_branch].ancestors.length < local_assigns[:menu_levels]
       css << 'dropdown'
-    else
-      css << 'nav-header' unless local_assigns[:menu_branch].ancestors.length == 0
     end
     css
   end
 
-  def news_item(news)
+  def news_line(news)
     klass_name = news.class.parent.name.downcase.demodulize
-    link_to_news(news, klass_name)
-  end
-
-  def link_to_news(news, klass_name)
     title = case klass_name
     when "events"
       news.send(:title)
     else
       news.send(:name)
     end
-    content_tag :li, class: "news-item" do
+    content_tag :tr do
       [
-        news_date(news),
-        category_label(news),
-        link_to(title, refinery.polymorphic_path([klass_name, news]))
-      ].join("").html_safe
+        content_tag(:td, news_date(news)),
+        content_tag(:td, category_label(news)),
+        content_tag(:td, link_to(title, refinery.polymorphic_path([klass_name, news])))
+      ].join("\n").html_safe
     end
   end
 

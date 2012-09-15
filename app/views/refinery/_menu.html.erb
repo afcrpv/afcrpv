@@ -6,7 +6,7 @@
     css = [(css || 'menu clearfix')].flatten.join(' ')
     hide_children = Refinery::Core.menu_hide_children if hide_children.nil?
 -%>
-<div class="navbar navbar-static-top">
+<div class="navbar">
   <div class="navbar-inner">
     <ul class="nav">
       <%= render :partial => '/refinery/menu_branch', :collection => roots,

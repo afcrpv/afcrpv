@@ -3,150 +3,45 @@ $containerWidth: $gridColumnWidth * $gridColumns + $gridGutterWidth * ($gridColu
 body
   background: image-url("page_bg.png") repeat-x scroll 50% 0 #5397BB
 
-#logo
-  +clearfix
+$logo_height: 137px
+
+#header
   margin-top: 10px
-  font-size: 18px
-  a
-    float: right
-    color: white
-  span
-    float: left
-    display: block
-    background: transparent image-url("logo-afcrpv.png") no-repeat left top
+  #logo
+    +clearfix
+    font-size: 18px
     a
-      width: 158px
-      height: 137px
-      color: transparent
+      float: right
+      color: white
+      display: none
+    span
+      float: left
+      display: block
+      background: transparent image-url("logo-afcrpv.png") no-repeat left top
+      a
+        display: inline
+        width: 158px
+        height: $logo_height
+        color: transparent
+  h2 a
+    color: white
+    text-shadow: 0 1px 0 black
 
-.navbar-inner
-  border: none
-
-.navbar-static-top
-  +border-top-radius(15px)
-  background-color: #9B9D9F
-  background-image: -moz-linear-gradient(center top , #e5e5e5 0%, #9B9D9F 100%)
-  background-repeat: repeat-x
-  border-top: 1px solid white
-  padding: 5px
-  //margin: -40px 10px 0 170px
+.navbar
   margin-bottom: 0
+  margin-top: $logo_height - 60px - 41px + 20px
   .navbar-inner
-    background-color: transparent
-    background-image: none
-    border-radius: 0
-    box-shadow: none
-    min-height: 30px
-    padding: 6px 10px 4px
+    background-color: #9B9D9F
+    background-image: -moz-linear-gradient(center top , #e5e5e5 0%, #9B9D9F 100%)
+    background-repeat: repeat-x
+    border-top: 1px solid white
+    border-bottom: none
+    +border-top-radius(15px)
+    +border-bottom-radius(0)
 
-.navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle
-  background-color: white
-
-.navbar .nav li.dropdown.open > .dropdown-toggle .caret, .navbar .nav li.dropdown.active > .dropdown-toggle .caret, .navbar .nav li.dropdown.open.active > .dropdown-toggle .caret
-  border-bottom-color: #5F6B7C
-  border-top-color: #5F6B7C
-
-.navbar .nav li.dropdown > .dropdown-toggle .caret
-  border-bottom-color: #FFF
-  border-top-color: #FFF
-
-.navbar .nav .active > a, .navbar .nav .active > a:hover
-  background-color: transparent
-  color: #5F6B7C
-  text-decoration: none
-  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.25)
-
-.active.dropdown .caret
-  border-top-color: #5F6B7C !important
-
-.navbar .nav > li > a
-  font-weight: bold
-  color: white
-  border: 1px solid transparent
-  padding: 4px 8px 4px
-  +border-radius(5px, 5px)
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
-  &:hover
-    +single-box-shadow(#999, 1px, 1px, 3px, 0, inset)
-    color: white
-
-.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle
-  background-color: white
-  color: #5F6B7C
-  text-shadow: none
-
-.caret
-  @include opacity(1)
-
-.navbar .nav li.dropdown.active > .dropdown-toggle:hover
-  color: #5F6B7C
-
-.navbar .nav .active > a, .navbar .nav .active > a:hover
-  background-color: white
-  color: #5F6B7C
-  text-decoration: none
-  border: 1px solid #bbb
-  +border-radius(5px, 5px)
-
-.dropdown-menu
-  border: 1px solid rgba(0, 0, 0, 0.2)
-  +border-radius(5px, 5px)
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
-  display: none
-  float: left
-  left: 0
-  list-style: none outside none
-  margin: 1px 0 0
-  min-width: 160px
-  padding: 4px 0
-  position: absolute
-  top: 100%
-  z-index: 1000
-
-.nav .nav-header
-  margin: 10px
-  padding: 0
-  font-size: inherit
-  text-transform: none
-  background-color: white
-  a
-    border: 1px solid #bbb
-    +border-radius(5px, 5px)
-    padding: 3px 10px
-
-.dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover
-  background-color: $dropdownLinkBackgroundHover
-  color: $dropdownLinkColorHover
-  text-decoration: none
-  border-color: transparent
-  text-shadow: none
-  +border-radius(5px, 5px)
-
-li.grand-children ul
-  list-style: none
-  margin-left: 0
-  padding-left: 0
-  li
-    margin-left: 1em
-    padding-left: 5px
-    a
-      font-size: 11px
-      padding: 0 10px 0 15px
-      background: image-url("menu_level3_item.png") no-repeat scroll 3px 6px transparent
-      color: $linkColor
-      &:hover
-        text-decoration: underline
-        color: $linkColorHover
-        background-color: transparent
-        background-position: 3px -12px
-
-.nav-header + .grand-children
-  margin-top: -10px
-
-.navbar .btn
-  margin-top: 0
-
-// default
+.navbar-search
+  .btn
+    margin-top: 0
 
 $mainWrapDelta: 0.06
 
