@@ -1,12 +1,12 @@
 <div class="span2">
-  <div id='logo'>
+  <div id='logo' class="hidden-phone hidden-tablet">
     <% logo_text_link = link_to title = Refinery::Core.site_name, refinery.root_path, title: title -%>
     <span><%= logo_text_link %></span>
     <%= logo_text_link %>
   </div>
 </div>
 <div class="span10">
-  <h2><%= logo_text_link %></h2>
+  <h2 class="title hidden-phone hidden-tablet"><%= logo_text_link %></h2>
   <%= render(:partial => "/refinery/menu", :locals => {
                :dom_id => 'menu',
                :css => 'menu'

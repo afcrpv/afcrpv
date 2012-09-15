@@ -20,10 +20,9 @@ $logo_height: 137px
       background: transparent image-url("logo-afcrpv.png") no-repeat left top
       a
         display: inline
-        width: 158px
         height: $logo_height
         color: transparent
-  h2 a
+  h2.title a
     color: white
     text-shadow: 0 1px 0 black
 
@@ -42,6 +41,9 @@ $logo_height: 137px
 .navbar-search
   .btn
     margin-top: 0
+
+.form-search .input-append, .form-inline .input-append, .form-search .input-prepend, .form-inline .input-prepend
+  width: 195px
 
 $mainWrapDelta: 0.06
 
@@ -66,24 +68,35 @@ $mainWrapDelta: 0.06
 
 /* Landscape phones and down */
 @media (max-width: 480px)
-  #logo
-    font-size: 14px
+  .navbar
+    margin-top: 0
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px)
-  #logo
-    font-size: 14px
+  .navbar
+    margin-top: 0
 
 // portrait tablet to default desktop
 @media (min-width: 768px) and (max-width: 979px)
-  #logo
-    font-size: 14px
+  .navbar
+    margin-top: 0
   $gridRowWidth768: $gridColumnWidth768 * $gridColumns + $gridGutterWidth768 * ($gridColumns - 1)
   #main_wrap
     width: $gridRowWidth768 + $gridRowWidth768 * $mainWrapDelta
 
+@media (min-width: 980px) and (max-width: 1199px)
+  h2.title a
+    font-size: 24px
+  #logo span
+    margin-top: 12px
+    background-size: 142px !important
+
 // Large desktop
 @media (min-width: 1200px)
+  #logo span
+    background-size: 158px
+  h2.title
+    font-size: 30px
   $gridRowWidth1200: $gridColumnWidth1200 * $gridColumns + $gridGutterWidth1200 * ($gridColumns - 1)
   #main_wrap
     width: $gridRowWidth1200 + $gridRowWidth1200 * $mainWrapDelta

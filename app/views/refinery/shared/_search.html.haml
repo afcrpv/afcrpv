@@ -3,6 +3,6 @@
     = text_field_tag :query, {}, {:type => "search",
                  :placeholder => "Rechercher...",
                  :value => (params[:query] if params[:query]),
-                 class: "search-query", autocomplete: "off"}
+                 class: "search-query span8", autocomplete: "off"}
     = button_tag type: :submit, name: nil, class: "btn" do
       %i.icon-search
