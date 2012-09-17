@@ -11,6 +11,8 @@ PATH
   specs:
     refinerycms-agences (1.0)
       refinerycms-core (~> 2.0.5)
+    refinerycms-emplois (1.0)
+      refinerycms-core (~> 2.0.5)
     refinerycms-events (1.0)
       refinerycms-core (~> 2.0.5)
 
@@ -244,6 +246,7 @@ DEPENDENCIES
   rails (= 3.2.8)
   refinerycms (~> 2.0.0)
   refinerycms-agences!
+  refinerycms-emplois!
   refinerycms-events!
   refinerycms-i18n (~> 2.0.0)
   refinerycms-inquiries (~> 2.0.0)

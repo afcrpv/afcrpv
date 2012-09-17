@@ -17,3 +17,6 @@ Refinery::Events::Engine.load_seed
 
 # Added by Refinery CMS Inquiries engine
 Refinery::Inquiries::Engine.load_seed
+
+# Added by Refinery CMS Emplois extension
+Refinery::Emplois::Engine.load_seed
