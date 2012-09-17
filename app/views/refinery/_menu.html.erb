@@ -17,9 +17,6 @@
       <a class="brand hidden-desktop" href="/">AFCRPV</a>
       <div class="nav-collapse">
         <ul class="nav">
-          <li class="hidden-phone <%= "active" if selected_page_or_descendant_page_selected?(roots.first) %>">
-            <a href="/">ACCUEIL</a>
-          </li>
           <%= render :partial => '/refinery/menu_branch', :collection => roots.reject {|m| m.title.downcase == "accueil"},
                      :locals => {
                        :hide_children => hide_children,
