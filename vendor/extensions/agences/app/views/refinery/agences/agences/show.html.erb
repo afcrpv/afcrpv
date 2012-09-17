@@ -10,17 +10,9 @@
   </section>
   <hr>
   <section>
-    <% if @agence.feeds -%>
-      <ul>
-        <% @agence.feeds(-1).each do |feed| -%>
-          <li>
-          <%= link_to feed.title, feed.link, target: "_BLANK" %>
-          </li>
-        <% end -%>
-    <% else %>
-      Aucune actualité
-    <% end %>
-
+    <% cache @agence.name do %>
+      <%= get_agence_feeds(@agence, -1) %>
+    <% end -%>
   </section>
 <% end %>
 
