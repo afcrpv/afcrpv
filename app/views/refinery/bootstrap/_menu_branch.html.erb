@@ -14,11 +14,7 @@
          (!local_assigns[:menu_levels] || menu_branch.ancestors.length < local_assigns[:menu_levels]) ) -%>
     <li class="<%= parent_css %>">
     <%= parent_title %>
-    <% if menu_branch.ancestors.length == 0 %>
-      <ul class='dropdown-menu' role='menu' aria-labelledyby="<%= menu_branch.title.downcase %>">
-    <% else %>
-      <ul class="dropdown-menu">
-    <% end %>
+    <ul class='dropdown-menu'<%= " role='menu' aria-labelledyby='#{menu_branch.title.downcase}'" if menu_branch.ancestors.length == 0 %>>
     <%= render :partial => '/refinery/bootstrap/menu_branch', :collection => children,
                :locals => {
                  :apply_css => local_assigns[:apply_css],
