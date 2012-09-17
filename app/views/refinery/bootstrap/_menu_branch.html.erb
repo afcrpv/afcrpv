@@ -24,6 +24,6 @@
     </ul>
   <% else -%>
     <li<%= ['', css].compact.join(' ').gsub(/\ *$/, '').html_safe %>>
-      <%= link_to(menu_branch.title, refinery.url_for(menu_branch.url)) -%>
+      <%= parent_title -%>
   <% end -%>
 </li>
