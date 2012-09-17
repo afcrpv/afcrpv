@@ -1,4 +1,3 @@
-#encoding: utf-8
 fr:
   refinery:
     plugins:
@@ -14,7 +13,7 @@ fr:
           records:
             title: Offres d'emploi
             sorry_no_results: "Désolé ! Aucun résultat."
-            no_items_yet: 'Il n''y a actuellement aucune offre d'emploi. Cliquer sur "Créer une nouvelle offre d'emploi" pour créer votre première offre d'emploi.'
+            no_items_yet: 'Il n''y a actuellement aucune offre d''emploi. Cliquer sur "Créer une nouvelle offre d''emploi" pour créer votre première offre d''emploi.'
           emploi:
             view_live_html: Voir cette offre d'emploi <br/><em>(Ouvre une nouvelle fenêtre)</em>
             edit: Modifier cette offre d'emploi
