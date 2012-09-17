@@ -1,0 +1,33 @@
+<%
+  if !!local_assigns[:apply_css] and (classes = menu_branch_css(local_assigns)).any?
+    css = "class='#{classes.join(' ')}'".html_safe
+  end
+  if menu_branch.ancestors.length == 0
+    parent_css = "dropdown"
+    parent_title = link_to(raw("#{menu_branch.title} <b class=\"caret\"></b>"), refinery.url_for(menu_branch.url), id: menu_branch.title.downcase, class: "dropdown-toggle", data: {toggle: "dropdown", target: "#"})
+  else
+    parent_css = "dropdown-submenu"
+    parent_title = link_to(menu_branch.title, refinery.url_for(menu_branch.url), tabindex: "-1")
+  end
+-%>
+  <% if ( (children = menu_branch.children unless hide_children).present? &&
+         (!local_assigns[:menu_levels] || menu_branch.ancestors.length < local_assigns[:menu_levels]) ) -%>
+    <li class="<%= parent_css %>">
+    <%= parent_title %>
+    <% if menu_branch.ancestors.length == 0 %>
+      <ul class='dropdown-menu' role='menu' aria-labelledyby="<%= menu_branch.title.downcase %>">
+    <% else %>
+      <ul class="dropdown-menu">
+    <% end %>
+    <%= render :partial => '/refinery/bootstrap/menu_branch', :collection => children,
+               :locals => {
+                 :apply_css => local_assigns[:apply_css],
+                 :hide_children => !!hide_children,
+                 :menu_levels => local_assigns[:menu_levels]
+                } -%>
+    </ul>
+  <% else -%>
+    <li<%= ['', css].compact.join(' ').gsub(/\ *$/, '').html_safe %>>
+      <%= link_to(menu_branch.title, refinery.url_for(menu_branch.url)) -%>
+  <% end -%>
+</li>
