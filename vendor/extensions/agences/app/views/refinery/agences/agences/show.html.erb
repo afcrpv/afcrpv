@@ -10,7 +10,7 @@
   </section>
   <hr>
   <section>
-    <% cache @agence.name, expires_in: 30.seconds do %>
+    <% cache "#{@agence.name}-all", expires_in: 30.minutes do %>
       <%= get_agence_feeds(@agence, -1) %>
     <% end -%>
   </section>
