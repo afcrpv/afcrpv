@@ -9,16 +9,4 @@
     <%=raw @event.description %>
   </section>
 <% end %>
-
-<% content_for :side_body do %>
-  <aside>
-    <h2><%= t('.other') %></h2>
-    <ul id="events">
-      <% @events.each do |event| %>
-        <%= link_to_event(event) %>
-      <% end %>
-    </ul>
-  </aside>
-<% end %>
-
 <%= render '/refinery/content_page' %>
