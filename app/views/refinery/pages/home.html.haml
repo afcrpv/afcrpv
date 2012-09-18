@@ -1,22 +1,17 @@
 #carousel
-  .tabbbale.tabs-left
-    %ul.nav.nav-tabs
-      - (sections = {"section1" => "sec1", "section2" => "sec2", "section3" => "sec3"}).each do |name, target|
-        %li= link_to name, "#" + target, data: {toggle: "tab"}
-    .tab-content.fade.in
-      - sections.each do |name, target|
-        .tab-pane{id: target}
-          %p Hello from #{name}!
+  .row-fluid
+    = raw @page.content_for(:carousel)
 
 %hr
 
 #actualites_pv
-  %section
-    %header
-      %h1= link_to "Actualités de la Pharmacovigilance", "/actualites"
-    - if @pv_news && @pv_news.any?
-    - else
-      %p Aucune actualité.
+  .row-fluid
+    %section
+      %header
+        %h1= link_to "Actualités de la Pharmacovigilance", "/actualites"
+      - if @pv_news && @pv_news.any?
+      - else
+        %p Aucune actualité.
 %hr
 
 #actualites_colonnes.row-fluid

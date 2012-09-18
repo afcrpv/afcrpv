@@ -1,7 +1,7 @@
 Refinery::Pages.configure do |config|
   # Configure specific page templates
   config.types.register :home do |home|
-    home.parts = %w[intro body]
+    home.parts = %w[carousel]
   end
 
   config.types.register :sitemap do |home|
@@ -12,7 +12,7 @@ Refinery::Pages.configure do |config|
   # config.default_parts = ["Body", "Side Body"]
 
   # Configure whether to allow adding new page parts
-  # config.new_page_parts = false
+  config.new_page_parts = true
 
   # Configure whether to enable marketable_urls
   # config.marketable_urls = true
