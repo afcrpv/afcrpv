@@ -1,8 +1,11 @@
 Refinery::Core::Engine.routes.append do
 
   # Frontend routes
-  namespace :emplois do
-    resources :emplois, :path => '', :only => [:index, :show]
+  namespace :emplois, :path => '' do
+    get '/emplois/deposer', to: 'emplois#new', as: 'new_emploi'
+    resources :emplois, :only => [:index, :show, :create] do
+      get :merci, on: :collection
+    end
   end
 
   # Admin routes

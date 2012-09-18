@@ -7,7 +7,9 @@ module Refinery
 
       acts_as_indexed :fields => [:organisation, :name, :email, :telephone, :address, :title, :description]
 
-      validates :organisation, :presence => true, :uniqueness => true
+      [:organisation, :name, :email, :telephone, :address, :title, :description, :expires_on].each do |field|
+        validates field, :presence => true
+      end
 
       belongs_to :attachment, :class_name => '::Refinery::Resource'
 
