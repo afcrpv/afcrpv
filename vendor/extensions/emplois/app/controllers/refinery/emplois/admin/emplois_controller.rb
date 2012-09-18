@@ -4,7 +4,7 @@ module Refinery
       class EmploisController < ::Refinery::AdminController
 
         crudify :'refinery/emplois/emploi',
-                :title_attribute => 'organisation', :xhr_paging => true
+                :title_attribute => 'title', :xhr_paging => true, :sortable => false
 
       end
     end
