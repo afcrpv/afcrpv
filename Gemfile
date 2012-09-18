@@ -66,3 +66,5 @@ gem 'refinerycms-agences', :path => 'vendor/extensions'
 gem 'refinerycms-events', :path => 'vendor/extensions'
 
 gem 'refinerycms-emplois', :path => 'vendor/extensions'
+
+gem 'dalli'
