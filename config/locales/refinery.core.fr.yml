@@ -2,7 +2,7 @@ fr:
   refinery:
     js:
       admin:
-        confirm_changes: Tout les changements non sauvegardés seront perdus. Voulez-vous continuer sans enregistrer ?
+        confirm_changes: Tout les changements seront perdus. Voulez-vous continuer sans enregistrer ?
     plugins:
       refinery_core:
         title: Refinery
