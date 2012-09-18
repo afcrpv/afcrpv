@@ -5,10 +5,17 @@
 
   
   <div class='field'>
-    <%= f.label :organisation -%>
-    <%= f.text_field :organisation, :class => 'larger widest'  -%>
+    <%= f.label :title -%>
+    <%= f.text_field :title, :class => 'larger widest'  -%>
 
   </div>
+
+  <div class='field'>
+    <%= f.label :organisation -%>
+    <%= f.text_field :organisation  -%>
+
+  </div>
+  
   
   <div class='field'>
     <%= f.label :name -%>
@@ -31,32 +38,20 @@
   <div class='field'>
     <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
       <ul id='page_parts'>
-        <% [:address].each_with_index do |part, part_index| %>
+        <% [:address, :description].each_with_index do |part, part_index| %>
           <li class='ui-state-default<%= ' ui-state-active' if part_index == 0 %>'>
             <%= link_to t("#{part}", :scope => "activerecord.attributes.refinery/emplois/emploi", :default => part.to_s.titleize), "##{part}" %>
           </li>
         <% end %>
       </ul>
       <div id='page_part_editors'>
-        <% [:address].each do |part| %>
+        <% [:address, :description].each do |part| %>
           <div class='page_part' id='<%= part %>'>
-            <%= f.text_area part, :rows => 20, :class => 'wymeditor widest' -%>
+            <%= f.text_area part, :rows => 10, :class => 'wymeditor widest' -%>
           </div>
         <% end %>
       </div>
     </div>
-
-  </div>
-  
-  <div class='field'>
-    <%= f.label :title -%>
-    <%= f.text_field :title  -%>
-
-  </div>
-  
-  <div class='field'>
-    <%= f.label :description -%>
-    <%= f.text_field :description  -%>
 
   </div>
   

@@ -1,14 +1,14 @@
 <li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(emploi) -%>">
   <span class='title'>
-    <%= emploi.organisation %>
+    <%= emploi.title %>
 
   </span>
   <span class='actions'>
-    
+
     <%= link_to refinery_icon_tag("application_go.png"), refinery.emplois_emploi_path(emploi),
         :title => t('.view_live_html'),
         :target => "_blank" %>
-    
+
     <%= link_to refinery_icon_tag("application_edit.png"), refinery.edit_emplois_admin_emploi_path(emploi),
          :title => t('.edit') %>
     <%= link_to refinery_icon_tag("delete.png"), refinery.emplois_admin_emploi_path(emploi),

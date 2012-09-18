@@ -1,5 +1,5 @@
 <% content_for :body_content_title do %>
-  <%= @emploi.organisation %>
+  <%= @emploi.title %>
 <% end %>
 
 <% content_for :body do %>
@@ -61,19 +61,6 @@
       <% end %>
     </p>
   </section>
-<% end %>
-
-<% content_for :side_body do %>
-  <aside>
-    <h2><%= t('.other') %></h2>
-    <ul id="emplois">
-      <% @emplois.each do |emploi| %>
-        <li>
-          <%= link_to emploi.organisation, refinery.emplois_emploi_path(emploi) %>
-        </li>
-      <% end %>
-    </ul>
-  </aside>
 <% end %>
 
 <%= render '/refinery/content_page' %>

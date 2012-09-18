@@ -1,11 +1,13 @@
 <% content_for :body do %>
-  <ul id="emplois">
-    <% @emplois.each do |emploi| %>
-      <li>
-        <%= link_to emploi.organisation, refinery.emplois_emploi_path(emploi) %>
-      </li>
-    <% end %>
-  </ul>
+  <% if @emplois.any? %>
+    <table class="table table-striped table-condensed news">
+      <% @emplois.each do |emploi| -%>
+        <%= news_line(emploi) %>
+      <% end -%>
+    </table>
+  <% else %>
+    <h4>Aucune offre d'emploi n'a été déposée.</h4>
+  <% end %>
 <% end %>
 
 <%= render '/refinery/content_page' %>
