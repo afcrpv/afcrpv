@@ -3,64 +3,23 @@
 <% end %>
 
 <% content_for :body do %>
-  <section>
-    <h1>Organisation</h1>
-    <p>
-      <%=raw @emploi.organisation %>
-    </p>
-  </section>
-  <section>
-    <h1>Name</h1>
-    <p>
-      <%=raw @emploi.name %>
-    </p>
-  </section>
-  <section>
-    <h1>Email</h1>
-    <p>
-      <%=raw @emploi.email %>
-    </p>
-  </section>
-  <section>
-    <h1>Telephone</h1>
-    <p>
-      <%=raw @emploi.telephone %>
-    </p>
-  </section>
-  <section>
-    <h1>Address</h1>
-    <p>
-      <%=raw @emploi.address %>
-    </p>
-  </section>
-  <section>
-    <h1>Title</h1>
-    <p>
-      <%=raw @emploi.title %>
-    </p>
-  </section>
-  <section>
-    <h1>Description</h1>
-    <p>
-      <%=raw @emploi.description %>
-    </p>
-  </section>
-  <section>
-    <h1>Expires On</h1>
-    <p>
-      <%=raw @emploi.expires_on %>
-    </p>
-  </section>
-  <section>
-    <h1>Attachment</h1>
-    <p>
+  <dl class="dl-horizontal emploi">
+    <% %w(description organisation name email telephone address).each do |field| -%>
+      <dt><%= t(field, :scope => 'activerecord.attributes.refinery/emplois/emploi') %></dt>
+      <dd><%= raw @emploi.send(field) %></dd>
+    <% end -%>
+
+    <dt><%= t("expires_on", :scope => 'activerecord.attributes.refinery/emplois/emploi') %></dt>
+    <dd><%= l(@emploi.expires_on) %></dd>
+    <dt><%= t("attachment", :scope => 'activerecord.attributes.refinery/emplois/emploi') %></dt>
+    <dd>
       <% if @emploi.attachment.present? %>
-        <%= link_to 'attachment', @emploi.attachment.url %>
+        <%= link_to @emploi.attachment.file_name, @emploi.attachment.url %>
       <% else %>
-        attachment
+        Aucune.
       <% end %>
-    </p>
-  </section>
+    </dd>
+  </dl>
 <% end %>
 
 <%= render '/refinery/content_page' %>
