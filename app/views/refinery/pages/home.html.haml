@@ -27,5 +27,5 @@
           %h1= agence.name
           %h2= agence.description
         %hr
-        - cache agence.name do
+        - cache agence.name, expires_in: 30.seconds do
           = get_agence_feeds(agence, 5)
