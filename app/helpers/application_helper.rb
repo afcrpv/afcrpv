@@ -60,7 +60,7 @@ module ApplicationHelper
     feeds = agence.feeds
     return feed_error if feeds.nil?
     if feeds.any?
-      feeds_list(agence.feeds)
+      feeds_list(agence.feeds(limit))
     else
       content_tag :p, "Aucune actualité"
     end
