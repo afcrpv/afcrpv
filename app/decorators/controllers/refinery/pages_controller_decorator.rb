@@ -11,6 +11,6 @@ Refinery::PagesController.class_eval do
   end
 
   def find_pv_news
-    @pv_news = Refinery::Events::Event.limit(5)
+    @pv_news = (Refinery::Events::Event.limit(5) + Refinery::Emplois::Emploi.limit(5)).sort {|a, b| b.created_at <=> a.created_at}
   end
 end

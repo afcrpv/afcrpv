@@ -3,16 +3,11 @@
 module ApplicationHelper
   def news_line(news)
     klass_name = news.class.parent.name.downcase.demodulize
-    title = case klass_name
-    when "events"
-      news.send(:title)
-    else
-      news.send(:name)
-    end
+    title = news.send(:title)
     content_tag :tr do
       [
         content_tag(:td, news_date(news)),
-        content_tag(:td, category_label(news)),
+        content_tag(:td, category_label(news, klass_name)),
         content_tag(:td, link_to(title, refinery.polymorphic_path([klass_name, news])))
       ].join("\n").html_safe
     end
@@ -22,8 +17,9 @@ module ApplicationHelper
     content_tag :span, I18n.l(news.created_at.to_date, format: :perso), class: "date"
   end
 
-  def category_label(event)
-    content_tag(:span, event.category.to_s.upcase, class: label_class(event))
+  def category_label(news, klass_name)
+    text = news.respond_to?(:category) ? news.category.to_s.upcase : klass_name.singularize.upcase
+    content_tag(:span, text, class: label_class(news, klass_name))
   end
 
   def link_to_toc_branch(branch, level)
@@ -72,12 +68,12 @@ module ApplicationHelper
 
   private
 
-  def label_class(news)
-    category = news.respond_to?(:category) ? news.category.title : "autre"
+  def label_class(news, klass_name)
+    category = news.respond_to?(:category) ? news.category.title : klass_name
     label_css = "label "
     label_css += case category
                 when "congres", "formation", "prix" then "label-info"
-                when "emploi" then "label-success"
+                when "emplois" then "label-warning"
                 else
                   ""
                 end
