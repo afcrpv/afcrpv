@@ -8,7 +8,7 @@ class CreateEmploisEmplois < ActiveRecord::Migration
       t.string :telephone
       t.text :address
       t.string :title
-      t.string :description
+      t.text :description
       t.date :expires_on
       t.integer :attachment_id
       t.integer :position
