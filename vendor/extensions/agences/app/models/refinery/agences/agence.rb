@@ -19,7 +19,7 @@ module Refinery
 
       validates :name, :presence => true, :uniqueness => true
 
-      def feeds(limit=5)
+      def feeds(limit=4)
         get_rss_entries(feed_url, limit) rescue nil
       end
 
@@ -30,7 +30,7 @@ module Refinery
       private
 
       def get_rss_entries(url, limit)
-        SimpleRSS.parse(open(url)).entries[1..limit]
+        SimpleRSS.parse(open(url)).entries[0..limit]
       end
     end
   end
