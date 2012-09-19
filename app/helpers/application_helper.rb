@@ -2,15 +2,24 @@
 
 module ApplicationHelper
   def news_line(news)
-    klass_name = news.class.parent.name.downcase.demodulize
-    title = news.send(:title)
+    klass_name = get_demodulized_class(news)
     content_tag :tr do
       [
         content_tag(:td, news_date(news)),
         content_tag(:td, category_label(news, klass_name)),
-        content_tag(:td, link_to(title, refinery.polymorphic_path([klass_name, news])))
+        content_tag(:td, link_to_news(news))
       ].join("\n").html_safe
     end
+  end
+
+  def get_demodulized_class(news)
+    news.class.parent.name.downcase.demodulize
+  end
+
+  def link_to_news(news)
+    klass_name = get_demodulized_class(news)
+    title = news.send(:title)
+    link_to(title, refinery.polymorphic_path([klass_name, news]))
   end
 
   def news_date(news)
