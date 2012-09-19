@@ -5,6 +5,11 @@
       %li= link_to "Mention Légales", "/mention-legales", title: "Mention Légales"
       %li= link_to "Plan du site", "/plan-du-site", title: "Plan du site"
 
+    %p
+      = link_to image_tag("feed-icon-14x14.png"), "/actualites.rss", title: "Flux RSS - Actualités de la pharmacovigilance"
+      Abbonez vous au
+      = link_to "flux RSS", "http://fr.wikipedia.org/wiki/Really_Simple_Syndication", target: "_BLANK"
+      de nos actualités.
     %p= t('.copyright', year: Time.now.year, site_name: Refinery::Core.site_name)
   .span2
     %p.pull-right
