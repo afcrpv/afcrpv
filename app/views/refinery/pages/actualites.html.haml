@@ -1,5 +1,3 @@
 %h1#body_content_title Actualités de la pharmacovigilance
-- if @pv_news.any?
-  %table.table.table-striped.table-condensed.news
-    - @pv_news.each do |news|
-      = news_line(news)
+
+= render 'refinery/news', news: @pv_news, no_entries_message: "Aucune actualité."

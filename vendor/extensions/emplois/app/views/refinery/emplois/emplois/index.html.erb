@@ -1,13 +1,5 @@
 <% content_for :body do %>
-  <% if @emplois.any? %>
-    <table class="table table-striped table-condensed news">
-      <% @emplois.each do |emploi| -%>
-        <%= news_line(emploi) %>
-      <% end -%>
-    </table>
-  <% else %>
-    <h4>Aucune offre d'emploi n'a été déposée.</h4>
-  <% end %>
+  <%= render "refinery/news", news: @emplois, no_entries_message: "Aucune offre d'emploi déposée." %>
 <% end %>
 
 <%= render '/refinery/content_page' %>

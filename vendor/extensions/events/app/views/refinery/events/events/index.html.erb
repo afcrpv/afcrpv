@@ -1,13 +1,5 @@
 <% content_for :body do %>
-  <% if @events.any? %>
-    <table class="table table-striped table-condensed news">
-      <% @events.each do |event| -%>
-        <%= news_line(event) %>
-      <% end -%>
-    </table>
-  <% else %>
-    <h4>Aucun événement dans l'agenda.</h4>
-  <% end %>
+ <% render "refinery/news", news: @events, no_entries_message: "Aucun événement dans l'agenda." %>
 <% end -%>
 
 <%= render '/refinery/content_page' %>

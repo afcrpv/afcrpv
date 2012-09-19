@@ -9,10 +9,14 @@
     %section
       %header
         %h1= link_to "Actualités de la Pharmacovigilance", "/actualites"
-      - if @pv_news && @pv_news.any?
-      - else
-        %p Aucune actualité.
+      = render 'refinery/news', news: @pv_news[0..9], no_entries_message: "Aucune actualité."
+
 %hr
+
+.row-fluid
+  %section
+    %header
+      %h1= link_to "Actualités des agences"
 
 #actualites_colonnes.row-fluid
   - @agences.each do |agence|
