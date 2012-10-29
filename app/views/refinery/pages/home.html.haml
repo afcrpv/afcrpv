@@ -1,30 +1,61 @@
-#carousel
+#top-sections
   .row-fluid
-    = raw @page.content_for(:carousel)
+    %ul.thumbnails
+      %li.span4
+        .thumbnail
+          %h3
+            = link_to "/ressources/la-pharmacovigilance", class: "btn btn-large btn-block btn-primary" do
+              %i.icon-info-sign.icon-white
+              La Pharmacovigilance
+          %p Organisation, historique, règlementation.
+      %li.span4
+        .thumbnail
+          %h3
+            = link_to "/ressources/declarations", class: "btn btn-large btn-block btn-danger" do
+              %i.icon-exclamation-sign.icon-white
+              Déclaration effets indésirables
+          %p
+            Pourquoi, quoi et comment déclarer.
+            = link_to "/cerfa_10011-03.pdf", class: "btn btn-small" do
+              %i.icon-download
+              Télécharger la fiche CERFA en PDF
+      %li.span4
+        .thumbnail
+          %h3
+            = link_to "/contact/contacter-lassociation", class: "btn btn-large btn-block btn-info" do
+              %i.icon-question-sign.icon-white
+              Poser une question de pharmacovigilance
+
+          %p Comment contacter votre CRPV de référence.
 
 %hr
 
 #actualites_pv
   .row-fluid
-    %section
-      %header
-        %h1= link_to "Actualités de la Pharmacovigilance", "/actualites"
-      = render 'refinery/news', news: @pv_news[0..9], no_entries_message: "Aucune actualité."
-
-%hr
-
-.row-fluid
-  %section
-    %header
-      %h1= link_to "Actualités des agences"
-
-#actualites_colonnes.row-fluid
-  - @agences.each do |agence|
-    .actualite.span4
-      %aside
+    .span6
+      %section
         %header
-          %h1= agence.name
-          %h2= agence.description
-        %hr
-        - cache agence.name, expires_in: 30.minutes do
-          = get_agence_feeds(agence, 5)
+          %h2= link_to "Actualités des CRPV", "/actualites"
+        = render 'refinery/news', news: @pv_news[0..9], no_entries_message: "Aucune actualité."
+
+    .span6
+      %section
+        %header
+          %h2= link_to "Actualités de la PV", "#"
+          %table.table.table-striped.table-condensed.news
+            %tbody
+              %tr
+                %td
+                  %span.date 04/10/2012
+                %td
+                  = link_to "Un nouveau dispositif pour permettre et sécuriser l’accès aux traitements dans d’autres indications que celles de leur AMM : les recommandations temporaires d’utilisation (RTU) - Point d'information", "http://ansm.sante.fr/S-informer/Points-d-information-Points-d-information/Un-nouveau-dispositif-pour-permettre-et-securiser-l-acces-aux-traitements-dans-d-autres-indications-que-celles-de-leur-AMM-les-recommandations-temporaires-d-utilisation-RTU-Point-d-information"
+              %tr
+                %td
+                  %span.date 01/10/2012
+                %td
+                  = link_to "Contraceptifs oraux combinés et risque de thrombose veineuse : prescription des pilules de 2e génération contenant du lévonorgestrel en première intention - Point d'information", "http://ansm.sante.fr/S-informer/Points-d-information-Points-d-information/Contraceptifs-oraux-combines-et-risque-de-thrombose-veineuse-prescription-des-pilules-de-2e-generation-contenant-du-levonorgestrel-en-premiere-intention-Point-d-information"
+              %tr
+                %td
+                  %span.date 27/09/2012
+                %td
+                  = link_to "L’ANSM traduit ses nouvelles modalités de travail dans son organisation - Point d'information", "http://ansm.sante.fr/S-informer/Points-d-information-Points-d-information/L-ANSM-traduit-ses-nouvelles-modalites-de-travail-dans-son-organisation-Point-d-information"
