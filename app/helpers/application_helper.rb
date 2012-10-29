@@ -23,7 +23,7 @@ module ApplicationHelper
   end
 
   def news_date(news)
-    content_tag :span, I18n.l(news.created_at.to_date, format: :perso), class: "date"
+    content_tag :span, I18n.l(news.created_at.to_date), class: "date"
   end
 
   def category_label(news, klass_name)
