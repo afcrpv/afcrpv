@@ -2,7 +2,7 @@
   if !!local_assigns[:apply_css] and (classes = menu_branch_css(local_assigns)).any?
     css = "class='#{classes.join(' ')}'".html_safe
   end
-  if menu_branch.ancestors.length == 0
+  if menu_branch.ancestors.length == 0 && menu_branch.children.any?
     parent_css = "dropdown"
     parent_title = link_to(raw("#{menu_branch.title} <b class=\"caret\"></b>"), refinery.url_for(menu_branch.url), id: menu_branch.title.downcase, class: "dropdown-toggle", data: {toggle: "dropdown", target: "#"})
   else
