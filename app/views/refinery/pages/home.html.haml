@@ -1,32 +1,6 @@
 #top-sections
   .row-fluid
-    %ul.thumbnails
-      %li.span4
-        .thumbnail
-          %h3
-            = link_to "/ressources/la-pharmacovigilance", class: "btn btn-large btn-block btn-primary" do
-              %i.icon-info-sign.icon-white
-              La Pharmacovigilance
-          %p Organisation, historique, règlementation.
-      %li.span4
-        .thumbnail
-          %h3
-            = link_to "/ressources/declarations", class: "btn btn-large btn-block btn-danger" do
-              %i.icon-exclamation-sign.icon-white
-              Déclaration effets indésirables
-          %p
-            Pourquoi, quoi et comment déclarer.
-            = link_to "/cerfa_10011-03.pdf", class: "btn btn-small" do
-              %i.icon-download
-              Télécharger la fiche CERFA en PDF
-      %li.span4
-        .thumbnail
-          %h3
-            = link_to "/contact", class: "btn btn-large btn-block btn-info" do
-              %i.icon-question-sign.icon-white
-              Poser une question de pharmacovigilance
-
-          %p Comment contacter votre CRPV de référence.
+    = raw @page.content_for(:carousel)
 
 %hr
 
