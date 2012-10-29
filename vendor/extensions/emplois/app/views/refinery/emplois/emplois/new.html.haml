@@ -29,6 +29,10 @@
       .field
         = f.label :attachment
         = f.file_field :attachment
+      .field
+        = f.label :humanizer_answer, @emploi.humanizer_question, class: "placeholder-fallback"
+        = f.text_field :humanizer_answer, class: "text", :placeholder => t(:here_the_anwser, :scope => 'humanizer'), required: 'required'
+        = f.hidden_field :humanizer_question_id
       .actions
         = f.submit "Envoyer"
 = render "/refinery/content_page"
