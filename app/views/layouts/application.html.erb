@@ -19,7 +19,7 @@
             <%= render '/refinery/breadcrumb' %>
             <div class="row-fluid">
               <div class="span8"><%= yield %></div>
-              <div class="span4"><%= render '/refinery/toc' %></div>
+              <div class="span4"><%= render '/refinery/toc', root: (root = @page.self_and_ancestors.first) %></div>
             </div><!--row-fluid-->
           </div><!--container-fluid-->
         </div><!--page-->
