@@ -58,14 +58,5 @@ gem 'refinerycms-search', '~> 2.0.0', :git => 'git://github.com/resolve/refinery
 gem 'fog'
 
 gem 'haml-rails'
-
-gem "simple-rss"
-
-gem 'refinerycms-agences', :path => 'vendor/extensions'
-
-gem 'refinerycms-events', :path => 'vendor/extensions'
-
-gem 'refinerycms-emplois', :path => 'vendor/extensions'
-
 gem 'dalli'
 gem 'humanizer'
