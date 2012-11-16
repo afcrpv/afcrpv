@@ -11,54 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918083923) do
-
-  create_table "refinery_agences", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "feed_url"
-    t.integer  "position"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "slug"
-    t.boolean  "show_on_home"
-  end
-
-  create_table "refinery_categories", :force => true do |t|
-    t.string   "title"
-    t.integer  "position"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.string   "description"
-  end
-
-  create_table "refinery_emplois", :force => true do |t|
-    t.string   "organisation"
-    t.string   "name"
-    t.string   "email"
-    t.string   "telephone"
-    t.text     "address"
-    t.string   "title"
-    t.text     "description"
-    t.date     "expires_on"
-    t.integer  "attachment_id"
-    t.integer  "position"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "slug"
-  end
-
-  create_table "refinery_events", :force => true do |t|
-    t.string   "title"
-    t.integer  "category_id"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.text     "description"
-    t.integer  "position"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.string   "slug"
-  end
+ActiveRecord::Schema.define(:version => 20120914115710) do
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
