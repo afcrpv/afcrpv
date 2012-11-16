@@ -1,4 +1,0 @@
-- if Refinery.i18n_enabled? and Refinery::I18n.frontend_locales.many?
-  %nav#locale.pull-right
-    - ::Refinery::I18n.frontend_locales.each do |locale|
-      = link_to_if Globalize.locale.to_s != locale.to_s, refinery_icon_tag("flags/#{locale}.png", size: "16x11"), refinery.url_for(locale: locale), class: "locale"
