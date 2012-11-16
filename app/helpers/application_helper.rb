@@ -65,16 +65,6 @@ module ApplicationHelper
     [path, URI.decode(path)].include?(url) || path == "/#{page.id}"
   end
 
-  def get_agence_feeds(agence, limit)
-    feeds = agence.feeds
-    return feed_error if feeds.nil?
-    if feeds.any?
-      feeds_list(agence.feeds(limit))
-    else
-      content_tag :p, "Aucune actualité"
-    end
-  end
-
   private
 
   def label_class(news, klass_name)
@@ -86,19 +76,5 @@ module ApplicationHelper
                 else
                   ""
                 end
-  end
-
-  def feed_error
-    content_tag :div, class: "alert alert-error" do
-      content_tag(:strong, "Attention !") + " Impossible de récupérer le flux d'actualité RSS."
-    end
-  end
-
-  def feeds_list(feeds)
-    feeds_items = []
-    feeds.each do |feed|
-      feeds_items << content_tag(:li, link_to(feed.title, feed.link, target: "_BLANK"))
-    end
-    content_tag :ul, feeds_items.join("\n").html_safe
   end
 end
