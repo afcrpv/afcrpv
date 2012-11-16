@@ -57,6 +57,8 @@ gem 'refinerycms-search', '~> 2.0.0', :git => 'git://github.com/resolve/refinery
 # Fog allows you to use S3 assets (added for Heroku)
 gem 'fog'
 
+gem 'thin'
+
 gem 'haml-rails'
 gem 'dalli'
 gem 'humanizer'
