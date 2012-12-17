@@ -1,0 +1,25 @@
+<ul>
+  <% if ::Refinery::Crpvs::Admin::CrpvsController.searchable? %>
+    <li>
+      <%= render '/refinery/admin/search', :url => refinery.crpvs_admin_crpvs_path %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to t('.create_new'), refinery.new_crpvs_admin_crpv_path,
+                 :class => "add_icon" %>
+  </li>
+<% if !searching? && ::Refinery::Crpvs::Admin::CrpvsController.sortable? && ::Refinery::Crpvs::Crpv.any? %>
+  <li>
+    <%= link_to t('.reorder', :what => "Crpvs"),
+                 refinery.crpvs_admin_crpvs_path,
+                 :id => "reorder_action",
+                 :class => "reorder_icon" %>
+
+    <%= link_to t('.reorder_done', :what => "Crpvs"),
+                 refinery.crpvs_admin_crpvs_path,
+                 :id => "reorder_action_done",
+                 :style => "display: none;",
+                 :class => "reorder_icon" %>
+  </li>
+<% end %>
+</ul>

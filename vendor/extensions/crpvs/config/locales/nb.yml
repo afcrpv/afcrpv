@@ -1,0 +1,36 @@
+nb:
+  refinery:
+    plugins:
+      crpvs:
+        title: Crpvs
+    crpvs:
+      admin:
+        crpvs:
+          actions:
+            create_new: Lag en ny Crpv
+            reorder: Endre rekkefølgen på Crpvs
+            reorder_done: Ferdig å endre rekkefølgen Crpvs
+          records:
+            title: Crpvs
+            sorry_no_results: Beklager! Vi fant ikke noen resultater.
+            no_items_yet: Det er ingen Crpvs enda. Klikk på "Lag en ny Crpv" for å legge til din første crpv.
+          crpv:
+            view_live_html: Vis hvordan denne crpv ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+            edit: Rediger denne crpv
+            delete: Fjern denne crpv permanent
+      crpvs:
+        show:
+          other: Andre Crpvs
+  activerecord:
+    attributes:
+      'refinery/crpvs/crpv':
+        name: Name
+        adresse: Adresse
+        city: City
+        cp: Cp
+        responsable: Responsable
+        tel: Tel
+        fax: Fax
+        email: Email
+        website: Website
+        bulletin: Bulletin

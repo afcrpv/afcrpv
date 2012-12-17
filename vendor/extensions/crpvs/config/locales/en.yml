@@ -1,0 +1,36 @@
+en:
+  refinery:
+    plugins:
+      crpvs:
+        title: Crpvs
+    crpvs:
+      admin:
+        crpvs:
+          actions:
+            create_new: Add New Crpv
+            reorder: Reorder Crpvs
+            reorder_done: Done Reordering Crpvs
+          records:
+            title: Crpvs
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Crpvs yet. Click "Add New Crpv" to add your first crpv.
+          crpv:
+            view_live_html: View this crpv live <br/><em>(opens in a new window)</em>
+            edit: Edit this crpv
+            delete: Remove this crpv forever
+      crpvs:
+        show:
+          other: Other Crpvs
+  activerecord:
+    attributes:
+      'refinery/crpvs/crpv':
+        name: Name
+        adresse: Adresse
+        city: City
+        cp: Cp
+        responsable: Responsable
+        tel: Tel
+        fax: Fax
+        email: Email
+        website: Website
+        bulletin: Bulletin

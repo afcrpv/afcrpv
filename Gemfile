@@ -62,3 +62,5 @@ gem 'thin'
 gem 'haml-rails'
 gem 'dalli'
 gem 'humanizer'
+
+gem 'refinerycms-crpvs', :path => 'vendor/extensions'
