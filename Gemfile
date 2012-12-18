@@ -18,7 +18,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'bootstrap-sass', '~> 2.1.0.0'
+  gem 'bootstrap-sass', '~> 2.2.1.1'
   gem 'compass-rails'
   gem "jquery-ui-rails"
 end
@@ -41,7 +41,7 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 # Refinery CMS
-gem 'refinerycms', '~> 2.0.0'
+gem 'refinerycms', '~> 2.0.9'
 
 # Specify additional Refinery CMS Extensions here (all optional):
 gem 'refinerycms-i18n', '~> 2.0.0'
@@ -56,10 +56,10 @@ gem 'refinerycms-search', '~> 2.0.0', :git => 'git://github.com/resolve/refinery
 
 # Fog allows you to use S3 assets (added for Heroku)
 gem 'fog'
+gem 'newrelic_rpm', "~> 3.5.3.25"
 
 gem 'thin'
 
-gem 'haml-rails'
 gem 'dalli'
 gem 'humanizer'
 

@@ -1,0 +1,9 @@
+<% if news.any? %>
+  <table class="table table-striped table-condesed news">
+    <% news.each do |news_item| -%>
+      <%= news_line(news_item) %>
+    <% end -%>
+  </table>
+<% else %>
+  <h4><%= no_entries_message %></h4>
+<% end -%>

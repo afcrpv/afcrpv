@@ -1,0 +1,8 @@
+<% if sitemap_branch.show_in_menu? -%>
+  <li>
+    <%= link_to_unless sitemap_branch.skip_to_first_child && sitemap_branch.children.order('lft ASC').live.first, sitemap_branch.title, sitemap_branch.url %>
+    <% if sitemap_branch.children.any? -%>
+        <ul class="sitemap"><%= render partial: "/refinery/pages/sitemap_branch", collection: sitemap_branch.children %></ul>
+    <% end -%>
+  </li>
+<% end -%>
