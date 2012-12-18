@@ -3,7 +3,9 @@ fr:
     plugins:
       refinerycms_search:
         title: Recherche
-        description: Extra search handling for Refinery CMS
+        description: description de la recherche
     search:
+      placeholder: "Rechercher"
       show:
         search_results_for: "Résultats de la recherche : '%{what}'"
+        no_results_for: "Aucun résultat pour : '%{what}'."
