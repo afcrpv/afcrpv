@@ -1,3 +1,10 @@
+Refinery::Core::Engine.routes.prepend do
+  namespace :inquiries, :path => '' do
+    get '/projets/soumettre', :to => 'inquiries#new', :as => 'new_inquiry'
+    get '/projets/merci', :to => 'inquiries#thank_you', :as => 'thank_you_inquiry'
+  end
+end
+
 Afcrpv::Application.routes.draw do
 
   # This line mounts Refinery's routes at the root of your application.

@@ -1,6 +1,5 @@
 en:
   humanizer:
-    here_the_anwser: "Enter the answer here"
     validation:
       error: You're not a human
     questions:
