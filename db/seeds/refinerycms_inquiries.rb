@@ -24,7 +24,7 @@ if defined?(::Refinery::Page)
     })
   end
 
-  unless Refinery::Page.where(:link_url => '/contact/thank_you').any?
+  unless Refinery::Page.where(:link_url => '/projets/merci').any?
     thank_you_page = new_project_page.children.create({
       :title => "Merci",
       :link_url => "/projets/merci",

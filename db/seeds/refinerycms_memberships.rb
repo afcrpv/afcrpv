@@ -1,177 +1,150 @@
 Refinery::Role.create(:id => 3, :title => 'Member')
 
-members_page = ::Refinery::Page.create({:title => "Members",
+members_page = ::Refinery::Page.find_or_create_by_link_url("/members",
+  :title => "Members",
   :deletable => false,
-  :link_url => "/members",
   :show_in_menu => false,
-  :menu_match => "^/members.*$"})
-members_page.parts.create({
-  :title => "Body",
+  :menu_match => "^/members.*$")
+members_page.parts.find_or_create_by_title("Body",
   :body => "",
   :position => 0
-})
-members_page.parts.create({
-  :title => "Side Body",
+)
+members_page.parts.find_or_create_by_title("Side Body",
   :body => "",
   :position => 1
-})
+)
 
 
-page = members_page.children.create({:title => "Login",
+login_page = members_page.children.find_or_create_by_link_url("/members/login",
+  :title => "Login",
   :deletable => false,
-  :link_url => "/members/login",
   :show_in_menu => false,
-  :menu_match => "^/members/login$"})
-page.parts.create({
-  :title => "Body above",
+  :menu_match => "^/members/login$")
+login_page.parts.find_or_create_by_title("Body above",
   :body => "",
   :position => 0
-})
-page.parts.create({
-  :title => "Body below",
+)
+login_page.parts.find_or_create_by_title("Body below",
   :body => "",
   :position => 1
-})
-page.parts.create({
-  :title => "Side Body",
+)
+login_page.parts.find_or_create_by_title("Side Body",
   :body => "",
   :position => 2
-})
+)
 
 
-new_member_page = members_page.children.create({:title => "New Member",
+new_member_page = members_page.children.find_or_create_by_link_url("/members/new",
+  :title => "New Member",
   :deletable => false,
-  :link_url => "/members/new",
   :show_in_menu => false,
-  :menu_match => "^/members/(new|create|).*$"})
-new_member_page.parts.create({
-  :title => "Body above",
+  :menu_match => "^/members/(new|create|).*$")
+new_member_page.parts.find_or_create_by_title("Body above",
   :body => "",
   :position => 0
-})
-new_member_page.parts.create({
-  :title => "Body below",
+)
+new_member_page.parts.find_or_create_by_title("Body below",
   :body => "",
   :position => 1
-})
-new_member_page.parts.create({
-  :title => "Side Body",
+)
+new_member_page.parts.find_or_create_by_title("Side Body",
   :body => "",
   :position => 2
-})
+)
 
-
-page = new_member_page.children.create({:title => "Welcome",
+welcome_page = new_member_page.children.find_or_create_by_link_url("/members/welcome",
+  :title => "Welcome",
   :deletable => false,
-  :link_url => "/members/welcome",
   :show_in_menu => false,
-  :menu_match => "^/members/welcome$"})
-page.parts.create({
-  :title => "Body",
+  :menu_match => "^/members/welcome$")
+welcome_page.parts.find_or_create_by_title("Body",
   :body => "",
   :position => 0
-})
-page.parts.create({
-  :title => "Side body",
+)
+welcome_page.parts.find_or_create_by_title("Side Body",
   :body => "",
   :position => 1
-})
+)
 
-
-lost_password_page = members_page.children.create({:title => "New password",
+lost_password_page = members_page.children.find_or_create_by_link_url("/members/new_password",
+  :title => "New password",
   :deletable => false,
-  :link_url => "/members/new_password",
   :show_in_menu => false,
-  :menu_match => "^/members/new_password$"})
-lost_password_page.parts.create({
-  :title => "Body above",
+  :menu_match => "^/members/new_password$")
+lost_password_page.parts.find_or_create_by_title("Body above",
   :body => "",
   :position => 0
-})
-lost_password_page.parts.create({
-  :title => "Body below",
+)
+lost_password_page.parts.find_or_create_by_title("Body below",
   :body => "",
   :position => 1
-})
-lost_password_page.parts.create({
-  :title => "Side Body",
+)
+lost_password_page.parts.find_or_create_by_title("Side Body",
   :body => "",
   :position => 2
-})
+)
 
 
-page = lost_password_page.children.create({:title => "New password created",
+new_password_page = lost_password_page.children.find_or_create_by_link_url("/members/new_password/created",
+  :title => "New password created",
   :deletable => false,
-  :link_url => "/members/new_password/created",
   :show_in_menu => false,
-  :menu_match => "^/members/new_password/created$"})
-page.parts.create({
-  :title => "Body",
+  :menu_match => "^/members/new_password/created$")
+new_password_page.parts.find_or_create_by_title("Body",
   :body => "",
   :position => 0
-})
-page.parts.create({
-  :title => "Side body",
+)
+new_password_page.parts.find_or_create_by_title("Side Body",
   :body => "",
   :position => 1
-})
+)
 
-
-page = members_page.children.create({:title => "Edit profile",
+edit_members_page= members_page.children.find_or_create_by_link_url("/members/edit",
+  :title => "Edit profile",
   :deletable => false,
-  :link_url => "/members/edit",
   :show_in_menu => false,
-  :menu_match => "^/members/edit$"})
-page.parts.create({
-  :title => "Body above",
+  :menu_match => "^/members/edit$")
+edit_members_page.parts.find_or_create_by_title("Body above",
   :body => "",
   :position => 0
-})
-page.parts.create({
-  :title => "Body below",
+)
+edit_members_page.parts.find_or_create_by_title("Body below",
   :body => "",
   :position => 1
-})
-page.parts.create({
-  :title => "Side Body",
+)
+edit_members_page.parts.find_or_create_by_title("Side Body",
   :body => "",
   :position => 2
-})
+)
 
-
-page = members_page.children.create({:title => "Profile",
+profile_members_page = members_page.children.find_or_create_by_link_url("/members/profile",
+  :title => "Profile",
   :deletable => false,
-  :link_url => "/members/profile",
   :show_in_menu => false,
-  :menu_match => "^/members/profile$"})
-page.parts.create({
-  :title => "Body above",
+  :menu_match => "^/members/profile$")
+profile_members_page.parts.find_or_create_by_title("Body above",
   :body => "",
   :position => 0
-})
-page.parts.create({
-  :title => "Body below",
+)
+profile_members_page.parts.find_or_create_by_title("Body below",
   :body => "",
   :position => 1
-})
-page.parts.create({
-  :title => "Side Body",
+)
+profile_members_page.parts.find_or_create_by_title("Side Body",
   :body => "",
   :position => 2
-})
+)
 
-page = members_page.children.create({:title => "Activate",
+activate_members_page = members_page.children.create({:title => "Activate",
   :deletable => false,
   :link_url => "/members/activate",
   :show_in_menu => false,
   :menu_match => "^/members/activate\/[a-zA-Z0-9]+$"})
-page.parts.create({
-  :title => "Body",
+activate_members_page.parts.find_or_create_by_title("Body",
   :body => "",
   :position => 0
-})
-page.parts.create({
-  :title => "Side Body",
+)
+activate_members_page.parts.find_or_create_by_title("Side Body",
   :body => "",
-  :position => 2
-})
+  :position => 1
+)
