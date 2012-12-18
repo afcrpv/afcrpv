@@ -1,0 +1,14 @@
+<% css_branch = toc_branch_css(toc_branch).join(" ") %>
+
+<% if toc_branch.show_in_menu? -%>
+  <li class=<%= css_branch %>>
+    <%= link_to_toc_branch(toc_branch, level) %>
+    <% if toc_branch.children.any? -%>
+      <ul class="nav nav-list toc nested">
+        <%= render partial: "/refinery/toc_branch",
+          collection: toc_branch.children,
+          locals: {level: level += 1} %>
+      </ul>
+    <% end -%>
+  </li>
+<% end -%>

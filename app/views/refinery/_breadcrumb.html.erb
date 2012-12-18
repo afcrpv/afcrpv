@@ -1,0 +1,18 @@
+<ul class="breadcrumb">
+  <li>
+    <%= link_to "/" do %>
+      <i class="icon-home"></i>
+      Accueil
+    <% end -%>
+    <span class="divider">&gt;</span>
+  </li>
+  <% @page.self_and_ancestors.each do |p| -%>
+    <% is_current_page = p.id == @page.id -%>
+    <li class=<%= is_current_page ? "active" : nil %>>
+      <%= link_to_unless is_current_page, p.refinery_menu_title, p.nested_path %>
+      <% unless is_current_page -%>
+        <span class="divider">&gt;</span>
+      <% end -%>
+    </li>
+  <% end -%>
+</ul>

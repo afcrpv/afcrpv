@@ -1,0 +1,15 @@
+<% if (live_shown_children = root.children.live.in_menu).any? -%>
+<aside>
+  <div id="toc">
+    <header>
+      <h1><%= link_to_toc_branch(root, 0) %></h1>
+      <hr />
+    </header>
+    <ul class="nav nav-list toc">
+      <%= render partial: "/refinery/toc_branch",
+        collection: live_shown_children,
+        locals: {level: 1} %>
+    </ul>
+  </div>
+</aside>
+<% end -%>

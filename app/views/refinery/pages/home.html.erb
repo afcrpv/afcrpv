@@ -1,0 +1,59 @@
+<div class="row-fluid">
+  <ul class="thumbnails">
+    <li class="span4">
+      <div class="thumbnail">
+        <h3><%= link_to "Les CRPV", "#", class: "btn btn-large btn-block btn-primary" %></h3>
+        <p>
+          Blabla, balblablaelrbaerblelrblaerblaerbl aeb aerlbalerlba
+          <%= link_to "#carte-france", role: "button", "data-toggle" => "modal", class: "btn" do %>
+            <i class="icon-globe"></i>
+            Choisir un centre sur la carte
+          <% end -%>
+        </p>
+        <h4>Dernières mises à jour</h4>
+        <%= render 'lorem' %>
+      </div>
+    </li>
+    <li class="span4">
+      <div class="thumbnail">
+        <h3><%= link_to "Les Documents", "#", class: "btn btn-large btn-block btn-danger" %></h3>
+        <p>
+          Blabla, balblablaelrbaerblelrblaerblaerbl aeb aerlbalerlba
+          <%= link_to "/refinery", class: "btn" do %>
+            <i class="icon-file"></i>
+            Rajouter un document
+          <% end -%>
+        </p>
+        <h4>Derniers documents</h4>
+        <%= render 'lorem' %>
+      </div>
+    </li>
+    <li class="span4">
+      <div class="thumbnail">
+        <h3><%= link_to "Les Projets", "#", class: "btn btn-large btn-block btn-info" %></h3>
+        <p>
+          Blabla, balblablaelrbaerblelrblaerblaerbl aeb aerlbalerlba
+          <%= link_to "#", class: "btn" do %>
+            <i class="icon-warning-sign"></i>
+            Soumettre un projet
+          <% end -%>
+        </p>
+        <h4>Derniers projets soumis</h4>
+        <%= render 'lorem' %>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="modal hide fade" id="carte-france">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Choisir un CRPV</h3>
+  </div>
+  <div class="modal-body">
+    <div id="canvas_france"></div>
+  </div>
+  <div class="modal-footer">
+    <%= link_to "Fermer", "#", class: "btn", "data-dismiss" => "modal", "aria-hidden" => true %>
+  </div>
+</div>

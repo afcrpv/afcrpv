@@ -1,9 +1,0 @@
-:ruby
-  css = toc_branch_css(toc_branch).join(" ")
-
-- if toc_branch.show_in_menu?
-  %li{class: css}
-    = link_to_toc_branch(toc_branch, level)
-    - if toc_branch.children.any?
-      %ul.nav.nav-list.toc.nested
-        = render partial: "/refinery/toc_branch", collection: toc_branch.children, locals: {level: level += 1}
