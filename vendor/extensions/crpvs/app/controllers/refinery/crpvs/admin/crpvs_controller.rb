@@ -4,7 +4,8 @@ module Refinery
       class CrpvsController < ::Refinery::AdminController
 
         crudify :'refinery/crpvs/crpv',
-                :title_attribute => 'name', :xhr_paging => true
+                :title_attribute => 'name', :xhr_paging => true, :sortable => false,
+                :order => "name ASC"
 
       end
     end
