@@ -1,0 +1,37 @@
+es:
+  refinery:
+    plugins:
+      crpvs:
+        title: Crpvs
+#        article: masculino/femenino
+    crpvs:
+      admin:
+        crpvs:
+          actions:
+            create_new: Crear nuevo crpv
+            reorder: Reordenar crpvs
+            reorder_done: Reordenación de crpvs completada
+          records:
+            title: Crpvs
+            sorry_no_results: Lo siento, no hay resultados
+            no_items_yet: No hay crpvs todavía. Pulsa en "Crear nuevo Crpv" para crear tu primer crpv.
+          crpv:
+            view_live_html: Ver este crpv como abierto al público <br/><em>(abre en ventana nueva)</em>
+            edit: Editar este crpv
+            delete: Borrar este crpv para siempre
+      crpvs:
+        show:
+          other: Otros crpvs
+  activerecord:
+    attributes:
+      'refinery/crpvs/crpv':
+        name: Name
+        adresse: Adresse
+        city: City
+        cp: Cp
+        responsable: Responsable
+        tel: Tel
+        fax: Fax
+        email: Email
+        website: Website
+        bulletin: Bulletin

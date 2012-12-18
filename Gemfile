@@ -62,3 +62,6 @@ gem 'thin'
 
 gem 'dalli'
 gem 'humanizer'
+
+gem 'refinerycms-memberships', git: "git://github.com/adamico/refinerycms_membership.git"
+gem 'refinerycms-settings', git: "git://github.com/refinery/refinerycms-settings.git", branch: "2-0-stable"

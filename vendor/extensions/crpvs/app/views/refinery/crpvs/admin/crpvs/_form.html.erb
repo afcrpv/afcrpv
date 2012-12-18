@@ -1,0 +1,92 @@
+<%= form_for [refinery, :crpvs_admin, @crpv] do |f| -%>
+  <%= render '/refinery/admin/error_messages',
+              :object => @crpv,
+              :include_object_name => true %>
+
+  
+  <div class='field'>
+    <%= f.label :name -%>
+    <%= f.text_field :name, :class => 'larger widest'  -%>
+
+  </div>
+  
+  <div class='field'>
+    <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
+      <ul id='page_parts'>
+        <% [:adresse].each_with_index do |part, part_index| %>
+          <li class='ui-state-default<%= ' ui-state-active' if part_index == 0 %>'>
+            <%= link_to t("#{part}", :scope => "activerecord.attributes.refinery/crpvs/crpv", :default => part.to_s.titleize), "##{part}" %>
+          </li>
+        <% end %>
+      </ul>
+      <div id='page_part_editors'>
+        <% [:adresse].each do |part| %>
+          <div class='page_part' id='<%= part %>'>
+            <%= f.text_area part, :rows => 20, :class => 'wymeditor widest' -%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :city -%>
+    <%= f.text_field :city  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :cp -%>
+    <%= f.text_field :cp  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :responsable -%>
+    <%= f.text_field :responsable  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :tel -%>
+    <%= f.text_field :tel  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :fax -%>
+    <%= f.text_field :fax  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :email -%>
+    <%= f.text_field :email  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :website -%>
+    <%= f.text_field :website  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :bulletin -%>
+    <%= f.text_field :bulletin  -%>
+
+  </div>
+  
+  <%= render '/refinery/admin/form_actions', :f => f,
+             :continue_editing => false,
+             :delete_title => t('delete', :scope => 'refinery.crpvs.admin.crpvs.crpv'),
+             :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @crpv.name) %>
+<% end -%>
+<% content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      page_options.init(false, '', '');
+    });
+  </script>
+<% end %>

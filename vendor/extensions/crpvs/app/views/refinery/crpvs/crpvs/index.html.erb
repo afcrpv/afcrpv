@@ -1,0 +1,11 @@
+<% content_for :body do %>
+  <ul id="crpvs">
+    <% @crpvs.each do |crpv| %>
+      <li>
+        <%= link_to crpv.name, refinery.crpvs_crpv_path(crpv) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render '/refinery/content_page' %>

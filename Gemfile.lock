@@ -1,4 +1,23 @@
 GIT
+  remote: git://github.com/adamico/refinerycms_membership.git
+  revision: e35f85e5f84cdb33fb0a1a85b9a8d59c4f14cf0a
+  specs:
+    refinerycms-memberships (2.0.3)
+      nokogiri (~> 1.5.0)
+      refinerycms-core (>= 2.0.0)
+      refinerycms-settings (>= 2.0.0)
+      webrat (~> 0.7.3)
+
+GIT
+  remote: git://github.com/refinery/refinerycms-settings.git
+  revision: b045d02a2ca9aa26884fddcfb491f222852e6f11
+  branch: 2-0-stable
+  specs:
+    refinerycms-settings (2.0.2)
+      acts_as_indexed (~> 0.7.7)
+      refinerycms-core (~> 2.0.1)
+
+GIT
   remote: git://github.com/resolve/refinerycms-search.git
   revision: 004f63b0d9b0f833a3cbb35fc08086921882af17
   branch: 2-0-stable
@@ -190,8 +209,6 @@ GEM
       dragonfly (~> 0.9.8)
       rack-cache (>= 0.5.3)
       refinerycms-core (= 2.0.9)
-    refinerycms-settings (2.0.2)
-      refinerycms-core (~> 2.0.1)
     routing-filter (0.3.1)
       actionpack
     ruby-hmac (0.4.0)
@@ -223,6 +240,10 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.1.1)
       rack (>= 1.0)
+    webrat (0.7.3)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
     will_paginate (3.0.3)
 
 PLATFORMS
@@ -243,7 +264,9 @@ DEPENDENCIES
   refinerycms (~> 2.0.9)
   refinerycms-i18n (~> 2.0.0)
   refinerycms-inquiries (~> 2.0.0)
+  refinerycms-memberships!
   refinerycms-search (~> 2.0.0)!
+  refinerycms-settings!
   sass-rails (~> 3.2.3)
   thin
   uglifier (>= 1.0.3)
