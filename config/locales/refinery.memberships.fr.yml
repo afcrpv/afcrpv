@@ -1,0 +1,147 @@
+fr:
+  months: "%{count} mois"
+  years: "%{count} années"
+  refinery:
+    shared:
+      admin:
+        image_picker:
+          image: image
+    plugins:
+      refinerycms_memberships:
+        title: Membres
+    members:
+      shared:
+        account: Compte
+        profile: Profile
+        organization: Organisation
+      update:
+        successful: Le profile a été mis à jour avec succès.
+    admin:
+      memberships_settings: Paramètres
+      memberships:
+        new_members: Nouveaux utilisateurs
+        no_new_members: Aucun nouvel utilisateur
+        settings_admin_notification:
+          example: "Saisir votre adresse email, par exemple: jack@work.com, jill@office.com"
+          hint: Quand un nouvel utilisateur s'inscrit, Refinery enverra une notification
+        settings:
+          signup_defaults: Défault
+          signup_confirmation: Confirmation d'inscription
+          no_confirmation: Pas de confirmation
+          email_confirmation: Confirmation par email
+          admin_confirmation: Confirmation par administrateur
+          membership_expiration: Expiration des droits
+          no_expiration: Pas d'expiration
+          timed_expiration: Expiration planifiée
+          default_expiration_in: "Expiration par défault"
+          default_groups: Groupes par défault
+          assign_new_users_to_the_selected_groups: Rajouter un utilisateur au groupe selectionné
+          no_groups_found: "Pas de groupes"
+      roles:
+        delete: Supprimer groupe
+        no_roles_yet: Aucun rôle
+        edit: Modifier groupe
+        new_role: Nouveau groupe
+        roles_administration: Administration des groupes
+      members:
+        accept: "Accepter l'inscription"
+        reject: "Rejeter l'inscription"
+        edit: Modifier utilisateur
+        delete: Supprimer utilisateur
+        member_until: Date d'expiration
+        membership_expired: L'inscription a expiré le
+        not_yet_member: "Utilisateur inactif"
+        activate_member_for: "Activer l'utilisateur"
+        account_active: Utilisateur actif
+        new_account: Nouvel utilisateur
+        account_disabled: Utilisateur désactivé
+        account_expired: Utilisateur expiré
+        account_rejected: Utilisateur rejeté
+        account_not_activated: Inscription inactive
+        disable: Desactiver utilisateur
+        enable: Activer utilisateur
+        delete: Supprimer utilisateur
+        no_members_yet: Aucun utilisateur enregistré
+        all_members: Tous les utilisateurs
+        members_administration: Administrer les utilisateurs
+        account: Inscription
+        organization: Organisation
+        profile: Profile
+        activation: Activation
+        user_roles: "Groupes des utilisateurs"
+        user_can_login: L'utilisateur peut se connecter
+        extend: Prolonger l'inscription
+        extend_membership_for: Prolonger l'inscription pour
+        filter_by: Filtrer par
+        member_actions: Actions de l'utilisateur
+        filter:
+          all: Tous
+          active: Actif
+          rejected: Rejeté
+          disabled: Desactivé
+          unconfirmed: Non confirmé
+      membership_email_parts:
+        email_header: En-tête
+        email_footer: Pied de page
+      membership_emails:
+        member_activated: Utilisateur activé
+        member_accepted: Utilisateur accepté
+        member_created: Utilisateur créé
+        member_deleted: Utilisateur supprimé
+        member_rejected: Utilisateur rejeté
+        membership_extended: Inscription prolongée
+        edit: Modifier email
+        no_emails_yet: Aucun email
+        emails_administration: Administration des messages
+        membership_email: Email des membres
+        email_settings: Réglages email
+        toggle_email_body_help: Activer/desactiver aide
+        email_body_help_title: Aide du corps de l'email
+        shared_email_parts: Sections des messages
+        email_body_help:
+          email_body_help: "Dans le corps du message vous pouvez insérer des balises speciales qui seront remplacées par les données des utilisateurs (nom, organisation, etc)."
+          available_tags: Balises disponibles
+          user_data: Données utilisateurs
+          member_until: Inscription active jusqu'au
+          activation_url: "Adresse internet à visiter pour activer l'inscription"
+        settings:
+          deliver_notifications_on: Notifier l'utilisateur quand
+          deliver_admin_notifications_to: Notifier l'administrateur
+          email_delivery: Envoi d'email
+          admin_notifications: Notifier l'administrateur
+    pages:
+      admin:
+        tabs:
+          roles:
+            allow_everyone: "Accès global"
+            allow_all_members: "Accès à tous les utilisateurs enregistrés"
+            allow_members_of: "Accès à tous les utilisateurs dans les groupes"
+    memberships:
+      show:
+        other: Autres membres
+      members:
+        profile:
+          edit_profile: Modifier profile
+        login_form:
+          username: Nom utilisateur
+          password: Mot de passe
+          login: Connexion
+        error_messages:
+          problems_in_following_fields: Les champs suivant ont des erreurs
+        form_actions:
+          save: Enregistrer
+          cancel: Annuler
+        form:
+          blank_password_keeps_current: Le mot de passe ne sera pas changé si le champ est vide
+          state_province: "Provence/Etat"
+          postal_code: "Code postal"
+        new:
+          title: Inscription d'un nouveau membre
+          instructions: Veuillez saisir les informations. Vous allez recevoir un message de confirmation lorsque votre inscription est confirmée.
+          submit_application: Soumettre l'inscription
+    activerecord:
+      attributes:
+        user:
+          membership_level: Niveau des droits
+        role:
+          title: Libéllé

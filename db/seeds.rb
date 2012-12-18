@@ -9,5 +9,7 @@
 # Added by Refinery CMS Pages extension
 Refinery::Pages::Engine.load_seed
 
-# Added by Refinery CMS Inquiries engine
-Refinery::Inquiries::Engine.load_seed
+Dir[Rails.root.join('./db', 'seeds', '*.rb').to_s].each do |file|
+  puts "Loading db/seeds/#{file.split(File::SEPARATOR).last}"
+  load(file)
+end
