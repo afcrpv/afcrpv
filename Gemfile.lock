@@ -25,6 +25,12 @@ GIT
     refinerycms-search (2.0.0)
       refinerycms-core (~> 2.0.4)
 
+PATH
+  remote: vendor/extensions
+  specs:
+    refinerycms-crpvs (1.0)
+      refinerycms-core (~> 2.0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -262,6 +268,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.9)
   refinerycms (~> 2.0.9)
+  refinerycms-crpvs!
   refinerycms-i18n (~> 2.0.0)
   refinerycms-inquiries (~> 2.0.0)
   refinerycms-memberships!

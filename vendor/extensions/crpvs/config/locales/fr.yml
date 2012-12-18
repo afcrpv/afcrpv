@@ -2,35 +2,35 @@ fr:
   refinery:
     plugins:
       crpvs:
-        title: Crpvs
+        title: CRPVs
     crpvs:
       admin:
         crpvs:
           actions:
-            create_new: Créer un(e) nouve(au/l/lle) Crpv
-            reorder: Réordonner les Crpvs
-            reorder_done: Fin de réordonnancement des Crpvs
+            create_new: Créer un nouveau CRPV
+            reorder: Réordonner les CRPVs
+            reorder_done: Fin de réordonnancement des CRPVs
           records:
-            title: Crpvs
+            title: CRPVs
             sorry_no_results: "Désolé ! Aucun résultat."
-            no_items_yet: 'Il n''y a actuellement aucun(e) Crpv. Cliquer sur "Créer un(e) nouve(au/l/lle) Crpv" pour créer votre premi(er/ère) crpv.'
+            no_items_yet: 'Il n''y a actuellement aucun CRPV. Cliquer sur "Créer un nouveau CRPV" pour créer votre premier CRPV.'
           crpv:
-            view_live_html: Voir ce(t/tte) crpv <br/><em>(Ouvre une nouvelle fenêtre)</em>
-            edit: Modifier ce(t/tte) crpv
-            delete: Supprimer définitivement ce(t/tte) crpv
+            view_live_html: Voir ce CRPV <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier ce CRPV
+            delete: Supprimer définitivement ce CRPV
       crpvs:
         show:
-          other: Autres Crpvs
+          other: Autres CRPVs
   activerecord:
     attributes:
       'refinery/crpvs/crpv':
-        name: Name
+        name: Nom
         adresse: Adresse
-        city: City
-        cp: Cp
+        city: Ville
+        cp: Code postal
         responsable: Responsable
-        tel: Tel
+        tel: Tél
         fax: Fax
         email: Email
-        website: Website
+        website: Site web
         bulletin: Bulletin

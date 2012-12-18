@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121218101155) do
+ActiveRecord::Schema.define(:version => 20121218135828) do
+
+  create_table "refinery_crpvs", :force => true do |t|
+    t.string   "name"
+    t.text     "adresse"
+    t.string   "city"
+    t.string   "cp"
+    t.string   "responsable"
+    t.string   "tel"
+    t.string   "fax"
+    t.string   "email"
+    t.string   "website"
+    t.string   "bulletin"
+    t.integer  "position"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
