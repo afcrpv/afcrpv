@@ -135,11 +135,11 @@ profile_members_page.parts.find_or_create_by_title("Side Body",
   :position => 2
 )
 
-activate_members_page = members_page.children.create({:title => "Activate",
+activate_members_page = members_page.children.find_or_create_by_link_url("/members/activate",
+  :title => "Activate",
   :deletable => false,
-  :link_url => "/members/activate",
   :show_in_menu => false,
-  :menu_match => "^/members/activate\/[a-zA-Z0-9]+$"})
+  :menu_match => "^/members/activate\/[a-zA-Z0-9]+$")
 activate_members_page.parts.find_or_create_by_title("Body",
   :body => "",
   :position => 0
