@@ -1,0 +1,71 @@
+fr:
+  refinery:
+    plugins:
+      projets:
+        title: Projets
+        description: Fournit un formulaire de soumission et gère les projets
+    projets:
+      projets:
+        new:
+          send: Soumettre
+          privacy_policy: Nous respectons votre vie privée
+      admin:
+        projets:
+          delete: Supprimer définitivement cette projet
+          projet:
+            read_projet: Montrer le projet
+            said: a dit
+          submenu:
+            inbox: Liste de projets
+            create_new: Création d'un projet
+          index:
+            no_projets: Vous n'avez aucun projet.
+          show:
+            details: Détails
+            age: Age
+            actions: Actions
+            back_to_all_projets: Retourner à la liste des projets
+            projet: Projet
+            to: À
+            from: De
+            click_to_email: Cliquer ici pour enyoyer un e-mail à cette adresse
+            phone: Téléphone
+            date: Date
+            message: Message
+        settings:
+          notification_recipients_form:
+            projet_settings_value_name: Envoyer une notification à
+            explanation: Chaque fois qu'une demande de contact est rédigée sur votre site, Refinery envoie un e-mail pour le signaler.
+            hint: Quand une nouvelle projet est soumise, Refinery vous envoie un e-mail d'avertissement.
+            example: "Entrez votre/vos addresse(s) e-mail comme il suit: jack@work.com, jill@office.com"
+          confirmation_email_form:
+            to: À
+            from: De
+            subject: Sujet
+            click_to_edit_subject: Cliquez ici pour modifier le sujet
+            explanation: Chaque fois qu'une demande de contact est rédigée sur votre site, Refinery envoie un e-mail pour le signaler.
+            below_edit_email_sent: Ci-dessous vous pouvez modifier l'e-mail qui sera envoyé.
+            the_customer_making_projet: Le client à l'origine de la projet
+            message: Message
+            note: "Note: Utilisez %name% à l'endroit où vous souhaitez voir apparaître le nom du client dans l'e-mail"
+      projet_mailer:
+        notification:
+          greeting: Bonjour
+          you_recieved_new_projet: Vous avez reçu une nouvelle projet sur votre site.
+          projet_starts: --- Début des projets ---
+          projet_ends: --- Fin des projets ---
+          from: De
+          email: E-mail
+          phone: Téléphone
+          message: Message
+          closing_line: Cordialement
+          ps: P.S. Toutes les projets sont stockées dans la section 'Projets' afin que vous puissiez les consulter ultérieurement.
+  activerecord:
+    models:
+      refinery/projets/projet: projet
+    attributes:
+      refinery/projets/projet:
+        name: Nom
+        email: E-mail
+        phone: Téléphone
+        message: Message

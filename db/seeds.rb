@@ -16,3 +16,6 @@ end
 
 # Added by Refinery CMS Crpvs extension
 Refinery::Crpvs::Engine.load_seed
+
+# Added by Refinery CMS Projets engine
+Refinery::Projets::Engine.load_seed

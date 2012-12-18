@@ -46,7 +46,6 @@ gem 'refinerycms', '~> 2.0.9'
 # Specify additional Refinery CMS Extensions here (all optional):
 gem 'refinerycms-i18n', '~> 2.0.0'
 #  gem 'refinerycms-blog', '~> 2.0.0'
-gem 'refinerycms-inquiries', '~> 2.0.0'
 #  gem 'refinerycms-search', '~> 2.0.0'
 gem 'refinerycms-search', '~> 2.0.0', :git => 'git://github.com/resolve/refinerycms-search.git', :branch => '2-0-stable'
 #gem "refinerycms-news", '~> 2.0.0'
@@ -66,3 +65,4 @@ gem 'humanizer'
 gem 'refinerycms-memberships', git: "git://github.com/adamico/refinerycms_membership.git"
 gem 'refinerycms-settings', git: "git://github.com/refinery/refinerycms-settings.git", branch: "2-0-stable"
 gem 'refinerycms-crpvs', :path => 'vendor/extensions'
+gem 'refinerycms-projets', :path => 'vendor/extensions'

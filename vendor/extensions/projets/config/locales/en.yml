@@ -1,0 +1,69 @@
+en:
+  refinery:
+    plugins:
+      refinerycms_projets:
+        title: Projets
+        description: Provides a submission form and stores projets
+    projets:
+      projets:
+        new:
+          send: Submit
+          privacy_policy: We value your privacy
+      admin:
+        projets:
+          delete: Remove this projet forever
+          projet:
+            read_projet: Show the projet
+            said: said
+          submenu:
+            inbox: Inbox
+          index:
+            no_projets: You have not received any projets yet.
+          show:
+            details: Details
+            age: Age
+            actions: Actions
+            back_to_all_projets: Back to all Projets
+            projet: Projet
+            to: To
+            from: From
+            click_to_email: Click to email this address
+            phone: Phone
+            date: Date
+            message: Message
+        settings:
+          notification_recipients_form:
+            projet_settings_value_name: Send notifications to
+            hint: When a new projet is submitted, Refinery will send an email notification to you.
+            example: "Enter your email address(es) like: jack@work.com, jill@office.com"
+          confirmation_email_form:
+            to: To
+            from: From
+            subject: Subject
+            click_to_edit_subject: Click here to edit the subject
+            explanation: Every time someone contacts you on your website, Refinery sends out an email to confirm the projet with the person who made it.
+            below_edit_email_sent: Below you can edit the email that is sent out.
+            the_customer_making_projet: The customer making the projet
+            message: Message
+            note: "Note: place the text %name% where you'd like the customer's name to appear in the email"
+      projet_mailer:
+        notification:
+          greeting: Hi there
+          you_recieved_new_projet: You just received a new projet on your website.
+          projet_starts: --- projet starts ---
+          projet_ends: --- projet ends ---
+          from: From
+          email: Email
+          phone: Phone
+          message: Message
+          closing_line: Kind Regards
+          ps: P.S. All your projets are stored in the "Projets" section of Refinery should you ever want to view it later there.
+  activerecord:
+    models:
+      refinery/projets/projet: projet
+    attributes:
+      refinery/projets/projet:
+        name: Name
+        email: Email
+        phone: Phone
+        message: Message

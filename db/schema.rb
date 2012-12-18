@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121218135828) do
+ActiveRecord::Schema.define(:version => 20121218162054) do
 
   create_table "refinery_crpvs", :force => true do |t|
     t.string   "name"
@@ -161,6 +161,18 @@ ActiveRecord::Schema.define(:version => 20121218135828) do
     t.integer "page_id"
     t.integer "role_id"
   end
+
+  create_table "refinery_projets_projets", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "message"
+    t.boolean  "spam",       :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "refinery_projets_projets", ["id"], :name => "index_refinery_projets_projets_on_id"
 
   create_table "refinery_resources", :force => true do |t|
     t.string   "file_mime_type"
