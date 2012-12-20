@@ -1,14 +1,14 @@
-<div id='actions'>
-  <h2><%= t('.details')%></h2>
-  <p>
-    <strong><%= t('.age') %>:</strong> <%= time_ago_in_words(@projet.created_at) %>
-  </p>
-  <h2><%= t('.actions') %></h2>
+<aside id='actions'>
   <ul>
     <li>
-      <%= link_to t('.back_to_all_projets'),
+      <%= link_to t('.back_to_index'),
                   refinery.projets_admin_projets_path,
                   :class => "back_icon" %>
+    </li>
+    <li>
+      <%= link_to t('.edit'),
+                  refinery.edit_projets_admin_projet_path(@projet),
+                  :class => "edit_icon" %>
     </li>
     <li>
       <%= link_to t('refinery.projets.admin.projets.delete'),
@@ -21,33 +21,41 @@
                   :method => :delete %>
     </li>
   </ul>
-</div>
+</aside>
+
 <div id='records'>
-  <h2><%= t('.projet') %></h2>
+  <h2><%= t(".titre") %> : <%= @projet.titre %></h2>
   <table id='projet'>
     <tr>
-      <td>
-        <strong><%= t('.to') %></strong>
-      </td>
-      <td>
-        <%= Refinery::Core.config.site_name %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <strong><%= t('.from') %></strong>
-      </td>
-      <td>
-        <%= @projet.name %> [<%= mail_to @projet.email, @projet.email, {:title => t('.click_to_email')} %>]
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <strong><%= t('.date') %></strong>
-      </td>
+      <th>
+        <%= t('.created_at') %>
+      </th>
       <td>
         <%= l(Date.parse(@projet.created_at.to_s), :format => :long) %>
       </td>
     </tr>
+    <tr>
+      <th>
+        <%= t('.refinery_crpv_id') %>
+      </th>
+      <td>
+        <%= @projet.refinery_crpv %>
+      </td>
+    </tr>
+    <%- fields = @projet.attributes.reject {|k, v| %w[id refinery_crpv_id email created_at updated_at].include? k } %>
+    <%- fields.each do |k,v| %>
+      <tr>
+        <th>
+          <%= t(".#{k}") %>
+        </td>
+        <td>
+          <% if v.class == Date %>
+            <%= l(Date.parse(v.to_s), :format => :long) %>
+          <% else %>
+            <%= raw v %>
+          <% end -%>
+        </td>
+      </tr>
+    <% end -%>
   </table>
 </div>
