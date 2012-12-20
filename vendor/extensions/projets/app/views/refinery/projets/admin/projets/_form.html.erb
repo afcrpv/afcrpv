@@ -1,0 +1,86 @@
+<%= form_for [refinery, :projets_admin, @projet] do |f| -%>
+  <%= render '/refinery/admin/error_messages',
+              :object => @projet,
+              :include_object_name => true %>
+
+  <div class='field'>
+    <%= f.label :titre -%>
+    <%= f.text_field :titre, :class => 'larger widest'  -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :refinery_crpv_id -%>
+    <%= f.collection_select :refinery_crpv_id, ::Refinery::Crpvs::Crpv.order("name ASC"), :id, :name -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :but -%>
+    <%= f.text_field :but -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :responsable -%>
+    <%= f.text_field :responsable -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :exploitant -%>
+    <%= f.text_field :exploitant -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :date_requete -%>
+    <%= f.date_select :date_requete -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :design -%>
+    <%= f.text_field :design  -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :type_inclusion -%>
+    <%= f.text_field :type_inclusion -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :debut_inclusion -%>
+    <%= f.date_select :debut_inclusion -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :fin_inclusion -%>
+    <%= f.date_select :fin_inclusion -%>
+  </div>
+
+  <div class='field'>
+    <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
+      <ul id='page_parts'>
+        <% [:effet, :medicament, :contexte, :objectif, :objectif_sec, :champs, :criteres_inclusion, :criteres_non_inclusion, :retombees].each_with_index do |part, part_index| %>
+          <li class='ui-state-default<%= ' ui-state-active' if part_index == 0 %>'>
+            <%= link_to t("#{part}", :scope => "activerecord.attributes.refinery/projets/projet", :default => part.to_s.titleize), "##{part}" %>
+          </li>
+        <% end %>
+      </ul>
+      <div id='page_part_editors'>
+        <% [:effet, :medicament, :contexte, :objectif, :objectif_sec, :champs, :criteres_inclusion, :criteres_non_inclusion, :retombees].each do |part| %>
+          <div class='page_part' id='<%= part %>'>
+            <%= f.text_area part, :rows => 20, :class => 'wymeditor widest' -%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= render '/refinery/admin/form_actions', :f => f,
+             :continue_editing => false,
+             :delete_title => t('delete', :scope => 'refinery.projets.admin.projets.projet'),
+             :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @projet.name) %>
+<% end -%>
+<% content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      page_options.init(false, '', '');
+    });
+  </script>
+<% end %>

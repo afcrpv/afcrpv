@@ -3,11 +3,6 @@
   <p>
     <strong><%= t('.age') %>:</strong> <%= time_ago_in_words(@projet.created_at) %>
   </p>
-  <% if @projet.spam? %>
-    <p>
-      <strong><%= t('.spam') %>:</strong> <%= t('.spam_yes') %>
-    </p>
-  <% end %>
   <h2><%= t('.actions') %></h2>
   <ul>
     <li>
@@ -46,30 +41,12 @@
         <%= @projet.name %> [<%= mail_to @projet.email, @projet.email, {:title => t('.click_to_email')} %>]
       </td>
     </tr>
-    <% unless @projet.phone.blank? %>
-      <tr>
-        <td>
-          <strong><%= t('.phone') %></strong>
-        </td>
-        <td>
-          <%= @projet.phone %>
-        </td>
-      </tr>
-    <% end %>
     <tr>
       <td>
         <strong><%= t('.date') %></strong>
       </td>
       <td>
         <%= l(Date.parse(@projet.created_at.to_s), :format => :long) %>
-      </td>
-    </tr>
-    <tr>
-      <td valign='top'>
-        <strong><%= t('.message') %></strong>
-      </td>
-      <td>
-        <%= simple_format strip_tags(@projet.message), :style => 'margin-top: 0' %>
       </td>
     </tr>
   </table>

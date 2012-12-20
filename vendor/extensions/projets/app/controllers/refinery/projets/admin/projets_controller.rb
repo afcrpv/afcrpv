@@ -4,7 +4,7 @@ module Refinery
       class ProjetsController < ::Refinery::AdminController
 
         crudify :'refinery/projets/projet',
-                :title_attribute => "name", :xhr_paging => true, :sortable => false,
+                :title_attribute => "titre", :xhr_paging => true, :sortable => false,
                 :order => "created_at DESC"
       end
     end

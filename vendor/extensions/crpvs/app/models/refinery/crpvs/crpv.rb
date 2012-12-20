@@ -8,6 +8,7 @@ module Refinery
       acts_as_indexed :fields => [:name, :adresse, :city, :cp, :responsable, :tel, :fax, :email, :website, :bulletin]
 
       validates :name, :presence => true, :uniqueness => true
+      has_many :projets, class_name: "::Refinery::Projets::Projet"
     end
   end
 end
