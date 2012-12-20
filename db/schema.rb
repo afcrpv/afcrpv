@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121218162054) do
+ActiveRecord::Schema.define(:version => 20121220102207) do
 
   create_table "refinery_crpvs", :force => true do |t|
     t.string   "name"
@@ -163,16 +163,33 @@ ActiveRecord::Schema.define(:version => 20121218162054) do
   end
 
   create_table "refinery_projets_projets", :force => true do |t|
-    t.string   "name"
     t.string   "email"
-    t.string   "phone"
-    t.text     "message"
-    t.boolean  "spam",       :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "titre"
+    t.integer  "refinery_crpv_id"
+    t.string   "but"
+    t.string   "responsable"
+    t.string   "exploitant"
+    t.date     "date_requete"
+    t.text     "effet"
+    t.text     "medicament"
+    t.text     "contexte"
+    t.string   "design"
+    t.text     "objectif"
+    t.text     "objectif_sec"
+    t.text     "champs"
+    t.date     "debut_inclusion"
+    t.date     "fin_inclusion"
+    t.string   "type_inclusion"
+    t.text     "criteres_inclusion"
+    t.text     "criteres_non_inclusion"
+    t.text     "retombees"
   end
 
   add_index "refinery_projets_projets", ["id"], :name => "index_refinery_projets_projets_on_id"
+  add_index "refinery_projets_projets", ["refinery_crpv_id"], :name => "index_refinery_projets_projets_on_refinery_crpv_id"
+  add_index "refinery_projets_projets", ["titre"], :name => "index_refinery_projets_projets_on_titre"
 
   create_table "refinery_resources", :force => true do |t|
     t.string   "file_mime_type"
