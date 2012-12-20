@@ -40,7 +40,7 @@
 
   <div class='field'>
     <%= f.label :type_inclusion -%>
-    <%= f.select :type_inclusion, ["date de notification", "date de survenue"], {include_blank: true} -%>
+    <%= f.select :type_inclusion, Refinery::Projets::Projet::TYPE_INCLUSION, {include_blank: true} -%>
   </div>
 
   <div class='field'>
