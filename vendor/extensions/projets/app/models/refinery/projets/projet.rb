@@ -16,6 +16,8 @@ module Refinery
 
       belongs_to :refinery_crpv, class_name: "::Refinery::Crpvs::Crpv"
 
+      TYPE_INCLUSION = ["date de notification", "date de survenue"]
+
       def self.latest(number = 7)
         limit(number)
       end

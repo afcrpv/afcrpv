@@ -1,33 +1,29 @@
 <%= content_for :body do %>
   <%= raw @page.content_for(Refinery::Pages.default_parts.first.to_sym) if Refinery::Pages.default_parts.any? %>
-  
+
   <div class='projets'>
-    <%= form_for [refinery, :projets, @projet] do |f| %>
-      <%= render :partial => "/refinery/admin/error_messages",
-                 :locals => {
-                   :object => @projet,
-                   :include_object_name => true
-                 } %>
-      <div class="field">
-        <%= f.required_label :name, :class => 'placeholder-fallback' %>
-        <%= f.text_field :name, :class => 'text', :required => 'required', :placeholder => t('name', :scope => 'activerecord.attributes.refinery/projets/projet') %>
-      </div>
-      <div class="field">
-        <%= f.required_label :email, :class => 'placeholder-fallback' %>
-        <%= f.email_field :email, :class => 'text email', :required => 'required', :placeholder => t('email', :scope => 'activerecord.attributes.refinery/projets/projet') %>
-      </div>
-      <div class="field">
-        <%= f.label :phone, :class => 'placeholder-fallback' %>
-        <%= f.text_field :phone, :class => 'text phone', :placeholder => t('phone', :scope => 'activerecord.attributes.refinery/projets/projet') %>
-      </div>
-      <div class='field message_field'>
-        <%= f.required_label :message, :class => 'placeholder-fallback' %>
-        <%= f.text_area :message, :rows => 8, :required => 'required', :placeholder => t('message', :scope => 'activerecord.attributes.refinery/projets/projet') %>
-      </div>
-      <div class="actions">
-        <%= f.submit t('.send') %>
+    <%= simple_form_for([refinery, :projets, @projet], :html => {:class => 'form-horizontal' }) do |f| %>
+      <%= f.input :refinery_crpv, as: :hidden %>
+      <%= f.input :titre, input_html: {class: "input-xxlarge"} %>
+      <%= f.input :but %>
+      <%= f.input :responsable %>
+      <%= f.input :exploitant %>
+      <%= f.input :date_requete, input_html: {class: "input-small"}, use_month_numbers: true %>
+      <%= f.input :design %>
+      <%= f.input :objectif, input_html: {class: "input-xxlarge", rows: 2} %>
+      <%= f.input :objectif_sec, input_html: {class: "input-xxlarge", rows: 2} %>
+      <%= f.input :champs, input_html: {class: "input-xxlarge", rows: 2} %>
+      <%= f.input :debut_inclusion, input_html: {class: "input-small"}, use_month_numbers: true %>
+      <%= f.input :fin_inclusion, input_html: {class: "input-small"}, use_month_numbers: true %>
+      <%= f.input :type_inclusion, collection: Refinery::Projets::Projet::TYPE_INCLUSION %>
+      <%= f.input :criteres_inclusion, input_html: {class: "input-xxlarge", rows: 2} %>
+      <%= f.input :criteres_non_inclusion, input_html: {class: "input-xxlarge", rows: 2} %>
+      <%= f.input :retombees, input_html: {class: "input-xxlarge", rows: 2} %>
+      <div class="form-actions">
+        <%= f.button :submit %>
       </div>
     <% end %>
   </div>
 <% end %>
+
 <%= render :partial => "/refinery/content_page" %>

@@ -66,3 +66,5 @@ gem 'refinerycms-memberships', git: "git://github.com/adamico/refinerycms_member
 gem 'refinerycms-settings', git: "git://github.com/refinery/refinerycms-settings.git", branch: "2-0-stable"
 gem 'refinerycms-crpvs', :path => 'vendor/extensions'
 gem 'refinerycms-projets', :path => 'vendor/extensions'
+
+gem 'simple_form'

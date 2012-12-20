@@ -18,9 +18,9 @@ fr:
         objectif: Objectif principal
         objectif_sec: Objectifs secondaires
         champs: Champs investigués
-        debut_inclusion: Date de debut d'inclusion
-        fin_inclusion: Date de fin d'inclusion
-        type_inclusion: Type de date d'inclusion
+        debut_inclusion: Debut d'inclusion
+        fin_inclusion: Fin d'inclusion
+        type_inclusion: Type de date
         criteres_inclusion: Critères d'inclusion des cas
         criteres_non_inclusion: Critères de non inclusion des cas
         retombees: Retombées attendues
