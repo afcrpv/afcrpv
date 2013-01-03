@@ -68,3 +68,7 @@ gem 'refinerycms-crpvs', :path => 'vendor/extensions'
 gem 'refinerycms-projets', :path => 'vendor/extensions'
 
 gem 'simple_form'
+
+group :development do
+  gem 'meta_request', '0.2.0'
+end
