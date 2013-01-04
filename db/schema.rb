@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220102207) do
+ActiveRecord::Schema.define(:version => 20130104105845) do
 
   create_table "refinery_crpvs", :force => true do |t|
     t.string   "name"
@@ -27,7 +27,10 @@ ActiveRecord::Schema.define(:version => 20121220102207) do
     t.integer  "position"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "slug"
   end
+
+  add_index "refinery_crpvs", ["slug"], :name => "index_refinery_crpvs_on_slug"
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
@@ -185,10 +188,12 @@ ActiveRecord::Schema.define(:version => 20121220102207) do
     t.text     "criteres_inclusion"
     t.text     "criteres_non_inclusion"
     t.text     "retombees"
+    t.string   "slug"
   end
 
   add_index "refinery_projets_projets", ["id"], :name => "index_refinery_projets_projets_on_id"
   add_index "refinery_projets_projets", ["refinery_crpv_id"], :name => "index_refinery_projets_projets_on_refinery_crpv_id"
+  add_index "refinery_projets_projets", ["slug"], :name => "index_refinery_projets_projets_on_slug"
   add_index "refinery_projets_projets", ["titre"], :name => "index_refinery_projets_projets_on_titre"
 
   create_table "refinery_resources", :force => true do |t|

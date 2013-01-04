@@ -1,6 +1,9 @@
+require 'friendly_id'
 module Refinery
   module Projets
     class Projet < Refinery::Core::BaseModel
+      extend FriendlyId
+      friendly_id :titre, use: [:slugged]
       validates :titre, :presence => true
       validates :responsable, :presence => true
       validates :refinery_crpv_id, :presence => true
@@ -12,7 +15,7 @@ module Refinery
 
       alias_attribute :name, :titre
 
-      attr_accessible :email, :titre, :refinery_crpv_id, :but, :responsable, :exploitant, :date_requete, :effet, :medicament, :contexte, :design, :objectif, :objectif_sec, :champs, :debut_inclusion, :fin_inclusion, :type_inclusion, :criteres_inclusion, :criteres_non_inclusion, :retombees
+      attr_accessible :email, :titre, :refinery_crpv_id, :but, :responsable, :exploitant, :date_requete, :effet, :medicament, :contexte, :design, :objectif, :objectif_sec, :champs, :debut_inclusion, :fin_inclusion, :type_inclusion, :criteres_inclusion, :criteres_non_inclusion, :retombees, :slug
 
       belongs_to :refinery_crpv, class_name: "::Refinery::Crpvs::Crpv"
 
