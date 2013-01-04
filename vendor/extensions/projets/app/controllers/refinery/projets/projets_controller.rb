@@ -1,10 +1,16 @@
 module Refinery
   module Projets
     class ProjetsController < ::ApplicationController
+      before_filter :find_page, only: [:show, :index]
 
       def index
         @projets = Projet.order('created_at')
-        @page = ::Refinery::Page.where(:link_url => "/projets").first
+        present(@page)
+      end
+
+      def show
+        @projet = Projet.find(params[:id])
+
         present(@page)
       end
 
@@ -26,6 +32,12 @@ module Refinery
         else
           render :new
         end
+      end
+
+      protected
+
+      def find_page
+        @page = ::Refinery::Page.where(:link_url => "/projets").first
       end
     end
   end
