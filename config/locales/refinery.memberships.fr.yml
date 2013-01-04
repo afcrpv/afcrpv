@@ -131,17 +131,18 @@ fr:
         form_actions:
           save: Enregistrer
           cancel: Annuler
+          cancel_lose_changes: Vous allez perdre les modification, êtes-vous sûr ?
         form:
           blank_password_keeps_current: Le mot de passe ne sera pas changé si le champ est vide
-          state_province: "Provence/Etat"
+          state_province: "Province/Etat"
           postal_code: "Code postal"
         new:
           title: Inscription d'un nouveau membre
           instructions: Veuillez saisir les informations. Vous allez recevoir un message de confirmation lorsque votre inscription est confirmée.
           submit_application: Soumettre l'inscription
-    activerecord:
-      attributes:
-        user:
-          membership_level: Niveau des droits
-        role:
-          title: Libéllé
+  activerecord:
+    attributes:
+      user:
+        membership_level: Niveau des droits
+        email: Courriel
+        first_name: Prenom

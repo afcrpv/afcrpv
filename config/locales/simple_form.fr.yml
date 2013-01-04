@@ -17,6 +17,38 @@ fr:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Veuillez corriger les champs suivant :"
+    placeholders:
+      projet:
+        titre: acronyme et titre complet
+        but: thèse, mémoire, poster, publication, communication orale, cours...
+        responsable: encadrant
+        exploitant: personne qui exploitera les données
+        effet: SMQ, termes MedRA utilisés (PT, HLT, HLGT, SOC)
+        medicament: noms commerciaux, substances actives
+        contexte: bref rappel (données de la littérature scientifique, pathologie, domaine d'étude)
+        design: etude descriptive, cas-non cas, avant-après...
+        objectif: description de l'objectif principal
+        objectif_sec: description des objectifs secondaires le cas échéant
+        champs: lister les champs qui serviront à faire l'analyse (sexe, âge, antécédents, EIG, dates, narratif...)
+        criteres_inclusion: liste de critères d'inclusion
+        criteres_non_inclusion: liste de critères de non inclusion
+        retombees: retombées attendues de l'étude
+
+    labels:
+      defaults:
+        email: Email
+        password: Mot de passe
+        password_confirmation: Confirmer
+        first_name: Prénom
+        last_name: Nom
+        phone: Téléphone
+        title: Titre
+        organization: Organisation
+        street_address: Adresse
+        city: Ville
+        postal_code: Code postal
+        website: Site web
+
     # Labels and hints examples
     # labels:
     #   defaults:

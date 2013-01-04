@@ -3,13 +3,15 @@
 
   <div class='projets'>
     <%= simple_form_for([refinery, :projets, @projet], :html => {:class => 'form-horizontal' }) do |f| %>
-      <%= f.input :refinery_crpv, as: :hidden %>
       <%= f.input :titre, input_html: {class: "input-xxlarge"} %>
-      <%= f.input :but %>
-      <%= f.input :responsable %>
-      <%= f.input :exploitant %>
+      <%= f.association :refinery_crpv %>
+      <%= f.input :but, input_html: {class: "input-xxlarge"} %>
+      <%= f.input :responsable, input_html: {class: "input-xxlarge"} %>
+      <%= f.input :exploitant, input_html: {class: "input-xxlarge"} %>
       <%= f.input :date_requete, input_html: {class: "input-small"}, use_month_numbers: true %>
-      <%= f.input :design %>
+      <%= f.input :effet, input_html: {class: "input-xxlarge", rows: 2} %>
+      <%= f.input :medicament, input_html: {class: "input-xxlarge", rows: 2} %>
+      <%= f.input :design, input_html: {class: "input-xxlarge"} %>
       <%= f.input :objectif, input_html: {class: "input-xxlarge", rows: 2} %>
       <%= f.input :objectif_sec, input_html: {class: "input-xxlarge", rows: 2} %>
       <%= f.input :champs, input_html: {class: "input-xxlarge", rows: 2} %>

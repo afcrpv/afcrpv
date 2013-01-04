@@ -1,0 +1,3 @@
+<%= f.input :email %>
+<%= f.input :password, hint: (t('members.form.blank_password_keeps_current', :scope => 'refinery.memberships') if @member.persisted?) %>
+<%= f.input :password_confirmation %>

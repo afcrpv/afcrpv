@@ -1,0 +1,23 @@
+<%= simple_form_for @member, :as => :member, :url => url, html: {class: "form-horizontal"} do |f| %>
+
+  <%= render :partial => "form_account", :locals => {:f => f} %>
+  <%= render :partial => "form_profile", :locals => {:f => f} %>
+  <%= render :partial => "form_organization", :locals => {:f => f} %>
+
+  <% if @is_admin && !@member.is_member? %>
+    <div class="control-group">
+      <label for="admin_action_approve" class="control-label">Approve application</label>
+      <%= radio_button 'admin', 'action', 'approve' %>
+    </div>
+    <div class="control-group">
+      <label for="admin_action_reject" class="control-label">Reject application</label>
+      <%= radio_button 'admin', 'action', 'reject' %>
+    </div>
+  <% end %>
+  <%= render :partial => "form_actions",
+    :locals => {
+    :f => f,
+    :continue_editing => false,
+    :hide_delete => true
+  }%>
+<% end %>

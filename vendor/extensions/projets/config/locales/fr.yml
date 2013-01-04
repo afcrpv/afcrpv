@@ -6,7 +6,7 @@ fr:
       refinery/projets/projet: &attributes
         titre: Titre
         created_at: Date
-        refinery_crpv_id: CRPV concerné
+        refinery_crpv: CRPV concerné
         but: But du travail
         responsable: Responsable de l'étude
         exploitant: Personne impliquée
