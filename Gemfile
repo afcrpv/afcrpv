@@ -68,7 +68,10 @@ gem 'refinerycms-crpvs', :path => 'vendor/extensions'
 gem 'refinerycms-projets', :path => 'vendor/extensions'
 
 gem 'simple_form'
+gem 'show_for', github: "plataformatec/show_for"
 
 group :development do
   gem 'meta_request', '0.2.0'
+  gem "better_errors"
+  gem "binding_of_caller"
 end

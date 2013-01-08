@@ -9,6 +9,14 @@ GIT
       webrat (~> 0.7.3)
 
 GIT
+  remote: git://github.com/plataformatec/show_for.git
+  revision: 6f3a16ececf6c23948f7264fb04e940550a92551
+  specs:
+    show_for (0.2.5)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+
+GIT
   remote: git://github.com/refinery/refinerycms-settings.git
   revision: b045d02a2ca9aa26884fddcfb491f222852e6f11
   branch: 2-0-stable
@@ -69,10 +77,15 @@ GEM
       activerecord (>= 3.0.0)
     babosa (0.3.8)
     bcrypt-ruby (3.0.1)
+    better_errors (0.3.2)
+      coderay (>= 1.0.0)
+      erubis (>= 2.7.0)
+    binding_of_caller (0.6.8)
     bootstrap-sass (2.2.1.1)
       sass (~> 3.2)
     builder (3.0.4)
     chunky_png (1.2.6)
+    coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -261,6 +274,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   bootstrap-sass (~> 2.2.1.1)
   coffee-rails (~> 3.2.1)
   compass-rails
@@ -281,6 +296,7 @@ DEPENDENCIES
   refinerycms-search (~> 2.0.0)!
   refinerycms-settings!
   sass-rails (~> 3.2.3)
+  show_for!
   simple_form
   thin
   uglifier (>= 1.0.3)
