@@ -1,8 +1,8 @@
 <%= simple_form_for @member, :as => :member, :url => url, html: {class: "form-horizontal"} do |f| %>
 
-  <%= render :partial => "form_account", :locals => {:f => f} %>
-  <%= render :partial => "form_profile", :locals => {:f => f} %>
-  <%= render :partial => "form_organization", :locals => {:f => f} %>
+  <%= render "form_account", :f => f %>
+  <%= render "form_profile", :f => f %>
+  <%= render "form_organization", :f => f %>
 
   <% if @is_admin && !@member.is_member? %>
     <div class="control-group">

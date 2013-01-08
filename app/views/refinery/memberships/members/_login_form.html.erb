@@ -1,0 +1,10 @@
+<%= simple_form_for Refinery::User.new, :as => 'refinery_user', :url => refinery_user_session_path, html: {class: "form-horizontal"} do |f| %>
+  <%= f.input :login %>
+  <%= f.input :password %>
+  <%= hidden_field_tag :redirect, params[:redirect] %>
+  <%= hidden_field_tag :member_login, true %>
+
+  <div class="form-actions">
+    <%= f.button :submit, t('.login')%>
+  </div>
+<% end %>
