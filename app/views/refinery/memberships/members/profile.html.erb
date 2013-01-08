@@ -1,0 +1,17 @@
+<% content_for :body do %>
+    <%= render 'message' %>
+  <%=raw @page.content_for(:body_above) if @page %>
+  <%=raw @page.content_for(:body) if @page %>
+  <%= show_for @member do |member| %>
+    <%= member.attribute :email %>
+    <%= member.attribute :full_name %>
+    <%= member.association :refinery_crpv %>
+  <% end -%>
+  <%= link_to  edit_members_path, class: "btn" do %>
+    <i class="icon-pencil"></i>
+    <%= t('.edit_profile') %>
+  <% end -%>
+  <%=raw @page.content_for(:body_below) if @page %>
+<% end %>
+
+<%= render "/refinery/content_page", :hide_sections => [:bodybelow, :bodyabove] %>

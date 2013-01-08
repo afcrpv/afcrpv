@@ -147,10 +147,12 @@ fr:
   activerecord:
     attributes:
       refinery/memberships/member:
+        full_name: Nom complet
         name: Nom
         email: Courriel
         member_until: Expiration
         status: Etat
+        refinery_crpv: CRPV
       user:
         membership_level: Niveau des droits
         email: Courriel

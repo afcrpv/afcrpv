@@ -1,3 +1,4 @@
 <%= f.input :email %>
 <%= f.input :password, hint: (t('members.form.blank_password_keeps_current', :scope => 'refinery.memberships') if @member.persisted?) %>
 <%= f.input :password_confirmation %>
+<%= f.input :refinery_crpv_id, as: :select, collection: Refinery::Crpvs::Crpv.all, label: "CRPV" %>

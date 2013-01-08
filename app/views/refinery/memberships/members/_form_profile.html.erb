@@ -1,17 +1,10 @@
 <%= f.input :last_name %>
 <%= f.input :first_name %>
-<%= f.input :title %>
-<%= f.input :phone %>
-<%= f.input :fax %>
-<% if !f.object.new_record? %>
+<% if @is_admin %>
   <div class="control-group">
     <%= f.label :membership_level, class: "control-label" %>
     <div class="controls">
-      <% if @is_admin %>
-        <%= f.text_field :membership_level %>
-      <% else %>
-        <span class="uneditable-input"><%= @member.roles.collect(&:title).join(', ') %></span>&nbsp;
-      <% end %>
+      <%= f.text_field :membership_level %>
     </div>
   </div>
 <% end %>

@@ -12,6 +12,7 @@ module Refinery
 
       validates :name, :presence => true, :uniqueness => true
       has_many :projets, class_name: "::Refinery::Projets::Projet"
+      has_many :members, class_name: "::Refinery::Memberships::Member"
 
       def to_s
         name

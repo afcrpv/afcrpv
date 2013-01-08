@@ -19,6 +19,8 @@ module Refinery
 
       before_save :ensure_member_role       # always needs to be a Member or can't sign in, see is_member?
 
+      belongs_to :refinery_crpv, class_name: "::Refinery::Crpvs::Crpv"
+
       def to_param
           id
       end
