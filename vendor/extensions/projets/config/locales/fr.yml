@@ -21,8 +21,8 @@ fr:
         debut_inclusion: Debut d'inclusion
         fin_inclusion: Fin d'inclusion
         type_inclusion: Type de date
-        criteres_inclusion: Critères d'inclusion des cas
-        criteres_non_inclusion: Critères de non inclusion des cas
+        criteres_inclusion: Critères d'inclusion
+        criteres_non_inclusion: Critères de non inclusion
         retombees: Retombées attendues
 
   refinery:

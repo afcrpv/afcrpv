@@ -1,6 +1,31 @@
 # encoding: UTF-8
 
 module ApplicationHelper
+  def periode_inclusion(projet)
+    "#{l projet.debut_inclusion} - #{l projet.fin_inclusion} (#{projet.type_inclusion})"
+  end
+  def def_item_for_object(object, field, content=nil)
+    object_name = object.class.to_s.downcase.gsub('::', '/')
+    content = general_def_content(object, field).html_safe unless content
+    content_tag(:dt, I18n.t(field, scope: "activerecord.attributes.#{object_name}")) + content_tag(:dd, content) if object.send(field).present?
+  end
+
+  def website_def_content(object, website)
+    if website
+      link = website.gsub(/<\/?p>/, "")
+      link_to link, target: "_blank" do
+        content_tag(:i, nil, class: "icon-share") + link
+      end
+    end
+  end
+
+  def general_def_content(object, field)
+    raw(object.send(field))
+  end
+
+  def email_def_content(object, email)
+    email.gsub(/<\/?p>/, "").split("<br />").map {|item| mail_to(item)}.join("<br/>").html_safe
+  end
   def news_line(news)
     klass_name = get_demodulized_class(news)
     content_tag :tr do

@@ -1,4 +1,5 @@
 require 'friendly_id'
+require 'i18n'
 module Refinery
   module Projets
     class Projet < Refinery::Core::BaseModel
@@ -23,6 +24,10 @@ module Refinery
 
       def self.latest(number = 7)
         limit(number)
+      end
+
+      def date
+        updated_at ? updated_at.to_date : created_at.to_date
       end
     end
   end

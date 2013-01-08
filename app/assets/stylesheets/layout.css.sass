@@ -111,3 +111,14 @@ $mainWrapDelta: 0.06
 
   ul.legal_stuff
     +delimited-list(" |")
+
+$dl_large_width: 14em
+.dl-large
+  dt
+    width: $dl_large_width
+    &:after
+      content: " :"
+  dd
+    margin-left: $dl_large_width + 0.5em
+    p
+      margin-bottom: 0

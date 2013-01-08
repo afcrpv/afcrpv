@@ -1,3 +1,23 @@
 <% content_for :body_content_title do %>
   <%= @projet.titre %>
 <% end %>
+
+<%= content_for :body do %>
+  <%= show_for @projet, class: "dl-large" do |projet| %>
+    <%= projet.attribute :date %>
+    <%= projet.association :refinery_crpv %>
+    <%= projet.attributes :but, :responsable, :exploitant, :date_requete %>
+    <% %w(effet medicament contexte design objectif objectif_sec champs).each do |field| %>
+      <dt><%= @projet.class.human_attribute_name(field) %></dt>
+      <dd><%= (value = @projet.send(field)).blank? ? "<span class='muted'>Non spécifié</span>".html_safe : simple_format(value) %></dd>
+    <% end -%>
+    <dt>Periode investiguée</dt>
+    <dd><%= periode_inclusion(@projet) %></dd>
+    <% %w(criteres_inclusion criteres_non_inclusion retombees).each do |field| %>
+      <dt><%= @projet.class.human_attribute_name(field) %></dt>
+      <dd><%= (value = @projet.send(field)).blank? ? "<span class='muted'>Non spécifié</span>".html_safe : simple_format(value) %></dd>
+    <% end -%>
+  <% end -%>
+<% end %>
+
+<%= render '/refinery/content_page' %>
