@@ -19,7 +19,7 @@ module Refinery
       end
 
       def new
-        @projet = ::Refinery::Projets::Projet.new
+        @projet = ::Refinery::Projets::Projet.new(refinery_crpv_id: current_refinery_user.refinery_crpv_id)
         @page = ::Refinery::Page.find_by_link_url("/projets/soumettre")
       end
 
