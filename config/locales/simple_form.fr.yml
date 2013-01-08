@@ -48,6 +48,7 @@ fr:
         city: Ville
         postal_code: Code postal
         website: Site web
+        membership_level: Droits d'accès
 
     # Labels and hints examples
     # labels:

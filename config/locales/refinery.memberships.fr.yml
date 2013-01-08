@@ -1,4 +1,8 @@
 fr:
+  devise:
+    failure:
+      refinery_user:
+        inactive: Cet utilisateur n'est pas activé, contacter l'administrateur.
   months: "%{count} mois"
   years: "%{count} années"
   refinery:
@@ -142,6 +146,11 @@ fr:
           submit_application: Soumettre l'inscription
   activerecord:
     attributes:
+      refinery/memberships/member:
+        name: Nom
+        email: Courriel
+        member_until: Expiration
+        status: Etat
       user:
         membership_level: Niveau des droits
         email: Courriel
