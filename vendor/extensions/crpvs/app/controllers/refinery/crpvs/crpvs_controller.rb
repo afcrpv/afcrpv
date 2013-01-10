@@ -5,6 +5,11 @@ module Refinery
       before_filter :find_all_crpvs
       before_filter :find_page
 
+      def paris
+        page = ::Refinery::Page.where(:link_url => "/crpvs/paris").first || error_404
+        present(page)
+      end
+
       def index
         # you can use meta fields from your model instead (e.g. browser_title)
         # by swapping @page for @crpv in the line below:

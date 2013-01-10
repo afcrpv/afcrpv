@@ -1,3 +1,6 @@
+Refinery::Core::Engine.routes.prepend do
+  get '/crpvs/paris', :to => 'crpvs/crpvs#paris', :as => :paris
+end
 Afcrpv::Application.routes.draw do
 
   # This line mounts Refinery's routes at the root of your application.
