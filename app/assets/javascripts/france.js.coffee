@@ -14,40 +14,50 @@ jQuery ->
 
   paper = Raphael("canvas_france", 450, 480)
 
-  default_attr =
-    stroke: "white"
-    transform: "s0.8,0.8,100,100"
 
-  france_path = {}
-  for name, departement of departements
-    stroke = if departement.stroke then departement.stroke else default_attr.stroke
-    france_path[name] = paper.path(departement.path).attr
-      stroke: stroke
-      transform: default_attr.transform
-      fill: departement.fill
-      cursor: "pointer"
-    if departement.href?
-      france_path[name].attr
-        href: "/crpvs/#{departement.href.dasherize()}"
+  for d, dep of departements
+    console.log d if dep.href is null
 
   #current = null
   #for d, dep of france_path
     #dep.color = "#6666ff"
     #animate_departements(paper, france_path[dep], dep) unless d is "corsica_line"
 
-  for crpv in ["80", "49", "25", "33", "29", "14", "63", "94", "21", "38", "59", "87", "69", "13", "34", "54", "44", "06", "86", "35", "51", "76", "42", "67", "31", "37", "75"]
-    x = departements["departement#{crpv}"].x
-    y = departements["departement#{crpv}"].y
-    if x? and y?
-      dot = paper.circle(x, y, 4).attr
-        fill: "black"
-        stroke: "black"
-        transform: "s0.8,0.8,100,100"
+  for c, crpv of crpvs
+    crpv._drawDepartements(paper)
+    crpv._drawCity(paper)
+
+  paper.path("M 432,545.25 L 432,475 L 496.25,433").attr(fill: "none", stroke: "#d6d6d6",transform: "s0.8,0.8,100,100")
 
 #### Functions and classes
 
 class Crpv
   constructor: (@name, @departements, @x, @y) ->
+
+  default_city_attr:
+    fill: "black"
+    stroke: "black"
+    transform: "s0.8,0.8,100,100"
+
+  default_attr:
+    stroke: "white"
+    transform: "s0.8,0.8,100,100"
+
+  _drawCity: (canvas) ->
+    canvas.circle(@x, @y, 4).attr(@default_city_attr)
+
+  _drawDepartements: (canvas) ->
+    for d, departement of @departements
+      stroke = if departement.stroke then departement.stroke else @default_attr.stroke
+      path = canvas.path(departement.path).attr
+        stroke: stroke
+        transform: @default_attr.transform
+        fill: departement.fill
+        cursor: "pointer"
+      if departement.href?
+        path.attr
+          href: "/crpvs/#{departement.href.dasherize()}"
+
 
 String::dasherize = ->
   @replace(/\s/g, "-").toLowerCase()
@@ -60,7 +70,13 @@ get_dep_departements = (cp) ->
   for d, departement of departements
     # populate results hash with departement.path if departement.href is == target_name
     if departement.href is target_name
-      results[d] = {path: departement.path}
+      results[d] =
+        path: departement.path
+        fill: if departement.fill then departement.fill else "#d6d6d6"
+        stroke: if departement.stroke then departement.stroke else "white"
+        href: if departement.href then departement.href else null
+        subhref: if departement.subhref then departement.subhref else null
+
   return results
 
 animate_departements = (paper, dep, d) ->
