@@ -1,41 +1,50 @@
 jQuery ->
-  $(".modal").modal("show")
-  paper = Raphael("canvas_france", 450, 480)
+  paper = Raphael("canvas_france", 450,460)
 
-  crpvs = {}
+  paper.setStart()
 
   for dep in ["80", "49", "25", "33", "29", "14", "63", "21", "38", "59", "87", "69", "13", "34", "54", "44", "06", "86", "35", "51", "76", "42", "67", "31", "37", "75"]
     departement = departements["departement#{dep}"]
-    name = departement.href.dasherize()
+    name = departement.href
+    href = name.dasherize()
     dep_departements = get_dep_departements(dep)
     x = departement.x
     y = departement.y
+    lx = if departement.lx then departement.lx else x
+    ly = if departement.ly then departement.ly else y
 
-    crpvs[name] = new Crpv name, dep_departements, x, y, paper
+    new Crpv name, href, dep_departements, x, y, ly, paper
 
-  paper.path("M 432,545.25 L 432,475 L 496.25,433").attr(fill: "none", stroke: "#d6d6d6",transform: "s0.8,0.8,100,100")
+  paper.path("M 432,545.25 L 432,475 L 496.25,433").attr(fill: "none", stroke: "#d6d6d6")
 
+  st = paper.setFinish()
+
+  translate = 't'+(-1*st.getBBox().x)+','+(-1*st.getBBox().y)
+  st.transform(translate)
+  st.transform('s0.84,0.84,0,0')
 #### Functions and classes
 
 class Crpv
-  constructor: (@name, @departements, @x, @y, canvas) ->
+  constructor: (@name, @href, @departements, @x, @y, @ly, canvas) ->
     @city = @_drawCity(canvas)
+    @label = @_drawLabel(canvas)
     @departements = @_drawDepartements(canvas)
 
   default_city_attr:
     fill: "black"
     stroke: "white"
-    transform: "s0.8,0.8,100,100"
 
   default_attr:
     stroke: "white"
-    transform: "s0.8,0.8,100,100"
 
   _drawCity: (canvas) ->
     canvas.circle(@x, @y, 4).attr(@default_city_attr)
 
+  _drawLabel: (canvas) ->
+    canvas.text(@x,@ly,@name.titleize()).attr("font-size": 14, "font-weight": "bold").hide()
+
   _drawDepartements: (canvas) ->
-    st = canvas.set()
+    deps_set = canvas.set()
     for d, departement of @departements
       stroke = if departement.stroke then departement.stroke else @default_attr.stroke
       path = canvas.path(departement.path).attr
@@ -46,33 +55,32 @@ class Crpv
         id: d
       if departement.href?
         path.attr
-          href: "/crpvs/#{departement.href.dasherize()}"
-      st.push(path)
-      city = @city.toFront()
-      st.hover(
-        ->
-          st.stop().animate({fill: "#6666ff"}, 200, "<>")
-          city.stop().animate({fill: "#ff6666"}, 200, "<>")
-        ,
-        ->
-          st.stop().animate({fill: "#d6d6d6"}, 200, "<>")
-          city.stop().animate({fill: "black"}, 200, "<>"))
+          href: "/crpvs/#{@href}"
+      deps_set.push(path)
 
-_animateDepartements = (canvas, dep, d, current=null) ->
-  d.color = "#6666ff"
-  d.onmouseover = ->
-    d[current].animate({fill: "#f5f5f5", stroke: "#d5d5d5"}, 300) if current
-    d.animate({fill: d.color, stroke: "#d5d5d5"}, 300)
-    d.toFront()
-    canvas.safari()
-    current = dep
-  d.onmouseout = ->
-    d.animate({fill: "#d6d6d6", stroke: "white"}, 300)
-    d.toFront()
-    canvas.safari()
+    city = @city.toFront()
+    label = @label.toFront()
+    new_st = canvas.set()
+    new_st.push(city, label, deps_set)
+    new_st.hover(_hoverIn(deps_set, city, label, "#8888ff", "#ff6666"), _hoverOut(deps_set, city, label, "#d6d6d6", "black"))
+
+_hoverIn = (node, city, label, dep_color_in, city_color_in) ->
+  ->
+    node.stop().animate({fill: dep_color_in}, 200, "<>")
+    city.stop().animate({fill: city_color_in}, 200, "<>")
+    label.show().toFront()
+
+_hoverOut = (node, city, label, dep_color_out, city_color_out) ->
+  ->
+    node.stop().animate({fill: dep_color_out}, 200, "<>")
+    city.stop().animate({fill: city_color_out}, 200, "<>")
+    label.hide()
 
 String::dasherize = ->
   @replace(/\s/g, "-").toLowerCase()
+
+String::titleize = ->
+ @charAt(0).toUpperCase() + @substr(1)
 
 get_dep_departements = (cp) ->
   # get target name
