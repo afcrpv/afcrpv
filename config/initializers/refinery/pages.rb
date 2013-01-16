@@ -42,9 +42,9 @@ Refinery::Pages.configure do |config|
   # Set this to true to fully expand the page hierarchy in the admin
   # config.auto_expand_admin_tree = true
 
-  config.layout_template_whitelist = ["application", "home"]
+  config.layout_template_whitelist = ["application", "home", "intranet"]
 
-  config.view_template_whitelist = ["show", "home", "sitemap", "actualites"]
+  config.view_template_whitelist = ["show", "home", "sitemap", "intranet"]
 
   config.use_layout_templates = true
 

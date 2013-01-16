@@ -1,0 +1,58 @@
+<div class="navbar navbar-inverse navbar-intranet navbar-fixed-bottom">
+  <div class="navbar-inner">
+    <ul class="nav">
+      <li>
+        <a href="/intranet/documents">
+          <i class="icon-file icon-white"></i>
+          Documents
+        </a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="icon-file icon-white"></i>
+          Projets
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <%= link_to refinery.projets_projets_path do %>
+              <i class="icon-list"></i>
+              Voir la liste
+            <% end -%>
+          </li>
+          <li>
+            <%= link_to refinery.projets_new_projet_path do %>
+              <i class="icon-plus"></i>
+              Soumettre un projet
+            <% end -%>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav pull-right">
+      <li class="divider-vertical"></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="icon-user icon-white"></i>
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><span class="navbar-user"><%= current_refinery_user.email %></span></li>
+          <li>
+            <%= link_to "/members/edit" do %>
+              <i class="icon-pencil"></i>
+              Modifier Profile
+            <% end -%>
+          </li>
+          <li>
+            <%= link_to "/refinery/logout" do %>
+              <i class="icon-off"></i>
+              Déconnexion
+            <% end -%>
+          </li>
+        </ul>
+      </li>
+      <li class="divider-vertical"></li>
+    </ul>
+  </div>
+</div>
