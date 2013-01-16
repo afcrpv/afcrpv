@@ -40,7 +40,7 @@ class Crpv
     stroke: "white"
 
   _drawCity: (canvas) ->
-    canvas.circle(@x, @y, 4).attr(@default_city_attr).attr(href: @href)
+    canvas.circle(@x, @y, 4).attr(@default_city_attr).attr(href: "/crpvs/#{@href}")
 
   _drawLabel: (canvas) ->
     canvas.text(@x,@ly,@name.titleize()).attr("font-size": 14, "font-weight": "bold").hide()
