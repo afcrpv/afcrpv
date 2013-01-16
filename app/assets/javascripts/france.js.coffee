@@ -15,20 +15,22 @@ jQuery ->
 
     new Crpv name, href, dep_departements, x, y, ly, paper
 
-  paper.path("M 432,545.25 L 432,475 L 496.25,433").attr(fill: "none", stroke: "#d6d6d6")
+  corsica_line = paper.path("M 432,545.25 L 432,475 L 496.25,433").attr(fill: "none", stroke: "#d6d6d6").toBack()
+  dom_line = paper.path("M 10,188 L 80,220 L 80,420").attr(fill: "none", stroke: "#d6d6d6").toBack()
 
   st = paper.setFinish()
 
   translate = 't'+(-1*st.getBBox().x)+','+(-1*st.getBBox().y)
   st.transform(translate)
   st.transform('s0.84,0.84,0,0')
+
 #### Functions and classes
 
 class Crpv
   constructor: (@name, @href, @departements, @x, @y, @ly, canvas) ->
     @city = @_drawCity(canvas)
     @label = @_drawLabel(canvas)
-    @departements = @_drawDepartements(canvas)
+    @path_departements = @_drawDepartements(canvas)
 
   default_city_attr:
     fill: "black"
@@ -38,7 +40,7 @@ class Crpv
     stroke: "white"
 
   _drawCity: (canvas) ->
-    canvas.circle(@x, @y, 4).attr(@default_city_attr)
+    canvas.circle(@x, @y, 4).attr(@default_city_attr).attr(href: @href)
 
   _drawLabel: (canvas) ->
     canvas.text(@x,@ly,@name.titleize()).attr("font-size": 14, "font-weight": "bold").hide()
@@ -56,6 +58,9 @@ class Crpv
       if departement.href?
         path.attr
           href: "/crpvs/#{@href}"
+      if departement.dom_label?
+        dom_label = canvas.text(departement.dom_label.x, departement.dom_label.y, departement.name.titleize()).attr("font-size": 11, "font-weight": "bold").toFront()
+
       deps_set.push(path)
 
     city = @city.toFront()
@@ -91,10 +96,12 @@ get_dep_departements = (cp) ->
     # populate results hash with departement.path if departement.href is == target_name
     if departement.href is target_name
       results[d] =
+        name: departement.name
         path: departement.path
         fill: if departement.fill then departement.fill else "#d6d6d6"
         stroke: if departement.stroke then departement.stroke else "white"
         href: if departement.href then departement.href else null
         subhref: if departement.subhref then departement.subhref else null
+        dom_label: if departement.dom_label then departement.dom_label else null
 
   return results
