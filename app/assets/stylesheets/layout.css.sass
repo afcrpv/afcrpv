@@ -6,6 +6,11 @@ body
 
 $logo_height: 137px
 
+.navbar.navbar-intranet
+  .navbar-user
+    font-size: 12px
+    padding-left: 1em
+
 #header
   margin-top: 10px
   #logo
@@ -23,11 +28,13 @@ $logo_height: 137px
         display: inline
         height: $logo_height
         color: transparent
-  h2.title a
-    color: white
-    text-shadow: 0 1px 0 black
+  h2.title
+    margin-bottom: 0
+    a
+      color: white
+      text-shadow: 0 1px 0 black
 
-.navbar
+.navbar.navbar-rounded
   margin-bottom: 0
   margin-top: $logo_height - 60px - 41px + 20px
   .navbar-inner
