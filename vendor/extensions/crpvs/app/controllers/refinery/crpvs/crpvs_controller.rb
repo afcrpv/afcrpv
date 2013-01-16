@@ -1,13 +1,19 @@
+#encoding: utf-8
 module Refinery
   module Crpvs
     class CrpvsController < ::ApplicationController
 
-      before_filter :find_all_crpvs
+      before_filter :find_all_crpvs, only: [:index]
       before_filter :find_page
 
       def paris
-        page = ::Refinery::Page.where(:link_url => "/crpvs/paris").first || error_404
-        present(page)
+        @paris_crpvs = [
+          ["ps", "Pitié-Salpétrière"],
+          ["gp", "Georges Pompidou"],
+          ["sa", "Saint-Antoine"],
+          ["csvp", "Cochin St Vincent de Paul"],
+          ["fw", "Fernand Widal"]
+        ]
       end
 
       def index
