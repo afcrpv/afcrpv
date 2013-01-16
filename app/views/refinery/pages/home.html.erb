@@ -2,7 +2,7 @@
   <ul class="thumbnails">
     <li class="span4">
       <div class="thumbnail">
-        <h3><%= link_to "Les CRPVs", "#", class: "btn btn-large btn-block btn-primary" %></h3>
+        <h3><%= link_to "Les CRPVs", refinery.crpvs_crpvs_path, class: "btn btn-large btn-block btn-primary" %></h3>
         <p>
           Blabla, balblablaelrbaerblelrblaerblaerbl aeb aerlbalerlba
           <%= link_to "#carte-france", role: "button", "data-toggle" => "modal", class: "btn btn-small btn-block" do %>
@@ -16,10 +16,10 @@
     </li>
     <li class="span4">
       <div class="thumbnail">
-        <h3><%= link_to "Les Documents", "#", class: "btn btn-large btn-block btn-danger" %></h3>
+        <h3><%= link_to "Les Documents", "/intranet/documents", class: "btn btn-large btn-block btn-danger" %></h3>
         <p>
           Blabla, balblablaelrbaerblelrblaerblaerbl aeb aerlbalerlba
-          <% if current_refinery_user.has_role?("Documents") || current_refinery_user.has_role?("Superuser") %>
+          <% if current_refinery_user && (current_refinery_user.has_role?("Documents") || current_refinery_user.has_role?("Superuser")) %>
             <%= link_to "/refinery", class: "btn btn-small btn-block" do %>
               <i class="icon-file"></i>
               Rajouter un document
@@ -32,11 +32,11 @@
     </li>
     <li class="span4">
       <div class="thumbnail">
-        <h3><%= link_to "Les Projets", "#", class: "btn btn-large btn-block btn-info" %></h3>
+        <h3><%= link_to "Les Projets", refinery.projets_projets_path, class: "btn btn-large btn-block btn-info" %></h3>
         <p>
           Blabla, balblablaelrbaerblelrblaerblaerbl aeb aerlbalerlba
-          <%= link_to "/projets/soumettre", class: "btn btn-small btn-block" do %>
-            <i class="icon-warning-sign"></i>
+          <%= link_to refinery.projets_new_projet_path, class: "btn btn-small btn-block" do %>
+            <i class="icon-plus"></i>
             Soumettre un projet
           <% end -%>
         </p>
@@ -59,3 +59,5 @@
     <%= link_to "Fermer", "#", class: "btn", "data-dismiss" => "modal", "aria-hidden" => true %>
   </div>
 </div>
+
+<%= render '/refinery/content_page' %>

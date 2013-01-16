@@ -3,79 +3,58 @@
 <% end %>
 
 <% content_for :body do %>
-  <section>
-    <h1>Name</h1>
-    <p>
-      <%=raw @crpv.name %>
-    </p>
-  </section>
-  <section>
-    <h1>Adresse</h1>
-    <p>
-      <%=raw @crpv.adresse %>
-    </p>
-  </section>
-  <section>
-    <h1>City</h1>
-    <p>
-      <%=raw @crpv.city %>
-    </p>
-  </section>
-  <section>
-    <h1>Cp</h1>
-    <p>
-      <%=raw @crpv.cp %>
-    </p>
-  </section>
-  <section>
-    <h1>Responsable</h1>
-    <p>
-      <%=raw @crpv.responsable %>
-    </p>
-  </section>
-  <section>
-    <h1>Tel</h1>
-    <p>
-      <%=raw @crpv.tel %>
-    </p>
-  </section>
-  <section>
-    <h1>Fax</h1>
-    <p>
-      <%=raw @crpv.fax %>
-    </p>
-  </section>
-  <section>
-    <h1>Email</h1>
-    <p>
-      <%=raw @crpv.email %>
-    </p>
-  </section>
-  <section>
-    <h1>Website</h1>
-    <p>
-      <%=raw @crpv.website %>
-    </p>
-  </section>
-  <section>
-    <h1>Bulletin</h1>
-    <p>
-      <%=raw @crpv.bulletin %>
-    </p>
-  </section>
-<% end %>
-
-<% content_for :side_body do %>
-  <aside>
-    <h2><%= t('.other') %></h2>
-    <ul id="crpvs">
-      <% @crpvs.each do |crpv| %>
-        <li>
-          <%= link_to crpv.name, refinery.crpvs_crpv_path(crpv) %>
-        </li>
-      <% end %>
-    </ul>
-  </aside>
+  <%= show_for @crpv do |crpv| %>
+    <dt><%= @crpv.class.human_attribute_name(:adresse) %></dt>
+    <dd><%= (value = @crpv.adresse).blank? ? "<span class='muted'>Non spécifié</span>".html_safe : simple_format(@crpv.adresse) %></dd>
+    <section>
+      <h1>City</h1>
+      <p>
+        <%=raw @crpv.city %>
+      </p>
+    </section>
+    <section>
+      <h1>Cp</h1>
+      <p>
+        <%=raw @crpv.cp %>
+      </p>
+    </section>
+    <section>
+      <h1>Responsable</h1>
+      <p>
+        <%=raw @crpv.responsable %>
+      </p>
+    </section>
+    <section>
+      <h1>Tel</h1>
+      <p>
+        <%=raw @crpv.tel %>
+      </p>
+    </section>
+    <section>
+      <h1>Fax</h1>
+      <p>
+        <%=raw @crpv.fax %>
+      </p>
+    </section>
+    <section>
+      <h1>Email</h1>
+      <p>
+        <%=raw @crpv.email %>
+      </p>
+    </section>
+    <section>
+      <h1>Website</h1>
+      <p>
+        <%=raw @crpv.website %>
+      </p>
+    </section>
+    <section>
+      <h1>Bulletin</h1>
+      <p>
+        <%=raw @crpv.bulletin %>
+      </p>
+    </section>
+  <% end -%>
 <% end %>
 
 <%= render '/refinery/content_page' %>

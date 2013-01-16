@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar navbar-rounded">
   <div class="navbar-inner">
     <div class="container">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -10,7 +10,16 @@
       <div class="nav-collapse">
         <%= render "/refinery/bootstrap/menu" %>
         <%= render "/refinery/search" %>
-        <%= render "/refinery/user" %>
+        <% unless current_refinery_user %>
+          <ul class="nav pull-right">
+            <li>
+              <%= link_to "/intranet" do %>
+                <i class="icon-lock"></i>
+                Intranet
+              <% end -%>
+            </li>
+          </ul>
+        <% end -%>
       </div><!--nav-collapse-->
     </div><!--container-->
   </div><!--navbar-inner-->
