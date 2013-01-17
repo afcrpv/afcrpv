@@ -1,8 +1,13 @@
 <div class="row-fluid">
   <div class="span10">
     <ul class="legal_stuff">
-      <li><%= mail_to "andrea.damico@gmail.com", "<i class=icon-envelope></i>\nContacter le webmaster".html_safe, class: "btn" %></li>
+      <li><%= mail_to "andrea.damico@gmail.com", "<i class=icon-envelope></i>\nContacter le webmaster".html_safe %></li>
+      <li><%= link_to "Mention Légales", "/mentions-legales", title: "Mention Légales" %></li>
+      <li><%= link_to "Plan du site", "/plan-du-site", title: "Plan du site" %></li>
     </ul>
+    <p>
+      <%= link_to image_tag("feed-icon-14x14.png"), "/actualites.rss", title: "Flux RSS - Actualités de l'AFCRPV" %> Abonnez vous au <%= link_to "flux RSS", "http://fr.wikipedia.org/wiki/Really_Simple_Syndication", target: "_BLANK" %> de nos actualités.
+    </p>
     <p><%= t('.copyright', year: Time.now.year, site_name: Refinery::Core.site_name) %></p>
   </div>
   <div class="span2">
