@@ -1,0 +1,100 @@
+<div id="top-sections">
+  <div class="row-fluid">
+    <ul class="thumbnails">
+      <li class="span4">
+        <div class="thumbnail">
+          <h3>
+            <a href="/ressources/la-pharmacovigilance" class="btn btn-large btn-block btn-primary">
+              <i class="icon-info-sign icon-white"></i>
+              La Pharmacovigilance
+            </a>
+          </h3>
+          <p>Organisation, historique, règlementation.</p>
+        </div>
+      </li>
+      <li class="span4">
+        <div class="thumbnail">
+          <h3>
+            <a href="/ressources/declarations" class="btn btn-large btn-block btn-danger">
+              <i class="icon-exclamation-sign icon-white"></i>
+              Déclarer un effet indésirable
+            </a>
+          </h3>
+          <p>
+            Pourquoi, quoi et comment déclarer.
+            <a href="/cerfa_10011-03.pdf" class="btn btn-small btn-block">
+              <i class="icon-download"></i>
+              Télécharger la fiche CERFA en PDF
+            </a>
+          </p>
+        </div>
+      </li>
+      <li class="span4">
+        <div class="thumbnail">
+          <h3>
+            <a href="/contact" class="btn btn-large btn-block btn-info">
+              <i class="icon-question-sign icon-white"></i>
+              Poser une question de pharmacovigilance
+            </a>
+          </h3>
+          <p>
+            Comment contacter votre CRPV de référence.
+            <%= link_to "#carte-france", role: "button", "data-toggle" => "modal", class: "btn btn-small btn-block" do %>
+              <i class="icon-globe"></i>
+              Choisir un CRPV sur la carte
+            <% end -%>
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<div id="actualites_pv">
+  <div class="row-fluid">
+    <div class="span6">
+      <section>
+        <header>
+          <h2><%= link_to "Actualités des CRPV", "/actualites" %></h2>
+        </header>
+        <%#<%= render 'refinery/news', news: @pv_news[0..9], no_entries_message: "Aucune actualité." %>%>
+      </section>
+    </div><!-- div.span6 -->
+
+    <div class="span6">
+      <section>
+        <header>
+          <h2><%= link_to "Actualités de la PV", "#" %></h2>
+        </header>
+        <table class="table table-striped table-condensed news">
+          <tbody>
+            <tr>
+              <td><span class="date">04/10/2012</span></td>
+              <td>
+                <%= link_to "Un nouveau dispositif pour permettre et sécuriser l’accès aux traitements dans d’autres indications que celles de leur AMM : les recommandations temporaires d’utilisation (RTU) - Point d'information",
+                  "http://ansm.sante.fr/S-informer/Points-d-information-Points-d-information/Un-nouveau-dispositif-pour-permettre-et-securiser-l-acces-aux-traitements-dans-d-autres-indications-que-celles-de-leur-AMM-les-recommandations-temporaires-d-utilisation-RTU-Point-d-information" %>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="date">01/10/2012</span></td>
+              <td>
+                <%= link_to "Contraceptifs oraux combinés et risque de thrombose veineuse : prescription des pilules de 2e génération contenant du lévonorgestrel en première intention - Point d'information",
+                  "http://ansm.sante.fr/S-informer/Points-d-information-Points-d-information/Contraceptifs-oraux-combines-et-risque-de-thrombose-veineuse-prescription-des-pilules-de-2e-generation-contenant-du-levonorgestrel-en-premiere-intention-Point-d-information" %>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="date">27/09/2012</span></td>
+              <td>
+                <%= link_to "L’ANSM traduit ses nouvelles modalités de travail dans son organisation - Point d'information", "http://ansm.sante.fr/S-informer/Points-d-information-Points-d-information/L-ANSM-traduit-ses-nouvelles-modalites-de-travail-dans-son-organisation-Point-d-information" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div><!-- div.span6 -->
+  </div><!-- div.row-fluid -->
+</div><!-- div#actualites_pv -->
+
+<%= render 'france' %>
