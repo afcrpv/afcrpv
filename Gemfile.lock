@@ -148,6 +148,7 @@ GEM
     meta_request (0.2.0)
       rack-contrib
       rails
+    method_source (0.8.1)
     mime-types (1.19)
     multi_json (1.5.0)
     net-scp (1.0.4)
@@ -161,6 +162,12 @@ GEM
       railties (~> 3.0)
     pg (0.14.1)
     polyglot (0.3.3)
+    pry (0.9.10)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.3.1)
+    pry-rails (0.1.6)
+      pry
     rack (1.4.4)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -245,6 +252,7 @@ GEM
     simple_form (2.0.4)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
+    slop (3.3.3)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -289,6 +297,7 @@ DEPENDENCIES
   meta_request (= 0.2.0)
   newrelic_rpm (~> 3.5.3.25)
   pg
+  pry-rails
   rails (= 3.2.11)
   refinerycms (~> 2.0.9)
   refinerycms-crpvs!
