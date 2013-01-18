@@ -21,6 +21,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.2.1.1'
   gem 'compass-rails'
   gem "jquery-ui-rails"
+  gem "select2-rails"
 end
 
 gem 'jquery-rails'
