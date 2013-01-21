@@ -28,23 +28,23 @@ end
 #seed refinery_crpvs table
 require 'yaml'
 departements = Psych.load( <<EOY )
-- cp: 1
+- cp: "01"
   name: Ain
-- cp: 2
+- cp: "02"
   name: Aisne
-- cp: 3
+- cp: "03"
   name: Allier
-- cp: 4
+- cp: "04"
   name: Alpes-de-Haute-Provence
-- cp: 5
+- cp: "05"
   name: Hautes-Alpes
-- cp: 6
+- cp: "06"
   name: Alpes-Maritimes
-- cp: 7
+- cp: "07"
   name: Ardèche
-- cp: 8
+- cp: "08"
   name: Ardennes
-- cp: 9
+- cp: "09"
   name: Ariège
 - cp: 10
   name: Aube
@@ -311,7 +311,7 @@ crpvs = Psych.load( <<EOY )
     - "87"
 - name: Lyon
   departements:
-    - "01"
+    - "1"
     - "07"
     - "26"
     - "69"
@@ -395,7 +395,7 @@ crpvs = Psych.load( <<EOY )
     - "86"
 - name: Reims
   departements:
-    - "08"
+    - "8"
     - "10"
     - "51"
     - "52"

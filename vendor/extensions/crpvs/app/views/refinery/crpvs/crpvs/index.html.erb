@@ -7,10 +7,10 @@
       <% end -%>
     </div>
     <div class="span4">
-      <%= form_tag "/crpvs", method: :get, class: "form-search" do %>
+      <%= form_tag refinery.crpvs_search_path, remote: true, method: :get, class: "form-search" do %>
         <%= hidden_field_tag :dep, "", class: "span10 search-query" %>
-        <button type="submit" class="btn">OK</button>
       <% end -%>
+      <div id="chosen_crpv_link"></div>
     </div>
     <div class="span4">
       <%= link_to "#", role: "button", "data-toggle" => "list", class: "btn btn-small btn-block" do %>

@@ -22,9 +22,19 @@ module Refinery
         present(@page)
       end
 
+      def search
+        if params[:dep]
+          @crpv = Crpv.joins(:departements).where(departements: {cp: params[:dep]}).first
+          if @crpv
+            respond_to do |format|
+              format.js
+            end
+          end
+        end
+      end
+
       def show
         @crpv = Crpv.find(params[:id])
-
         # you can use meta fields from your model instead (e.g. browser_title)
         # by swapping @page for @crpv in the line below:
         present(@page)
