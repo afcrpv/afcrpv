@@ -1,4 +1,5 @@
 Refinery::Core::Engine.routes.prepend do
+  get '/departements', to: 'departements#index', as: :departements
   get '/crpvs/paris', :to => 'crpvs/crpvs#paris', :as => :paris
 end
 Afcrpv::Application.routes.draw do

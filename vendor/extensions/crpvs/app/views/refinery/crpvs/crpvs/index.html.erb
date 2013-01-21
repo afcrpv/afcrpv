@@ -7,13 +7,10 @@
       <% end -%>
     </div>
     <div class="span4">
-      <form class="form-search">
-        <div class="input-append">
-          <input name="dep" id="dep" type="text" data-provide="typeahead"
-          placeholder="Choisir votre département" class="input-large search-query">
-          <button type="submit" class="btn">OK</button>
-        </div>
-      </form>
+      <%= form_tag "/crpvs", method: :get, class: "form-search" do %>
+        <%= hidden_field_tag :dep, "", class: "span10 search-query" %>
+        <button type="submit" class="btn">OK</button>
+      <% end -%>
     </div>
     <div class="span4">
       <%= link_to "#", role: "button", "data-toggle" => "list", class: "btn btn-small btn-block" do %>
