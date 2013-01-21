@@ -6,7 +6,7 @@ $ ->
   $.fn.select2.defaults.formatInputTooShort = (input, min) -> "Saisir au moins #{min - input.length} charactères"
   $.fn.select2.defaults.formatSearching = -> "Recherche en cours..."
   $("#dep").select2
-    placeholder: "Choisir un département"
+    placeholder: "Choisir un département par son code ou son nom"
     minimumInputLength: 2
     ajax:
       url: "/departements.json"
@@ -18,3 +18,6 @@ $ ->
         return {results: data}
   $("#dep").on "change", (e) ->
     $(@).parent().submit()
+
+  $("#toggle_crpvs_list").click ->
+    $("#crpvs").toggle("fast")

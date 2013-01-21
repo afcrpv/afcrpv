@@ -1,1 +1,11 @@
-$("#chosen_crpv_link").html("<br><p>Le CRPV de référence pour ce département est : <%= j link_to(@crpv.name, refinery.crpvs_crpv_path(@crpv)) %></p>");
+<% if params[:dep] == "75" %>
+  window.location = "/crpvs/paris";
+<% else %>
+  html = "<br><p>"
+  <% if @crpv %>
+    html += "Le CRPV de référence pour ce département est : <%= j link_to(@crpv.name, refinery.crpvs_crpv_path(@crpv)) %></p>";
+  <% else %>
+    html += "Aucun CRPV pour ce département.</p>";
+  <% end -%>
+  $("#chosen_crpv_link").html(html);
+<% end -%>

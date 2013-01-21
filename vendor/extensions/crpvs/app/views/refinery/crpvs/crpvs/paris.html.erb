@@ -6,13 +6,13 @@
  <table class="table table-bordered paris">
    <thead>
      <tr>
-       <th colspan=<%= @paris_crpvs.count %>>Paris</th>
+       <th colspan=<%= paris_crpvs.count %>>Paris</th>
        <th>Créteil</th>
      </tr>
    </thead>
    <tbody>
      <tr>
-       <% @paris_crpvs.each do |crpv| %>
+       <% paris_crpvs.each do |crpv| %>
          <td><%= link_to crpv[1], refinery.crpvs_crpv_path(id: "paris-#{crpv[0]}") %></td>
        <% end -%>
        <td><%= link_to "Henri Mondor", refinery.crpvs_crpv_path(id: "creteil") %></td>

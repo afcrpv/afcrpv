@@ -5,15 +5,10 @@ module Refinery
 
       before_filter :find_all_crpvs, only: [:index]
       before_filter :find_page
+      helper_method :paris_crpvs
 
       def paris
-        @paris_crpvs = [
-          ["ps", "Pitié-Salpétrière"],
-          ["gp", "Georges Pompidou"],
-          ["sa", "Saint-Antoine"],
-          ["csvp", "Cochin St Vincent de Paul"],
-          ["fw", "Fernand Widal"]
-        ]
+        @page = ::Refinery::Page.where(:link_url => "/crpvs/paris").first
       end
 
       def index
@@ -25,10 +20,8 @@ module Refinery
       def search
         if params[:dep]
           @crpv = Crpv.joins(:departements).where(departements: {cp: params[:dep]}).first
-          if @crpv
-            respond_to do |format|
-              format.js
-            end
+          respond_to do |format|
+            format.js
           end
         end
       end
@@ -42,8 +35,18 @@ module Refinery
 
     protected
 
+      def paris_crpvs
+        @paris_crpvs ||= [
+          ["ps", "Pitié-Salpétrière"],
+          ["gp", "Georges Pompidou"],
+          ["sa", "Saint-Antoine"],
+          ["csvp", "Cochin St Vincent de Paul"],
+          ["fw", "Fernand Widal"]
+        ]
+      end
+
       def find_all_crpvs
-        @crpvs = Crpv.order('position ASC')
+        @crpvs = Crpv.order('name ASC')
       end
 
       def find_page

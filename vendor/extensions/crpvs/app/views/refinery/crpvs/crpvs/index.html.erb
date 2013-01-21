@@ -1,31 +1,30 @@
 <% content_for :body do %>
   <div class="row-fluid">
-    <div class="span4">
+    <div class="span6">
       <%= link_to "#carte-france", role: "button", "data-toggle" => "modal", class: "btn btn-small btn-block" do %>
         <i class="icon-globe"></i>
-        Choisir un centre sur la carte
+        Choisir un departement ou une ville sur la carte
       <% end -%>
     </div>
-    <div class="span4">
+    <div class="span6">
       <%= form_tag refinery.crpvs_search_path, remote: true, method: :get, class: "form-search" do %>
         <%= hidden_field_tag :dep, "", class: "span10 search-query" %>
       <% end -%>
       <div id="chosen_crpv_link"></div>
     </div>
-    <div class="span4">
-      <%= link_to "#", role: "button", "data-toggle" => "list", class: "btn btn-small btn-block" do %>
-        <i class="icon-list"></i>
-        Voir la liste
-      <% end -%>
-      <ul id="crpvs" style="display: none;">
-        <% @crpvs.each do |crpv| %>
-          <li>
-            <%= link_to crpv.name, refinery.crpvs_crpv_path(crpv) %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
   </div>
+  <h3>Liste des CRPVs</h3>
+  <table id="crpvs" class="table table-condensed table-bordered">
+    <% @crpvs.in_groups_of(6) do |crpvs| %>
+      <tr>
+        <% crpvs.each do |crpv| %>
+          <td>
+            <%= link_to crpv.name, refinery.crpvs_crpv_path(crpv) if crpv %>
+          </td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
 
 <%= render '/refinery/pages/france' %>
