@@ -14,10 +14,10 @@ $ ->
       data: (term, page) ->
         q: term
         page_limit: 10
+      matcher: (term, text) ->
+        text.toUpperCase().indexOf(term.toUpperCase()) >= 0
       results: (data, page) ->
         return {results: data}
   $("#dep").on "change", (e) ->
-    $(@).parent().submit()
-
-  $("#toggle_crpvs_list").click ->
-    $("#crpvs").toggle("fast")
+    $("#chosen_crpv_link").html("")
+    $(@).parent().submit() if e.val
