@@ -9,8 +9,8 @@ class Departement < ActiveRecord::Base
     where("LOWER(name) like ? OR cp like ?", "%#{query}%", "%#{query}%")
   end
 
-  def cp_name_and_id
-    {id: id, text: cp_name}
+  def cp_name_and_cp
+    {id: cp, text: cp_name}
   end
 
   def cp_name
