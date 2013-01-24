@@ -3,22 +3,30 @@
 <% end %>
 
 <%= content_for :body do %>
- <table class="table table-bordered paris">
-   <thead>
-     <tr>
-       <th colspan=<%= paris_crpvs.count %>>Paris</th>
-       <th>Créteil</th>
-     </tr>
-   </thead>
-   <tbody>
-     <tr>
-       <% paris_crpvs.each do |crpv| %>
-         <td><%= link_to crpv[1], refinery.crpvs_crpv_path(id: "paris-#{crpv[0]}") %></td>
-       <% end -%>
-       <td><%= link_to "Henri Mondor", refinery.crpvs_crpv_path(id: "creteil") %></td>
-     </tr>
-  </tbody>
- </table>
+  <table class="table table-bordered paris">
+    <thead>
+      <tr>
+        <th colspan=<%= paris_crpvs.count %>>Paris</th>
+        <th>Créteil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% paris_crpvs.each do |crpv| %>
+          <td id="paris-<%= crpv[0] %>"><%= link_to crpv[1], refinery.crpvs_crpv_path(id: "paris-#{crpv[0]}") %></td>
+        <% end -%>
+        <td><%= link_to "Henri Mondor", refinery.crpvs_crpv_path(id: "creteil") %></td>
+      </tr>
+   </tbody>
+  </table>
+  <div class="row-fluid">
+    <div class="span6">
+      <div id="canvas_arrondissements"></div>
+    </div>
+    <div class="span6">
+      <div id="canvas_region_parisienne"></div>
+    </div>
+  </div>
 <% end %>
 
 <%= render '/refinery/content_page' %>

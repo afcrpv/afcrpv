@@ -37,11 +37,11 @@ module Refinery
 
       def paris_crpvs
         @paris_crpvs ||= [
-          ["ps", "Pitié-Salpétrière"],
-          ["gp", "Georges Pompidou"],
-          ["sa", "Saint-Antoine"],
-          ["csvp", "Cochin St Vincent de Paul"],
-          ["fw", "Fernand Widal"]
+          ["pitie-salpetriere", "Pitié-Salpétrière"],
+          ["georges-pompidou", "Georges Pompidou"],
+          ["saint-antoine", "Saint-Antoine"],
+          ["cochin-st-vincent-de-paul", "Cochin St Vincent de Paul"],
+          ["fernand-widal", "Fernand Widal"]
         ]
       end
 
