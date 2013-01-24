@@ -1,28 +1,29 @@
 jQuery ->
-  paper = Raphael("canvas_france", 450,460)
+ if $("#canvas_france").length
+    paper = Raphael("canvas_france", 450,460)
 
-  paper.setStart()
+    paper.setStart()
 
-  for dep in ["80", "49", "25", "33", "29", "14", "63", "21", "38", "59", "87", "69", "13", "34", "54", "44", "06", "86", "35", "51", "76", "42", "67", "31", "37", "75"]
-    departement = departements["departement#{dep}"]
-    name = departement.href
-    href = name.dasherize()
-    dep_departements = get_dep_departements(dep)
-    x = departement.x
-    y = departement.y
-    lx = if departement.lx then departement.lx else x
-    ly = if departement.ly then departement.ly else y
+    for dep in ["80", "49", "25", "33", "29", "14", "63", "21", "38", "59", "87", "69", "13", "34", "54", "44", "06", "86", "35", "51", "76", "42", "67", "31", "37", "75"]
+      departement = departements["departement#{dep}"]
+      name = departement.href
+      href = name.dasherize()
+      dep_departements = get_dep_departements(dep)
+      x = departement.x
+      y = departement.y
+      lx = if departement.lx then departement.lx else x
+      ly = if departement.ly then departement.ly else y
 
-    new Crpv name, href, dep_departements, x, y, ly, paper
+      new Crpv name, href, dep_departements, x, y, ly, paper
 
-  corsica_line = paper.path("M 432,545.25 L 432,475 L 496.25,433").attr(fill: "none", stroke: "#d6d6d6").toBack()
-  dom_line = paper.path("M 10,188 L 80,220 L 80,420").attr(fill: "none", stroke: "#d6d6d6").toBack()
+    corsica_line = paper.path("M 432,545.25 L 432,475 L 496.25,433").attr(fill: "none", stroke: "#d6d6d6").toBack()
+    dom_line = paper.path("M 10,188 L 80,220 L 80,420").attr(fill: "none", stroke: "#d6d6d6").toBack()
 
-  st = paper.setFinish()
+    st = paper.setFinish()
 
-  translate = 't'+(-1*st.getBBox().x)+','+(-1*st.getBBox().y)
-  st.transform(translate)
-  st.transform('s0.84,0.84,0,0')
+    translate = 't'+(-1*st.getBBox().x)+','+(-1*st.getBBox().y)
+    st.transform(translate)
+    st.transform('s0.84,0.84,0,0')
 
 #### Functions and classes
 
