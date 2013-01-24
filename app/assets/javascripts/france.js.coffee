@@ -17,13 +17,17 @@ jQuery ->
       new Crpv name, href, dep_departements, x, y, ly, paper
 
     corsica_line = paper.path("M 432,545.25 L 432,475 L 496.25,433").attr(fill: "none", stroke: "#d6d6d6").toBack()
-    dom_line = paper.path("M 10,188 L 80,220 L 80,420").attr(fill: "none", stroke: "#d6d6d6").toBack()
+    dom_line = paper.path("M 10,188 L 80,220 L 80,460").attr(fill: "none", stroke: "#d6d6d6").toBack()
 
     st = paper.setFinish()
 
     translate = 't'+(-1*st.getBBox().x)+','+(-1*st.getBBox().y)
     st.transform(translate)
     st.transform('s0.84,0.84,0,0')
+
+    paper.getById("departement976").transform("...t-208,-78")
+
+
 
 #### Functions and classes
 
@@ -52,10 +56,11 @@ class Crpv
       stroke = if departement.stroke then departement.stroke else @default_attr.stroke
       path = canvas.path(departement.path).attr
         stroke: stroke
-        transform: @default_attr.transform
+        transform: departement.transform
         fill: departement.fill
         cursor: "pointer"
-        id: d
+
+      path.id = d
       if departement.href?
         path.attr
           href: "/crpvs/#{@href}"
@@ -104,5 +109,6 @@ get_dep_departements = (cp) ->
         href: if departement.href then departement.href else null
         subhref: if departement.subhref then departement.subhref else null
         dom_label: if departement.dom_label then departement.dom_label else null
+        transform: if departement.transform then departement.transform else null
 
   return results
