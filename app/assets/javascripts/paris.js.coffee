@@ -3,10 +3,25 @@ jQuery = $
 $ ->
   if $("#canvas_arrondissements").length
     canvas_arr = Raphael("canvas_arrondissements",400,300 )
-    canvas_reg_par = Raphael("canvas_region_parisienne",400,300 )
+    canvas_reg = Raphael("canvas_region_parisienne",400,300 )
 
     canvas_arr.rect(0,0,400,300)
+    canvas_reg.rect(0,0,400,300)
 
+    canvas_reg.setStart()
+
+    for i in [28, 77, 78, 91, 92, 93, 94, 95]
+      set = canvas_reg.set()
+      dep = departements["departement#{i}"]
+      dep_label = canvas_reg.text(dep.dep_label.x, dep.dep_label.y, i).attr("font-size": 4, "font-weight": "bold") if dep.dep_label
+      dep_path = canvas_reg.path(dep.path).attr
+        stroke: "white"
+        fill: "#d6d6d6"
+        href: dep.subhref
+      dep_label.toFront()
+      set.push(dep_path, dep_label).hover(_hoverInOut("in", dep_path, dep_label, "#8888ff"), _hoverInOut("out", dep_path, dep_label, "#d6d6d6"))
+
+    reg_st = canvas_reg.setFinish()
     canvas_arr.setStart()
     for arrondissement in arrondissements
       arr_nb_set = canvas_arr.set()
@@ -25,11 +40,11 @@ $ ->
     arr_st.transform(translate)
     arr_st.transform('s0.4,0.4,0,0')
 
+    reg_st.transform('s3.5,3.5,300,145')
 
 _hoverInOut = (direction, arr, label, color) ->
   ->
     arr.stop().animate({fill: color}, 200, "<>")
-    console.log $("##{arr.attr('href')}")
     $("##{arr.attr('href')}").toggleClass("active")
 
 arrondissements = [

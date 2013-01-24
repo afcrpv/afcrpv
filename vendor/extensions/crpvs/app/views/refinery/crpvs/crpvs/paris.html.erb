@@ -15,7 +15,7 @@
         <% paris_crpvs.each do |crpv| %>
           <td id="paris-<%= crpv[0] %>"><%= link_to crpv[1], refinery.crpvs_crpv_path(id: "paris-#{crpv[0]}") %></td>
         <% end -%>
-        <td><%= link_to "Henri Mondor", refinery.crpvs_crpv_path(id: "creteil") %></td>
+        <td id="creteil"><%= link_to "Henri Mondor", refinery.crpvs_crpv_path(id: "creteil") %></td>
       </tr>
    </tbody>
   </table>
