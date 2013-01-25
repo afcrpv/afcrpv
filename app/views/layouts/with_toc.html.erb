@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<%= render '/refinery/html_tag' %>
+  <% site_bar = render('/refinery/site_bar', :head => true) -%>
+  <%= render '/refinery/head' %>
+  <body class=<%= @page.title.downcase %>>
+    <%= site_bar -%>
+    <%= render '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
+    <div id="main_wrap">
+      <div class="container-fluid" id="header_container">
+        <div class="row-fluid">
+          <header id="header">
+            <%= render '/refinery/header' -%>
+          </header>
+        </div>
+      </div>
+      <div id="page-wrap">
+        <div id="page">
+          <div class="container-fluid">
+            <%= render '/refinery/breadcrumb' if @page.self_and_ancestors.many? %>
+            <div class="row-fluid">
+              <div class="span8"><%= yield %></div>
+              <div class="span4"><%= render '/refinery/toc', root: (root = @page.self_and_ancestors.first) %></div>
+            </div><!--row-fluid-->
+          </div><!--container-fluid-->
+        </div><!--page-->
+        <div class="container-fluid">
+          <footer id="page_footer">
+            <%= render '/refinery/footer' -%>
+          </footer>
+        </div><!--container-fluid-footer-->
+      </div><!--page-wrap-->
+    </div><!--main-wrap-->
+    <%= render '/refinery/javascripts' %>
+  </body>
+</html>

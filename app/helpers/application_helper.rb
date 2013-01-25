@@ -57,7 +57,7 @@ module ApplicationHelper
   end
 
   def link_to_toc_branch(branch, level)
-    path = branch.respond_to?(:link_url) ? branch.link_url : branch.nested_path
+    path = refinery.url_for(branch.url)
     branch_title = level == 1 ? content_tag(:i, nil, class: "icon-chevron-left") : ""
     branch_title += branch.menu_title.blank? ? branch.title : branch.menu_title
     link_to branch_title.html_safe, path
