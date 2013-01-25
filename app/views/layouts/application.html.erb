@@ -16,7 +16,7 @@
       <div id="page-wrap">
         <div id="page">
           <div class="container-fluid">
-            <%= render '/refinery/breadcrumb' %>
+            <%= render '/refinery/breadcrumb' if @page.self_and_ancestors.many? %>
             <div class="row-fluid">
               <div class="span12"><%= yield %></div>
             </div><!--row-fluid-->
