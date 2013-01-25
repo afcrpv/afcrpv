@@ -6,7 +6,6 @@ module Refinery
       before_filter :find_all_crpvs, only: [:index]
       before_filter :find_page
       helper_method :paris_crpvs
-      helper_method :crpv_name
 
       def paris
         @page = ::Refinery::Page.where(:link_url => "/crpvs/paris").first
@@ -45,10 +44,6 @@ module Refinery
           ["cochin-st-vincent-de-paul", "Cochin St Vincent de Paul"],
           ["fernand-widal", "Fernand Widal"]
         ]
-      end
-
-      def crpv_name
-        @crpv_name ||= @crpv.name if @crpv
       end
 
       def find_all_crpvs
