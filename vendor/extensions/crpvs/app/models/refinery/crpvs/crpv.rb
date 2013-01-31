@@ -13,7 +13,8 @@ module Refinery
       validates :name, :presence => true, :uniqueness => true
       has_many :projets, class_name: "::Refinery::Projets::Projet"
       has_many :members, class_name: "::Refinery::Memberships::Member"
-      has_and_belongs_to_many :departements, :join_table => "crpvs_departements", :foreign_key => "crpv_id", :order => :name
+      has_many :departements, :order => :name, :foreign_key => "refinery_crpv_id"
+      has_many :arrondissements, :foreign_key => "refinery_crpv_id"
 
       def to_s
         name

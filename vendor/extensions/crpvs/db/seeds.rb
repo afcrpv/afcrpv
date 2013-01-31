@@ -243,6 +243,11 @@ departements.each do |departement|
   Departement.find_or_create_by_name(departement["name"], cp: departement["cp"])
 end
 
+(1..20).each do |i|
+  puts "creating arrondissements"
+  Arrondissement.find_or_create_by_number(i)
+end
+
 crpvs = Psych.load( <<EOY )
 - name: Amiens
   departements:
@@ -438,4 +443,5 @@ crpvs.each do |crpv|
   new_crpv = Refinery::Crpvs::Crpv.find_or_create_by_name(crpv["name"])
   puts "assigning departements"
   new_crpv.departements = Departement.where(cp: crpv["departements"]).all
+  new_crpv.arrondissements = Arrondissement.where(number: crpv["arrondissements"]).all
 end

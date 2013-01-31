@@ -5,6 +5,11 @@
 
 <% content_for :body do %>
   <%= show_for @crpv do |crpv| %>
+    <% if @crpv.arrondissements.any? %>
+      <%= crpv.association :arrondissements do |arr| %>
+        <li><%= arr.nom_ordinal %></li>
+      <% end -%>
+    <% end -%>
     <%= crpv.association :departements do |dep| %>
       <li><%= dep.cp_name %></li>
     <% end -%>
