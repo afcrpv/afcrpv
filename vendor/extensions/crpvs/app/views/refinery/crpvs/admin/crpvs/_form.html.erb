@@ -11,25 +11,11 @@
   </div>
   
   <div class='field'>
-    <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
-      <ul id='page_parts'>
-        <% [:adresse].each_with_index do |part, part_index| %>
-          <li class='ui-state-default<%= ' ui-state-active' if part_index == 0 %>'>
-            <%= link_to t("#{part}", :scope => "activerecord.attributes.refinery/crpvs/crpv", :default => part.to_s.titleize), "##{part}" %>
-          </li>
-        <% end %>
-      </ul>
-      <div id='page_part_editors'>
-        <% [:adresse].each do |part| %>
-          <div class='page_part' id='<%= part %>'>
-            <%= f.text_area part, :rows => 20, :class => 'wymeditor widest' -%>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <%= f.label :adresse -%>
+    <%= f.text_field :adresse, :class => 'widest'  -%>
 
   </div>
-  
+
   <div class='field'>
     <%= f.label :city -%>
     <%= f.text_field :city  -%>

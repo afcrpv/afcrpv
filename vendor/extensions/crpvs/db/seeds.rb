@@ -312,7 +312,7 @@ crpvs = Psych.load( <<EOY )
     - "87"
 - name: Lyon
   departements:
-    - "1"
+    - "01"
     - "07"
     - "26"
     - "69"

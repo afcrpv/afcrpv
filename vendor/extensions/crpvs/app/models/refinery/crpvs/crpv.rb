@@ -13,10 +13,14 @@ module Refinery
       validates :name, :presence => true, :uniqueness => true
       has_many :projets, class_name: "::Refinery::Projets::Projet"
       has_many :members, class_name: "::Refinery::Memberships::Member"
-      has_and_belongs_to_many :departements, :join_table => "crpvs_departements", :foreign_key => "crpv_id"
+      has_and_belongs_to_many :departements, :join_table => "crpvs_departements", :foreign_key => "crpv_id", :order => :name
 
       def to_s
         name
+      end
+
+      def full_adresse
+        ((adresse || "") + "<br />" + (cp || "") + " - " + (city || "")).html_safe
       end
     end
   end
