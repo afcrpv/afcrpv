@@ -21,9 +21,9 @@ $logo_height: 137px
     font-size: 12px
     padding-left: 1em
 
-#header
+.page-header
   margin-top: 10px
-  #logo
+  .logo
     +clearfix
     font-size: 18px
     a
@@ -65,18 +65,18 @@ $logo_height: 137px
 
 $mainWrapDelta: 0.06
 
-#main_wrap
+.main_wrap
   width: $gridRowWidth + $gridRowWidth * $mainWrapDelta
   margin: auto
 
-  #page-wrap
+  .page-outer-wrap
     +single-box-shadow
     +border-radius(15px, 15px)
     border-top: 1px solid white
     background: #CBCDCF
     margin-bottom: 50px
 
-  #page
+  .page-inner-wrap
     margin: 10px
     padding-top: 20px
     padding-bottom: 20px
@@ -100,27 +100,27 @@ $mainWrapDelta: 0.06
   .navbar
     margin-top: 0
   $gridRowWidth768: $gridColumnWidth768 * $gridColumns + $gridGutterWidth768 * ($gridColumns - 1)
-  #main_wrap
+  .main-wrap
     width: $gridRowWidth768 + $gridRowWidth768 * $mainWrapDelta
 
 @media (min-width: 980px) and (max-width: 1199px)
   h2.title a
     font-size: 24px
-  #logo span
+  .logo span
     margin-top: 12px
     background-size: 142px !important
 
 // Large desktop
 @media (min-width: 1200px)
-  #logo span
+  .logo span
     background-size: 158px
   h2.title
     font-size: 30px
   $gridRowWidth1200: $gridColumnWidth1200 * $gridColumns + $gridGutterWidth1200 * ($gridColumns - 1)
-  #main_wrap
+  .main-wrap
     width: $gridRowWidth1200 + $gridRowWidth1200 * $mainWrapDelta
 
-#page_footer
+.page-footer
   margin-top: 10px
   padding-bottom: 1em
   color: #646464
