@@ -1,3 +1,4 @@
+@import "base"
 .paris
   th, td
     text-align: center
@@ -6,6 +7,10 @@
 
   h3
     margin: 0
+
+.fiche
+  .inline
+    +delimited-list(", ")
 
 .annuaire
   #chosen_crpv_link

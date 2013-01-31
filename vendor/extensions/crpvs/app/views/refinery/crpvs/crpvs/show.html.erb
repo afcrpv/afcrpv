@@ -1,59 +1,24 @@
 <% content_for :body_content_title do %>
-  <%= @crpv.name %>
+  <small>Centre Régional de Pharmacovigilance
+    et d'information sur les médicaments</small> <%= @crpv.name %>
 <% end %>
 
 <% content_for :body do %>
   <%= show_for @crpv do |crpv| %>
-    <dt><%= @crpv.class.human_attribute_name(:adresse) %></dt>
-    <dd><%= (value = @crpv.adresse).blank? ? "<span class='muted'>Non spécifié</span>".html_safe : simple_format(@crpv.adresse) %></dd>
-    <section>
-      <h1>City</h1>
-      <p>
-        <%=raw @crpv.city %>
-      </p>
-    </section>
-    <section>
-      <h1>Cp</h1>
-      <p>
-        <%=raw @crpv.cp %>
-      </p>
-    </section>
-    <section>
-      <h1>Responsable</h1>
-      <p>
-        <%=raw @crpv.responsable %>
-      </p>
-    </section>
-    <section>
-      <h1>Tel</h1>
-      <p>
-        <%=raw @crpv.tel %>
-      </p>
-    </section>
-    <section>
-      <h1>Fax</h1>
-      <p>
-        <%=raw @crpv.fax %>
-      </p>
-    </section>
-    <section>
-      <h1>Email</h1>
-      <p>
-        <%=raw @crpv.email %>
-      </p>
-    </section>
-    <section>
-      <h1>Website</h1>
-      <p>
-        <%=raw @crpv.website %>
-      </p>
-    </section>
-    <section>
-      <h1>Bulletin</h1>
-      <p>
-        <%=raw @crpv.bulletin %>
-      </p>
-    </section>
+    <%= crpv.association :departements do |dep| %>
+      <li><%= dep.cp_name %></li>
+    <% end -%>
+    <%= crpv.attribute :full_adresse, label: "Adresse" %>
+    <%= crpv.attributes :responsable, :tel, :fax %>
+    <%= crpv.attribute :email do %>
+      <%= mail_to @crpv.email %>
+    <% end -%>
+    <%= crpv.attribute :website do %>
+      <a target="_BLANK" href="<%= (value = @crpv.website) %>"><%= value %></a>
+    <% end -%>
+    <%= crpv.attribute :bulletin do %>
+      <a target="_BLANK" href="<%= (value = @crpv.bulletin) %>"><%= value %></a>
+    <% end -%>
   <% end -%>
 <% end %>
 

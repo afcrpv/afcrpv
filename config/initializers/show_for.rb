@@ -23,6 +23,7 @@ ShowFor.setup do |config|
 
   # The tag used to wrap collections. Default is :ul.
   # config.collection_tag = :ul
+  config.collection_class = "inline"
 
   # The default iterator to be used when invoking a collection/association.
   # config.default_collection_proc = lambda { |value| "<li>#{ERB::Util.h(value)}</li>".html_safe }

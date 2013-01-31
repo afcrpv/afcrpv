@@ -5,6 +5,8 @@ class Departement < ActiveRecord::Base
     join_table: "crpvs_departements",
     foreign_key: "departement_id",
     association_foreign_key: "crpv_id"
+
+  default_scope order(:name)
   def self.with_cp_or_name(query)
     where("LOWER(name) like ? OR cp like ?", "%#{query}%", "%#{query}%")
   end
@@ -14,7 +16,7 @@ class Departement < ActiveRecord::Base
   end
 
   def cp_name
-    [zeroed_cp, name].join(" - ")
+    name + " (#{zeroed_cp})"
   end
 
   def zeroed_cp
