@@ -11,20 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130118095247) do
+ActiveRecord::Schema.define(:version => 20130131084856) do
 
-  create_table "crpvs_departements", :id => false, :force => true do |t|
-    t.integer "crpv_id",        :null => false
-    t.integer "departement_id", :null => false
+  create_table "arrondissements", :force => true do |t|
+    t.string   "name"
+    t.integer  "number"
+    t.integer  "refinery_crpv_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
-
-  add_index "crpvs_departements", ["crpv_id", "departement_id"], :name => "index_crpvs_departements_on_crpv_id_and_departement_id", :unique => true
 
   create_table "departements", :force => true do |t|
     t.string   "name"
     t.string   "cp"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "refinery_crpv_id"
   end
 
   add_index "departements", ["cp"], :name => "index_departements_on_cp"
