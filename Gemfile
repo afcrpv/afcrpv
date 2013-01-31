@@ -72,7 +72,7 @@ gem 'simple_form'
 gem 'show_for', github: "plataformatec/show_for"
 
 group :development do
-  gem 'meta_request', '0.2.0'
+  gem 'meta_request'
   gem "better_errors"
   gem "binding_of_caller"
   gem "pry-rails"
