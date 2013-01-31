@@ -5,7 +5,9 @@
 <%= content_for :body do %>
   <%= show_for @projet, class: "dl-large" do |projet| %>
     <%= projet.attribute :date %>
-    <%= projet.association :refinery_crpv %>
+    <%= projet.association :crpv do %>
+      <%= link_to @projet.crpv, refinery.crpvs_crpv_path(@projet.crpv) %>
+    <% end -%>
     <%= projet.attributes :but, :responsable, :exploitant, :date_requete %>
     <% %w(effet medicament contexte design objectif objectif_sec champs).each do |field| %>
       <dt><%= @projet.class.human_attribute_name(field) %></dt>

@@ -18,7 +18,7 @@ module Refinery
 
       attr_accessible :email, :titre, :refinery_crpv_id, :but, :responsable, :exploitant, :date_requete, :effet, :medicament, :contexte, :design, :objectif, :objectif_sec, :champs, :debut_inclusion, :fin_inclusion, :type_inclusion, :criteres_inclusion, :criteres_non_inclusion, :retombees, :slug
 
-      belongs_to :refinery_crpv, class_name: "::Refinery::Crpvs::Crpv"
+      belongs_to :crpv, class_name: "::Refinery::Crpvs::Crpv", foreign_key: :refinery_crpv_id
 
       TYPE_INCLUSION = ["date de notification", "date de survenue"]
 

@@ -1,6 +1,6 @@
 <% content_for :body_content_title do %>
   <small>Centre Régional de Pharmacovigilance
-    et d'information sur les médicaments</small> <%= @crpv.name %>
+    et d'information sur les médicaments</small><br><%= @crpv.name %>
 <% end %>
 
 <% content_for :body do %>
@@ -25,6 +25,15 @@
       <a target="_BLANK" href="<%= (value = @crpv.bulletin) %>"><%= value %></a>
     <% end -%>
   <% end -%>
-<% end %>
+
+  <% if current_refinery_user && @crpv.projets.any? %>
+  <h2>Projets en cours</h2>
+  <ul>
+    <% @crpv.projets.each do |projet| -%>
+      <li><%= link_to projet.titre, refinery.projets_projet_path(projet) %></li>
+    <% end -%>
+  </ul>
+  <% end -%>
+<% end -%>
 
 <%= render '/refinery/content_page' %>

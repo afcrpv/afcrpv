@@ -11,7 +11,7 @@ module Refinery
       acts_as_indexed :fields => [:name, :adresse, :city, :cp, :responsable, :tel, :fax, :email, :website, :bulletin]
 
       validates :name, :presence => true, :uniqueness => true
-      has_many :projets, class_name: "::Refinery::Projets::Projet"
+      has_many :projets, class_name: "::Refinery::Projets::Projet", foreign_key: :refinery_crpv_id
       has_many :members, class_name: "::Refinery::Memberships::Member"
       has_many :departements, :order => :name, :foreign_key => "refinery_crpv_id"
       has_many :arrondissements, :foreign_key => "refinery_crpv_id"
