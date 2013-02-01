@@ -5,10 +5,10 @@
   <body class=<%= @page.title.downcase %>>
     <%= site_bar -%>
     <%= render '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
-    <div class="main_wrap">
+    <div class="main-wrap">
       <div class="container-fluid">
         <div class="row-fluid">
-          <header class="page-header">
+          <header class="main-header">
             <%= render '/refinery/header' -%>
           </header>
         </div>
@@ -16,7 +16,7 @@
       <div class="page-outer-wrap">
         <div class="page-inner-wrap">
           <div class="container-fluid">
-            <%= render '/refinery/breadcrumb' if @page.self_and_ancestors.many? %>
+            <%= render '/refinery/breadcrumb' if @page.self_and_ancestors.many? && @page.link_url != "/" %>
             <div class="row-fluid">
               <div class="span12"><%= yield %></div>
             </div><!--row-fluid-->
