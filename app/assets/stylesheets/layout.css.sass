@@ -31,6 +31,22 @@ body
   a
     color: white
     text-shadow: 0 1px 0 black
+  small
+    margin-left: 0.2em
+    font-size: 80%
+
+@media (min-width: 980px) and (max-width: 1199px)
+  .title
+    font-size: 24px
+  .logo
+    background-size: 142px !important
+
+@media (min-width: 1200px)
+  .title
+    font-size: 30px
+  $gridRowWidth1200: $gridColumnWidth1200 * $gridColumns + $gridGutterWidth1200 * ($gridColumns - 1)
+  .logo
+    background-size: 158px
 
 .nav li
   a i
@@ -105,20 +121,8 @@ $mainWrapDelta: 0.06
   .main-wrap
     width: $gridRowWidth768 + $gridRowWidth768 * $mainWrapDelta
 
-@media (min-width: 980px) and (max-width: 1199px)
-  .title a
-    font-size: 24px
-  .logo
-    margin-top: 12px
-    background-size: 142px !important
-
 // Large desktop
 @media (min-width: 1200px)
-  .title
-    font-size: 30px
-  $gridRowWidth1200: $gridColumnWidth1200 * $gridColumns + $gridGutterWidth1200 * ($gridColumns - 1)
-  .logo
-    background-size: 158px
   .main-wrap
     width: $gridRowWidth1200 + $gridRowWidth1200 * $mainWrapDelta
 

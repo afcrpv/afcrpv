@@ -1,12 +1,13 @@
 <div class="span2">
   <div class="logo-wrapper hidden-phone hidden-tablet">
-    <% logo_text_link = link_to((title = Refinery::Core.site_name), refinery.root_path, title: title) %>
+    <% title = Refinery::Core.site_name -%>
+    <% logo_text_link = link_to(title, refinery.root_path, title: title) %>
     <div class="logo"><%= logo_text_link %></div>
     <%= logo_text_link %>
   </div>
 </div>
 <div class="span10">
-  <h2 class="title hidden-phone hidden-tablet"><%= logo_text_link %></h2>
+  <h1 class="title hidden-phone hidden-tablet"><a href="/">AFCRPV</a><small><%= title %></small></h1>
   <%= render 'refinery/intranet_navbar' if current_refinery_user %>
   <%= render 'refinery/bootstrap/navbar' %>
 </div>
