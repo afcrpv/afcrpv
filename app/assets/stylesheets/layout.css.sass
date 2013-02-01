@@ -1,13 +1,11 @@
 @import "base"
 $containerWidth: $gridColumnWidth * $gridColumns + $gridGutterWidth * ($gridColumns - 1)
+$logo_height: 137px
 
 body
   background: image-url("page_bg.png") repeat-x scroll 50% 0 #5397BB
 
-$logo_height: 137px
-
-.breadcrumb
-  margin-bottom: 0.5em
+/* Page Header */
 
 .nav li
   a i
@@ -21,8 +19,9 @@ $logo_height: 137px
     font-size: 12px
     padding-left: 1em
 
-.page-header
+.main-header
   margin-top: 10px
+  +clearfix
   .logo
     +clearfix
     font-size: 18px
@@ -63,9 +62,13 @@ $logo_height: 137px
 .form-search .input-append, .form-inline .input-append, .form-search .input-prepend, .form-inline .input-prepend
   width: 195px
 
+
+
+.breadcrumb
+  margin-bottom: 0.5em
 $mainWrapDelta: 0.06
 
-.main_wrap
+.main-wrap
   width: $gridRowWidth + $gridRowWidth * $mainWrapDelta
   margin: auto
 
