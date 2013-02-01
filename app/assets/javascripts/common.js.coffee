@@ -1,6 +1,10 @@
 $ = jQuery
 
 $ ->
+  $("a[href='#top']").click ->
+    $("html, body").animate
+      scrollTop: 0
+      , "slow"
   $(".navbar-search").on "mouseenter", ->
     $(this).find(".search-query").animate
       padding: '4px 14px'
