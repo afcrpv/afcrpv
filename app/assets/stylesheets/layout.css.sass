@@ -5,23 +5,10 @@ $logo_height: 137px
 body
   background: image-url("page_bg.png") repeat-x scroll 50% 0 #5397BB
 
-/* Page Header */
-
-.nav li
-  a i
-    opacity: 0.6
-  &.active, a:hover
-    i
-      opacity: 1
-
-.navbar.navbar-intranet
-  .navbar-user
-    font-size: 12px
-    padding-left: 1em
+/* Main Header */
 
 .main-header
   margin-top: 10px
-  +clearfix
   .logo
     +clearfix
     font-size: 18px
@@ -37,11 +24,23 @@ body
         display: inline
         height: $logo_height
         color: transparent
-  h2.title
+  .title
     margin-bottom: 0
     a
       color: white
       text-shadow: 0 1px 0 black
+
+.nav li
+  a i
+    opacity: 0.6
+  &.active, a:hover
+    i
+      opacity: 1
+
+.navbar.navbar-intranet
+  .navbar-user
+    font-size: 12px
+    padding-left: 1em
 
 .navbar.navbar-rounded
   margin-bottom: 0
@@ -61,8 +60,6 @@ body
 
 .form-search .input-append, .form-inline .input-append, .form-search .input-prepend, .form-inline .input-prepend
   width: 195px
-
-
 
 .breadcrumb
   margin-bottom: 0.5em
