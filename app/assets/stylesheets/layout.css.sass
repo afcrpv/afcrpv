@@ -1,52 +1,8 @@
 @import "base"
-$containerWidth: $gridColumnWidth * $gridColumns + $gridGutterWidth * ($gridColumns - 1)
-$logo_height: 137px
 
 body
   background: image-url("page_bg.png") repeat-x scroll 50% 0 #5397BB
-
-/* Main Header */
-
-.main-header
-  margin-top: 10px
-
-.logo-wrapper
-  +clearfix
-  font-size: 18px
-  a
-    float: right
-    color: white
-    display: none
-
-.logo
-  float: left
-  background: transparent image-url("logo-afcrpv.png") no-repeat left top
-  a
-    display: inline
-    height: $logo_height
-    color: transparent
-
-.title
-  margin-bottom: 0
-  a
-    color: white
-    text-shadow: 0 1px 0 black
-  small
-    margin-left: 0.2em
-    font-size: 80%
-
-@media (min-width: 980px) and (max-width: 1199px)
-  .title
-    font-size: 24px
-  .logo
-    background-size: 142px !important
-
-@media (min-width: 1200px)
-  .title
-    font-size: 30px
-  $gridRowWidth1200: $gridColumnWidth1200 * $gridColumns + $gridGutterWidth1200 * ($gridColumns - 1)
-  .logo
-    background-size: 158px
+  padding-top: 40px
 
 .nav li
   a i
@@ -59,18 +15,6 @@ body
   .navbar-user
     font-size: 12px
     padding-left: 1em
-
-.navbar.navbar-rounded
-  margin-bottom: 0
-  margin-top: $logo_height - 60px - 41px + 20px
-  .navbar-inner
-    background-color: #9B9D9F
-    background-image: -moz-linear-gradient(center top , #e5e5e5 0%, #9B9D9F 100%)
-    background-repeat: repeat-x
-    border-top: 1px solid white
-    border-bottom: none
-    +border-top-radius(15px)
-    +border-bottom-radius(0)
 
 .navbar-search
   .btn
@@ -87,42 +31,37 @@ $mainWrapDelta: 0.06
   width: $gridRowWidth + $gridRowWidth * $mainWrapDelta
   margin: auto
 
-  .page-outer-wrap
-    +single-box-shadow
-    +border-radius(15px, 15px)
-    border-top: 1px solid white
-    background: #CBCDCF
-    margin-bottom: 50px
+.page-outer-wrap
+  margin-top: 10px
+  +single-box-shadow
+  +border-radius(15px, 15px)
+  border-top: 1px solid white
+  background: #CBCDCF
+  margin-bottom: 50px
 
-  .page-inner-wrap
-    margin: 10px
-    padding-top: 20px
-    padding-bottom: 20px
-    +single-box-shadow
-    +border-radius(8px)
-    background: white
-    color: #646464
+.page-inner-wrap
+  margin: 10px
+  padding-top: 20px
+  padding-bottom: 20px
+  +single-box-shadow
+  +border-radius(8px)
+  background: white
+  color: #646464
 
-/* Landscape phones and down */
-@media (max-width: 480px)
-  .navbar
-    margin-top: 0
-
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px)
-  .navbar
-    margin-top: 0
+// mobile
+@media (max-width: 979px)
+  body
+    padding-top: 0
 
 // portrait tablet to default desktop
 @media (min-width: 768px) and (max-width: 979px)
-  .navbar
-    margin-top: 0
   $gridRowWidth768: $gridColumnWidth768 * $gridColumns + $gridGutterWidth768 * ($gridColumns - 1)
   .main-wrap
     width: $gridRowWidth768 + $gridRowWidth768 * $mainWrapDelta
 
 // Large desktop
 @media (min-width: 1200px)
+  $gridRowWidth1200: $gridColumnWidth1200 * $gridColumns + $gridGutterWidth1200 * ($gridColumns - 1)
   .main-wrap
     width: $gridRowWidth1200 + $gridRowWidth1200 * $mainWrapDelta
 

@@ -9,7 +9,7 @@
   <ul class="nav" role="navigation">
     <li>
       <%= link_to "/" do %>
-        <i class="icon-home"></i> Accueil
+        Accueil
       <% end -%>
     </li>
     <%= render :partial => '/refinery/bootstrap/menu_branch', :collection => roots.reject {|m| m.title.downcase == "accueil"},
