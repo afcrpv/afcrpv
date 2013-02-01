@@ -9,26 +9,28 @@ body
 
 .main-header
   margin-top: 10px
-  .logo
-    +clearfix
-    font-size: 18px
-    a
-      float: right
-      color: white
-      display: none
-    span
-      float: left
-      display: block
-      background: transparent image-url("logo-afcrpv.png") no-repeat left top
-      a
-        display: inline
-        height: $logo_height
-        color: transparent
-  .title
-    margin-bottom: 0
-    a
-      color: white
-      text-shadow: 0 1px 0 black
+
+.logo-wrapper
+  +clearfix
+  font-size: 18px
+  a
+    float: right
+    color: white
+    display: none
+
+.logo
+  float: left
+  background: transparent image-url("logo-afcrpv.png") no-repeat left top
+  a
+    display: inline
+    height: $logo_height
+    color: transparent
+
+.title
+  margin-bottom: 0
+  a
+    color: white
+    text-shadow: 0 1px 0 black
 
 .nav li
   a i
@@ -104,19 +106,19 @@ $mainWrapDelta: 0.06
     width: $gridRowWidth768 + $gridRowWidth768 * $mainWrapDelta
 
 @media (min-width: 980px) and (max-width: 1199px)
-  h2.title a
+  .title a
     font-size: 24px
-  .logo span
+  .logo
     margin-top: 12px
     background-size: 142px !important
 
 // Large desktop
 @media (min-width: 1200px)
-  .logo span
-    background-size: 158px
-  h2.title
+  .title
     font-size: 30px
   $gridRowWidth1200: $gridColumnWidth1200 * $gridColumns + $gridGutterWidth1200 * ($gridColumns - 1)
+  .logo
+    background-size: 158px
   .main-wrap
     width: $gridRowWidth1200 + $gridRowWidth1200 * $mainWrapDelta
 
