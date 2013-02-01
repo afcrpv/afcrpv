@@ -4,7 +4,7 @@
   end
   if menu_branch.ancestors.length == 0 && menu_branch.children.any?
     parent_css = "dropdown"
-    parent_title = link_to(raw("#{menu_branch.title} <b class=\"caret\"></b>"), refinery.url_for(menu_branch.url), id: menu_branch.title.downcase, class: "dropdown-toggle", data: {toggle: "dropdown", target: "#"})
+    parent_title = link_to(raw("#{menu_branch.title} <b class=\"caret\"></b>"), "#", id: menu_branch.title.downcase, class: "dropdown-toggle", data: {toggle: "dropdown"})
   else
     parent_css = "dropdown-submenu"
     parent_title = link_to(menu_branch.title, refinery.url_for(menu_branch.url), tabindex: "-1")
@@ -14,7 +14,7 @@
          (!local_assigns[:menu_levels] || menu_branch.ancestors.length < local_assigns[:menu_levels]) ) -%>
     <li class="<%= parent_css %>">
     <%= parent_title %>
-    <ul class='dropdown-menu'<%= " role='menu' aria-labelledyby='#{menu_branch.title.downcase}'" if menu_branch.ancestors.length == 0 %>>
+    <ul class='dropdown-menu'<%= " role=menu aria-labelledyby=#{menu_branch.title.downcase}" if menu_branch.ancestors.length == 0 %>>
     <%= render :partial => '/refinery/bootstrap/menu_branch', :collection => children,
                :locals => {
                  :apply_css => local_assigns[:apply_css],

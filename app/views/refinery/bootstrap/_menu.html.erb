@@ -6,7 +6,7 @@
     css = [(css || 'menu clearfix')].flatten.join(' ')
     hide_children = Refinery::Core.menu_hide_children if hide_children.nil?
 -%>
-  <ul class="nav">
+  <ul class="nav" role="navigation">
     <li>
       <%= link_to "/" do %>
         <i class="icon-home"></i> Accueil
