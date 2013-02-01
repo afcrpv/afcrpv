@@ -20,12 +20,17 @@ h1, h2, h3, .brand
     font-size: 12px
     padding-left: 1em
 
-.navbar-search
-  .btn
-    margin-top: 0
-
-.form-search .input-append, .form-inline .input-append, .form-search .input-prepend, .form-inline .input-prepend
-  width: 195px
+.form-search
+  .input-append
+    .search-query
+      width: 0
+      padding: 4px 0
+      border: 1px solid #ccc
+      +border-radius(0)
+      opacity: 0
+    .btn
+      margin-top: 0
+      +border-radius(0)
 
 .breadcrumb
   margin-bottom: 0.5em

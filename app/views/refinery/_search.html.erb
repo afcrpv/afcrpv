@@ -1,9 +1,10 @@
 <%= form_tag refinery.search_path, class: "navbar-search form-search pull-right" do %>
   <div class="input-append">
-    <%= text_field_tag :query, {}, {:type => "search",
-                 :placeholder => "#{t ".placeholder"}...",
-                 :value => (params[:query] if params[:query]),
-                 class: "search-query span8", autocomplete: "off"} %>
+    <%= text_field_tag :query, {}, {type: "search",
+                 placeholder: "#{t ".placeholder"}...",
+                 value: (params[:query] if params[:query]),
+                 class: "search-query input-large",
+                 autocomplete: "off"} %>
     <%= button_tag type: :submit, name: nil, class: "btn" do %>
       <i class="icon-search"></i>
     <% end -%>
