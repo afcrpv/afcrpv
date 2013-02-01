@@ -5,14 +5,7 @@
   <body class=<%= @page.title.downcase %>>
     <%= site_bar -%>
     <%= render '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
-    <div class="main-wrap">
-      <div class="container-fluid">
-        <div class="row-fluid">
-          <header class="main-header">
-            <%= render '/refinery/header' -%>
-          </header>
-        </div>
-      </div>
+    <div class="main-wrap" id="top">
       <div class="page-outer-wrap">
         <div class="page-inner-wrap">
           <div class="container-fluid">
@@ -30,6 +23,8 @@
         </div><!--container-fluid-footer-->
       </div><!--page-outer-wrap-->
     </div><!--main-wrap-->
+    <%= render 'refinery/bootstrap/navbar' %>
+    <%= render 'refinery/intranet_navbar' if current_refinery_user %>
     <%= render '/refinery/javascripts' %>
   </body>
 </html>
