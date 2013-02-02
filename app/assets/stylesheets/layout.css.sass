@@ -1,9 +1,16 @@
 @import "base"
 
+::selection, ::-moz-selection
+  background: #ddd
+  color: #000
+  text-shadow: none
+
 body
   font-family: "Droid Sans", sans-serif
   background: image-url("page_bg.png") repeat-x scroll 50% 0 #5397BB
-  padding-top: 40px
+  padding-top: 50px
+html, body
+  cursor: default
 
 h1, h2, h3, .brand
   font-family: 'Marvel', sans-serif
@@ -26,11 +33,10 @@ h1, h2, h3, .brand
       width: 0
       padding: 4px 0
       border: 1px solid #ccc
-      +border-radius(0)
       opacity: 0
     .btn
       margin-top: 0
-      +border-radius(0)
+      +border-radius(14px)
 
 .breadcrumb
   margin-bottom: 0.5em
@@ -55,7 +61,7 @@ $mainWrapDelta: 0.06
   +single-box-shadow
   +border-radius(8px)
   background: white
-  color: #646464
+  color: #222
 
 // mobile
 @media (max-width: 979px)
