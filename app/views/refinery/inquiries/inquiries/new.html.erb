@@ -1,34 +1,14 @@
-<% content_for :body_content_left do %>
+<% content_for :body do %>
   <div class='inquiries'>
-    <%= form_for [refinery, :inquiries, @inquiry] do |f| %>
-      <%= render :partial => "/refinery/admin/error_messages",
-                 :locals => {
-                   :object => @inquiry,
-                   :include_object_name => true
-                 } %>
-      <div class="field">
-        <%= f.required_label :name, :class => 'placeholder-fallback' %>
-        <%= f.text_field :name, :class => 'text', :required => 'required', :placeholder => t('name', :scope => 'activerecord.attributes.refinery/inquiries/inquiry') %>
-      </div>
-      <div class="field">
-        <%= f.required_label :email, :class => 'placeholder-fallback' %>
-        <%= f.email_field :email, :class => 'text email', :required => 'required', :placeholder => t('email', :scope => 'activerecord.attributes.refinery/inquiries/inquiry') %>
-      </div>
-      <div class="field">
-        <%= f.label :phone, :class => 'placeholder-fallback' %>
-        <%= f.text_field :phone, :class => 'text phone', :placeholder => t('phone', :scope => 'activerecord.attributes.refinery/inquiries/inquiry') %>
-      </div>
-      <div class='field message_field'>
-        <%= f.required_label :message, :class => 'placeholder-fallback' %>
-        <%= f.text_area :message, :rows => 8, :required => 'required', :placeholder => t('message', :scope => 'activerecord.attributes.refinery/inquiries/inquiry') %>
-      </div>
-      <div class="field">
-        <%= f.label :humanizer_answer, @inquiry.humanizer_question, :class => 'placeholder-fallback' %>
-        <%= f.text_field :humanizer_answer, :class => 'text', :placeholder => t(:here_the_anwser, :scope => 'humanizer'), required: 'required' %>
-        <%= f.hidden_field :humanizer_question_id %>
-      </div>
-      <div class="actions">
-        <%= f.submit t('.send') %>
+    <%= simple_form_for([refinery, :inquiries, @inquiry], html: {class: "form-vertical"}) do |f| %>
+      <%= f.input :name, input_html: {class: "input-xlarge"} %>
+      <%= f.input :email, input_html: {class: "input-xlarge"} %>
+      <%= f.input :phone, input_html: {class: "input-xlarge"} %>
+      <%= f.input :message, input_html: {rows: 8, class: "input-xxlarge"} %>
+      <%= f.input :humanizer_answer, label: @inquiry.humanizer_question, input_html: {placeholder: t(:here_the_anwser, :scope => 'humanizer')} %>
+      <%= f.input :humanizer_question_id, as: :hidden %>
+      <div class="form-actions">
+        <%= f.button :submit, "Envoyer" %>
         <%= link_to t('.privacy_policy'), "/pages/privacy-policy", :id => "privacy_link" if Refinery::Inquiries.show_contact_privacy_link %>
       </div>
     <% end %>
