@@ -1,4 +1,5 @@
 <% content_for :body do %>
+  <%= raw @page.content_for(:body) %>
   <div class='inquiries'>
     <%= simple_form_for([refinery, :inquiries, @inquiry], html: {class: "form-vertical"}) do |f| %>
       <%= f.input :name, input_html: {class: "input-xlarge"} %>
