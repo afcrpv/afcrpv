@@ -48,11 +48,11 @@ gem 'refinerycms', '~> 2.0.9'
 gem 'refinerycms-i18n', '~> 2.0.0'
 #  gem 'refinerycms-blog', '~> 2.0.0'
 #  gem 'refinerycms-search', '~> 2.0.0'
-gem 'refinerycms-search', '~> 2.0.0', :git => 'git://github.com/resolve/refinerycms-search.git', :branch => '2-0-stable'
+gem 'refinerycms-search', '~> 2.0.0', github: 'refinery/refinerycms-search', branch: '2-0-stable'
+gem 'refinerycms-inquiries', '~> 2.0.0', github: 'refinery/refinerycms-inquiries', branch: '2-0-stable'
+
 #gem "refinerycms-news", '~> 2.0.0'
 #  gem 'refinerycms-page-images', '~> 2.0.0'
-
-# The Heroku gem allows you to interface with Heroku's API
 
 # Fog allows you to use S3 assets (added for Heroku)
 gem 'fog'
@@ -70,6 +70,7 @@ gem 'refinerycms-projets', :path => 'vendor/extensions'
 
 gem 'simple_form'
 gem 'show_for', github: "plataformatec/show_for"
+gem 'humanizer'
 
 group :development do
   gem 'meta_request'

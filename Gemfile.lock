@@ -17,6 +17,24 @@ GIT
       activemodel (~> 3.0)
 
 GIT
+  remote: git://github.com/refinery/refinerycms-inquiries.git
+  revision: ec18de7a99bdcc72b71a649bbe81578450f52b82
+  branch: 2-0-stable
+  specs:
+    refinerycms-inquiries (2.0.3)
+      filters_spam (~> 0.2)
+      refinerycms-core (~> 2.0.1)
+      refinerycms-settings (~> 2.0.1)
+
+GIT
+  remote: git://github.com/refinery/refinerycms-search.git
+  revision: 4e5895b92f52b91754ad838dd481bc2865cf3b17
+  branch: 2-0-stable
+  specs:
+    refinerycms-search (2.0.0)
+      refinerycms-core (~> 2.0.4)
+
+GIT
   remote: git://github.com/refinery/refinerycms-settings.git
   revision: b045d02a2ca9aa26884fddcfb491f222852e6f11
   branch: 2-0-stable
@@ -24,14 +42,6 @@ GIT
     refinerycms-settings (2.0.2)
       acts_as_indexed (~> 0.7.7)
       refinerycms-core (~> 2.0.1)
-
-GIT
-  remote: git://github.com/resolve/refinerycms-search.git
-  revision: 004f63b0d9b0f833a3cbb35fc08086921882af17
-  branch: 2-0-stable
-  specs:
-    refinerycms-search (2.0.0)
-      refinerycms-core (~> 2.0.4)
 
 PATH
   remote: vendor/extensions
@@ -113,6 +123,7 @@ GEM
     excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    filters_spam (0.3)
     fog (1.8.0)
       builder
       excon (~> 0.14)
@@ -302,6 +313,7 @@ DEPENDENCIES
   refinerycms (~> 2.0.9)
   refinerycms-crpvs!
   refinerycms-i18n (~> 2.0.0)
+  refinerycms-inquiries (~> 2.0.0)!
   refinerycms-memberships!
   refinerycms-projets!
   refinerycms-search (~> 2.0.0)!
