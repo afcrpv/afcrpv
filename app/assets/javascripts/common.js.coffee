@@ -1,10 +1,11 @@
 $ = jQuery
 
 $ ->
-  $("a[href='#top']").click ->
+  $("a[href='#top']").click (e) ->
+    e.preventDefault()
     $("html, body").animate
       scrollTop: 0
-      , "slow"
+      , "fast"
 
   $(".navbar-search").on "mouseenter", ->
     $(this).find(".btn").animate
