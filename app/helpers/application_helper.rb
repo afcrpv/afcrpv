@@ -27,11 +27,10 @@ module ApplicationHelper
     email.gsub(/<\/?p>/, "").split("<br />").map {|item| mail_to(item)}.join("<br/>").html_safe
   end
   def news_line(news)
-    klass_name = get_demodulized_class(news)
     content_tag :tr do
       [
         content_tag(:td, news_date(news)),
-        content_tag(:td, category_label(news, klass_name)),
+        content_tag(:td, category_label(news)),
         content_tag(:td, link_to_news(news))
       ].join("\n").html_safe
     end
@@ -51,9 +50,14 @@ module ApplicationHelper
     content_tag :span, I18n.l(news.created_at.to_date), class: "date"
   end
 
-  def category_label(news, klass_name)
-    text = news.respond_to?(:category) ? news.category.to_s.upcase : klass_name.singularize.upcase
-    content_tag(:span, text, class: label_class(news, klass_name))
+  def news_category(news)
+    klass_name = get_demodulized_class(news)
+    news.respond_to?(:news_category) ? news.news_category_title : klass_name.singularize
+  end
+
+  def category_label(news)
+    text = news_category(news).upcase
+    content_tag(:span, text, class: label_class(news))
   end
 
   def link_to_toc_branch(branch, level)
@@ -93,12 +97,13 @@ module ApplicationHelper
 
   private
 
-  def label_class(news, klass_name)
-    category = news.respond_to?(:category) ? news.category.title : klass_name
+  def label_class(news)
     label_css = "label "
-    label_css += case category
-                when "congres", "formation", "prix" then "label-info"
-                when "emplois" then "label-warning"
+    label_css += case news_category(news)
+                when "congres"   then "label-success"
+                when "formation" then "label-warning"
+                when "prix"      then "label-important"
+                when "emploi"   then "label-info"
                 else
                   ""
                 end
