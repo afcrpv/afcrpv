@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204142334) do
+ActiveRecord::Schema.define(:version => 20130207101550) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(:version => 20130204142334) do
 
   add_index "departements", ["cp"], :name => "index_departements_on_cp"
   add_index "departements", ["name"], :name => "index_departements_on_name"
+
+  create_table "news_categories", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "refinery_crpvs", :force => true do |t|
     t.string   "name"
@@ -134,15 +140,17 @@ ActiveRecord::Schema.define(:version => 20130204142334) do
     t.string   "title"
     t.text     "body"
     t.datetime "publish_date"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "image_id"
     t.datetime "expiration_date"
     t.string   "source"
     t.string   "slug"
+    t.integer  "news_category_id"
   end
 
   add_index "refinery_news_items", ["id"], :name => "index_refinery_news_items_on_id"
+  add_index "refinery_news_items", ["news_category_id"], :name => "index_refinery_news_items_on_news_category_id"
 
   create_table "refinery_page_part_translations", :force => true do |t|
     t.integer  "refinery_page_part_id"
