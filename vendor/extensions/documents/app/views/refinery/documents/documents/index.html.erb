@@ -1,10 +1,19 @@
 <% content_for :body do %>
-  <ul class="documents">
-    <% @documents.each do |document| %>
-      <li>
-        <%= link_to document.titre, refinery.documents_document_path(document) %>
-      </li>
-    <% end %>
+  <table class="table table-condensed table-striped documents">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @documents.each do |document| %>
+        <tr>
+          <td><%= document.titre %></td>
+          <td><%= link_to document.fichier.file_name, document.fichier.url %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </ul>
   <%= link_to "Nouveau document", refinery.new_documents_document_path if current_refinery_user.has_role?("documents") || current_refinery_user.is_admin? %>
 <% end %>
