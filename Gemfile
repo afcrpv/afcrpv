@@ -51,7 +51,7 @@ gem 'refinerycms-i18n', '~> 2.0.0'
 gem 'refinerycms-search', '~> 2.0.0', github: 'refinery/refinerycms-search', branch: '2-0-stable'
 gem 'refinerycms-inquiries', '~> 2.0.0', github: 'refinery/refinerycms-inquiries', branch: '2-0-stable'
 
-#gem "refinerycms-news", '~> 2.0.0'
+gem "refinerycms-news", '~> 2.0.0', github: 'refinery/refinerycms-news', branch: '2-0-stable'
 #  gem 'refinerycms-page-images', '~> 2.0.0'
 
 # Fog allows you to use S3 assets (added for Heroku)

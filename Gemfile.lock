@@ -27,6 +27,16 @@ GIT
       refinerycms-settings (~> 2.0.1)
 
 GIT
+  remote: git://github.com/refinery/refinerycms-news.git
+  revision: 5cbc38c7a42f9130ff0a7938ea79e3258d1a173f
+  branch: 2-0-stable
+  specs:
+    refinerycms-news (2.0.1)
+      friendly_id (~> 4.0.1)
+      refinerycms-core (~> 2.0.1)
+      refinerycms-settings (~> 2.0.0)
+
+GIT
   remote: git://github.com/refinery/refinerycms-search.git
   revision: 4e5895b92f52b91754ad838dd481bc2865cf3b17
   branch: 2-0-stable
@@ -315,6 +325,7 @@ DEPENDENCIES
   refinerycms-i18n (~> 2.0.0)
   refinerycms-inquiries (~> 2.0.0)!
   refinerycms-memberships!
+  refinerycms-news (~> 2.0.0)!
   refinerycms-projets!
   refinerycms-search (~> 2.0.0)!
   refinerycms-settings!
