@@ -1,0 +1,9 @@
+<%= content_for :body_content_title do %>
+  Nouveau document
+<% end -%>
+
+<%= content_for :body do %>
+  <%= render 'form', document: @document %>
+<% end %>
+
+<%= render :partial => "/refinery/content_page" %>

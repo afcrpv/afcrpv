@@ -1,0 +1,29 @@
+en:
+  refinery:
+    plugins:
+      documents:
+        title: Documents
+    documents:
+      admin:
+        documents:
+          actions:
+            create_new: Add New Document
+            reorder: Reorder Documents
+            reorder_done: Done Reordering Documents
+          records:
+            title: Documents
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Documents yet. Click "Add New Document" to add your first document.
+          document:
+            view_live_html: View this document live <br/><em>(opens in a new window)</em>
+            edit: Edit this document
+            delete: Remove this document forever
+      documents:
+        show:
+          other: Other Documents
+  activerecord:
+    attributes:
+      'refinery/documents/document':
+        titre: Titre
+        publication: Publication
+        document_category_id: Document Category

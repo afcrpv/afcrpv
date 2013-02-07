@@ -1,0 +1,30 @@
+es:
+  refinery:
+    plugins:
+      documents:
+        title: Documents
+#        article: masculino/femenino
+    documents:
+      admin:
+        documents:
+          actions:
+            create_new: Crear nuevo document
+            reorder: Reordenar documents
+            reorder_done: Reordenación de documents completada
+          records:
+            title: Documents
+            sorry_no_results: Lo siento, no hay resultados
+            no_items_yet: No hay documents todavía. Pulsa en "Crear nuevo Document" para crear tu primer document.
+          document:
+            view_live_html: Ver este document como abierto al público <br/><em>(abre en ventana nueva)</em>
+            edit: Editar este document
+            delete: Borrar este document para siempre
+      documents:
+        show:
+          other: Otros documents
+  activerecord:
+    attributes:
+      'refinery/documents/document':
+        titre: Titre
+        publication: Publication
+        document_category_id: Document Category

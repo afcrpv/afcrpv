@@ -1,0 +1,26 @@
+<% content_for :body_content_title do %>
+  <%= @document.titre %>
+<% end %>
+
+<% content_for :body do %>
+  <section>
+    <h1>Titre</h1>
+    <p>
+      <%=raw @document.titre %>
+    </p>
+  </section>
+  <section>
+    <h1>Publication</h1>
+    <p>
+      <%=raw @document.publication %>
+    </p>
+  </section>
+  <section>
+    <h1>Document Category</h1>
+    <p>
+      <%=raw @document.document_category_id %>
+    </p>
+  </section>
+<% end %>
+
+<%= render '/refinery/content_page' %>

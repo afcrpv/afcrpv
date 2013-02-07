@@ -1,0 +1,31 @@
+zh-CN:
+  refinery:
+    plugins:
+      documents:
+        title: Documents
+    documents:
+      admin:
+        documents:
+          actions:
+            create_new: 建立新的 Document
+            reorder: 对 Documents 重新排序
+            reorder_done: 对 Documents 的重新排序结束
+          records:
+            title: Documents
+            sorry_no_results: 对不起，未找到结果。 #Sorry! There are no results found.
+
+            # There are no Documents yet. Click "Add New Document" to add your first document.
+            no_items_yet: 目前没有 Documents . 点击 "Add New Document" 创建一个document.
+          document:
+            view_live_html: 查看 document 的最新内容.<br/><em>(新窗口中打开)</em>
+            edit: 编辑 document
+            delete: 永久删除 document
+      documents:
+        show:
+          other: 其他 Documents
+  activerecord:
+    attributes:
+      'refinery/documents/document':
+        titre: Titre
+        publication: Publication
+        document_category_id: Document Category

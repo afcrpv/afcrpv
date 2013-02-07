@@ -1,0 +1,38 @@
+<%= form_for [refinery, :documents_admin, @document] do |f| -%>
+  <%= render '/refinery/admin/error_messages',
+              :object => @document,
+              :include_object_name => true %>
+
+  
+  <div class='field'>
+    <%= f.label :titre -%>
+    <%= f.text_field :titre, :class => 'larger widest'  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :publication -%>
+    <%= f.date_select :publication  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :document_category_id -%>
+    <%= f.number_field :document_category_id  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :fichier -%>
+    <%= render '/refinery/admin/resource_picker',
+               :f => f,
+               :field => :fichier_id,
+               :resource => @document.fichier %>
+
+  </div>
+
+  <%= render '/refinery/admin/form_actions', :f => f,
+             :continue_editing => false,
+             :delete_title => t('delete', :scope => 'refinery.documents.admin.documents.document'),
+             :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @document.titre) %>
+<% end -%>

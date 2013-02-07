@@ -1,0 +1,29 @@
+fr:
+  refinery:
+    plugins:
+      documents:
+        title: Documents
+    documents:
+      admin:
+        documents:
+          actions:
+            create_new: Créer un(e) nouve(au/l/lle) Document
+            reorder: Réordonner les Documents
+            reorder_done: Fin de réordonnancement des Documents
+          records:
+            title: Documents
+            sorry_no_results: "Désolé ! Aucun résultat."
+            no_items_yet: 'Il n''y a actuellement aucun(e) Document. Cliquer sur "Créer un(e) nouve(au/l/lle) Document" pour créer votre premi(er/ère) document.'
+          document:
+            view_live_html: Voir ce(t/tte) document <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier ce(t/tte) document
+            delete: Supprimer définitivement ce(t/tte) document
+      documents:
+        show:
+          other: Autres Documents
+  activerecord:
+    attributes:
+      'refinery/documents/document':
+        titre: Titre
+        publication: Publication
+        document_category_id: Document Category

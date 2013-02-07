@@ -1,0 +1,29 @@
+nb:
+  refinery:
+    plugins:
+      documents:
+        title: Documents
+    documents:
+      admin:
+        documents:
+          actions:
+            create_new: Lag en ny Document
+            reorder: Endre rekkefølgen på Documents
+            reorder_done: Ferdig å endre rekkefølgen Documents
+          records:
+            title: Documents
+            sorry_no_results: Beklager! Vi fant ikke noen resultater.
+            no_items_yet: Det er ingen Documents enda. Klikk på "Lag en ny Document" for å legge til din første document.
+          document:
+            view_live_html: Vis hvordan denne document ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+            edit: Rediger denne document
+            delete: Fjern denne document permanent
+      documents:
+        show:
+          other: Andre Documents
+  activerecord:
+    attributes:
+      'refinery/documents/document':
+        titre: Titre
+        publication: Publication
+        document_category_id: Document Category

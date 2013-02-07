@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207101550) do
+ActiveRecord::Schema.define(:version => 20130207134728) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(:version => 20130207101550) do
   end
 
   add_index "refinery_crpvs", ["slug"], :name => "index_refinery_crpvs_on_slug"
+
+  create_table "refinery_documents", :force => true do |t|
+    t.string   "titre"
+    t.date     "publication"
+    t.integer  "document_category_id"
+    t.integer  "fichier_id"
+    t.integer  "position"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"

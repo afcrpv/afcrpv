@@ -1,0 +1,12 @@
+<% content_for :body do %>
+  <ul class="documents">
+    <% @documents.each do |document| %>
+      <li>
+        <%= link_to document.titre, refinery.documents_document_path(document) %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to "Nouveau document", refinery.new_documents_document_path if current_refinery_user.has_role?("documents") || current_refinery_user.is_admin? %>
+<% end %>
+
+<%= render '/refinery/content_page' %>
