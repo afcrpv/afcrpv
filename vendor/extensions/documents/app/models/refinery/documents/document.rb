@@ -10,6 +10,7 @@ module Refinery
       validates :titre, :presence => true, :uniqueness => true
 
       belongs_to :fichier, :class_name => '::Refinery::Resource'
+      belongs_to :document_category, :class_name => "::Refinery::Documents::Category"
     end
   end
 end

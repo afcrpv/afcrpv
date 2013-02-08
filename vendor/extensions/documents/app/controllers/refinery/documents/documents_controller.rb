@@ -3,6 +3,7 @@ module Refinery
   module Documents
     class DocumentsController < ::ApplicationController
 
+      before_filter :find_all_categories, only: [:new, :edit, :create, :update]
       before_filter :find_page
 
       def index
@@ -39,6 +40,10 @@ module Refinery
       end
 
     protected
+
+      def find_all_categories
+        @categories = ::Refinery::Documents::Category.all
+      end
 
       def find_page
         @page = ::Refinery::Page.where(:link_url => "/documents").first

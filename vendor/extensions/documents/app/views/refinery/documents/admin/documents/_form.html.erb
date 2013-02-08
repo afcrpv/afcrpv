@@ -18,7 +18,7 @@
   
   <div class='field'>
     <%= f.label :document_category_id -%>
-    <%= f.number_field :document_category_id  -%>
+    <%= f.collection_select :document_category_id, Refinery::Documents::Category.all, :id, :name, prompt: "Selectionner une catégorie parent" %>
 
   </div>
   

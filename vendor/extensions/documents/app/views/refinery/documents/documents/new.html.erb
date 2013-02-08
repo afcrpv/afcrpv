@@ -3,7 +3,7 @@
 <% end -%>
 
 <%= content_for :body do %>
-  <%= render 'form', document: @document %>
+  <%= render 'form', document: @document, categories: @categories %>
 <% end %>
 
 <%= render :partial => "/refinery/content_page" %>
