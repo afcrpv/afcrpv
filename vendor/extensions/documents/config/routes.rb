@@ -28,6 +28,8 @@ Refinery::Core::Engine.routes.append do
       resources :categories, :except => :show do
         collection do
           post :update_positions
+          get :manage
+          post :rebuild
         end
       end
     end
