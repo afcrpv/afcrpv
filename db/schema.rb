@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207134728) do
+ActiveRecord::Schema.define(:version => 20130208121327) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -31,12 +31,6 @@ ActiveRecord::Schema.define(:version => 20130207134728) do
 
   add_index "departements", ["cp"], :name => "index_departements_on_cp"
   add_index "departements", ["name"], :name => "index_departements_on_name"
-
-  create_table "news_categories", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "refinery_crpvs", :force => true do |t|
     t.string   "name"
@@ -65,6 +59,17 @@ ActiveRecord::Schema.define(:version => 20130207134728) do
     t.integer  "position"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+  end
+
+  create_table "refinery_documents_categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "depth"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "refinery_images", :force => true do |t|
@@ -132,6 +137,13 @@ ActiveRecord::Schema.define(:version => 20130207134728) do
   end
 
   add_index "refinery_membership_emails", ["title"], :name => "index_refinery_membership_emails_on_title", :unique => true
+
+  create_table "refinery_news_categories", :force => true do |t|
+    t.string   "title"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "refinery_news_item_translations", :force => true do |t|
     t.integer  "refinery_news_item_id"
