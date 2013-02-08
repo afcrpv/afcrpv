@@ -9,7 +9,7 @@ class CreateNewsCategories < ActiveRecord::Migration
     names = %w(congres formation prix emploi)
     say_with_time "Creating #{names.to_sentence} categories" do
       names.each do |name|
-        NewsCategory.create!(title: name)
+        Refinery::News::Category.create!(title: name)
       end
     end
   end
