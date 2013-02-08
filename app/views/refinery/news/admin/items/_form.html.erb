@@ -13,7 +13,7 @@
 
   <div class='field'>
     <%= f.label :news_category_id, "Catégorie" %>
-    <%= f.collection_select :news_category_id, NewsCategory.order(:title).all, :id, :capitalized_title %>
+    <%= f.collection_select :news_category_id, Refinery::News::Category.order(:title).all, :id, :capitalized_title %>
   </div>
 
   <div class='field'>
