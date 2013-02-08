@@ -1,9 +1,18 @@
 Refinery::Core::Engine.routes.prepend do
+  #get '/hierarchie-documents', to: 'document_categories#manage', as: :hierarchie_documents
   get '/departements', to: 'departements#index', as: :departements
   get '/crpvs/paris', :to => 'crpvs/crpvs#paris', :as => :paris
   get '/crpvs/search', :to => 'crpvs/crpvs#search', :as => :crpvs_search
 end
 Afcrpv::Application.routes.draw do
+
+  resources :document_categories do
+    collection do
+      get :manage
+      post :rebuild
+    end
+  end
+
 
   # This line mounts Refinery's routes at the root of your application.
   # This means, any requests to the root URL of your application will go to Refinery::PagesController#home.

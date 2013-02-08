@@ -1,0 +1,10 @@
+<div id='actions'>
+  <ul>
+    <li>
+      <%= render "/refinery/admin/search", :url => refinery.news_admin_items_path %>
+    </li>
+    <li>
+      <%= link_to "Créer une actualité", refinery.new_news_admin_item_path, :class => "add_icon" %>
+    </li>
+  </ul>
+</div>

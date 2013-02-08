@@ -1,6 +1,6 @@
 Refinery::News::Item.class_eval do
   attr_accessible :news_category_id
 
-  belongs_to :news_category, class_name: "Refinery::News::Category"
+  belongs_to :news_category, class_name: "Refinery::NewsCategories::NewsCategory"
   delegate :title, to: :news_category, allow_nil: true, prefix: true
 end
