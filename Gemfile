@@ -81,3 +81,5 @@ group :development do
   gem "pry-rails"
 end
 
+
+gem 'refinerycms-news_categories', :path => 'vendor/extensions'

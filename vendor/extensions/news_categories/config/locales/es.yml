@@ -1,0 +1,28 @@
+es:
+  refinery:
+    plugins:
+      news_categories:
+        title: News Categories
+#        article: masculino/femenino
+    news_categories:
+      admin:
+        news_categories:
+          actions:
+            create_new: Crear nuevo news category
+            reorder: Reordenar news categories
+            reorder_done: Reordenación de news categories completada
+          records:
+            title: News Categories
+            sorry_no_results: Lo siento, no hay resultados
+            no_items_yet: No hay news categories todavía. Pulsa en "Crear nuevo News Category" para crear tu primer news category.
+          news_category:
+            view_live_html: Ver este news category como abierto al público <br/><em>(abre en ventana nueva)</em>
+            edit: Editar este news category
+            delete: Borrar este news category para siempre
+      news_categories:
+        show:
+          other: Otros news categories
+  activerecord:
+    attributes:
+      'refinery/news_categories/news_category':
+        title: Title

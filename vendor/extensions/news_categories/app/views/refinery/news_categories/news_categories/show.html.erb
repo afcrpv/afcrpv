@@ -1,0 +1,27 @@
+<% content_for :body_content_title do %>
+  <%= @news_category.title %>
+<% end %>
+
+<% content_for :body do %>
+  <section>
+    <h1>Title</h1>
+    <p>
+      <%=raw @news_category.title %>
+    </p>
+  </section>
+<% end %>
+
+<% content_for :side_body do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="news_categories">
+      <% @news_categories.each do |news_category| %>
+        <li>
+          <%= link_to news_category.title, refinery.news_categories_news_category_path(news_category) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render '/refinery/content_page' %>

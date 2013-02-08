@@ -1,0 +1,29 @@
+zh-CN:
+  refinery:
+    plugins:
+      news_categories:
+        title: News Categories
+    news_categories:
+      admin:
+        news_categories:
+          actions:
+            create_new: 建立新的 News Category
+            reorder: 对 News Categories 重新排序
+            reorder_done: 对 News Categories 的重新排序结束
+          records:
+            title: News Categories
+            sorry_no_results: 对不起，未找到结果。 #Sorry! There are no results found.
+
+            # There are no News Categories yet. Click "Add New News Category" to add your first news category.
+            no_items_yet: 目前没有 News Categories . 点击 "Add New News Category" 创建一个news category.
+          news_category:
+            view_live_html: 查看 news category 的最新内容.<br/><em>(新窗口中打开)</em>
+            edit: 编辑 news category
+            delete: 永久删除 news category
+      news_categories:
+        show:
+          other: 其他 News Categories
+  activerecord:
+    attributes:
+      'refinery/news_categories/news_category':
+        title: Title

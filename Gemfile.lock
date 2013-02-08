@@ -60,6 +60,8 @@ PATH
       refinerycms-core (~> 2.0.5)
     refinerycms-documents (1.0)
       refinerycms-core (~> 2.0.9)
+    refinerycms-news_categories (1.0)
+      refinerycms-core (~> 2.0.9)
     refinerycms-projets (1.0)
       refinerycms-core (~> 2.0.5)
 
@@ -331,6 +333,7 @@ DEPENDENCIES
   refinerycms-inquiries (~> 2.0.0)!
   refinerycms-memberships!
   refinerycms-news (~> 2.0.0)!
+  refinerycms-news_categories!
   refinerycms-projets!
   refinerycms-search (~> 2.0.0)!
   refinerycms-settings!

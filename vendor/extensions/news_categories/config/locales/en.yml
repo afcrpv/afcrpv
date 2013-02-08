@@ -1,0 +1,27 @@
+en:
+  refinery:
+    plugins:
+      news_categories:
+        title: News Categories
+    news_categories:
+      admin:
+        news_categories:
+          actions:
+            create_new: Add New News Category
+            reorder: Reorder News Categories
+            reorder_done: Done Reordering News Categories
+          records:
+            title: News Categories
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no News Categories yet. Click "Add New News Category" to add your first news category.
+          news_category:
+            view_live_html: View this news category live <br/><em>(opens in a new window)</em>
+            edit: Edit this news category
+            delete: Remove this news category forever
+      news_categories:
+        show:
+          other: Other News Categories
+  activerecord:
+    attributes:
+      'refinery/news_categories/news_category':
+        title: Title
