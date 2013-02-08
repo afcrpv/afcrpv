@@ -67,10 +67,12 @@ gem 'refinerycms-memberships', git: "git://github.com/adamico/refinerycms_member
 gem 'refinerycms-settings', git: "git://github.com/refinery/refinerycms-settings.git", branch: "2-0-stable"
 gem 'refinerycms-crpvs', :path => 'vendor/extensions'
 gem 'refinerycms-projets', :path => 'vendor/extensions'
+gem 'refinerycms-documents', :path => 'vendor/extensions'
 
 gem 'simple_form'
 gem 'show_for', github: "plataformatec/show_for"
 gem 'humanizer'
+gem "the_sortable_tree", "~> 2.3.0"
 
 group :development do
   gem 'meta_request'
@@ -79,4 +81,3 @@ group :development do
   gem "pry-rails"
 end
 
-gem 'refinerycms-documents', :path => 'vendor/extensions'
