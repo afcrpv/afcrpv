@@ -21,7 +21,6 @@ module RenderSortableTreeHelper
             <div class='item'>
               <i class='handle'></i>
               #{ show_link }
-              #{ controls }
             </div>
             #{ children }
           </li>
@@ -31,10 +30,9 @@ module RenderSortableTreeHelper
       def show_link
         node = options[:node]
         ns   = options[:namespace]
-        url  = h.url_for(ns + [node])
-        title_field = options[:name]
+        title_field = options[:title]
 
-        "<h4>#{ h.link_to(node.send(title_field), url) }</h4>"
+        "<h4>#{ node.send(title_field) }</h4>"
       end
 
       def controls

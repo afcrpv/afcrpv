@@ -1,7 +1,7 @@
 <%= content_for :body do %>
-  <%= link_to "Nouvelle catégorie", refinery.new_documents_category_path %>
+  <p><%= link_to "<i class='icon-plus icon-white'></i>".html_safe + " Nouvelle catégorie", refinery.new_documents_category_path, class: "btn btn-success" %></p>
   <ol class="sortable_tree" data-max_levels=5 data-rebuild_url= <%= refinery.rebuild_documents_categories_url %>>
-    <%= sortable_tree @categories %>
+    <%= sortable_tree @categories, title: :name %>
   </ol>
 <% end -%>
 

@@ -19,7 +19,12 @@ Refinery::Core::Engine.routes.append do
 
   # Frontend routes
   namespace :documents do
-    resources :categories, :only => [:index, :show]
+    resources :categories, :except => [:destroy, :index, :show] do
+      collection do
+        get :manage
+        post :rebuild
+      end
+    end
   end
 
   # Admin routes
@@ -28,8 +33,6 @@ Refinery::Core::Engine.routes.append do
       resources :categories, :except => :show do
         collection do
           post :update_positions
-          get :manage
-          post :rebuild
         end
       end
     end
