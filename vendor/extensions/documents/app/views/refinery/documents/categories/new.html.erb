@@ -1,0 +1,9 @@
+<%= content_for :body_content_title do %>
+  Nouvelle catégorie de document
+<% end -%>
+
+<%= content_for :body do %>
+  <%= render 'form', category: @category, categories: @categories %>
+<% end %>
+
+<%= render :partial => "/refinery/content_page" %>

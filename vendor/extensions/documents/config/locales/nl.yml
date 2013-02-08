@@ -1,10 +1,27 @@
 nl:
   refinery:
     plugins:
+      categories:
+        title: Categories
       documents:
         title: Documents
     documents:
       admin:
+        categories:
+          actions:
+            create_new: Maak een nieuwe Category
+            reorder: Wijzig de volgorde van de Categories
+            reorder_done: Klaar met het wijzingen van de volgorde van de Categories
+          records:
+            title: Categories
+            sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+            no_items_yet: Er zijn nog geen Categories. Druk op 'Maak een nieuwe Category'
+              om de eerste aan te maken.
+          category:
+            view_live_html: Bekijk deze category op de website <br/><em>(opent een
+              nieuw venster)</em>
+            edit: Bewerk deze category
+            delete: Verwijder deze category voor eeuwig
         documents:
           actions:
             create_new: Maak een nieuwe Document
@@ -13,17 +30,28 @@ nl:
           records:
             title: Documents
             sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
-            no_items_yet: Er zijn nog geen Documents. Druk op 'Maak een nieuwe Document' om de eerste aan te maken.
+            no_items_yet: Er zijn nog geen Documents. Druk op 'Maak een nieuwe Document'
+              om de eerste aan te maken.
           document:
-            view_live_html: Bekijk deze document op de website <br/><em>(opent een nieuw venster)</em>
+            view_live_html: Bekijk deze document op de website <br/><em>(opent een
+              nieuw venster)</em>
             edit: Bewerk deze document
             delete: Verwijder deze document voor eeuwig
+      categories:
+        show:
+          other: Andere Categories
       documents:
         show:
           other: Andere Documents
   activerecord:
     attributes:
-      'refinery/documents/document':
+      refinery/documents/category:
+        name: Name
+        parent_id: Parent
+        lft: Lft
+        rgt: Rgt
+        depth: Depth
+      refinery/documents/document:
         titre: Titre
         publication: Publication
         document_category_id: Document Category

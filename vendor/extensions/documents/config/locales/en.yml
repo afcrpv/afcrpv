@@ -1,10 +1,26 @@
 en:
   refinery:
     plugins:
+      categories:
+        title: Categories
       documents:
         title: Documents
     documents:
       admin:
+        categories:
+          actions:
+            create_new: Add New Category
+            reorder: Reorder Categories
+            reorder_done: Done Reordering Categories
+          records:
+            title: Categories
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Categories yet. Click "Add New Category" to
+              add your first category.
+          category:
+            view_live_html: View this category live <br/><em>(opens in a new window)</em>
+            edit: Edit this category
+            delete: Remove this category forever
         documents:
           actions:
             create_new: Add New Document
@@ -13,17 +29,27 @@ en:
           records:
             title: Documents
             sorry_no_results: Sorry! There are no results found.
-            no_items_yet: There are no Documents yet. Click "Add New Document" to add your first document.
+            no_items_yet: There are no Documents yet. Click "Add New Document" to
+              add your first document.
           document:
             view_live_html: View this document live <br/><em>(opens in a new window)</em>
             edit: Edit this document
             delete: Remove this document forever
+      categories:
+        show:
+          other: Other Categories
       documents:
         show:
           other: Other Documents
   activerecord:
     attributes:
-      'refinery/documents/document':
+      refinery/documents/category:
+        name: Name
+        parent_id: Parent
+        lft: Lft
+        rgt: Rgt
+        depth: Depth
+      refinery/documents/document:
         titre: Titre
         publication: Publication
         document_category_id: Document Category

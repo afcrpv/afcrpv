@@ -1,0 +1,8 @@
+<%= content_for :body do %>
+  <%= link_to "Nouvelle catégorie", refinery.new_documents_category_path %>
+  <ol class="sortable_tree" data-max_levels=5 data-rebuild_url= <%= refinery.rebuild_documents_categories_url %>>
+    <%= sortable_tree @categories %>
+  </ol>
+<% end -%>
+
+<%= render '/refinery/content_page' %>

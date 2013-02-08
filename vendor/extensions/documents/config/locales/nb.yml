@@ -1,10 +1,27 @@
 nb:
   refinery:
     plugins:
+      categories:
+        title: Categories
       documents:
         title: Documents
     documents:
       admin:
+        categories:
+          actions:
+            create_new: Lag en ny Category
+            reorder: Endre rekkefølgen på Categories
+            reorder_done: Ferdig å endre rekkefølgen Categories
+          records:
+            title: Categories
+            sorry_no_results: Beklager! Vi fant ikke noen resultater.
+            no_items_yet: Det er ingen Categories enda. Klikk på "Lag en ny Category"
+              for å legge til din første category.
+          category:
+            view_live_html: Vis hvordan denne category ser ut offentlig <br/><em>(åpner
+              i et nytt vindu)</em>
+            edit: Rediger denne category
+            delete: Fjern denne category permanent
         documents:
           actions:
             create_new: Lag en ny Document
@@ -13,17 +30,28 @@ nb:
           records:
             title: Documents
             sorry_no_results: Beklager! Vi fant ikke noen resultater.
-            no_items_yet: Det er ingen Documents enda. Klikk på "Lag en ny Document" for å legge til din første document.
+            no_items_yet: Det er ingen Documents enda. Klikk på "Lag en ny Document"
+              for å legge til din første document.
           document:
-            view_live_html: Vis hvordan denne document ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+            view_live_html: Vis hvordan denne document ser ut offentlig <br/><em>(åpner
+              i et nytt vindu)</em>
             edit: Rediger denne document
             delete: Fjern denne document permanent
+      categories:
+        show:
+          other: Andre Categories
       documents:
         show:
           other: Andre Documents
   activerecord:
     attributes:
-      'refinery/documents/document':
+      refinery/documents/category:
+        name: Name
+        parent_id: Parent
+        lft: Lft
+        rgt: Rgt
+        depth: Depth
+      refinery/documents/document:
         titre: Titre
         publication: Publication
         document_category_id: Document Category
