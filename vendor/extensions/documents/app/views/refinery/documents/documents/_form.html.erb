@@ -1,6 +1,6 @@
 <%= simple_form_for([refinery, :documents, document], :html => {:class => 'form-horizontal' }) do |f| %>
   <%= f.input :titre, input_html: {class: "input-xxlarge"} %>
-  <%= f.association :document_category, label: "Catégorie", input_html: {class: "input-xlarge"} %>
+  <%= f.association :document_category, label: "Catégorie", input_html: {class: "input-xxlarge"} %>
   <%= f.input :publication, input_html: {class: "input-small"} %>
   <%= f.input :fichier, as: :file %>
   <div class="form-actions">

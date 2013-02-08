@@ -48,7 +48,7 @@ module Refinery
     protected
 
       def find_all_categories
-        @categories = Category.nested_set.select('id, name, parent_id').all
+        @categories ||= params[:id].present? ? Category.all.reject {|c| c === @category || @category.descendants.include?(c)} : Category.all
       end
 
       def find_page

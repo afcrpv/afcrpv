@@ -1,8 +1,6 @@
 <%= simple_form_for([refinery, :documents, category], :html => {:class => 'form-horizontal' }) do |f| %>
   <%= f.input :name, input_html: {class: "input-xxlarge"} %>
-  <%= f.input :parent_id do %>
-    <%= f.select :parent_id, nested_options(categories, selected: Refinery::Documents::Category.last), class: :nested_options %>
-  <% end %>
+  <%= f.association :parent, input_html: {class: "input-xxlarge"} %>
   <div class="form-actions">
     <%= f.button :submit, "Soumettre" %>
   </div>
