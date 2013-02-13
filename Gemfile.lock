@@ -195,6 +195,8 @@ GEM
       slop (~> 3.3.1)
     pry-rails (0.1.6)
       pry
+    quiet_assets (1.0.1)
+      railties (~> 3.1)
     rack (1.4.4)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -328,6 +330,7 @@ DEPENDENCIES
   newrelic_rpm (~> 3.5.3.25)
   pg
   pry-rails
+  quiet_assets (>= 1.0.1)
   rails (= 3.2.11)
   refinerycms (~> 2.0.9)
   refinerycms-crpvs!
