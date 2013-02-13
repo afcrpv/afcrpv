@@ -12,6 +12,10 @@ module Refinery
 
       belongs_to :fichier, :class_name => '::Refinery::Resource'
       belongs_to :document_category, :class_name => "::Refinery::Documents::Category"
+
+      def self.recent
+        order("created_at DESC").limit(10)
+      end
     end
   end
 end

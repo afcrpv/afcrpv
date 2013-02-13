@@ -1,9 +1,19 @@
-<% content_for :body do %>
+<%= content_for :body_content_title do %>
+  Documents
+  <% if params[:mot_cle] %>
+    <small> avec le mot clé "<%= params[:mot_cle] %>"</small>
+  <% else %>
+    récemment ajoutés
+  <% end -%>
+<% end %>
+
+<%= content_for :body do %>
   <% if @documents.any? %>
     <table class="table table-condensed table-striped documents">
       <thead>
         <tr>
           <th>Titre</th>
+          <th>Mots clés</th>
           <th>Fichier</th>
           <th>&nbsp;</th>
         </tr>
@@ -12,6 +22,7 @@
         <% @documents.each do |document| %>
           <tr>
             <td><%= document.titre %></td>
+            <td><%= raw document.mots_cle_list.map {|m| link_to m, refinery.mot_cle_path(m), "data-toggle" => "tooltip", title: (title = "Clickez sur le mot clé pour filtrer par celui-ci") }.join(", ") %></td>
             <td><%= link_to document.fichier.file_name, document.fichier.url if document.fichier %></td>
             <td>
               <% if authorised_documents_user? %>
@@ -27,12 +38,13 @@
   <% else %>
     <p class="text-error">Aucun document dans la base.</p>
   <% end %>
-  <% if authorised_documents_user? %>
-    <div class="btn-group">
+    <div class="btn-group documents-actions">
+      <%= link_to "Documents récents", refinery.documents_documents_path, class: "btn" %>
+    <% if authorised_documents_user? %>
       <%= link_to "Nouveau document", refinery.new_documents_document_path, class: "btn" %>
       <%= link_to "Gestion des catégories", refinery.manage_documents_categories_path, class: "btn" %>
+    <% end -%>
     </div>
-  <% end -%>
 <% end %>
 
 <%= render '/refinery/content_page' %>

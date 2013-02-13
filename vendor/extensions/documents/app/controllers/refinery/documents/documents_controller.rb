@@ -11,7 +11,11 @@ module Refinery
       def index
         # you can use meta fields from your model instead (e.g. browser_title)
         # by swapping @page for @document in the line below:
-        @documents = Refinery::Documents::Document.all
+        if params[:mot_cle]
+          @documents = Refinery::Documents::Document.tagged_with(params[:mot_cle])
+        else
+          @documents = Refinery::Documents::Document.recent
+        end
         present(@page)
       end
 

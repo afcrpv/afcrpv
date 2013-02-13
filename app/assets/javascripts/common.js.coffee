@@ -1,6 +1,7 @@
 $ = jQuery
 
 $ ->
+  $('[data-toggle="tooltip"]').tooltip()
   $("a[href='#top']").click (e) ->
     e.preventDefault()
     $("html, body").animate
