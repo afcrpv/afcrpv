@@ -2,8 +2,9 @@ module Refinery
   module Documents
     class Document < Refinery::Core::BaseModel
       self.table_name = 'refinery_documents'
-
-      attr_accessible :titre, :publication, :document_category_id, :fichier, :fichier_id, :position
+      attr_accessible :titre, :publication, :document_category_id, :fichier, :fichier_id, :position, :mots_cle_list
+      acts_as_ordered_taggable
+      acts_as_ordered_taggable_on :mots_cles
 
       acts_as_indexed :fields => [:titre]
 
