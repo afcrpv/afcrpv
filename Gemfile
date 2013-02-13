@@ -45,30 +45,26 @@ gem 'jquery-rails'
 gem 'refinerycms', '~> 2.0.9'
 
 # Specify additional Refinery CMS Extensions here (all optional):
-gem 'refinerycms-i18n', '~> 2.0.0'
 #  gem 'refinerycms-blog', '~> 2.0.0'
-#  gem 'refinerycms-search', '~> 2.0.0'
+#  gem 'refinerycms-page-images', '~> 2.0.0'
+gem 'refinerycms-i18n', '~> 2.0.0'
 gem 'refinerycms-search', '~> 2.0.0', github: 'refinery/refinerycms-search', branch: '2-0-stable'
 gem 'refinerycms-inquiries', '~> 2.0.0', github: 'refinery/refinerycms-inquiries', branch: '2-0-stable'
-
+gem 'refinerycms-memberships', git: "git://github.com/adamico/refinerycms_membership.git"
+gem 'refinerycms-settings', git: "git://github.com/refinery/refinerycms-settings.git", branch: "2-0-stable"
+gem 'refinerycms-crpvs', :path => 'vendor/extensions'
+gem 'refinerycms-projets', :path => 'vendor/extensions'
+gem 'refinerycms-documents', :path => 'vendor/extensions'
+gem 'refinerycms-news_categories', :path => 'vendor/extensions'
 gem "refinerycms-news", '~> 2.0.0', github: 'refinery/refinerycms-news', branch: '2-0-stable'
-#  gem 'refinerycms-page-images', '~> 2.0.0'
 
 # Fog allows you to use S3 assets (added for Heroku)
 gem 'fog'
 gem 'newrelic_rpm', "~> 3.5.3.25"
 
 gem 'thin'
-
 gem 'dalli'
 gem 'humanizer'
-
-gem 'refinerycms-memberships', git: "git://github.com/adamico/refinerycms_membership.git"
-gem 'refinerycms-settings', git: "git://github.com/refinery/refinerycms-settings.git", branch: "2-0-stable"
-gem 'refinerycms-crpvs', :path => 'vendor/extensions'
-gem 'refinerycms-projets', :path => 'vendor/extensions'
-gem 'refinerycms-documents', :path => 'vendor/extensions'
-
 gem 'simple_form'
 gem 'show_for', github: "plataformatec/show_for"
 gem 'humanizer'
@@ -80,6 +76,3 @@ group :development do
   gem "binding_of_caller"
   gem "pry-rails"
 end
-
-
-gem 'refinerycms-news_categories', :path => 'vendor/extensions'
