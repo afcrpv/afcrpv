@@ -1,21 +1,38 @@
 <% content_for :body do %>
-  <table class="table table-condensed table-striped documents">
-    <thead>
-      <tr>
-        <th>Titre</th>
-        <th>&nbsp;</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @documents.each do |document| %>
+  <% if @documents.any? %>
+    <table class="table table-condensed table-striped documents">
+      <thead>
         <tr>
-          <td><%= document.titre %></td>
-          <td><%= link_to document.fichier.file_name, document.fichier.url %></td>
+          <th>Titre</th>
+          <th>Fichier</th>
+          <th>&nbsp;</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= link_to "Nouveau document", refinery.new_documents_document_path if current_refinery_user.has_role?("documents") || current_refinery_user.is_admin? %>
+      </thead>
+      <tbody>
+        <% @documents.each do |document| %>
+          <tr>
+            <td><%= document.titre %></td>
+            <td><%= link_to document.fichier.file_name, document.fichier.url if document.fichier %></td>
+            <td>
+              <% if authorised_documents_user? %>
+                <%= link_to refinery.edit_documents_document_path(document), class: "btn" do %>
+                  <i class="icon-pencil"></i>
+                <% end -%>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-error">Aucun document dans la base.</p>
+  <% end %>
+  <% if authorised_documents_user? %>
+    <div class="btn-group">
+      <%= link_to "Nouveau document", refinery.new_documents_document_path, class: "btn" %>
+      <%= link_to "Gestion des catégories", refinery.manage_documents_categories_path, class: "btn" %>
+    </div>
+  <% end -%>
 <% end %>
 
 <%= render '/refinery/content_page' %>
