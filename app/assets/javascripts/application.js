@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap
 //= require bootstrap
 //= require jquery.ui.nestedSortable
 //= require sortable_tree/initializer

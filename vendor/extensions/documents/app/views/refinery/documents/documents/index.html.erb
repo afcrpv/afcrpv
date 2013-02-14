@@ -8,43 +8,27 @@
 <% end %>
 
 <%= content_for :body do %>
-  <% if @documents.any? %>
-    <table class="table table-condensed table-striped documents">
-      <thead>
-        <tr>
-          <th>Titre</th>
-          <th>Mots clés</th>
-          <th>Fichier</th>
-          <th>&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @documents.each do |document| %>
-          <tr>
-            <td><%= document.titre %></td>
-            <td><%= raw document.mots_cle_list.map {|m| link_to m, refinery.mot_cle_path(m), "data-toggle" => "tooltip", title: (title = "Clickez sur le mot clé pour filtrer par celui-ci") }.join(", ") %></td>
-            <td><%= link_to document.fichier.file_name, document.fichier.url if document.fichier %></td>
-            <td>
-              <% if authorised_documents_user? %>
-                <%= link_to refinery.edit_documents_document_path(document), class: "btn" do %>
-                  <i class="icon-pencil"></i>
-                <% end -%>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p class="text-error">Aucun document dans la base.</p>
-  <% end %>
-    <div class="btn-group documents-actions">
-      <%= link_to "Documents récents", refinery.documents_documents_path, class: "btn" %>
-    <% if authorised_documents_user? %>
-      <%= link_to "Nouveau document", refinery.new_documents_document_path, class: "btn" %>
-      <%= link_to "Gestion des catégories", refinery.manage_documents_categories_path, class: "btn" %>
-    <% end -%>
-    </div>
+  <table class="table table-condensed table-striped display" id="documents" data-source="<%= refinery.documents_documents_url(format: :json) %>">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Catégorie</th>
+        <th>Mots clés</th>
+        <th>Publication</th>
+        <th>Fichier</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <div class="btn-group documents-actions">
+    <%= link_to "Documents récents", refinery.documents_documents_path, class: "btn" %>
+  <% if authorised_documents_user? %>
+    <%= link_to "Nouveau document", refinery.new_documents_document_path, class: "btn" %>
+    <%= link_to "Gestion des catégories", refinery.manage_documents_categories_path, class: "btn" %>
+  <% end -%>
+  </div>
 <% end %>
 
 <%= render '/refinery/content_page' %>

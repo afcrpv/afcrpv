@@ -11,10 +11,9 @@ module Refinery
       def index
         # you can use meta fields from your model instead (e.g. browser_title)
         # by swapping @page for @document in the line below:
-        if params[:mot_cle]
-          @documents = Refinery::Documents::Document.tagged_with(params[:mot_cle])
-        else
-          @documents = Refinery::Documents::Document.recent
+        respond_to do |format|
+          format.html
+          format.json { render json: DocumentsDatatable.new(view_context)}
         end
         present(@page)
       end

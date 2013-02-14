@@ -22,6 +22,7 @@ group :assets do
   gem 'compass-rails'
   gem "jquery-ui-rails"
   gem "select2-rails"
+  gem 'jquery-datatables-rails'
 end
 
 gem 'jquery-rails'

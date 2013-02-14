@@ -1,6 +1,32 @@
 $ = jQuery
 
 $ ->
+  $("#documents").dataTable
+    sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
+    sPaginationType: "bootstrap"
+    bProcessing: true
+    bServerSide: true
+    sAjaxSource: $('#documents').data('source')
+    oLanguage:
+      "sProcessing":     "Traitement en cours..."
+      "sSearch":         "Rechercher dans le titre&nbsp;:"
+      "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments"
+      "sInfo":           "Affichage du document _START_ &agrave; _END_ sur _TOTAL_ documents"
+      "sInfoEmpty":      "Affichage du document 0 &agrave; 0 sur 0 documents"
+      "sInfoFiltered":   "(filtr&eacute; de _MAX_ documents au total)"
+      "sInfoPostFix":    ""
+      "sLoadingRecords": "Chargement en cours..."
+      "sZeroRecords":    "Aucun document &agrave; afficher"
+      "sEmptyTable":     "Aucune donnée disponible dans le tableau"
+      "oPaginate":
+        "sFirst":      "Premier"
+        "sPrevious":   "Pr&eacute;c&eacute;dent"
+        "sNext":       "Suivant"
+        "sLast":       "Dernier"
+      "oAria":
+        "sSortAscending":  ": activer pour trier la colonne par ordre croissant"
+        "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+
   $('[data-toggle="tooltip"]').tooltip()
   $("a[href='#top']").click (e) ->
     e.preventDefault()
