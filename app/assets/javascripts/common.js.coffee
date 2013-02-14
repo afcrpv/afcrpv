@@ -7,6 +7,13 @@ $ ->
     bProcessing: true
     bServerSide: true
     sAjaxSource: $('#documents').data('source')
+    fnServerParams: (aoData) ->
+      path_array = window.location.pathname.toString().substr(1).split("/")
+      if path_array.length > 1
+        mot_cle = path_array.pop()
+        aoData.push
+          name: "mot_cle"
+          value: mot_cle
     oLanguage:
       "sProcessing":     "Traitement en cours..."
       "sSearch":         "Rechercher dans le titre&nbsp;:"

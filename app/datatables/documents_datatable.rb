@@ -1,6 +1,6 @@
 #encoding: utf-8
 class DocumentsDatatable
-  delegate :params, :l, :h, :link_to, :authorised_documents_user?, :refinery, to: :@view
+  delegate :logger, :params, :l, :h, :link_to, :authorised_documents_user?, :refinery, to: :@view
 
   def initialize(view)
     @view = view
@@ -11,7 +11,9 @@ class DocumentsDatatable
       sEcho: params[:sEcho].to_i,
       iTotalRecords: Refinery::Documents::Document.count,
       iTotalDisplayRecords: documents.total_entries,
-      aaData: data
+      aaData: data,
+      bSortable_4: false,
+      bSortable_5: false
     }
   end
 
@@ -22,10 +24,10 @@ private
       [
         document.titre,
         h(document.document_category),
-        document.mots_cle_list,
+        document.mots_cle_list.map {|m| link_to m, refinery.mot_cle_path(m)}.join(", "),
         l(document.publication),
         (link_to(document.fichier.file_name, document.fichier.url) rescue ""),
-        (authorised_documents_user? ? link_to("<i class='icon-pencil'></i>".html_safe, refinery.edit_documents_document_path(document), class: "btn") : "")
+        (authorised_documents_user? ? link_to("<i class='icon-pencil'></i>".html_safe, refinery.edit_documents_document_path(document), class: "btn btn-small") : "")
       ]
     end
   end
@@ -36,11 +38,15 @@ private
 
   def fetch_documents
     documents = Refinery::Documents::Document.order("#{sort_column} #{sort_direction}")
-    documents = documents.page(page).per_page(per_page)
+    documents = documents.includes(:document_category).page(page).per_page(per_page)
     if params[:sSearch].present?
-      documents = documents.includes(:document_category).where("titre like :search", search: "%#{params[:sSearch]}%")
+      documents = documents.where("titre like :search", search: "%#{params[:sSearch]}%")
     else
       documents = documents.recent
+    end
+    if params[:mot_cle].present?
+      logger.debug "MOT CLE= #{params[:mot_cle]}"
+      documents = documents.tagged_with(params[:mot_cle])
     end
     documents
   end
