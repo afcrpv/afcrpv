@@ -24,7 +24,7 @@ private
       [
         document.titre,
         h(document.document_category),
-        document.mots_cle_list.map {|m| link_to m, refinery.mot_cle_path(m)}.join(", "),
+        document.mots_cle_list.map {|m| link_to m, refinery.mot_cle_path(m), "data-toggle" => "tooltip", title: (title = "Clickez sur le mot clé pour filtrer par celui-ci")}.join(", "),
         l(document.publication),
         (link_to(document.fichier.file_name, document.fichier.url) rescue ""),
         (authorised_documents_user? ? link_to("<i class='icon-pencil'></i>".html_safe, refinery.edit_documents_document_path(document), class: "btn btn-small") : "")

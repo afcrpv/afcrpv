@@ -1,7 +1,7 @@
 $ = jQuery
 
 $ ->
-  $("#documents").dataTable
+  documentsoTable = $("#documents").dataTable
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
     sPaginationType: "bootstrap"
     bProcessing: true
@@ -34,7 +34,8 @@ $ ->
         "sSortAscending":  ": activer pour trier la colonne par ordre croissant"
         "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
 
-  $('[data-toggle="tooltip"]').tooltip()
+  $("#documents").on 'hover', ->
+    $("[data-toggle='tooltip']").tooltip()
   $("a[href='#top']").click (e) ->
     e.preventDefault()
     $("html, body").animate
