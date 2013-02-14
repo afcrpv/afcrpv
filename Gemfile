@@ -22,7 +22,6 @@ group :assets do
   gem 'compass-rails'
   gem "jquery-ui-rails"
   gem "select2-rails"
-  gem 'jquery-datatables-rails'
 end
 
 gem 'jquery-rails'
@@ -71,6 +70,7 @@ gem 'show_for', github: "plataformatec/show_for"
 gem 'humanizer'
 gem "the_sortable_tree", "~> 2.3.0"
 gem "acts-as-taggable-on", "~> 2.3.1"
+gem 'jquery-datatables-rails'
 
 group :development do
   gem 'meta_request'
