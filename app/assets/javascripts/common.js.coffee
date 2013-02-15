@@ -1,6 +1,10 @@
 $ = jQuery
 
 $ ->
+  $.fn.select2.defaults.allowClear = true
+  $.fn.select2.defaults.formatNoMatches = -> "Aucun résultat"
+  $.fn.select2.defaults.formatInputTooShort = (input, min) -> "Saisir au moins #{min - input.length} charactères"
+  $.fn.select2.defaults.formatSearching = -> "Recherche en cours..."
   documentsoTable = $("#documents").dataTable
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
     sPaginationType: "bootstrap"
@@ -16,7 +20,7 @@ $ ->
           value: mot_cle
     oLanguage:
       "sProcessing":     "Traitement en cours..."
-      "sSearch":         "Rechercher dans le titre&nbsp;:"
+      "sSearch":         "Rechercher&nbsp;:"
       "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments"
       "sInfo":           "Affichage du document _START_ &agrave; _END_ sur _TOTAL_ documents"
       "sInfoEmpty":      "Affichage du document 0 &agrave; 0 sur 0 documents"
@@ -33,6 +37,23 @@ $ ->
       "oAria":
         "sSortAscending":  ": activer pour trier la colonne par ordre croissant"
         "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+
+  $("#search_document_category_name").select2
+    placeholder: "Catégorie"
+    minimumInputLength: 2
+    ajax:
+      url: "/documents/categories.json"
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        page_limit: 10
+      results: (data, page) ->
+        return {results: data}
+  $("#search_document_category_name").on "change", (e) ->
+    documentsoTable.fnFilter($(@).val(), 1)
+
+  $("tfoot input").keyup ->
+    documentsoTable.fnFilter(@value, $("tfoot input").index(@))
 
   $("#documents").on 'hover', ->
     $("[data-toggle='tooltip']").tooltip()

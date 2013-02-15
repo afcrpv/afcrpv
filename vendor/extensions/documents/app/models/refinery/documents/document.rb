@@ -16,6 +16,15 @@ module Refinery
       def self.recent
         order("created_at DESC").limit(10)
       end
+
+      def self.titre_or_category_name_or_mot_cle_contains(string)
+        Refinery::Documents::Document.joins{[document_category, taggings.tag]}.
+          where{
+            (titre.like "%#{string}%") |
+            (document_category.name.like "%#{string}%") |
+            (taggings.tag.name.like "%#{string}%")
+          }
+      end
     end
   end
 end

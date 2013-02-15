@@ -21,6 +21,22 @@
     </thead>
     <tbody>
     </tbody>
+    <tfoot>
+      <tr>
+        <th>
+          <input type="text" name="search_titre">
+        </th>
+        <th>
+          <input type="hidden" id="search_document_category_name">
+        </th>
+        <th>
+          <input type="text" name="search_titre">
+        </th>
+        <% 3.times do %>
+          <th>&nbsp;</th>
+        <% end -%>
+      </tr>
+    </tfoot>
   </table>
   <div class="btn-group documents-actions">
     <%= link_to "Recherche multicritères", refinery.documents_documents_path, class: "btn" %>

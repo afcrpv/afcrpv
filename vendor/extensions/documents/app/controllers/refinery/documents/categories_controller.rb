@@ -6,6 +6,13 @@ module Refinery
       before_filter :find_all_categories
       before_filter :find_page
 
+      def index
+        @categories = Category.where{name =~ my{"%#{params[:q]}%"}}
+        respond_to do |format|
+          format.json { render json: @categories.map(&:name_and_id)}
+        end
+      end
+
       def new
         @category = Category.new
       end

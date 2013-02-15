@@ -12,8 +12,6 @@ class DocumentsDatatable
       iTotalRecords: Refinery::Documents::Document.count,
       iTotalDisplayRecords: documents.total_entries,
       aaData: data,
-      bSortable_4: false,
-      bSortable_5: false
     }
   end
 
@@ -38,9 +36,15 @@ private
 
   def fetch_documents
     documents = Refinery::Documents::Document.order("#{sort_column} #{sort_direction}")
-    documents = documents.includes(:document_category).page(page).per_page(per_page)
+    documents = documents.includes(:document_category, :taggings => :tag).page(page).per_page(per_page)
     if params[:sSearch].present?
-      documents = documents.where("titre like :search", search: "%#{params[:sSearch]}%")
+      documents = documents.titre_or_category_name_or_mot_cle_contains "%#{params[:sSearch]}%"
+    elsif params[:sSearch_0].present?
+      documents = documents.where{titre =~ "%#{params[:sSearch_0]}%"}
+    elsif params[:sSearch_1].present?
+      documents = documents.joins{document_category}.where{document_category_id == my{params[:sSearch_1]}}
+    elsif params[:sSearch_2].present?
+      documents = documents.tagged_with(params[:sSearch_2].split(" "), match_all: true)
     else
       documents = documents.recent
     end

@@ -19,7 +19,7 @@ Refinery::Core::Engine.routes.append do
 
   # Frontend routes
   namespace :documents do
-    resources :categories, :except => [:destroy, :index, :show] do
+    resources :categories, :except => [:destroy, :show] do
       collection do
         get :manage
         post :rebuild
