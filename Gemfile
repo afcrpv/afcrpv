@@ -71,6 +71,7 @@ gem 'humanizer'
 gem "the_sortable_tree", "~> 2.3.0"
 gem "acts-as-taggable-on", "~> 2.3.1"
 gem 'jquery-datatables-rails'
+gem "squeel"
 
 group :development do
   gem 'meta_request'
