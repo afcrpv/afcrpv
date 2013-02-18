@@ -52,7 +52,6 @@ private
       documents = documents.recent
     end
     if params[:mot_cle].present?
-      logger.debug "MOT CLE= #{params[:mot_cle]}"
       documents = documents.tagged_with(params[:mot_cle])
     end
     documents
@@ -67,7 +66,7 @@ private
   end
 
   def sort_column
-    columns = %w(titre publication)
+    columns = %w(titre document_category_id mots_cles_list publication)
     columns[params[:iSortCol_0].to_i]
   end
 

@@ -8,7 +8,7 @@
 <% end %>
 
 <%= content_for :body do %>
-  <table class="table table-condensed table-striped display" id="documents" data-source="<%= refinery.documents_documents_url(format: :json) %>">
+  <table class="table table-condensed table-striped table-bordered display" id="documents" data-source="<%= refinery.documents_documents_url(format: :json) %>">
     <thead>
       <tr>
         <th>Titre</th>
@@ -24,13 +24,14 @@
     <tfoot>
       <tr>
         <th>
-          <input type="text" name="search_titre">
+          <input type="text" name="search_titre" placeholder="Saisir le titre">
         </th>
         <th>
-          <input type="hidden" id="search_document_category_name">
+          <input type="hidden" id="search_document_category_name" class="input-xlarge" data-placeholder="Saisir le nom de catégorie">
         </th>
         <th>
-          <input type="text" name="search_titre">
+          <input type="hidden" id="search_tag" class="input-xlarge" data-placeholder="Saisir un ou plusieurs mots clés">
+          <%= select_tag :search_tag_condition, options_for_select([["Ou", 1], ["Et", 2]]), class: "input-mini" %>
         </th>
         <% 3.times do %>
           <th>&nbsp;</th>

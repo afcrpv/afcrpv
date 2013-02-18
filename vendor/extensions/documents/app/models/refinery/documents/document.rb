@@ -14,7 +14,7 @@ module Refinery
       belongs_to :document_category, :class_name => "::Refinery::Documents::Category"
 
       def self.recent
-        order("created_at DESC").limit(10)
+        order("publication DESC")
       end
 
       def self.titre_or_category_name_or_mot_cle_contains(string)
