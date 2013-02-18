@@ -23,7 +23,7 @@ private
         document.titre,
         h(document.document_category),
         document.mots_cle_list.map {|m| link_to m, refinery.mot_cle_path(m), "data-toggle" => "tooltip", title: (title = "Clickez sur le mot clé pour filtrer par celui-ci")}.join(", "),
-        l(document.publication),
+        l(document.created_at.to_date),
         (link_to(document.fichier.file_name, document.fichier.url) rescue ""),
         (authorised_documents_user? ? link_to("<i class='icon-pencil'></i>".html_safe, refinery.edit_documents_document_path(document), class: "btn btn-small") : "")
       ]
@@ -66,7 +66,7 @@ private
   end
 
   def sort_column
-    columns = %w(titre document_category_id mots_cles_list publication)
+    columns = %w(titre document_category_id mots_cles_list created_at)
     columns[params[:iSortCol_0].to_i]
   end
 

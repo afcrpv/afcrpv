@@ -1,9 +1,8 @@
 <%= content_for :body_content_title do %>
-  Documents
   <% if params[:mot_cle] %>
-    <small> avec le mot clé "<%= params[:mot_cle] %>"</small>
+    Documents <small>avec le mot clé "<%= params[:mot_cle] %>"</small>
   <% else %>
-    récemment ajoutés
+    Derniers documents publié
   <% end -%>
 <% end %>
 
