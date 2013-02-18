@@ -1,8 +1,9 @@
 Refinery::Core::Engine.routes.prepend do
   get '/documents/mots_cles/:mot_cle', to: "documents/documents#index", as: :mot_cle
   get '/documents/categories', to: "documents/categories#index", as: :categories
+  get '/documents/tags', to: 'documents/documents#tags', as: :document_tags
   get '/departements', to: 'departements#index', as: :departements
-  get '/documents/tags', to: 'tags#index', as: :tags
+  get '/tags', to: 'tags#index', as: :tags
   get '/crpvs/paris', :to => 'crpvs/crpvs#paris', :as => :paris
   get '/crpvs/search', :to => 'crpvs/crpvs#search', :as => :crpvs_search
 end

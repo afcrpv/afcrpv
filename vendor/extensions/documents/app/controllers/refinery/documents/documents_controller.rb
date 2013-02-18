@@ -8,7 +8,17 @@ module Refinery
       before_filter :edit_document_or_redirect, only: [:new, :edit]
       helper_method :authorised_documents_user?
 
-      def index
+      def tags
+        @tags = ActsAsTaggableOn::Tag.named_like(params[:q])
+        respond_to do |format|
+          format.json do
+            tag_list = @tags.any? ? @tags.map(&:name_and_id) : [{id: params[:q], text: params[:q]}]
+            render json: tag_list
+          end
+        end
+      end
+
+          def index
         # you can use meta fields from your model instead (e.g. browser_title)
         # by swapping @page for @document in the line below:
         respond_to do |format|

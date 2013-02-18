@@ -69,7 +69,7 @@ $ ->
     minimumInputLength: 2
     multiple: true
     ajax:
-      url: "/documents/tags.json"
+      url: "/tags.json"
       dataType: "json"
       data: (term, page) ->
         q: term
