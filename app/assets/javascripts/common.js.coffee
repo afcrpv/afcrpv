@@ -77,6 +77,18 @@ $ ->
       results: (data, page) ->
         return {results: data}
 
+  $("#document_mots_cle_list").select2
+    tags: true
+    ajax:
+      url: "/documents/tags.json"
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        page_limit: 10
+      results: (data, page) ->
+        return {results: data}
+    tokenSeparators: [","]
+
   for field in ["#search_tag", "#search_tag_condition"]
     $(field).on "change", (e) ->
       documentsoTable.fnFilter($("#search_tag").val(), 2)

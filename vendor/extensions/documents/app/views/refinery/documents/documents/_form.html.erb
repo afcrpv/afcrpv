@@ -1,7 +1,12 @@
 <%= simple_form_for([refinery, :documents, document], :html => {:class => 'form-horizontal' }) do |f| %>
   <%= f.input :titre, input_html: {class: "input-xxlarge"} %>
-  <%= f.association :document_category, label: "Catégorie", input_html: {class: "input-xxlarge"} %>
-  <%= f.input :mots_cle_list, label: "Mots clés", placeholder: "mots séparés par virgule" %>
+  <%= f.association :document_category, label: "Catégorie", input_html: {class: "input-xxlarge", "data-placeholder" => "Choisir une catégorie"} %>
+  <div class="control-group">
+    <%= f.label :mots_cle_list, "Mots clés", class: "control-label" %>
+    <div class="controls">
+      <%= f.hidden_field :mots_cle_list, class: "input-xxlarge", data: {placeholder: "mots séparés par virgule"} %>
+    </div>
+  </div>
   <%= f.input :publication, input_html: {class: "input-small"} %>
   <%= f.input :fichier, as: :file %>
   <div class="form-actions">
