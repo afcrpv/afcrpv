@@ -44,7 +44,10 @@ private
     elsif params[:sSearch_1].present?
       documents = documents.joins{document_category}.where{document_category_id == my{params[:sSearch_1]}}
     elsif params[:sSearch_2].present?
-      documents = documents.tagged_with(params[:sSearch_2].split(" "), match_all: true)
+      tags = params[:sSearch_2].split(",")
+      tags_condition = {"2" => {match_all: true}, "1" => {any: true}}
+      condition = tags.many? ? tags_condition[params[:tags_condition]] : {any: true}
+      documents = documents.tagged_with(tags, condition)
     else
       documents = documents.recent
     end

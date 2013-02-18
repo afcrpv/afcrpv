@@ -13,6 +13,11 @@ $ ->
     sAjaxSource: $('#documents').data('source')
     fnServerParams: (aoData) ->
       path_array = window.location.pathname.toString().substr(1).split("/")
+      tags_condition = $("#search_tag_condition").val()
+      if tags_condition
+        aoData.push
+          name: "tags_condition"
+          value: tags_condition
       if path_array.length > 1
         mot_cle = path_array.pop()
         aoData.push
@@ -39,7 +44,6 @@ $ ->
         "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
 
   $("#search_document_category_name").select2
-    placeholder: "Catégorie"
     minimumInputLength: 2
     ajax:
       url: "/documents/categories.json"
@@ -51,6 +55,22 @@ $ ->
         return {results: data}
   $("#search_document_category_name").on "change", (e) ->
     documentsoTable.fnFilter($(@).val(), 1)
+
+  $("#search_tag").select2
+    minimumInputLength: 2
+    multiple: true
+    ajax:
+      url: "/documents/tags.json"
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        page_limit: 10
+      results: (data, page) ->
+        return {results: data}
+
+  for field in ["#search_tag", "#search_tag_condition"]
+    $(field).on "change", (e) ->
+      documentsoTable.fnFilter($("#search_tag").val(), 2)
 
   $("tfoot input").keyup ->
     documentsoTable.fnFilter(@value, $("tfoot input").index(@))
