@@ -7,6 +7,14 @@
 <% end %>
 
 <%= content_for :body do %>
+  <div class="btn-group documents-actions pull-right">
+    <%= link_to "Documents récents", refinery.documents_documents_path, class: "btn" %>
+  <% if authorised_documents_user? %>
+    <%= link_to "Nouveau document", refinery.new_documents_document_path, class: "btn" %>
+    <%= link_to "Gestion des catégories", refinery.manage_documents_categories_path, class: "btn" %>
+  <% end -%>
+  </div>
+  <div class="clearfix"></div>
   <table class="table table-condensed table-striped table-bordered display" id="documents" data-source="<%= refinery.documents_documents_url(format: :json) %>">
     <thead>
       <tr>
@@ -38,14 +46,6 @@
       </tr>
     </tfoot>
   </table>
-  <div class="btn-group documents-actions">
-    <%= link_to "Recherche multicritères", refinery.documents_documents_path, class: "btn" %>
-    <%= link_to "Documents récents", refinery.documents_documents_path, class: "btn" %>
-  <% if authorised_documents_user? %>
-    <%= link_to "Nouveau document", refinery.new_documents_document_path, class: "btn" %>
-    <%= link_to "Gestion des catégories", refinery.manage_documents_categories_path, class: "btn" %>
-  <% end -%>
-  </div>
 <% end %>
 
 <%= render '/refinery/content_page' %>
