@@ -40,6 +40,11 @@ private
     else
       projets = projets.latest
     end
+    if params[:state].present?
+      projets = projets.termines
+    else
+      projets = projets.en_cours
+    end
     projets
   end
 

@@ -19,6 +19,12 @@ $ ->
     bProcessing: true
     bServerSide: true
     sAjaxSource: $('#projets').data('source')
+    fnServerParams: (aoData) ->
+      state_param = GetURLParam('state')
+      if state_param
+        aoData.push
+          name: "state"
+          value: state_param
     oLanguage:
       "sProcessing":     "Traitement en cours..."
       "sSearch":         "Rechercher&nbsp;:"
@@ -163,3 +169,12 @@ $ ->
       width: '0'
       opacity: "0"
       , 400
+
+GetURLParam = (sParam) ->
+  sPageUrl = window.location.search.substring(1)
+  if sPageUrl
+    console.log sPageUrl
+    sURLVars = sPageUrl.split('&')
+    for i in [0..sURLVars.length]
+      sParamName = sURLVars[i].split('=')
+      return sParamName[1] if sParamName[0] is sParam

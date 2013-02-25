@@ -17,7 +17,7 @@ module Refinery
 
       alias_attribute :name, :titre
 
-      attr_accessible :email, :titre, :refinery_crpv_id, :but, :responsable, :exploitant, :date_requete, :effet, :medicament, :contexte, :design, :objectif, :objectif_sec, :champs, :debut_inclusion, :fin_inclusion, :type_inclusion, :criteres_inclusion, :criteres_non_inclusion, :retombees, :slug, :state
+      attr_accessible :email, :titre, :refinery_crpv_id, :but, :responsable, :exploitant, :date_requete, :effet, :medicament, :contexte, :design, :objectif, :objectif_sec, :champs, :debut_inclusion, :fin_inclusion, :type_inclusion, :criteres_inclusion, :criteres_non_inclusion, :retombees, :slug, :workflow_state
 
       belongs_to :crpv, class_name: "::Refinery::Crpvs::Crpv", foreign_key: :refinery_crpv_id
 
@@ -32,7 +32,7 @@ module Refinery
       end
 
       def self.latest(number = 7)
-        en_cours.limit(number)
+        limit(number)
       end
 
       def self.titre_contains(string)
@@ -43,6 +43,10 @@ module Refinery
 
       def self.en_cours
         where(workflow_state: "en_cours")
+      end
+
+      def self.termines
+        where(workflow_state: "termine")
       end
 
       workflow do

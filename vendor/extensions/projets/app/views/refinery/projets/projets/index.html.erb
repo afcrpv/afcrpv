@@ -1,4 +1,24 @@
+<%= content_for :body_content_title do %>
+  <% if params[:state] == "termine" %>
+    Projets terminés
+  <% else %>
+    Projets en cours
+  <% end -%>
+<% end %>
+
 <%= content_for :body do %>
+  <div class="btn-group projets-actions pull-right">
+    <% if params[:state].present? %>
+      <%= projets_state = nil %>
+      <%= projets_list_title = "Projets en cours" %>
+    <% else %>
+      <%= projets_state = "termine" %>
+      <%= projets_list_title = "Projets terminés" %>
+    <% end -%>
+    <%= link_to projets_list_title, refinery.projets_projets_path(state: projets_state), class: "btn" %>
+    <%= link_to "Soumettre un projet", refinery.projets_new_projet_path, class: "btn" %>
+  </div>
+  <div class="clearfix"></div>
   <table class="table table-condensed table-striped table-bordered display" id="projets" data-source="<%= refinery.projets_projets_url(format: :json) %>">
     <thead>
       <tr>
