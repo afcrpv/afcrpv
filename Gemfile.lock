@@ -318,6 +318,7 @@ GEM
       rack (>= 1.0)
       rack-test (>= 0.5.3)
     will_paginate (3.0.3)
+    workflow (0.8.7)
 
 PLATFORMS
   ruby
@@ -360,3 +361,4 @@ DEPENDENCIES
   the_sortable_tree (~> 2.3.0)
   thin
   uglifier (>= 1.0.3)
+  workflow

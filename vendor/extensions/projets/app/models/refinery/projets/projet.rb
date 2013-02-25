@@ -3,6 +3,7 @@ require 'i18n'
 module Refinery
   module Projets
     class Projet < Refinery::Core::BaseModel
+      include Workflow
       extend FriendlyId
       friendly_id :titre, use: [:slugged]
       validates :titre, :presence => true
@@ -16,7 +17,7 @@ module Refinery
 
       alias_attribute :name, :titre
 
-      attr_accessible :email, :titre, :refinery_crpv_id, :but, :responsable, :exploitant, :date_requete, :effet, :medicament, :contexte, :design, :objectif, :objectif_sec, :champs, :debut_inclusion, :fin_inclusion, :type_inclusion, :criteres_inclusion, :criteres_non_inclusion, :retombees, :slug
+      attr_accessible :email, :titre, :refinery_crpv_id, :but, :responsable, :exploitant, :date_requete, :effet, :medicament, :contexte, :design, :objectif, :objectif_sec, :champs, :debut_inclusion, :fin_inclusion, :type_inclusion, :criteres_inclusion, :criteres_non_inclusion, :retombees, :slug, :state
 
       belongs_to :crpv, class_name: "::Refinery::Crpvs::Crpv", foreign_key: :refinery_crpv_id
 
@@ -31,13 +32,26 @@ module Refinery
       end
 
       def self.latest(number = 7)
-        limit(number)
+        en_cours.limit(number)
       end
 
       def self.titre_contains(string)
         where{
           titre.like "%#{string}%"
         }
+      end
+
+      def self.en_cours
+        where(workflow_state: "en_cours")
+      end
+
+      workflow do
+        state :en_cours do
+          event :terminer, transition_to: :termine
+          event :annuler, transition_to: :annule
+        end
+        state :termine
+        state :annule
       end
     end
   end

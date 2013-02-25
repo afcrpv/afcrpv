@@ -9,8 +9,13 @@
   </div>
 
   <div class='field'>
-    <%= f.label :refinery_crpv_id -%>
+    <%= f.label :refinery_crpv_id, "CRPV" -%>
     <%= f.collection_select :refinery_crpv_id, ::Refinery::Crpvs::Crpv.order("name ASC"), :id, :name -%>
+  </div>
+
+  <div class="field">
+    <%= f.label :workflow_state, "état" -%>
+    <%= f.select :workflow_state, ::Refinery::Projets::Projet.workflow_spec.state_names -%>
   </div>
 
   <div class='field'>
