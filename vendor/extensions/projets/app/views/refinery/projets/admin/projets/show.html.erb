@@ -39,10 +39,10 @@
         <%= t('.refinery_crpv_id') %>
       </th>
       <td>
-        <%= @projet.refinery_crpv %>
+        <%= @projet.crpv %>
       </td>
     </tr>
-    <%- fields = @projet.attributes.reject {|k, v| %w[id refinery_crpv_id email created_at updated_at].include? k } %>
+    <%- fields = @projet.attributes.reject {|k, v| %w[id refinery_crpv_id created_at updated_at].include? k } %>
     <%- fields.each do |k,v| %>
       <tr>
         <th>
