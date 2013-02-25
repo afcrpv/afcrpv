@@ -38,7 +38,7 @@
         </th>
         <th>
           <input type="hidden" id="search_tag" class="input-xlarge" data-placeholder="Saisir un ou plusieurs mots clés">
-          <%= select_tag :search_tag_condition, options_for_select([["Ou", 1], ["Et", 2]]), class: "input-mini" %>
+          Combinaison : <%= select_tag :search_tag_condition, options_for_select([["Ou", 1], ["Et", 2]]), class: "input-mini" %>
         </th>
         <% 3.times do %>
           <th>&nbsp;</th>

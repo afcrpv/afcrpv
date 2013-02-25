@@ -4,7 +4,10 @@ module Refinery
       before_filter :find_page, only: [:show, :index]
 
       def index
-        @projets = Projet.order('created_at')
+        respond_to do |format|
+          format.html
+          format.json { render json: ProjetsDatatable.new(view_context)}
+        end
         present(@page)
       end
 

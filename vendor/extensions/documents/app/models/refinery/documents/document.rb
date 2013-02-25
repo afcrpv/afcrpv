@@ -18,7 +18,7 @@ module Refinery
       end
 
       def self.titre_or_category_name_or_mot_cle_contains(string)
-        Refinery::Documents::Document.joins{[document_category, taggings.tag]}.
+        joins{[document_category, taggings.tag]}.
           where{
             (titre.like "%#{string}%") |
             (document_category.name.like "%#{string}%") |

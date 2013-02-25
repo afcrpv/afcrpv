@@ -5,15 +5,49 @@ $ ->
   $.fn.select2.defaults.formatNoMatches = -> "Aucun résultat"
   $.fn.select2.defaults.formatInputTooShort = (input, min) -> "Saisir au moins #{min - input.length} charactères"
   $.fn.select2.defaults.formatSearching = -> "Recherche en cours..."
+
+  projetsoTable = $("#projets").dataTable
+    sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
+    sPaginationType: "bootstrap"
+    aaSorting: [[3, "desc"]]
+    aoColumns: [
+      {sWidth: "40%"}
+      {bSortable: false}
+      {bSortable: false}
+      {sWidth: "10%"}
+    ]
+    bProcessing: true
+    bServerSide: true
+    sAjaxSource: $('#projets').data('source')
+    oLanguage:
+      "sProcessing":     "Traitement en cours..."
+      "sSearch":         "Rechercher&nbsp;:"
+      "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments"
+      "sInfo":           "Affichage du projet _START_ &agrave; _END_ sur _TOTAL_ projets"
+      "sInfoEmpty":      "Affichage du projet 0 &agrave; 0 sur 0 projets"
+      "sInfoFiltered":   "(filtr&eacute; de _MAX_ projets au total)"
+      "sInfoPostFix":    ""
+      "sLoadingRecords": "Chargement en cours..."
+      "sZeroRecords":    "Aucun projet &agrave; afficher"
+      "sEmptyTable":     "Aucune donnée disponible dans le tableau"
+      "oPaginate":
+        "sFirst":      "Premier"
+        "sPrevious":   "Pr&eacute;c&eacute;dent"
+        "sNext":       "Suivant"
+        "sLast":       "Dernier"
+      "oAria":
+        "sSortAscending":  ": activer pour trier la colonne par ordre croissant"
+        "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+
   documentsoTable = $("#documents").dataTable
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
     sPaginationType: "bootstrap"
     aaSorting: [[3, "desc"]]
     aoColumns: [
+      {sWidth: "35%"}
       null
       {bSortable: false}
-      {bSortable: false}
-      null
+      {sWidth: "10%"}
       {bSortable: false}
       {bSortable: false}
     ]

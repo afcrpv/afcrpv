@@ -38,7 +38,7 @@ private
     documents = Refinery::Documents::Document.order("#{sort_column} #{sort_direction}")
     documents = documents.includes(:document_category, :taggings => :tag).page(page).per_page(per_page)
     if params[:sSearch].present?
-      documents = documents.titre_or_category_name_or_mot_cle_contains "%#{params[:sSearch]}%"
+      documents = documents.titre_or_category_name_or_mot_cle_contains params[:sSearch]
     elsif params[:sSearch_0].present?
       documents = documents.where{titre =~ "%#{params[:sSearch_0]}%"}
     elsif params[:sSearch_1].present?

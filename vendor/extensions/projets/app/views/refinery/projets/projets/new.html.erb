@@ -4,9 +4,10 @@
   <div class='projets'>
     <%= simple_form_for([refinery, :projets, @projet], :html => {:class => 'form-horizontal' }) do |f| %>
       <%= f.input :titre, input_html: {class: "input-xxlarge"} %>
-      <%= f.association :refinery_crpv %>
+      <%= f.association :crpv %>
       <%= f.input :but, input_html: {class: "input-xxlarge"} %>
       <%= f.input :responsable, input_html: {class: "input-xxlarge"} %>
+      <%= f.input :email, input_html: {class: "input-xxlarge"} %>
       <%= f.input :exploitant, input_html: {class: "input-xxlarge"} %>
       <%= f.input :date_requete, input_html: {class: "input-small"}, use_month_numbers: true %>
       <%= f.input :effet, input_html: {class: "input-xxlarge", rows: 2} %>

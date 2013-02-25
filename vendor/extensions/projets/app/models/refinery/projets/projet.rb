@@ -22,12 +22,22 @@ module Refinery
 
       TYPE_INCLUSION = ["date de notification", "date de survenue"]
 
-      def self.latest(number = 7)
-        limit(number)
+      def responsable_with_email
+        [responsable, email].compact.join(" - ")
       end
 
       def date
         updated_at ? updated_at.to_date : created_at.to_date
+      end
+
+      def self.latest(number = 7)
+        limit(number)
+      end
+
+      def self.titre_contains(string)
+        where{
+          titre.like "%#{string}%"
+        }
       end
     end
   end

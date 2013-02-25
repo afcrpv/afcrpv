@@ -1,11 +1,16 @@
 <%= content_for :body do %>
-  <ul id="projets">
-    <% @projets.each do |projet| %>
-      <li>
-        <%= link_to projet.titre, refinery.projets_projet_path(projet) %>
-      </li>
-    <% end %>
-  </ul>
+  <table class="table table-condensed table-striped table-bordered display" id="projets" data-source="<%= refinery.projets_projets_url(format: :json) %>">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>CRPV</th>
+        <th>Responsable</th>
+        <th>Soumis le</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 <% end %>
 
 <%= render '/refinery/content_page' %>
