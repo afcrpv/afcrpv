@@ -161,6 +161,8 @@ GEM
       paper_trail (~> 2)
     hike (1.2.1)
     humanizer (2.4.4)
+    hydra_attribute (0.4.2)
+      activerecord (~> 3.1)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-datatables-rails (1.11.2)
@@ -335,6 +337,7 @@ DEPENDENCIES
   dalli
   fog
   humanizer
+  hydra_attribute
   jquery-datatables-rails
   jquery-rails
   jquery-ui-rails
