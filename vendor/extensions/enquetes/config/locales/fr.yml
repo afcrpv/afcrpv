@@ -2,36 +2,36 @@ fr:
   refinery:
     plugins:
       enquetes:
-        title: Enquetes
+        title: Enquêtes
     enquetes:
       admin:
         enquetes:
           actions:
-            create_new: Créer un(e) nouve(au/l/lle) Enquete
-            reorder: Réordonner les Enquetes
-            reorder_done: Fin de réordonnancement des Enquetes
+            create_new: Créer une nouvelle Enquête
+            reorder: Réordonner les Enquêtes
+            reorder_done: Fin de réordonnancement des Enquêtes
           records:
-            title: Enquetes
+            title: Enquêtes
             sorry_no_results: "Désolé ! Aucun résultat."
-            no_items_yet: 'Il n''y a actuellement aucun(e) Enquete. Cliquer sur "Créer un(e) nouve(au/l/lle) Enquete" pour créer votre premi(er/ère) enquete.'
+            no_items_yet: "Il n'y a actuellement aucune Enquête. Cliquer sur 'Créer une nouvelle Enquête' pour créer votre première enquête."
           enquete:
-            view_live_html: Voir ce(t/tte) enquete <br/><em>(Ouvre une nouvelle fenêtre)</em>
-            edit: Modifier ce(t/tte) enquete
-            delete: Supprimer définitivement ce(t/tte) enquete
+            view_live_html: Voir cette enquête <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier cette enquête
+            delete: Supprimer définitivement cette enquête
       enquetes:
         show:
-          other: Autres Enquetes
+          other: Autres Enquêtes
   activerecord:
     attributes:
       'refinery/enquetes/enquete':
-        code_bnpv: Code Bnpv
+        code_bnpv: Code BNPV
         date_recueil: Date Recueil
         doublon: Doublon
         j_evenement: J Evenement
         m_evenement: M Evenement
         a_evenement: A Evenement
-        comm_evenement: Comm Evenement
-        gravite: Gravite
+        comm_evenement: Commentaire événement
+        gravite: Gravité
         evolution: Evolution
         j_evolution: J Evolution
         m_evolution: M Evolution
