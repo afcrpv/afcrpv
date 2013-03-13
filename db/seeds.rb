@@ -25,3 +25,6 @@ Refinery::News::Engine.load_seed
 
 # Added by Refinery CMS Documents extension
 Refinery::Documents::Engine.load_seed
+
+# Added by Refinery CMS Enquetes extension
+Refinery::Enquetes::Engine.load_seed

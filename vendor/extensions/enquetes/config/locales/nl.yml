@@ -1,0 +1,39 @@
+nl:
+  refinery:
+    plugins:
+      enquetes:
+        title: Enquetes
+    enquetes:
+      admin:
+        enquetes:
+          actions:
+            create_new: Maak een nieuwe Enquete
+            reorder: Wijzig de volgorde van de Enquetes
+            reorder_done: Klaar met het wijzingen van de volgorde van de Enquetes
+          records:
+            title: Enquetes
+            sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+            no_items_yet: Er zijn nog geen Enquetes. Druk op 'Maak een nieuwe Enquete' om de eerste aan te maken.
+          enquete:
+            view_live_html: Bekijk deze enquete op de website <br/><em>(opent een nieuw venster)</em>
+            edit: Bewerk deze enquete
+            delete: Verwijder deze enquete voor eeuwig
+      enquetes:
+        show:
+          other: Andere Enquetes
+  activerecord:
+    attributes:
+      'refinery/enquetes/enquete':
+        code_bnpv: Code Bnpv
+        date_recueil: Date Recueil
+        doublon: Doublon
+        j_evenement: J Evenement
+        m_evenement: M Evenement
+        a_evenement: A Evenement
+        comm_evenement: Comm Evenement
+        gravite: Gravite
+        evolution: Evolution
+        j_evolution: J Evolution
+        m_evolution: M Evolution
+        a_evolution: A Evolution
+        commentaire: Commentaire

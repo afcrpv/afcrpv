@@ -1,0 +1,39 @@
+nb:
+  refinery:
+    plugins:
+      enquetes:
+        title: Enquetes
+    enquetes:
+      admin:
+        enquetes:
+          actions:
+            create_new: Lag en ny Enquete
+            reorder: Endre rekkefølgen på Enquetes
+            reorder_done: Ferdig å endre rekkefølgen Enquetes
+          records:
+            title: Enquetes
+            sorry_no_results: Beklager! Vi fant ikke noen resultater.
+            no_items_yet: Det er ingen Enquetes enda. Klikk på "Lag en ny Enquete" for å legge til din første enquete.
+          enquete:
+            view_live_html: Vis hvordan denne enquete ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+            edit: Rediger denne enquete
+            delete: Fjern denne enquete permanent
+      enquetes:
+        show:
+          other: Andre Enquetes
+  activerecord:
+    attributes:
+      'refinery/enquetes/enquete':
+        code_bnpv: Code Bnpv
+        date_recueil: Date Recueil
+        doublon: Doublon
+        j_evenement: J Evenement
+        m_evenement: M Evenement
+        a_evenement: A Evenement
+        comm_evenement: Comm Evenement
+        gravite: Gravite
+        evolution: Evolution
+        j_evolution: J Evolution
+        m_evolution: M Evolution
+        a_evolution: A Evolution
+        commentaire: Commentaire

@@ -52,11 +52,12 @@ gem 'refinerycms-search', '~> 2.0.0', github: 'refinery/refinerycms-search', bra
 gem 'refinerycms-inquiries', '~> 2.0.0', github: 'refinery/refinerycms-inquiries', branch: '2-0-stable'
 gem 'refinerycms-memberships', git: "git://github.com/adamico/refinerycms_membership.git"
 gem 'refinerycms-settings', git: "git://github.com/refinery/refinerycms-settings.git", branch: "2-0-stable"
-gem 'refinerycms-crpvs', :path => 'vendor/extensions'
-gem 'refinerycms-projets', :path => 'vendor/extensions'
-gem 'refinerycms-documents', :path => 'vendor/extensions'
-gem 'refinerycms-news_categories', :path => 'vendor/extensions'
 gem "refinerycms-news", '~> 2.0.0', github: 'refinery/refinerycms-news', branch: '2-0-stable'
+gem 'refinerycms-crpvs', path: 'vendor/extensions'
+gem 'refinerycms-projets', path: 'vendor/extensions'
+gem 'refinerycms-documents', path: 'vendor/extensions'
+gem 'refinerycms-news_categories', path: 'vendor/extensions'
+gem 'refinerycms-enquetes', path: 'vendor/extensions'
 
 # Fog allows you to use S3 assets (added for Heroku)
 gem 'fog'
@@ -81,3 +82,4 @@ group :development do
   gem "pry-rails"
   gem "quiet_assets", ">= 1.0.1"
 end
+

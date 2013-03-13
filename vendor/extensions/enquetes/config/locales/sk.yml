@@ -1,0 +1,39 @@
+sk:
+  refinery:
+    plugins:
+      enquetes:
+        title: Enquetes
+    enquetes:
+      admin:
+        enquetes:
+          actions:
+            create_new: Pridať Enquete
+            reorder: Preusporiadať Enquetes
+            reorder_done: Koniec radenia Enquetes
+          records:
+            title: Enquetes
+            sorry_no_results: Ľutujeme, ale neboli nájdené žiadne výsledky.
+            no_items_yet: Nie sú vytvorené žiadne Enquetes. Kliknite na "Pridať Enquete" pre pridanie prvého enquete.
+          enquete:
+            view_live_html: Zobraziť náhľad enquete<br/><em>(otvorí sa v novom okne)</em>
+            edit: Upraviť enquete
+            delete: Zmazať enquete
+      enquetes:
+        show:
+          other: Daľšie Enquetes
+  activerecord:
+    attributes:
+      'refinery/enquetes/enquete':
+        code_bnpv: Code Bnpv
+        date_recueil: Date Recueil
+        doublon: Doublon
+        j_evenement: J Evenement
+        m_evenement: M Evenement
+        a_evenement: A Evenement
+        comm_evenement: Comm Evenement
+        gravite: Gravite
+        evolution: Evolution
+        j_evolution: J Evolution
+        m_evolution: M Evolution
+        a_evolution: A Evolution
+        commentaire: Commentaire
