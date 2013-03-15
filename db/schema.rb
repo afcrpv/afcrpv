@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130313125244) do
+ActiveRecord::Schema.define(:version => 20130313131809) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,18 @@ ActiveRecord::Schema.define(:version => 20130313125244) do
 
   add_index "departements", ["cp"], :name => "index_departements_on_cp"
   add_index "departements", ["name"], :name => "index_departements_on_name"
+
+  create_table "patients", :force => true do |t|
+    t.integer  "age"
+    t.integer  "poids"
+    t.integer  "taille"
+    t.integer  "imc"
+    t.integer  "refinery_enquete_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "patients", ["refinery_enquete_id"], :name => "index_patients_on_refinery_enquete_id"
 
   create_table "refinery_crpvs", :force => true do |t|
     t.string   "name"

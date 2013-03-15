@@ -82,18 +82,4 @@
     </p>
   </section>
 <% end %>
-
-<% content_for :side_body do %>
-  <aside>
-    <h2><%= t('.other') %></h2>
-    <ul id="enquetes">
-      <% @enquetes.each do |enquete| %>
-        <li>
-          <%= link_to enquete.code_bnpv, refinery.enquetes_enquete_path(enquete) %>
-        </li>
-      <% end %>
-    </ul>
-  </aside>
-<% end %>
-
 <%= render '/refinery/content_page' %>
