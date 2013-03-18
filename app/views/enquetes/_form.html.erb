@@ -9,7 +9,7 @@
     <%= pf.input :taille %>
     <%= pf.input :imc %>
   <% end -%>
-  <%= f.association :evenement, collection: type_enquete.evenements.all, prompt: "Choisir un évènement" %>
+  <%= f.association :evenement, collection: evenements, prompt: "Choisir un évènement" %>
   <%= f.input :comm_evenement %>
   <% %w(j m a).each do |prefix| %>
     <%= f.input :"#{prefix}_evenement" %>
