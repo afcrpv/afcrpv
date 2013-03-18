@@ -32,6 +32,94 @@ ActiveRecord::Schema.define(:version => 20130318081723) do
   add_index "departements", ["cp"], :name => "index_departements_on_cp"
   add_index "departements", ["name"], :name => "index_departements_on_name"
 
+  create_table "hydra_attribute_sets", :id => false, :force => true do |t|
+    t.integer "hydra_attribute_id", :null => false
+    t.integer "hydra_set_id",       :null => false
+  end
+
+  add_index "hydra_attribute_sets", ["hydra_attribute_id", "hydra_set_id"], :name => "hydra_attribute_sets_index", :unique => true
+
+  create_table "hydra_attributes", :force => true do |t|
+    t.string   "entity_type",   :limit => 32,                    :null => false
+    t.string   "name",          :limit => 32,                    :null => false
+    t.string   "backend_type",  :limit => 16,                    :null => false
+    t.string   "default_value"
+    t.boolean  "white_list",                  :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_attributes", ["entity_type", "name"], :name => "hydra_attributes_index", :unique => true
+
+  create_table "hydra_boolean_refinery_enquetes", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.boolean  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_boolean_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_boolean_refinery_enquetes_index", :unique => true
+
+  create_table "hydra_datetime_refinery_enquetes", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.datetime "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_datetime_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_datetime_refinery_enquetes_index", :unique => true
+
+  create_table "hydra_float_refinery_enquetes", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.float    "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_float_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_float_refinery_enquetes_index", :unique => true
+
+  create_table "hydra_integer_refinery_enquetes", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_integer_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_integer_refinery_enquetes_index", :unique => true
+
+  create_table "hydra_sets", :force => true do |t|
+    t.string   "entity_type", :limit => 32, :null => false
+    t.string   "name",        :limit => 32, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_sets", ["entity_type", "name"], :name => "hydra_sets_index", :unique => true
+
+  create_table "hydra_string_refinery_enquetes", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_string_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_string_refinery_enquetes_index", :unique => true
+
+  create_table "hydra_text_refinery_enquetes", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_text_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_text_refinery_enquetes_index", :unique => true
+
   create_table "patients", :force => true do |t|
     t.integer  "age"
     t.integer  "poids"
@@ -98,7 +186,10 @@ ActiveRecord::Schema.define(:version => 20130318081723) do
     t.integer  "position"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "hydra_set_id"
   end
+
+  add_index "refinery_enquetes", ["hydra_set_id"], :name => "refinery_enquetes_hydra_set_id_index"
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"

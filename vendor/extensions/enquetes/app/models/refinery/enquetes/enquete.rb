@@ -3,6 +3,7 @@ module Refinery
   module Enquetes
     class Enquete < Refinery::Core::BaseModel
       self.table_name = 'refinery_enquetes'
+      include HydraAttribute::ActiveRecord
 
       attr_accessible :code_bnpv, :date_recueil, :doublon, :j_evenement, :m_evenement, :a_evenement, :comm_evenement, :gravite, :evolution, :commentaire, :position, :patient_attributes
 
