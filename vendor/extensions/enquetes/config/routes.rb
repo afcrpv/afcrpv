@@ -1,8 +1,8 @@
 Refinery::Core::Engine.routes.append do
 
   # Frontend routes
-  namespace :enquetes do
-    resources :enquetes, :path => '', :only => [:index, :show]
+  namespace :enquetes, :path => '' do
+    resources :enquetes, except: [:destroy]
   end
 
   # Admin routes

@@ -58,42 +58,10 @@
     </p>
   </section>
   <section>
-    <h1>J Evolution</h1>
-    <p>
-      <%=raw @enquete.j_evolution %>
-    </p>
-  </section>
-  <section>
-    <h1>M Evolution</h1>
-    <p>
-      <%=raw @enquete.m_evolution %>
-    </p>
-  </section>
-  <section>
-    <h1>A Evolution</h1>
-    <p>
-      <%=raw @enquete.a_evolution %>
-    </p>
-  </section>
-  <section>
     <h1>Commentaire</h1>
     <p>
       <%=raw @enquete.commentaire %>
     </p>
   </section>
 <% end %>
-
-<% content_for :side_body do %>
-  <aside>
-    <h2><%= t('.other') %></h2>
-    <ul id="enquetes">
-      <% @enquetes.each do |enquete| %>
-        <li>
-          <%= link_to enquete.code_bnpv, refinery.enquetes_enquete_path(enquete) %>
-        </li>
-      <% end %>
-    </ul>
-  </aside>
-<% end %>
-
 <%= render '/refinery/content_page' %>

@@ -1,9 +1,9 @@
 <%= content_for :body_content_title do %>
-  Nouveau document
+  Nouvelle enquête
 <% end -%>
 
 <%= content_for :body do %>
-  <%= render 'form', document: @document, categories: @categories %>
+  <%= render 'form', enquete: @enquete %>
 <% end %>
 
 <%= render "/refinery/content_page" %>

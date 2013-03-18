@@ -1,0 +1,22 @@
+<%= simple_form_for([refinery, :enquetes, enquete], html: {class: "form-vertical"}) do |f| %>
+  <%= f.input :code_bnpv %>
+  <%= f.input :date_recueil %>
+  <%= f.input :doublon %>
+  <%= f.simple_fields_for :patient do |pf| %>
+    <%= pf.input :age %>
+    <%= pf.input :poids %>
+    <%= pf.input :taille %>
+    <%= pf.input :imc %>
+  <% end -%>
+  <%# evenement association fields %>
+  <%= f.input :comm_evenement %>
+  <% %w(j m a).each do |prefix| %>
+    <%= f.input :"#{prefix}_evenement" %>
+  <% end -%>
+  <%= f.input :gravite, as: :radio_buttons, collection: Refinery::Enquetes::Enquete::GRAVITE %>
+  <%= f.input :evolution, as: :radio_buttons, collection: Refinery::Enquetes::Enquete::EVOLUTION %>
+  <%= f.input :commentaire %>
+  <div class="form-actions">
+    <%= f.button :submit, "Enregistrer" %>
+  </div>
+<% end -%>
