@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318133112) do
+ActiveRecord::Schema.define(:version => 20130318144229) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -203,13 +203,15 @@ ActiveRecord::Schema.define(:version => 20130318133112) do
     t.string   "evolution"
     t.text     "commentaire"
     t.integer  "position"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "hydra_set_id"
     t.integer  "evenement_id"
+    t.integer  "refinery_crpv_id"
   end
 
   add_index "refinery_enquetes", ["hydra_set_id"], :name => "refinery_enquetes_hydra_set_id_index"
+  add_index "refinery_enquetes", ["refinery_crpv_id"], :name => "index_refinery_enquetes_on_refinery_crpv_id"
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
