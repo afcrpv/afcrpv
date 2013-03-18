@@ -1,4 +1,4 @@
-<%= simple_form_for([refinery, :enquetes, enquete], html: {class: "form-vertical"}) do |f| %>
+<%= simple_form_for(enquete, html: {class: "form-vertical"}) do |f| %>
   <%= f.input :code_bnpv %>
   <%= f.input :date_recueil %>
   <%= f.input :doublon %>
