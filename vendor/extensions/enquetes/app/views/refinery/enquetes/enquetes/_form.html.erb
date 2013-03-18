@@ -15,9 +15,6 @@
   <% end -%>
   <%= f.input :gravite, as: :radio_buttons, collection: Refinery::Enquetes::Enquete::GRAVITE %>
   <%= f.input :evolution, as: :radio_buttons, collection: Refinery::Enquetes::Enquete::EVOLUTION %>
-  <% %w(j m a).each do |prefix| %>
-    <%= f.input :"#{prefix}_evolution" %>
-  <% end -%>
   <%= f.input :commentaire %>
   <div class="form-actions">
     <%= f.button :submit, "Enregistrer" %>

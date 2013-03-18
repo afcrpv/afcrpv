@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130313131809) do
+ActiveRecord::Schema.define(:version => 20130318081723) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -94,9 +94,6 @@ ActiveRecord::Schema.define(:version => 20130313131809) do
     t.text     "comm_evenement"
     t.string   "gravite"
     t.string   "evolution"
-    t.integer  "j_evolution"
-    t.integer  "m_evolution"
-    t.integer  "a_evolution"
     t.text     "commentaire"
     t.integer  "position"
     t.datetime "created_at",     :null => false
