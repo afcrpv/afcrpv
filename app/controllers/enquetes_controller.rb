@@ -28,6 +28,7 @@ class EnquetesController < ApplicationController
 
   def edit
     @enquete = Enquete.find(params[:id])
+    redirect_to enquetes_path, notice: "Vous ne pouvez pas modifier cette enquête." unless @enquete.crpv == current_refinery_user.refinery_crpv
   end
 
   def update
