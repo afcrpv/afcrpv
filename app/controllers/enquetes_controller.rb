@@ -2,6 +2,7 @@
 class EnquetesController < ApplicationController
   before_filter :find_all_enquetes, only: [:index]
   before_filter :redirect_unless_connected
+  helper_method :type_enquete
 
   def index
   end
@@ -36,5 +37,9 @@ class EnquetesController < ApplicationController
 
   def redirect_unless_connected
     redirect_to "/members/login?member_login=true&redirect=#{request.fullpath}", notice: "Veuillez vous connecter pour accéder à cette page." unless current_refinery_user
+  end
+
+  def type_enquete
+    @type_enquete ||= params[:id] ? @enquete.type_enquete : TypeEnquete.find(params[:hydra_set_id])
   end
 end

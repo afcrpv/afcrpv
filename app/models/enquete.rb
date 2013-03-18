@@ -9,6 +9,7 @@ class Enquete < ActiveRecord::Base
 
   has_one :patient, foreign_key: :refinery_enquete_id
   belongs_to :evenement
+  belongs_to :type_enquete
 
   accepts_nested_attributes_for :patient, reject_if: :all_blank
 
