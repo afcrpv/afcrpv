@@ -9,6 +9,10 @@ class Evenement < ActiveRecord::Base
     {id: name, text: name}
   end
 
+  def to_s
+    name
+  end
+
   def self.named_like(query)
     where("LOWER(name) like ?", "%#{query}%")
   end
