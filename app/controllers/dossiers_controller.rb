@@ -16,7 +16,7 @@ class DossiersController < ApplicationController
   def create
     @dossier = Dossier.new(params[:dossier])
     if @dossier.save
-      redirect_to type_enquetes_path(@dossier.type_enquete), succes: "L'enquête a été créée avec succès."
+      redirect_to type_enquete_path(id: @dossier.hydra_set_id), succes: "L'enquête a été créée avec succès."
     else
       render :new
     end
@@ -24,13 +24,13 @@ class DossiersController < ApplicationController
 
   def edit
     @dossier = Dossier.find(params[:id])
-    redirect_to type_enquetes_path(@dossier.type_enquete), notice: "Vous ne pouvez pas modifier cette enquête." unless user_crpv_owns_dossier? or current_refinery_user.is_admin?
+    redirect_to type_enquetes_path(id: @dossier.hydra_set_id), notice: "Vous ne pouvez pas modifier cette enquête." unless user_crpv_owns_dossier? or current_refinery_user.is_admin?
   end
 
   def update
     @dossier = Dossier.find(params[:id])
     if @dossier.update_attributes(params[:dossier])
-      redirect_to type_enquetes_path(@dossier.type_enquete), notice: "Enquête : #{@dossier.code_bnpv} mise à jour avec succès."
+      redirect_to type_enquete_path(id: @dossier.hydra_set_id), notice: "Enquête : #{@dossier.code_bnpv} mise à jour avec succès."
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class DossiersController < ApplicationController
   def destroy
     @dossier = Dossier.find(params[:id])
     @dossier.destroy
-    redirect_to type_enquetes_path(@dossier.type_enquete), notice: "Enquête : #{@dossier.code_bnpv} détruite avec succès."
+    redirect_to type_enquete_path(id: @dossier.hydra_set_id), notice: "Enquête : #{@dossier.code_bnpv} détruite avec succès."
   end
 
   protected
