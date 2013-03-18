@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318105028) do
+ActiveRecord::Schema.define(:version => 20130318081723) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -31,14 +31,6 @@ ActiveRecord::Schema.define(:version => 20130318105028) do
 
   add_index "departements", ["cp"], :name => "index_departements_on_cp"
   add_index "departements", ["name"], :name => "index_departements_on_name"
-
-  create_table "evenements", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "evenements", ["name"], :name => "index_evenements_on_name"
 
   create_table "hydra_attribute_sets", :id => false, :force => true do |t|
     t.integer "hydra_attribute_id", :null => false

@@ -1,0 +1,13 @@
+<%= simple_form_for @type_enquete, html: {class: "form-vertical"} do |f| %>
+  <%= f.hidden_field :entity_type %>
+  <%= f.input :name, input_html: {class: "input-xxlarge", placeholder: "Nom"} %>
+  <div class="control-group">
+    <%= f.label :evenement_list, "Evènements", class: "control-label" %>
+    <div class="controls">
+      <%= f.hidden_field :evenement_list, class: "input-xxlarge", data: {placeholder: "mots séparés par virgule"} %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, "Sauvegarder" %>
+  </div>
+<% end -%>

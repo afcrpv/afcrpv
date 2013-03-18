@@ -4,11 +4,27 @@
 
 <div id="body">
   <% if @type_enquetes.any? %>
-    <ul>
+    <table class="table table-condensed table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Evènements</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
       <% @type_enquetes.each do |type_enquete| %>
-        <li><%= type_enquete.name %></li>
+        <tr>
+          <td><%= type_enquete.name %></td>
+          <td><%= type_enquete.evenement_list %></td>
+          <td>
+            <%= link_to content_tag(:i, nil, class: "icon-pencil"), edit_type_enquete_path(type_enquete) %>
+            <%= link_to content_tag(:i, nil, class: "icon-trash"), type_enquete, data: {confirm: "Etes-vous sûr ?"}, method: :delete %>
+          </td>
+        </tr>
       <% end -%>
-    </ul>
+      </tbody>
+    </table>
   <% else %>
     <p>Aucun type d'enquête.</p>
   <% end -%>

@@ -1,9 +1,7 @@
 #encoding: utf-8
 class EnquetesController < ApplicationController
   before_filter :find_all_enquetes, only: [:index]
-  before_filter :redirect_or_render
-
-  helper_method :authorised_documents_user?
+  before_filter :redirect_unless_connected
 
   def index
   end
@@ -36,7 +34,7 @@ class EnquetesController < ApplicationController
     @enquetes = Enquete.order('position ASC')
   end
 
-  def redirect_or_render
-    redirect_to "/members/login?member_login=true&redirect=#{request.fullpath}" unless current_refinery_user
+  def redirect_unless_connected
+    redirect_to "/members/login?member_login=true&redirect=#{request.fullpath}", notice: "Veuillez vous connecter pour accéder à cette page." unless current_refinery_user
   end
 end
