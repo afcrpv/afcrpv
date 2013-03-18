@@ -1,4 +1,4 @@
 class Patient < ActiveRecord::Base
-  belongs_to :refinery_enquete
-  attr_accessible :age, :imc, :poids, :taille, :refinery_enquete_id
+  belongs_to :dossier
+  attr_accessible :age, :imc, :poids, :taille, :dossier_id
 end

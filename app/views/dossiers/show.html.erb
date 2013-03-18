@@ -1,67 +1,66 @@
-<% content_for :body_content_title do %>
-  <%= @enquete.code_bnpv %>
-<% end %>
+<div id="body_content_title"</div>
+  <%= @dossier.code_bnpv %>
+</div>
 
-<% content_for :body do %>
+<div id="body">
   <section>
     <h1>Code Bnpv</h1>
     <p>
-      <%=raw @enquete.code_bnpv %>
+      <%=raw @dossier.code_bnpv %>
     </p>
   </section>
   <section>
     <h1>Date Recueil</h1>
     <p>
-      <%=raw @enquete.date_recueil %>
+      <%=raw @dossier.date_recueil %>
     </p>
   </section>
   <section>
     <h1>Doublon</h1>
     <p>
-      <%=raw @enquete.doublon %>
+      <%=raw @dossier.doublon %>
     </p>
   </section>
   <section>
     <h1>J Evenement</h1>
     <p>
-      <%=raw @enquete.j_evenement %>
+      <%=raw @dossier.j_evenement %>
     </p>
   </section>
   <section>
     <h1>M Evenement</h1>
     <p>
-      <%=raw @enquete.m_evenement %>
+      <%=raw @dossier.m_evenement %>
     </p>
   </section>
   <section>
     <h1>A Evenement</h1>
     <p>
-      <%=raw @enquete.a_evenement %>
+      <%=raw @dossier.a_evenement %>
     </p>
   </section>
   <section>
     <h1>Comm Evenement</h1>
     <p>
-      <%=raw @enquete.comm_evenement %>
+      <%=raw @dossier.comm_evenement %>
     </p>
   </section>
   <section>
     <h1>Gravite</h1>
     <p>
-      <%=raw @enquete.gravite %>
+      <%=raw @dossier.gravite %>
     </p>
   </section>
   <section>
     <h1>Evolution</h1>
     <p>
-      <%=raw @enquete.evolution %>
+      <%=raw @dossier.evolution %>
     </p>
   </section>
   <section>
     <h1>Commentaire</h1>
     <p>
-      <%=raw @enquete.commentaire %>
+      <%=raw @dossier.commentaire %>
     </p>
   </section>
-<% end %>
-<%= render '/refinery/content_page' %>
+</div>

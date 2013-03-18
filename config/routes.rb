@@ -11,7 +11,7 @@ Afcrpv::Application.routes.draw do
   resources :evenements
   get "/enquetes", to: "type_enquetes#index", as: :enquetes
   get "/enquetes/:id", to: "type_enquetes#show", as: :enquete
-  resources :enquetes, except: :index
+  resources :dossiers, except: :index
   resources :type_enquetes
 
   # This line mounts Refinery's routes at the root of your application.

@@ -9,11 +9,11 @@ class TypeEnquetesController < ApplicationController
 
   def show
     @type_enquete = TypeEnquete.find(params[:id])
-    @enquetes = @type_enquete.enquetes.all
+    @dossiers = @type_enquete.dossiers.all
   end
 
   def new
-    @type_enquete = TypeEnquete.new(entity_type: "Enquete")
+    @type_enquete = TypeEnquete.new(entity_type: "Dossier")
   end
 
   def create

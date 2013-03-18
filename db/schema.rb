@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318144229) do
+ActiveRecord::Schema.define(:version => 20130318161250) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,28 @@ ActiveRecord::Schema.define(:version => 20130318144229) do
 
   add_index "departements", ["cp"], :name => "index_departements_on_cp"
   add_index "departements", ["name"], :name => "index_departements_on_name"
+
+  create_table "dossiers", :force => true do |t|
+    t.string   "code_bnpv"
+    t.date     "date_recueil"
+    t.boolean  "doublon"
+    t.integer  "j_evenement"
+    t.integer  "m_evenement"
+    t.integer  "a_evenement"
+    t.text     "comm_evenement"
+    t.string   "gravite"
+    t.string   "evolution"
+    t.text     "commentaire"
+    t.integer  "position"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "hydra_set_id"
+    t.integer  "evenement_id"
+    t.integer  "refinery_crpv_id"
+  end
+
+  add_index "dossiers", ["hydra_set_id"], :name => "refinery_enquetes_hydra_set_id_index"
+  add_index "dossiers", ["refinery_crpv_id"], :name => "index_refinery_enquetes_on_refinery_crpv_id"
 
   create_table "evenement_choices", :force => true do |t|
     t.integer  "type_enquete_id"
@@ -144,12 +166,12 @@ ActiveRecord::Schema.define(:version => 20130318144229) do
     t.integer  "poids"
     t.integer  "taille"
     t.integer  "imc"
-    t.integer  "refinery_enquete_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.integer  "dossier_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "patients", ["refinery_enquete_id"], :name => "index_patients_on_refinery_enquete_id"
+  add_index "patients", ["dossier_id"], :name => "index_patients_on_refinery_enquete_id"
 
   create_table "refinery_crpvs", :force => true do |t|
     t.string   "name"
@@ -190,28 +212,6 @@ ActiveRecord::Schema.define(:version => 20130318144229) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "refinery_enquetes", :force => true do |t|
-    t.string   "code_bnpv"
-    t.date     "date_recueil"
-    t.boolean  "doublon"
-    t.integer  "j_evenement"
-    t.integer  "m_evenement"
-    t.integer  "a_evenement"
-    t.text     "comm_evenement"
-    t.string   "gravite"
-    t.string   "evolution"
-    t.text     "commentaire"
-    t.integer  "position"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.integer  "hydra_set_id"
-    t.integer  "evenement_id"
-    t.integer  "refinery_crpv_id"
-  end
-
-  add_index "refinery_enquetes", ["hydra_set_id"], :name => "refinery_enquetes_hydra_set_id_index"
-  add_index "refinery_enquetes", ["refinery_crpv_id"], :name => "index_refinery_enquetes_on_refinery_crpv_id"
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
