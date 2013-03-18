@@ -113,9 +113,23 @@ $ ->
       dataType: "json"
       data: (term, page) ->
         q: term
+        context: "mots_cles"
         page_limit: 10
       results: (data, page) ->
         return {results: data}
+
+  $("#type_enquete_evenement_list").select2
+    tags: true
+    ajax:
+      url: "/type_enquetes/tags.json"
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        context: "evenements_list"
+        page_limit: 10
+      results: (data, page) ->
+        return {results: data}
+    tokenSeparators: [","]
 
   $("#document_mots_cle_list").select2
     tags: true
@@ -124,6 +138,7 @@ $ ->
       dataType: "json"
       data: (term, page) ->
         q: term
+        context: "mots_cles"
         page_limit: 10
       results: (data, page) ->
         return {results: data}

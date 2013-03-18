@@ -9,8 +9,14 @@ Refinery::Core::Engine.routes.prepend do
 end
 Afcrpv::Application.routes.draw do
 
+  resources :evenements
+
   resources :enquetes, except: [:destroy]
-  resources :type_enquetes
+  resources :type_enquetes do
+    collection do
+      get :tags
+    end
+  end
 
   # This line mounts Refinery's routes at the root of your application.
   # This means, any requests to the root URL of your application will go to Refinery::PagesController#home.

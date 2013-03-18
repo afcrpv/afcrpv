@@ -11,7 +11,7 @@ module Refinery
       helper_method :authorised_documents_user?
 
       def tags
-        @tags = ActsAsTaggableOn::Tag.named_like(params[:q])
+        @tags = ActsAsTaggableOn::Tag.joins(:taggings).where("taggings.context = ?", params[:context]).named_like(params[:q])
         respond_to do |format|
           format.json do
             tag_list = @tags.any? ? @tags.map(&:name_and_id) : [{id: params[:q], text: params[:q]}]

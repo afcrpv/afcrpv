@@ -13,7 +13,7 @@ class EnquetesController < ApplicationController
   end
 
   def new
-    @enquete = Enquete.new
+    @enquete = Enquete.new(hydra_set_id: params[:hydra_set_id])
     @enquete.build_patient
   end
 
