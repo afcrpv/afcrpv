@@ -9,7 +9,7 @@ Refinery::Core::Engine.routes.prepend do
 end
 Afcrpv::Application.routes.draw do
   resources :evenements
-  resources :enquetes, except: [:destroy]
+  resources :enquetes
   resources :type_enquetes
 
   # This line mounts Refinery's routes at the root of your application.
