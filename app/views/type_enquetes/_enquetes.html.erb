@@ -1,0 +1,25 @@
+<% if @enquetes.any? %>
+  <table class="table table-condensed table-striped table-bordered" id="enquetes">
+    <thead>
+      <tr>
+        <th>N° Cas BNPV</th>
+        <th>Evènement</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @enquetes.each do |enquete| %>
+        <tr>
+          <td><%= link_to enquete.code_bnpv, enquete %></td>
+          <td><%= enquete.evenement %></td>
+          <td>
+            <%= link_to content_tag(:i, nil, class: "icon-pencil"), edit_enquete_path(enquete) %>
+            <%= link_to content_tag(:i, nil, class: "icon-trash"), enquete, data: {confirm: "Etes-vous sûr ?"}, method: :delete if authorised_enquetes_user? %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  Aucun cas.
+<% end -%>

@@ -1,5 +1,6 @@
 class TypeEnquete < HydraAttribute::HydraSet
   attr_accessible :entity_type, :evenement_list
+  has_many :enquetes, foreign_key: :hydra_set_id
   has_many :evenement_choices
   has_many :evenements, through: :evenement_choices, dependent: :destroy
 

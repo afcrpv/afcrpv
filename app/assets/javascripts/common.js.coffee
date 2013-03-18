@@ -118,6 +118,10 @@ $ ->
       results: (data, page) ->
         return {results: data}
 
+  $("#enquete-show-cas").on "click", ->
+    id = $("#hydra_set_id").val()
+    window.location = "/enquetes/#{id}"
+
   $("#type_enquete_evenement_list").select2
     multiple: true
     ajax:

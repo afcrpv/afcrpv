@@ -1,9 +1,15 @@
 #encoding: utf-8
 class TypeEnquetesController < ApplicationController
-  before_filter :redirect_unless_connected_and_authorized
+  before_filter :redirect_unless_connected_and_authorized, except: [:show, :index]
+  helper_method :authorised_enquetes_user?
 
   def index
     @type_enquetes = TypeEnquete.all
+  end
+
+  def show
+    @type_enquete = TypeEnquete.find(params[:id])
+    @enquetes = @type_enquete.enquetes.all
   end
 
   def new
@@ -41,6 +47,10 @@ class TypeEnquetesController < ApplicationController
   protected
 
   def redirect_unless_connected_and_authorized
-    redirect_to "/intranet", notice: "Vous n'êtes pas autorisé à voir cette page !" unless current_refinery_user && (current_refinery_user.has_role?('enquetes') or current_refinery_user.is_admin?)
+    redirect_to "/intranet", notice: "Vous n'êtes pas autorisé à voir cette page !" unless authorised_enquetes_user?
+  end
+
+  def authorised_enquetes_user?
+    current_refinery_user && (current_refinery_user.has_role?('enquetes') or current_refinery_user.is_admin?)
   end
 end

@@ -1,5 +1,5 @@
 <div id="body_content_title">
-  <h1>Type d'enquêtes</h1>
+  <h1>Listing des enquêtes en cours</h1>
 </div>
 
 <div id="body">
@@ -26,7 +26,20 @@
       </tbody>
     </table>
   <% else %>
-    <p>Aucun type d'enquête.</p>
+    <p>Aucune enquête en cours. <%= link_to "Voir les enquêtes terminées", "#", class: "btn" %></p>
   <% end -%>
-  <p><%= link_to "Nouveau type d'enquête", new_type_enquete_path, class: "btn" %></p>
+
+  <%= form_tag new_enquete_path, method: :get, html: {class: "form-inline"} do %>
+    <div class="input-append">
+      <%= select_tag :hydra_set_id, options_from_collection_for_select(TypeEnquete.all, :id, :name), class: "input-xlarge" %>
+      <%= submit_tag "Nouveau cas", name: nil, class: "btn" %>
+      <button class="btn" type="button" id="enquete-show-cas">Liste des cas</button>
+    </div>
+  <% end -%>
+
+  <div class="admin-enquetes btn-group">
+    <%= link_to "Nouvelle enquête", new_type_enquete_path, class: "btn" %>
+    <%= link_to "Gestion des effets", evenements_path, class: "btn" %>
+    <%= link_to "Gestion des médicaments", "#", class: "btn" %>
+  </div>
 </div>
