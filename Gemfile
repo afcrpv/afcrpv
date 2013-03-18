@@ -57,7 +57,6 @@ gem 'refinerycms-crpvs', path: 'vendor/extensions'
 gem 'refinerycms-projets', path: 'vendor/extensions'
 gem 'refinerycms-documents', path: 'vendor/extensions'
 gem 'refinerycms-news_categories', path: 'vendor/extensions'
-gem 'refinerycms-enquetes', path: 'vendor/extensions'
 gem 'hydra_attribute'
 
 # Fog allows you to use S3 assets (added for Heroku)

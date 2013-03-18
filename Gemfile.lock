@@ -60,8 +60,6 @@ PATH
       refinerycms-core (~> 2.0.5)
     refinerycms-documents (1.0)
       refinerycms-core (~> 2.0.9)
-    refinerycms-enquetes (1.0)
-      refinerycms-core (~> 2.0.9)
     refinerycms-news_categories (1.0)
       refinerycms-core (~> 2.0.9)
     refinerycms-projets (1.0)
@@ -350,7 +348,6 @@ DEPENDENCIES
   refinerycms (~> 2.0.9)
   refinerycms-crpvs!
   refinerycms-documents!
-  refinerycms-enquetes!
   refinerycms-i18n (~> 2.0.0)
   refinerycms-inquiries (~> 2.0.0)!
   refinerycms-memberships!
