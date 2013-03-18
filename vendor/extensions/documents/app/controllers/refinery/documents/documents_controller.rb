@@ -6,6 +6,8 @@ module Refinery
       before_filter :find_all_categories, only: [:new, :edit, :create, :update]
       before_filter :find_page
       before_filter :edit_document_or_redirect, only: [:new, :edit]
+      before_filter :redirect_or_render
+
       helper_method :authorised_documents_user?
 
       def tags
@@ -88,6 +90,11 @@ module Refinery
         else
           redirect_to refinery.documents_documents_path, notice: "Vous n'êtes pas autorisé à voir cette page !"
         end
+      end
+
+
+      def redirect_or_render
+        redirect_to "/members/login?member_login=true&redirect=#{request.fullpath}" unless current_refinery_user
       end
 
     end
