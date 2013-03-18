@@ -1,0 +1,16 @@
+<div id="body_content_title">
+  <h1>Type d'enquêtes</h1>
+</div>
+
+<div id="body">
+  <% if @type_enquetes.any? %>
+    <ul>
+      <% @type_enquetes.each do |type_enquete| %>
+        <li><%= type_enquete.name %></li>
+      <% end -%>
+    </ul>
+  <% else %>
+    <p>Aucun type d'enquête.</p>
+  <% end -%>
+  <p><%= link_to "Nouveau type d'enquête", new_type_enquete_path, class: "btn" %></p>
+</div>

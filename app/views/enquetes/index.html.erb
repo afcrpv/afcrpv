@@ -1,6 +1,7 @@
 <div id="body_content_title">
   <h1>Liste des enquêtes</h1>
 </div>
+
 <div id="body">
   <% if @enquetes.any? %>
     <ul id="enquetes">
@@ -12,5 +13,11 @@
     </ul>
   <% else %>
     Aucune enquête.
+  <% end -%>
+  <%= form_tag new_enquete_path, method: :get do %>
+    <div class="input-append">
+      <%= select_tag :hydra_set_id, options_from_collection_for_select(HydraAttribute::HydraSet.all, :id, :name) %>
+      <%= submit_tag "Nouvelle enquête", name: nil, class: "btn" %>
+    </div>
   <% end -%>
 </div>
