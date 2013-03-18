@@ -2,11 +2,10 @@
 module Refinery
   module Documents
     class DocumentsController < ::ApplicationController
-
       before_filter :find_all_categories, only: [:new, :edit, :create, :update]
       before_filter :find_page
       before_filter :edit_document_or_redirect, only: [:new, :edit]
-      before_filter :redirect_or_render
+      before_filter :redirect_unless_connected
 
       helper_method :authorised_documents_user?
 
@@ -92,11 +91,9 @@ module Refinery
         end
       end
 
-
-      def redirect_or_render
-        redirect_to "/members/login?member_login=true&redirect=#{request.fullpath}" unless current_refinery_user
+      def redirect_unless_connected
+        redirect_to "/members/login?member_login=true&redirect=#{request.fullpath}", notice: "Veuillez vous connecter pour accéder à cette page." unless current_refinery_user
       end
-
     end
   end
 end
