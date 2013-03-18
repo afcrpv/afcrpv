@@ -2,16 +2,6 @@
 class TypeEnquetesController < ApplicationController
   before_filter :redirect_unless_connected_and_authorized
 
-  def tags
-    @tags = ActsAsTaggableOn::Tag.joins(:taggings).where("taggings.context = ?", params[:context]).named_like(params[:q])
-    respond_to do |format|
-      format.json do
-        tag_list = @tags.any? ? @tags.map(&:name_and_id) : [{id: params[:q], text: params[:q]}]
-        render json: tag_list
-      end
-    end
-  end
-
   def index
     @type_enquetes = TypeEnquete.all
   end

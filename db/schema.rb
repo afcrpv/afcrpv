@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318081723) do
+ActiveRecord::Schema.define(:version => 20130318133112) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,25 @@ ActiveRecord::Schema.define(:version => 20130318081723) do
 
   add_index "departements", ["cp"], :name => "index_departements_on_cp"
   add_index "departements", ["name"], :name => "index_departements_on_name"
+
+  create_table "evenement_choices", :force => true do |t|
+    t.integer  "type_enquete_id"
+    t.integer  "evenement_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "evenement_choices", ["evenement_id"], :name => "index_evenement_choices_on_evenement_id"
+  add_index "evenement_choices", ["type_enquete_id"], :name => "index_evenement_choices_on_type_enquete_id"
+
+  create_table "evenements", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "type_enquete_id"
+  end
+
+  add_index "evenements", ["name"], :name => "index_evenements_on_name"
 
   create_table "hydra_attribute_sets", :id => false, :force => true do |t|
     t.integer "hydra_attribute_id", :null => false
@@ -187,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20130318081723) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "hydra_set_id"
+    t.integer  "evenement_id"
   end
 
   add_index "refinery_enquetes", ["hydra_set_id"], :name => "refinery_enquetes_hydra_set_id_index"

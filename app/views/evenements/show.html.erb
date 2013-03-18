@@ -1,0 +1,6 @@
+<%= show_for @evenement do |s| %>
+  <%= s.attribute :name %>
+<% end %>
+
+<%= link_to 'Edit', edit_evenement_path(@evenement) %> |
+<%= link_to 'Back', evenements_path %>

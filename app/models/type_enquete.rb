@@ -1,6 +1,15 @@
 class TypeEnquete < HydraAttribute::HydraSet
-  attr_accessible :evenement_list, :entity_type
+  attr_accessible :entity_type, :evenement_list
+  has_many :evenement_choices
+  has_many :evenements, through: :evenement_choices, dependent: :destroy
 
-  acts_as_ordered_taggable
-  acts_as_ordered_taggable_on :evenements
+  def evenement_list
+    evenements.map(&:name).join(", ")
+  end
+
+  def evenement_list=(names)
+    self.evenements = names.split(",").map do |name|
+      Evenement.where(name: name.strip).first_or_create!
+    end
+  end
 end
