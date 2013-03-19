@@ -3,7 +3,6 @@
 <table class="table table-condensed table-hovered table-bordered">
   <tr>
     <th>Nom</th>
-    <th>Type</th>
     <th>Classe</th>
     <th>Forme</th>
     <th></th>
@@ -14,7 +13,6 @@
 <% @medicaments.each do |medicament| %>
   <tr>
     <td><%= medicament.name %></td>
-    <td><%= medicament.type %></td>
     <td><%= medicament.classe %></td>
     <td><%= medicament.forme %></td>
     <td><%= link_to 'Voir', medicament %></td>
