@@ -1,4 +1,9 @@
+#encoding: utf-8
 class EvenementsController < ApplicationController
+  before_filter :redirect_unless_authorized, except: [:index]
+  before_filter :redirect_unless_connected
+  helper_method :authorised_enquetes_user?
+
   # GET /evenements
   # GET /evenements.json
   def index
@@ -81,5 +86,19 @@ class EvenementsController < ApplicationController
       format.html { redirect_to evenements_url }
       format.json { head :no_content }
     end
+  end
+
+  protected
+
+  def redirect_unless_authorized
+    redirect_to "/intranet", notice: "Vous n'êtes pas autorisé à voir cette page !" unless authorised_enquetes_user?
+  end
+
+  def redirect_unless_connected
+    redirect_to "/members/login?member_login=true&redirect=#{request.fullpath}", notice: "Veuillez vous connecter pour accéder à cette page." unless current_refinery_user
+  end
+
+  def authorised_enquetes_user?
+    current_refinery_user && (current_refinery_user.has_role?('enquetes') or current_refinery_user.is_admin?)
   end
 end

@@ -1,6 +1,7 @@
 #encoding: utf-8
 class EnquetesController < ApplicationController
-  before_filter :redirect_unless_connected_and_authorized, except: [:show, :index]
+  before_filter :redirect_unless_authorized, except: [:show, :index]
+  before_filter :redirect_unless_connected
   helper_method :authorised_enquetes_user?
 
   def index
@@ -46,8 +47,12 @@ class EnquetesController < ApplicationController
 
   protected
 
-  def redirect_unless_connected_and_authorized
+  def redirect_unless_authorized
     redirect_to "/intranet", notice: "Vous n'êtes pas autorisé à voir cette page !" unless authorised_enquetes_user?
+  end
+
+  def redirect_unless_connected
+    redirect_to "/members/login?member_login=true&redirect=#{request.fullpath}", notice: "Veuillez vous connecter pour accéder à cette page." unless current_refinery_user
   end
 
   def authorised_enquetes_user?

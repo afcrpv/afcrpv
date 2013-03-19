@@ -1,8 +1,8 @@
 <h1>Listing medicaments</h1>
 
-<table>
+<table class="table table-condensed table-hovered table-bordered">
   <tr>
-    <th>Name</th>
+    <th>Nom</th>
     <th>Type</th>
     <th>Classe</th>
     <th>Forme</th>
@@ -17,13 +17,16 @@
     <td><%= medicament.type %></td>
     <td><%= medicament.classe %></td>
     <td><%= medicament.forme %></td>
-    <td><%= link_to 'Show', medicament %></td>
-    <td><%= link_to 'Edit', edit_medicament_path(medicament) %></td>
-    <td><%= link_to 'Destroy', medicament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Voir', medicament %></td>
+    <td><%= link_to 'Modifier', edit_medicament_path(medicament) %></td>
+    <td><%= link_to 'Détruire', medicament, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Medicament', new_medicament_path %>
+<p><%= link_to 'Nouveau Medicament', new_medicament_path, class: "btn"%></p>
+<h3>Importer des médicaments par fichier excel</h3>
+<%= form_tag import_medicaments_path, multipart: true, html: {class: "form-inline"} do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "OK" %>
+<% end -%>
