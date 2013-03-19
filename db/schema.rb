@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319132207) do
+ActiveRecord::Schema.define(:version => 20130319153004) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20130319132207) do
     t.string   "name",        :limit => 32, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
   add_index "hydra_sets", ["entity_type", "name"], :name => "hydra_sets_index", :unique => true

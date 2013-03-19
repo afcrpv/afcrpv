@@ -1,6 +1,7 @@
 <%= simple_form_for @enquete, html: {class: "form-vertical"} do |f| %>
   <%= f.hidden_field :entity_type %>
   <%= f.input :name, input_html: {class: "input-xxlarge", placeholder: "Nom"} %>
+  <%= f.input :description, input_html: {class: "input-block-level", rows: 1} %>
   <div class="control-group">
     <%= f.label :evenement_list, "Evènements", class: "control-label" %>
     <div class="controls">
