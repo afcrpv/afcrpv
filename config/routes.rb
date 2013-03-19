@@ -8,9 +8,9 @@ Refinery::Core::Engine.routes.prepend do
   get '/crpvs/search', :to => 'crpvs/crpvs#search', :as => :crpvs_search
 end
 Afcrpv::Application.routes.draw do
-  resources :medicaments
-
-
+  resources :medicaments do
+    collection { post :import }
+  end
   resources :evenements
   resources :dossiers, except: :index
   resources :enquetes

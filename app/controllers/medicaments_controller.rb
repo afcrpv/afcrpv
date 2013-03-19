@@ -5,6 +5,8 @@ class MedicamentsController < ApplicationController
   helper_method :authorised_enquetes_user?
 
   def import
+    Medicament.import(params[:file])
+    redirect_to medicaments_path, notice: "Médicaments importés avec succès."
   end
 
   # GET /medicaments
