@@ -54,7 +54,7 @@
       <%= render "traitement_fields", f: traitement %>
     <% end -%>
     <div class="links">
-      <%= link_to_add_association "Rajouter un traitement", f, :traitements %>
+      <%= link_to_add_association "<i class='icon-plus'></i> Rajouter un traitement".html_safe, f, :traitements, class: "btn" %>
     </div>
   </div>
   <%= f.input :commentaire, input_html: {class: "input-block-level"} %>
