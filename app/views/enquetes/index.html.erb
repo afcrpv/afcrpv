@@ -9,6 +9,7 @@
         <tr>
           <th>Nom</th>
           <th>Evènements</th>
+          <th>Médicaments</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -17,6 +18,7 @@
         <tr>
           <td><%= enquete.name %></td>
           <td><%= enquete.evenement_list %></td>
+          <td><%= enquete.medicament_list %></td>
           <td>
             <%= link_to content_tag(:i, nil, class: "icon-pencil"), edit_enquete_path(enquete) %>
             <%= link_to content_tag(:i, nil, class: "icon-trash"), enquete, data: {confirm: "Etes-vous sûr ?"}, method: :delete %>

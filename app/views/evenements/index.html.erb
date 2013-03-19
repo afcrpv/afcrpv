@@ -1,22 +1,28 @@
 <h1>Listing evenements</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= form_tag add_evenement_enquetes_path, method: :put do %>
+  <table class="table table-condensed table-hovered table-bordered">
+    <tr>
+      <th>&nbsp;</th>
+      <th>Nom</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<% @evenements.each do |evenement| %>
-  <tr>
-    <td><%= evenement.name %></td>
-    <td><%= link_to 'Show', evenement %></td>
-    <td><%= link_to 'Edit', edit_evenement_path(evenement) %></td>
-    <td><%= link_to 'Destroy', evenement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <% @evenements.each do |evenement| %>
+    <tr>
+      <td><%= check_box_tag "evenement_names[]", evenement.name %></td>
+      <td><%= evenement.name %></td>
+      <td><%= link_to 'Show', evenement %></td>
+      <td><%= link_to 'Edit', edit_evenement_path(evenement) %></td>
+      <td><%= link_to 'Destroy', evenement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+  <%= select_tag :enquete_id, options_from_collection_for_select(Enquete.all, :id, :name) %>
+  <%= submit_tag "Rajouter ces évènements à l'enquête sélectionnée" %>
+<% end -%>
 
 <br />
 

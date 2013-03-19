@@ -4,6 +4,15 @@ class EnquetesController < ApplicationController
   before_filter :redirect_unless_connected
   helper_method :authorised_enquetes_user?
 
+  %w(evenement medicament).each do |method|
+    define_method :"add_#{method}" do
+      association_names = params[:"#{method}_names"].join(", ")
+      enquete = Enquete.find(params[:enquete_id])
+      enquete.send :"#{method}_list=", association_names
+      redirect_to polymorphic_path(method.classify.constantize), notice: "#{method.titleize.pluralize} #{association_names} rajoutés à l'enquête #{enquete.name}"
+    end
+  end
+
   def index
     @enquetes = Enquete.all
   end

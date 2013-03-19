@@ -13,7 +13,10 @@ Afcrpv::Application.routes.draw do
   end
   resources :evenements
   resources :dossiers, except: :index
-  resources :enquetes
+  resources :enquetes do
+    collection { put :add_evenement }
+    collection { put :add_medicament }
+  end
 
   # This line mounts Refinery's routes at the root of your application.
   # This means, any requests to the root URL of your application will go to Refinery::PagesController#home.

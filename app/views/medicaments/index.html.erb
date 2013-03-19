@@ -1,26 +1,32 @@
 <h1>Listing medicaments</h1>
 
-<table class="table table-condensed table-hovered table-bordered">
-  <tr>
-    <th>Nom</th>
-    <th>Classe</th>
-    <th>Forme</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= form_tag add_medicament_enquetes_path, method: :put do %>
+  <table class="table table-condensed table-hovered table-bordered">
+    <tr>
+      <th>&nbsp;</th>
+      <th>Nom</th>
+      <th>Classe</th>
+      <th>Forme</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<% @medicaments.each do |medicament| %>
-  <tr>
-    <td><%= medicament.name %></td>
-    <td><%= medicament.classe %></td>
-    <td><%= medicament.forme %></td>
-    <td><%= link_to 'Voir', medicament %></td>
-    <td><%= link_to 'Modifier', edit_medicament_path(medicament) %></td>
-    <td><%= link_to 'Détruire', medicament, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <% @medicaments.each do |medicament| %>
+    <tr>
+      <td><%= check_box_tag "medicament_names[]", medicament.name %></td>
+      <td><%= medicament.name %></td>
+      <td><%= medicament.classe %></td>
+      <td><%= medicament.forme %></td>
+      <td><%= link_to 'Voir', medicament %></td>
+      <td><%= link_to 'Modifier', edit_medicament_path(medicament) %></td>
+      <td><%= link_to 'Détruire', medicament, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+  <%= select_tag :enquete_id, options_from_collection_for_select(Enquete.all, :id, :name) %>
+  <%= submit_tag "Rajouter ces médicaments à l'enquête sélectionnée" %>
+<% end -%>
 
 <p><%= link_to 'Nouveau Medicament', new_medicament_path, class: "btn"%></p>
 <h3>Importer des médicaments par fichier excel</h3>
