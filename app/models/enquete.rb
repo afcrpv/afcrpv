@@ -1,4 +1,4 @@
-class TypeEnquete < HydraAttribute::HydraSet
+class Enquete < HydraAttribute::HydraSet
   attr_accessible :entity_type, :evenement_list
   has_many :dossiers, foreign_key: :hydra_set_id
   has_many :evenement_choices

@@ -1,9 +1,8 @@
 class Evenement < ActiveRecord::Base
   attr_accessible :name
   has_many :dossiers
-  belongs_to :type_enquete
   has_many :evenement_choices
-  has_many :type_enquetes, through: :evenement_choices, dependent: :destroy
+  has_many :enquetes, through: :evenement_choices, dependent: :destroy
 
   def name_and_id
     {id: name, text: name}

@@ -8,7 +8,7 @@ class Dossier < ActiveRecord::Base
 
   has_one :patient
   belongs_to :evenement
-  belongs_to :type_enquete
+  belongs_to :enquete
   belongs_to :crpv, class_name: "::Refinery::Crpvs::Crpv", foreign_key: :refinery_crpv_id
   has_many :traitements, dependent: :destroy
   has_many :medicaments, through: :traitements

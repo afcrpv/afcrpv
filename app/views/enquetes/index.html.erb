@@ -3,7 +3,7 @@
 </div>
 
 <div id="body">
-  <% if @type_enquetes.any? %>
+  <% if @enquetes.any? %>
     <table class="table table-condensed table-striped table-bordered">
       <thead>
         <tr>
@@ -13,13 +13,13 @@
         </tr>
       </thead>
       <tbody>
-      <% @type_enquetes.each do |type_enquete| %>
+      <% @enquetes.each do |enquete| %>
         <tr>
-          <td><%= type_enquete.name %></td>
-          <td><%= type_enquete.evenement_list %></td>
+          <td><%= enquete.name %></td>
+          <td><%= enquete.evenement_list %></td>
           <td>
-            <%= link_to content_tag(:i, nil, class: "icon-pencil"), edit_type_enquete_path(type_enquete) %>
-            <%= link_to content_tag(:i, nil, class: "icon-trash"), type_enquete, data: {confirm: "Etes-vous sûr ?"}, method: :delete %>
+            <%= link_to content_tag(:i, nil, class: "icon-pencil"), edit_enquete_path(enquete) %>
+            <%= link_to content_tag(:i, nil, class: "icon-trash"), enquete, data: {confirm: "Etes-vous sûr ?"}, method: :delete %>
           </td>
         </tr>
       <% end -%>
@@ -31,14 +31,14 @@
 
   <%= form_tag new_dossier_path, method: :get, html: {class: "form-inline"} do %>
     <div class="input-append">
-      <%= select_tag :hydra_set_id, options_from_collection_for_select(TypeEnquete.all, :id, :name), class: "input-xlarge" %>
+      <%= select_tag :hydra_set_id, options_from_collection_for_select(Enquete.all, :id, :name), class: "input-xlarge" %>
       <%= submit_tag "Nouveau cas", name: nil, class: "btn" %>
       <button class="btn" type="button" id="enquete-show-cas">Liste des cas</button>
     </div>
   <% end -%>
 
   <div class="admin-enquetes btn-group">
-    <%= link_to "Nouvelle enquête", new_type_enquete_path, class: "btn" %>
+    <%= link_to "Nouvelle enquête", new_enquete_path, class: "btn" %>
     <%= link_to "Gestion des effets", evenements_path, class: "btn" %>
     <%= link_to "Gestion des médicaments", "#", class: "btn" %>
   </div>
