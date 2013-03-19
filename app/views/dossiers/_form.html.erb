@@ -1,23 +1,63 @@
 <%= simple_form_for(dossier, html: {class: "form-vertical"}) do |f| %>
-  <%= f.association :crpv %>
+  <%= f.input :refinery_crpv_id, as: :hidden %>
   <%= f.input :hydra_set_id, as: :hidden %>
-  <%= f.input :code_bnpv %>
-  <%= f.input :date_recueil %>
-  <%= f.input :doublon %>
-  <%= f.simple_fields_for :patient do |pf| %>
-    <%= pf.input :age %>
-    <%= pf.input :poids %>
-    <%= pf.input :taille %>
-    <%= pf.input :imc %>
-  <% end -%>
-  <%= f.association :evenement, collection: evenements, prompt: "Choisir un évènement" %>
-  <%= f.input :comm_evenement %>
-  <% %w(j m a).each do |prefix| %>
-    <%= f.input :"#{prefix}_evenement" %>
-  <% end -%>
-  <%= f.input :gravite, as: :radio_buttons, collection: Dossier::GRAVITE %>
-  <%= f.input :evolution, as: :radio_buttons, collection: Dossier::EVOLUTION %>
-  <%= f.input :commentaire %>
+  <div class="row-fluid">
+    <div class="span4">
+      <%= f.input :code_bnpv %>
+    </div>
+    <div class="span4">
+      <%= f.input :date_recueil, as: :string %>
+    </div>
+    <div class="span4">
+      <%= f.input :doublon %>
+    </div>
+  </div>
+  <h3>Patient</h3>
+  <div class="row-fluid">
+    <%= f.simple_fields_for :patient do |pf| %>
+      <% %w(age poids taille imc).each do |field| %>
+      <div class="span3">
+        <%= pf.input :"#{field}", input_html: {class: "span4"} %>
+      </div>
+      <% end -%>
+    <% end -%>
+  </div>
+  <div class="row-fluid">
+    <div class="span4">
+      <%= f.association :evenement, collection: evenements, prompt: "Choisir un évènement", input_html: {class: "span10"} %>
+    </div>
+    <div class="span8">
+      <%= f.input :comm_evenement, input_html: {class: "input-block-level", rows: 3} %>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="control-group">
+        <%= f.label :j_evenement, "Date de l'évenèment", class: "control-label" %>
+        <div class="controls controls-row">
+          <% %w(j m a).each do |prefix| %>
+            <%= f.text_field :"#{prefix}_evenement", class: "span3", placeholder: prefix*2 %>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <%= f.input :gravite, as: :radio_buttons, collection: Dossier::GRAVITE %>
+    </div>
+    <div class="span4">
+      <%= f.input :evolution, as: :radio_buttons, collection: Dossier::EVOLUTION %>
+    </div>
+  </div>
+  <h3>Traitement au moment de l'évènement</h3>
+  <div id="traitements">
+    <%= f.simple_fields_for :traitements do |traitement| %>
+      <%= render "traitement_fields", f: traitement %>
+    <% end -%>
+    <div class="links">
+      <%= link_to_add_association "Rajouter un traitement", f, :traitements %>
+    </div>
+  </div>
+  <%= f.input :commentaire, input_html: {class: "input-block-level"} %>
   <div class="form-actions">
     <%= f.button :submit, "Enregistrer" %>
   </div>

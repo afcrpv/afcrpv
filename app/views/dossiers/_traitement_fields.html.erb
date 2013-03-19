@@ -1,0 +1,25 @@
+<div class="nested-fields">
+  <div class="row-fluid">
+    <div class="span4"><%= f.association :medicament, input_html: {class: "span11"} %></div>
+    <div class="span4">
+      <div class="control-group">
+        <%= f.label :j_debut, "Début de traitement", class: "control-label" %>
+        <div class="controls controls-row">
+          <% %w(j m a).each do |prefix|%>
+            <%= f.text_field :"#{prefix}_debut", class: "span2", placeholder: prefix*2 %>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="control-group">
+        <%= f.label :j_fin, "Fin de traitement", class: "control-label" %>
+        <div class="controls controls-row">
+          <% %w(j m a).each do |prefix|%>
+            <%= f.text_field :"#{prefix}_fin", class: "span2", placeholder: prefix*2 %>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
