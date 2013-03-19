@@ -1,0 +1,9 @@
+<%= show_for @medicament do |s| %>
+  <%= s.attribute :name %>
+  <%= s.attribute :type %>
+  <%= s.attribute :classe %>
+  <%= s.attribute :forme %>
+<% end %>
+
+<%= link_to 'Edit', edit_medicament_path(@medicament) %> |
+<%= link_to 'Back', medicaments_path %>

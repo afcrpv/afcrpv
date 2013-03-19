@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318161250) do
+ActiveRecord::Schema.define(:version => 20130319125452) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -160,6 +160,15 @@ ActiveRecord::Schema.define(:version => 20130318161250) do
   end
 
   add_index "hydra_text_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_text_refinery_enquetes_index", :unique => true
+
+  create_table "medicaments", :force => true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.string   "classe"
+    t.string   "forme"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "patients", :force => true do |t|
     t.integer  "age"
@@ -526,5 +535,21 @@ ActiveRecord::Schema.define(:version => 20130318161250) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  create_table "traitements", :force => true do |t|
+    t.integer  "dossier_id"
+    t.integer  "medicament_id"
+    t.integer  "j_debut"
+    t.integer  "m_debut"
+    t.integer  "a_debut"
+    t.integer  "j_fin"
+    t.integer  "m_fin"
+    t.integer  "a_fin"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "traitements", ["dossier_id"], :name => "index_traitements_on_dossier_id"
+  add_index "traitements", ["medicament_id"], :name => "index_traitements_on_medicament_id"
 
 end

@@ -8,6 +8,9 @@ Refinery::Core::Engine.routes.prepend do
   get '/crpvs/search', :to => 'crpvs/crpvs#search', :as => :crpvs_search
 end
 Afcrpv::Application.routes.draw do
+  resources :medicaments
+
+
   resources :evenements
   get "/enquetes", to: "type_enquetes#index", as: :enquetes
   get "/enquetes/:id", to: "type_enquetes#show", as: :enquete
