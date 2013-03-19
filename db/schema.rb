@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319164946) do
+ActiveRecord::Schema.define(:version => 20130319171419) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -160,6 +160,16 @@ ActiveRecord::Schema.define(:version => 20130319164946) do
   end
 
   add_index "hydra_text_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_text_refinery_enquetes_index", :unique => true
+
+  create_table "medicament_choices", :force => true do |t|
+    t.integer  "medicament_id"
+    t.integer  "enquete_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "medicament_choices", ["enquete_id"], :name => "index_medicament_choices_on_enquete_id"
+  add_index "medicament_choices", ["medicament_id"], :name => "index_medicament_choices_on_medicament_id"
 
   create_table "medicaments", :force => true do |t|
     t.string   "name"
