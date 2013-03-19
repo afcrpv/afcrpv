@@ -20,4 +20,5 @@
 //= require sortable_tree/initializer
 //= require raphael-min
 //= require select2
+//= require cocoon
 //= require_tree .

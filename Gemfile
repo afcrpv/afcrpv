@@ -74,6 +74,7 @@ gem "acts-as-taggable-on", "~> 2.3.1"
 gem 'jquery-datatables-rails'
 gem "squeel"
 gem "workflow"
+gem "cocoon"
 
 group :development do
   gem 'meta_request'
