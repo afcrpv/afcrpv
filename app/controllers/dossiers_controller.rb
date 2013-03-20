@@ -2,6 +2,7 @@
 class DossiersController < ApplicationController
   before_filter :redirect_unless_connected
   helper_method :evenements
+  helper_method :medicaments
   helper_method :authorised_dossiers_user?
 
   def show
@@ -50,7 +51,12 @@ class DossiersController < ApplicationController
 
   def evenements
     enquete ||= params[:id] ? @dossier.enquete : Enquete.find(params[:hydra_set_id])
-    @evenements = enquete ? enquete.evenements.all : Evenement.all
+    @evenements = enquete ? enquete.evenements.order(:name) : Evenement.order(:name)
+  end
+
+  def medicaments
+    enquete ||= params[:id] ? @dossier.enquete : Enquete.find(params[:hydra_set_id])
+    @medicaments = enquete ? enquete.medicaments.order("LOWER(name)") : Medicament.order("LOWER(name)")
   end
 
   def authorised_dossiers_user?
