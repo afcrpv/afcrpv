@@ -7,10 +7,16 @@ class EvenementsController < ApplicationController
   # GET /evenements
   # GET /evenements.json
   def index
+    respond_to do |format|
+      format.html
+      format.json { render json: EvenementsDatatable.new(view_context) }
+    end
+  end
+
+  def liste
     @evenements = Evenement.named_like(params[:q])
 
     respond_to do |format|
-      format.html # index.html.erb
       format.json do
         render json: @evenements.map(&:name_and_id)
       end

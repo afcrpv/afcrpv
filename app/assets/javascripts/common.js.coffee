@@ -7,10 +7,71 @@ $ ->
   $.fn.select2.defaults.formatSearching = -> "Recherche en cours..."
 
   gaiSelected = []
+
+  evenementsoTable = $("#evenements").dataTable
+    sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
+    sPaginationType: "bootstrap"
+    aoColumns: [
+      {sWidth: "2%", bSortable: false}
+      {sWidth: "2%", bSortable: false}
+      {sWidth: "40%"}
+      {bSortable: false, sWidth: "10%"}
+    ]
+    bProcessing: true
+    bServerSide: true
+    sAjaxSource: $('#evenements').data('source')
+    fnRowCallback: (nRow, aData, iDisplayIndex) ->
+      checkbox_value = $(nRow).find("input").attr("value")
+      condition = checkbox_value in $.map(gaiSelected, (val, i) -> $(val).val())
+      $(nRow).addClass("success").find("input").attr("checked", true) if condition
+      return nRow
+    oLanguage:
+      "sProcessing":     "Traitement en cours..."
+      "sSearch":         "Rechercher&nbsp;:"
+      "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments"
+      "sInfo":           "Affichage du évènement _START_ &agrave; _END_ sur _TOTAL_ évènements"
+      "sInfoEmpty":      "Affichage du évènement 0 &agrave; 0 sur 0 évènements"
+      "sInfoFiltered":   "(filtr&eacute; de _MAX_ évènements au total)"
+      "sInfoPostFix":    ""
+      "sLoadingRecords": "Chargement en cours..."
+      "sZeroRecords":    "Aucun évènement &agrave; afficher"
+      "sEmptyTable":     "Aucune donnée disponible dans le tableau"
+      "oPaginate":
+        "sFirst":      "Premier"
+        "sPrevious":   "Pr&eacute;c&eacute;dent"
+        "sNext":       "Suivant"
+        "sLast":       "Dernier"
+      "oAria":
+        "sSortAscending":  ": activer pour trier la colonne par ordre croissant"
+        "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+
+  $("#evenements tbody").on "click", "tr", ->
+    checkbox = $(@).find("input")[0]
+
+    if checkbox not in gaiSelected
+      checkbox = $(@).find("input").attr("checked", true)[0]
+      gaiSelected.push checkbox
+    else
+      checkbox = $(@).find("input")[0]
+      gaiSelected = $.grep gaiSelected, (value) -> value isnt checkbox
+      $(@).find("input").attr("checked", false)
+
+    $(@).toggleClass("success")
+    console.log gaiSelected
+
+  $("#evenements-form").on "submit", (e) ->
+    if gaiSelected.length
+      for item in gaiSelected
+        $(item).appendTo($("#evenements-checkboxes"))
+    else
+      e.preventDefault()
+      alert "Vous n'avez sélectionné aucun évènement !"
+      return false
+
   medicamentsoTable = $("#medicaments").dataTable
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
     sPaginationType: "bootstrap"
-    aaSorting: [[1, "asc"]]
+    aaSorting: [[2, "asc"]]
     aoColumns: [
       {bVisible: false}
       {sWidth: "2%", bSortable: false}
@@ -48,9 +109,6 @@ $ ->
         "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
 
   $("#medicaments tbody").on "click", "tr", ->
-    aData = medicamentsoTable.fnGetData(@)
-    iName = aData[2]
-    iCheckbox = aData[1]
     checkbox = $(@).find("input")[0]
 
     if checkbox not in gaiSelected
@@ -189,10 +247,10 @@ $ ->
     id = $("#hydra_set_id").val()
     window.location = "/enquetes/#{id}"
 
-  $("#type_enquete_evenement_list").select2
+  $("#enquete_evenement_list").select2
     multiple: true
     ajax:
-      url: "/evenements.json"
+      url: "/evenements/liste.json"
       dataType: "json"
       data: (term, page) ->
         q: term

@@ -1,29 +1,22 @@
 <h1>Listing evenements</h1>
 
-<%= form_tag add_evenement_enquetes_path, method: :put do %>
-  <table class="table table-condensed table-hovered table-bordered">
-    <tr>
-      <th>&nbsp;</th>
-      <th>Nom</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-
-  <% @evenements.each do |evenement| %>
-    <tr>
-      <td><%= check_box_tag "evenement_names[]", evenement.name %></td>
-      <td><%= evenement.name %></td>
-      <td><%= link_to 'Show', evenement %></td>
-      <td><%= link_to 'Edit', edit_evenement_path(evenement) %></td>
-      <td><%= link_to 'Destroy', evenement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
+<%= form_tag add_evenements_enquetes_path, method: :post, id: "evenements-form", class: "form-horizontal"  do %>
+  <table class="table table-condensed table-striped table-hovered table-bordered display" id="evenements" data-source="<%= evenements_url(format: :json)%>">
+    <thead>
+      <tr>
+        <th></th>
+        <th>&nbsp;</th>
+        <th>Nom</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
   </table>
+
+  <div id="evenements-checkboxes" style="display: none;"></div>
+
   <%= select_tag :enquete_id, options_from_collection_for_select(Enquete.all, :id, :name) %>
-  <%= submit_tag "Rajouter ces évènements à l'enquête sélectionnée" %>
+  <%= submit_tag "Rajouter ces évènements à l'enquête sélectionnée", class: "btn", name: nil %>
 <% end -%>
 
-<br />
-
-<%= link_to 'New Evenement', new_evenement_path %>
+<p><%= link_to 'Nouvel évenèment', new_evenement_path, class: "btn" %></p>
