@@ -14,8 +14,8 @@ Afcrpv::Application.routes.draw do
   resources :evenements
   resources :dossiers, except: :index
   resources :enquetes do
-    collection { put :add_evenement }
-    collection { put :add_medicament }
+    collection { post :add_medicaments }
+    collection { post :add_evenements }
   end
 
   # This line mounts Refinery's routes at the root of your application.

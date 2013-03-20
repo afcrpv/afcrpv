@@ -12,11 +12,9 @@ class MedicamentsController < ApplicationController
   # GET /medicaments
   # GET /medicaments.json
   def index
-    @medicaments = Medicament.all
-
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @medicaments }
+      format.html
+      format.json { render json: MedicamentsDatatable.new(view_context) }
     end
   end
 
