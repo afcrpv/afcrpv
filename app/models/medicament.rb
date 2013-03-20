@@ -13,6 +13,10 @@ class Medicament < ActiveRecord::Base
     name
   end
 
+  def self.named_like(query)
+    where("LOWER(name) like ?", "%#{query}%")
+  end
+
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       Medicament.create! row.to_hash
