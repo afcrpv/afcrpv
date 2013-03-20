@@ -71,7 +71,6 @@ $ ->
   medicamentsoTable = $("#medicaments").dataTable
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
     sPaginationType: "bootstrap"
-    aaSorting: [[2, "asc"]]
     aoColumns: [
       {bVisible: false}
       {sWidth: "2%", bSortable: false}
