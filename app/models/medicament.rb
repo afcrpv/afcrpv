@@ -5,6 +5,8 @@ class Medicament < ActiveRecord::Base
   has_many :medicament_choices, dependent: :destroy
   has_many :enquetes, through: :medicament_choices
 
+  validates_presence_of :name
+
   def name_and_id
     {id: name, text: name}
   end
