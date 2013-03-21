@@ -1,10 +1,9 @@
 fr:
   helpers:
     submit:
-      projet:
-        create: Soumettre ce %{model}
-        submit: Enregistrer ce %{model}
-        update: Mettre à jour
+      create: Soumettre ce %{model}
+      submit: Enregistrer ce %{model}
+      update: Mettre à jour
 
   simple_form:
     "yes": 'Oui'
@@ -36,6 +35,7 @@ fr:
 
     labels:
       defaults:
+        name: Nom
         email: Email
         password: Mot de passe
         password_confirmation: Confirmer
@@ -49,6 +49,19 @@ fr:
         postal_code: Code postal
         website: Site web
         membership_level: Droits d'accès
+      dossier:
+        code_bnpv: N° Cas BNPV
+        date_recueil: Date de recueil
+        evenement: Evènement
+        comm_evenement: Précisions sur l'évènement
+        gravite: Gravité
+      patient:
+        imc: IMC
+      traitement:
+        medicament: Médicament
+      enquete:
+        medicament_list: Médicaments associés
+        evenement_list: Evènements associés
 
     # Labels and hints examples
     # labels:

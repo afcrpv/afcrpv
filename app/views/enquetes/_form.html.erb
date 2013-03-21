@@ -2,12 +2,17 @@
   <%= f.hidden_field :entity_type %>
   <%= f.input :name, input_html: {class: "input-xxlarge", placeholder: "Nom"} %>
   <%= f.input :description, input_html: {class: "input-block-level", rows: 1} %>
-  <div class="control-group">
-    <%= f.label :evenement_list, "Evènements", class: "control-label" %>
-    <div class="controls">
-      <%= f.hidden_field :evenement_list, class: "input-xxlarge", data: {placeholder: "mots séparés par virgule"} %>
+  <% %w(evenement medicament).each do |field| %>
+    <div class="control-group">
+      <%= f.label :"#{field}_list", class: "control-label" %>
+      <div class="controls">
+        <% items = f.object.send(:"#{field}s") -%>
+        <%= f.hidden_field :"#{field}_list", class: "input-block-level",
+          data: {load: items.map(&:name_and_id).to_json},
+          placeholder: "mots séparés par virgule" %>
+      </div>
     </div>
-  </div>
+  <% end -%>
   <div class="form-actions">
     <%= f.button :submit, "Sauvegarder" %>
   </div>

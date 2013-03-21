@@ -9,6 +9,16 @@ class MedicamentsController < ApplicationController
     redirect_to medicaments_path, notice: "Médicaments importés avec succès."
   end
 
+  def liste
+    @medicaments = Medicament.named_like(params[:q])
+
+    respond_to do |format|
+      format.json do
+        render json: @medicaments.map(&:name_and_id)
+      end
+    end
+  end
+
   # GET /medicaments
   # GET /medicaments.json
   def index

@@ -9,7 +9,10 @@ Refinery::Core::Engine.routes.prepend do
 end
 Afcrpv::Application.routes.draw do
   resources :medicaments do
-    collection { post :import }
+    collection do
+      post :import
+      get :liste
+    end
   end
   resources :evenements do
     collection { get :liste}

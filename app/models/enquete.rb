@@ -2,9 +2,9 @@ class Enquete < HydraAttribute::HydraSet
   attr_accessible :entity_type, :evenement_list, :medicament_list, :description
   has_many :dossiers, foreign_key: :hydra_set_id
   has_many :evenement_choices
-  has_many :evenements, through: :evenement_choices, dependent: :destroy
+  has_many :evenements, through: :evenement_choices, dependent: :destroy, order: "LOWER(name)"
   has_many :medicament_choices
-  has_many :medicaments, through: :medicament_choices, dependent: :destroy
+  has_many :medicaments, through: :medicament_choices, dependent: :destroy, order: "LOWER(name)"
 
   def to_s
     description

@@ -29,8 +29,8 @@ $ ->
       "sProcessing":     "Traitement en cours..."
       "sSearch":         "Rechercher&nbsp;:"
       "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments"
-      "sInfo":           "Affichage du évènement _START_ &agrave; _END_ sur _TOTAL_ évènements"
-      "sInfoEmpty":      "Affichage du évènement 0 &agrave; 0 sur 0 évènements"
+      "sInfo":           "Affichage de l'évènement _START_ &agrave; _END_ sur _TOTAL_"
+      "sInfoEmpty":      "Affichage de l'évènement 0 &agrave; 0 sur 0"
       "sInfoFiltered":   "(filtr&eacute; de _MAX_ évènements au total)"
       "sInfoPostFix":    ""
       "sLoadingRecords": "Chargement en cours..."
@@ -246,8 +246,25 @@ $ ->
     id = $("#hydra_set_id").val()
     window.location = "/enquetes/#{id}"
 
+  $("#enquete_medicament_list").select2
+    multiple: true
+    initSelection: (element, callback) ->
+      preload = element.data("load")
+      callback(preload)
+    ajax:
+      url: "/medicaments/liste.json"
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        page_limit: 10
+      results: (data, page) ->
+        return {results: data}
+
   $("#enquete_evenement_list").select2
     multiple: true
+    initSelection: (element, callback) ->
+      preload = element.data("load")
+      callback(preload)
     ajax:
       url: "/evenements/liste.json"
       dataType: "json"
