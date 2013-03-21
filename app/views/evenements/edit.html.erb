@@ -1,6 +1,5 @@
-<h1>Editing evenement</h1>
+<h1>Modification évènement <%= @evenement.name %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @evenement %> |
-<%= link_to 'Back', evenements_path %>
+<p><%= link_to 'Annuler', evenements_path, class: "btn" %></p>
