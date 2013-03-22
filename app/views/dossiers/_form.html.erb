@@ -44,6 +44,19 @@
   </div>
   <h3>Traitement au moment de l'évènement</h3>
   <div id="traitements">
+    <div class="row-fluid">
+      <div class="span3">
+        Médicament
+      </div>
+      <div class="span4">
+        Début de traitement
+      </div>
+      <div class="span4">
+        Fin de traitement
+      </div>
+      <div class="span1">
+      </div>
+    </div>
     <%= f.simple_fields_for :traitements do |traitement| %>
       <%= render "traitement_fields", f: traitement %>
     <% end -%>

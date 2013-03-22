@@ -1,11 +1,10 @@
 <div class="nested-fields">
   <div class="row-fluid">
-    <div class="span4">
-      <%= f.association :medicament, collection: medicaments, prompt: "Choisir un médicament", input_html: {class: "span11"} %>
+    <div class="span3">
+      <%= f.association :medicament, label: false, collection: medicaments, prompt: "Choisir un médicament", input_html: {class: "span11"} %>
     </div>
     <div class="span4">
       <div class="control-group">
-        <%= f.label :j_debut, "Début de traitement", class: "control-label" %>
         <div class="controls controls-row">
           <% %w(j m a).each do |prefix|%>
             <%= f.text_field :"#{prefix}_debut", class: "span2", placeholder: prefix*2 %>
@@ -15,7 +14,6 @@
     </div>
     <div class="span4">
       <div class="control-group">
-        <%= f.label :j_fin, "Fin de traitement", class: "control-label" %>
         <div class="controls controls-row">
           <% %w(j m a).each do |prefix|%>
             <%= f.text_field :"#{prefix}_fin", class: "span2", placeholder: prefix*2 %>
@@ -23,6 +21,8 @@
         </div>
       </div>
     </div>
+    <div class="span1">
+      <%= link_to_remove_association "<i class='icon-remove'></i>".html_safe, f, class: "btn" %>
+    </div>
   </div>
-  <div class="pull-right"><%= link_to_remove_association "<i class='icon-remove'></i> détruire traitement".html_safe, f, class: "btn" %></div>
 </div>
