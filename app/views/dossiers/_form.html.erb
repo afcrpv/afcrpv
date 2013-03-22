@@ -22,14 +22,8 @@
       <% end -%>
     <% end -%>
   </div>
-  <div class="row-fluid">
-    <div class="span4">
-      <%= f.association :evenement, collection: evenements, prompt: "Choisir un évènement", input_html: {class: "span10"} %>
-    </div>
-    <div class="span8">
-      <%= f.input :comm_evenement, input_html: {class: "input-block-level", rows: 3} %>
-    </div>
-  </div>
+  <%= f.association :evenement, collection: evenements, prompt: "Choisir un évènement", input_html: {class: "input-block-level"} %>
+  <%= f.input :comm_evenement, input_html: {class: "input-block-level", rows: 3} %>
   <div class="row-fluid">
     <div class="span4">
       <div class="control-group">

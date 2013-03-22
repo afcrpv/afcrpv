@@ -55,12 +55,11 @@ class DossiersController < ApplicationController
   end
 
   def evenements
-    @evenements = enquete.evenements.order(:name)
+    @evenements = Evenement.all
   end
 
   def medicaments
-    enquete ||= params[:id] ? @dossier.enquete : Enquete.find(params[:enquete_id])
-    @medicaments = enquete ? enquete.medicaments.order("LOWER(name)") : Medicament.order("LOWER(name)")
+    @medicaments = Medicament.order("LOWER(name)")
   end
 
   def authorised_dossiers_user?

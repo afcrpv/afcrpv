@@ -1,6 +1,8 @@
 <div class="nested-fields">
   <div class="row-fluid">
-    <div class="span4"><%= f.association :medicament, collection: medicaments, prompt: "Choisir un médicament", input_html: {class: "span11"} %></div>
+    <div class="span4">
+      <%= f.association :medicament, collection: medicaments, prompt: "Choisir un médicament", input_html: {class: "span11"} %>
+    </div>
     <div class="span4">
       <div class="control-group">
         <%= f.label :j_debut, "Début de traitement", class: "control-label" %>
