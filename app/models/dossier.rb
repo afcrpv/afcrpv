@@ -1,9 +1,11 @@
 #encoding: utf-8
 class Dossier < ActiveRecord::Base
-  attr_accessible :code_bnpv, :date_recueil, :doublon, :j_evenement, :m_evenement, :a_evenement, :comm_evenement, :gravite, :evolution, :commentaire, :patient_attributes, :enquete_id, :evenement_id, :refinery_crpv_id, :traitements_attributes, :contraception_age, :contraception_ant
+  attr_accessible :code_bnpv, :date_recueil, :doublon, :j_evenement, :m_evenement, :a_evenement, :comm_evenement, :gravite, :evolution, :commentaire, :patient_attributes, :enquete_id, :evenement_id, :refinery_crpv_id, :traitements_attributes, :contraception_age, :contraception_ant, :concomitants
 
   (1..3).each do |i|
-    attr_accessible :"contraception_#{i}", :"contraception_#{i}_du", :"contraception_#{i}_au"
+    %w(contraception concomitant).each do |name|
+      attr_accessible :"name_#{i}", :"name_#{i}_du", :"name_#{i}_au"
+    end
   end
 
   validates :code_bnpv, presence: true, uniqueness: true

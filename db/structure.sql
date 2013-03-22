@@ -139,7 +139,17 @@ CREATE TABLE dossiers (
     contraception_2_au date,
     contraception_3 character varying(255),
     contraception_3_du date,
-    contraception_3_au date
+    contraception_3_au date,
+    concomitants character varying(255),
+    concomitant_1 character varying(255),
+    concomitant_1_du date,
+    concomitant_1_au date,
+    concomitant_2 character varying(255),
+    concomitant_2_du date,
+    concomitant_2_au date,
+    concomitant_3 character varying(255),
+    concomitant_3_du date,
+    concomitant_3_au date
 );
 
 
@@ -2527,3 +2537,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130322152626');
 INSERT INTO schema_migrations (version) VALUES ('20130322161523');
 
 INSERT INTO schema_migrations (version) VALUES ('20130322191704');
+
+INSERT INTO schema_migrations (version) VALUES ('20130322200345');

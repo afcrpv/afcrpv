@@ -61,6 +61,7 @@ fr:
         gravite: Gravité
         contraception_ant: Contraception(s) antérieure(s)
         contraception_age: Age 1ère contraception
+        concomitants: Autres médicaments en cours au moment de l’évènement
       patient:
         imc: IMC
 
