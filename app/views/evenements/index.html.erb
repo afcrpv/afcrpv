@@ -7,6 +7,7 @@
         <th></th>
         <th>&nbsp;</th>
         <th>Nom</th>
+        <th>Type</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -15,8 +16,8 @@
 
   <div id="evenements-checkboxes" style="display: none;"></div>
 
+  <%= submit_tag "Rajouter les évènements sélectionnés à l'enquête : ", class: "btn", name: nil %>
   <%= select_tag :enquete_id, options_from_collection_for_select(Enquete.all, :id, :name) %>
-  <%= submit_tag "Rajouter ces évènements à l'enquête sélectionnée", class: "btn", name: nil %>
 <% end -%>
 
 <p><%= link_to 'Nouvel évenèment', new_evenement_path, class: "btn" %></p>

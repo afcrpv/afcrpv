@@ -57,7 +57,7 @@ class EvenementsController < ApplicationController
 
     respond_to do |format|
       if @evenement.save
-        format.html { redirect_to @evenement, notice: 'Evenement was successfully created.' }
+        format.html { redirect_to evenements_path, notice: 'Evenement was successfully created.' }
         format.json { render json: @evenement, status: :created, location: @evenement }
       else
         format.html { render action: "new" }
@@ -73,7 +73,7 @@ class EvenementsController < ApplicationController
 
     respond_to do |format|
       if @evenement.update_attributes(params[:evenement])
-        format.html { redirect_to @evenement, notice: 'Evenement was successfully updated.' }
+        format.html { redirect_to evenements_path, notice: 'Evenement was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

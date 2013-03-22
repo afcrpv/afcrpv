@@ -234,7 +234,8 @@ CREATE TABLE evenements (
     id integer NOT NULL,
     name character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    ev_type character varying(255)
 );
 
 
@@ -2524,3 +2525,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130322151538');
 INSERT INTO schema_migrations (version) VALUES ('20130322152626');
 
 INSERT INTO schema_migrations (version) VALUES ('20130322161523');
+
+INSERT INTO schema_migrations (version) VALUES ('20130322191704');

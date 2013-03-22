@@ -23,6 +23,7 @@ class EvenementsDatatable
         evenement.id,
         content_tag(:td, check_box_tag("evenement_names[]", evenement.name)),
         evenement.name,
+        evenement.ev_type,
         link_to("<i class='icon-pencil'></i>".html_safe, edit_evenement_path(evenement), class: "btn btn-small")
       ]
     end
@@ -50,7 +51,7 @@ class EvenementsDatatable
   end
 
   def sort_column
-    columns = %w(name)
+    columns = %w(name ev_type)
     columns[params[:iSortCol_0].to_i]
   end
 

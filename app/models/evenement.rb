@@ -1,5 +1,5 @@
 class Evenement < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :ev_type
   has_many :dossiers
   has_many :evenement_choices, dependent: :destroy
   has_many :enquetes, through: :evenement_choices

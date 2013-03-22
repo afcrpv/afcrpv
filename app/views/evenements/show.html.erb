@@ -1,5 +1,6 @@
 <%= show_for @evenement do |s| %>
   <%= s.attribute :name %>
+  <%= s.attribute :ev_type %>
 <% end %>
 
 <%= link_to 'Edit', edit_evenement_path(@evenement) %> |

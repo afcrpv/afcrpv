@@ -7,8 +7,9 @@ $ ->
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
     sPaginationType: "bootstrap"
     aoColumns: [
+      {bVisible: false}
       {sWidth: "2%", bSortable: false}
-      {sWidth: "2%", bSortable: false}
+      {sWidth: "40%"}
       {sWidth: "40%"}
       {bSortable: false, sWidth: "10%"}
     ]
