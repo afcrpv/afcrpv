@@ -34,4 +34,10 @@
       <button class="btn" type="button" id="enquete-show-cas">Liste des cas</button>
     </div>
   <% end -%>
+  <% if authorised_enquetes_user? %>
+    <div class="admin-enquetes btn-group">
+      <%= link_to "Gestion des effets", evenements_path, class: "btn" %>
+      <%= link_to "Gestion des médicaments", medicaments_path, class: "btn" %>
+    </div>
+  <% end -%>
 </div>
