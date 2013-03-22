@@ -249,8 +249,9 @@ $ ->
   $("#enquete_medicament_list").select2
     multiple: true
     initSelection: (element, callback) ->
-      preload = element.data("load")
-      callback(preload)
+      data = []
+      data.push({id: name, text: name}) for name in $(element).val().split(", ")
+      callback(data)
     ajax:
       url: "/medicaments/liste.json"
       dataType: "json"
@@ -263,8 +264,9 @@ $ ->
   $("#enquete_evenement_list").select2
     multiple: true
     initSelection: (element, callback) ->
-      preload = element.data("load")
-      callback(preload)
+      data = []
+      data.push({id: name, text: name}) for name in $(element).val().split(", ")
+      callback(data)
     ajax:
       url: "/evenements/liste.json"
       dataType: "json"

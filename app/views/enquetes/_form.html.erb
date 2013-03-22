@@ -7,9 +7,7 @@
       <%= f.label :"#{field}_list", class: "control-label" %>
       <div class="controls">
         <% items = f.object.send(:"#{field}s") -%>
-        <%= f.hidden_field :"#{field}_list", class: "input-block-level",
-          data: {load: items.map(&:name_and_id).to_json},
-          placeholder: "mots séparés par virgule" %>
+        <%= f.hidden_field :"#{field}_list", class: "input-block-level", placeholder: "mots séparés par virgule" %>
       </div>
     </div>
   <% end -%>
