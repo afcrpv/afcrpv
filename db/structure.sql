@@ -124,7 +124,7 @@ CREATE TABLE dossiers (
     gravite character varying,
     evolution character varying,
     commentaire text,
-    meta_type_id integer,
+    enquete_id integer,
     evenement_id integer,
     refinery_crpv_id integer,
     created_at timestamp without time zone,
@@ -2371,7 +2371,7 @@ ALTER TABLE ONLY dossiers
 --
 
 ALTER TABLE ONLY dossiers
-    ADD CONSTRAINT dossiers_meta_type_id_fkey FOREIGN KEY (meta_type_id) REFERENCES meta_types(id);
+    ADD CONSTRAINT dossiers_meta_type_id_fkey FOREIGN KEY (enquete_id) REFERENCES meta_types(id);
 
 
 --
@@ -2509,3 +2509,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130322131831');
 INSERT INTO schema_migrations (version) VALUES ('20130322150814');
 
 INSERT INTO schema_migrations (version) VALUES ('20130322151538');
+
+INSERT INTO schema_migrations (version) VALUES ('20130322152626');
