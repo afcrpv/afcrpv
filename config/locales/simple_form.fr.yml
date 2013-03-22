@@ -50,8 +50,9 @@ fr:
         website: Site web
         membership_level: Droits d'accès
         required: Obligatoire ?
-        field_type: Type champ
         libelle: Libéllé
+        medicament: Médicament
+        medicament_id: Médicament
       dossier:
         code_bnpv: N° Cas BNPV
         date_recueil: Date de recueil
@@ -60,11 +61,6 @@ fr:
         gravite: Gravité
       patient:
         imc: IMC
-      traitement:
-        medicament: Médicament
-      enquete:
-        medicament_list: Médicaments associés
-        evenement_list: Evènements associés
 
     # Labels and hints examples
     # labels:

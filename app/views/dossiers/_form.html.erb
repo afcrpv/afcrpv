@@ -9,7 +9,7 @@
       <%= f.input :date_recueil, as: :string %>
     </div>
     <div class="span4">
-      <%= f.input :doublon %>
+      <%= f.input :doublon, as: :radio, collection: %w(Oui Non), item_wrapper_class: "inline", hint: "(cas déjà notifié au CRPV)" %>
     </div>
   </div>
   <h3>Patient</h3>
