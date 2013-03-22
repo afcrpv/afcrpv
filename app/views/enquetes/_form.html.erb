@@ -1,16 +1,15 @@
 <%= simple_form_for @enquete, html: {class: "form-vertical"} do |f| %>
-  <%= f.hidden_field :entity_type %>
   <%= f.input :name, input_html: {class: "input-xxlarge", placeholder: "Nom"} %>
   <%= f.input :description, input_html: {class: "input-block-level", rows: 1} %>
-  <% %w(evenement medicament).each do |field| %>
-    <div class="control-group">
-      <%= f.label :"#{field}_list", class: "control-label" %>
-      <div class="controls">
-        <% items = f.object.send(:"#{field}s") -%>
-        <%= f.hidden_field :"#{field}_list", class: "input-block-level", placeholder: "mots séparés par virgule" %>
-      </div>
+  <h3>Champs personnalisés</h3>
+  <div id="fields">
+    <%= f.simple_fields_for :fields do |field| %>
+      <%= render "field_fields", f: field %>
+    <% end -%>
+    <div class="links">
+      <%= link_to_add_association "<i class='icon-plus'></i> Rajouter un champ".html_safe, f, :fields, class: "btn" %>
     </div>
-  <% end -%>
+  </div>
   <div class="form-actions">
     <%= f.button :submit, "Sauvegarder" %>
   </div>

@@ -49,6 +49,9 @@ fr:
         postal_code: Code postal
         website: Site web
         membership_level: Droits d'accès
+        required: Obligatoire ?
+        field_type: Type champ
+        libelle: Libéllé
       dossier:
         code_bnpv: N° Cas BNPV
         date_recueil: Date de recueil

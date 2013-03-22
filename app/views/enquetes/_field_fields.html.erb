@@ -1,0 +1,12 @@
+<div class="nested-fields">
+  <div class="row-fluid">
+    <div class="span3"><%= f.input :name, input_html: {class: "span12"} %></div>
+    <div class="span3"><%= f.input :libelle, input_html: {class: "span12"} %></div>
+    <div class="span3"><%= f.input :field_type, as: :select, collection: %w(texte case_a_cocher), input_html: {class: "span10"} %></div>
+    <div class="span2"><%= f.input :required, input_html: {class: "span10"} %></div>
+    <div class="span1"><%= f.input :position, input_html: {class: "span10"} %></div>
+  </div>
+  <div class="pull-right">
+    <%= link_to_remove_association "<i class='icon-remove'></i> détruire champ".html_safe, f, class: "btn" %>
+  </div>
+</div>

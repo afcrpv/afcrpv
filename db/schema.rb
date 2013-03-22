@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319171419) do
+ActiveRecord::Schema.define(:version => 20130322091539) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -54,6 +54,26 @@ ActiveRecord::Schema.define(:version => 20130319171419) do
   add_index "dossiers", ["hydra_set_id"], :name => "refinery_enquetes_hydra_set_id_index"
   add_index "dossiers", ["refinery_crpv_id"], :name => "index_refinery_enquetes_on_refinery_crpv_id"
 
+  create_table "enquete_fields", :force => true do |t|
+    t.string   "name"
+    t.string   "libelle"
+    t.string   "field_type"
+    t.boolean  "required"
+    t.integer  "enquete_id"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "enquete_fields", ["enquete_id"], :name => "index_enquete_fields_on_enquete_id"
+
+  create_table "enquetes", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "evenement_choices", :force => true do |t|
     t.integer  "enquete_id"
     t.integer  "evenement_id"
@@ -87,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20130319171419) do
     t.boolean  "white_list",                  :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "hydra_attributes", ["entity_type", "name"], :name => "hydra_attributes_index", :unique => true
