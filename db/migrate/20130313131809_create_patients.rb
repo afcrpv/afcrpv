@@ -5,10 +5,10 @@ class CreatePatients < ActiveRecord::Migration
       t.integer :poids
       t.integer :taille
       t.integer :imc
-      t.belongs_to :refinery_enquete
+      t.belongs_to :dossier
 
       t.timestamps
     end
-    add_index :patients, :refinery_enquete_id
+    add_index :patients, :dossier_id
   end
 end

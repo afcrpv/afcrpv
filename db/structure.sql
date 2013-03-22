@@ -114,23 +114,22 @@ ALTER SEQUENCE departements_id_seq OWNED BY departements.id;
 
 CREATE TABLE dossiers (
     id integer NOT NULL,
-    code_bnpv character varying(255),
+    code_bnpv character varying,
     date_recueil date,
-    doublon boolean,
+    doublon character varying,
     j_evenement integer,
     m_evenement integer,
     a_evenement integer,
     comm_evenement text,
-    gravite character varying(255),
-    evolution character varying(255),
+    gravite character varying,
+    evolution character varying,
     commentaire text,
-    "position" integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    enquete_id integer,
+    meta_type_id integer,
     evenement_id integer,
     refinery_crpv_id integer,
-    properties text
+    properties_hstore hstore,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -151,42 +150,6 @@ CREATE SEQUENCE dossiers_id_seq
 --
 
 ALTER SEQUENCE dossiers_id_seq OWNED BY dossiers.id;
-
-
---
--- Name: enquete_fields; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE enquete_fields (
-    id integer NOT NULL,
-    name character varying(255),
-    libelle character varying(255),
-    field_type character varying(255),
-    required boolean,
-    enquete_id integer,
-    "position" integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: enquete_fields_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE enquete_fields_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: enquete_fields_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE enquete_fields_id_seq OWNED BY enquete_fields.id;
 
 
 --
@@ -285,283 +248,6 @@ ALTER SEQUENCE evenements_id_seq OWNED BY evenements.id;
 
 
 --
--- Name: hydra_attribute_sets; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE hydra_attribute_sets (
-    hydra_attribute_id integer NOT NULL,
-    hydra_set_id integer NOT NULL
-);
-
-
---
--- Name: hydra_attributes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE hydra_attributes (
-    id integer NOT NULL,
-    entity_type character varying(32) NOT NULL,
-    name character varying(32) NOT NULL,
-    backend_type character varying(16) NOT NULL,
-    default_value character varying(255),
-    white_list boolean DEFAULT false NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    "position" integer
-);
-
-
---
--- Name: hydra_attributes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE hydra_attributes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: hydra_attributes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE hydra_attributes_id_seq OWNED BY hydra_attributes.id;
-
-
---
--- Name: hydra_boolean_refinery_enquetes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE hydra_boolean_refinery_enquetes (
-    id integer NOT NULL,
-    entity_id integer NOT NULL,
-    hydra_attribute_id integer NOT NULL,
-    value boolean,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: hydra_boolean_refinery_enquetes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE hydra_boolean_refinery_enquetes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: hydra_boolean_refinery_enquetes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE hydra_boolean_refinery_enquetes_id_seq OWNED BY hydra_boolean_refinery_enquetes.id;
-
-
---
--- Name: hydra_datetime_refinery_enquetes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE hydra_datetime_refinery_enquetes (
-    id integer NOT NULL,
-    entity_id integer NOT NULL,
-    hydra_attribute_id integer NOT NULL,
-    value timestamp without time zone,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: hydra_datetime_refinery_enquetes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE hydra_datetime_refinery_enquetes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: hydra_datetime_refinery_enquetes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE hydra_datetime_refinery_enquetes_id_seq OWNED BY hydra_datetime_refinery_enquetes.id;
-
-
---
--- Name: hydra_float_refinery_enquetes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE hydra_float_refinery_enquetes (
-    id integer NOT NULL,
-    entity_id integer NOT NULL,
-    hydra_attribute_id integer NOT NULL,
-    value double precision,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: hydra_float_refinery_enquetes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE hydra_float_refinery_enquetes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: hydra_float_refinery_enquetes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE hydra_float_refinery_enquetes_id_seq OWNED BY hydra_float_refinery_enquetes.id;
-
-
---
--- Name: hydra_integer_refinery_enquetes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE hydra_integer_refinery_enquetes (
-    id integer NOT NULL,
-    entity_id integer NOT NULL,
-    hydra_attribute_id integer NOT NULL,
-    value integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: hydra_integer_refinery_enquetes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE hydra_integer_refinery_enquetes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: hydra_integer_refinery_enquetes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE hydra_integer_refinery_enquetes_id_seq OWNED BY hydra_integer_refinery_enquetes.id;
-
-
---
--- Name: hydra_sets; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE hydra_sets (
-    id integer NOT NULL,
-    entity_type character varying(32) NOT NULL,
-    name character varying(32) NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    description text
-);
-
-
---
--- Name: hydra_sets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE hydra_sets_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: hydra_sets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE hydra_sets_id_seq OWNED BY hydra_sets.id;
-
-
---
--- Name: hydra_string_refinery_enquetes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE hydra_string_refinery_enquetes (
-    id integer NOT NULL,
-    entity_id integer NOT NULL,
-    hydra_attribute_id integer NOT NULL,
-    value character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: hydra_string_refinery_enquetes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE hydra_string_refinery_enquetes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: hydra_string_refinery_enquetes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE hydra_string_refinery_enquetes_id_seq OWNED BY hydra_string_refinery_enquetes.id;
-
-
---
--- Name: hydra_text_refinery_enquetes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE hydra_text_refinery_enquetes (
-    id integer NOT NULL,
-    entity_id integer NOT NULL,
-    hydra_attribute_id integer NOT NULL,
-    value text,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: hydra_text_refinery_enquetes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE hydra_text_refinery_enquetes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: hydra_text_refinery_enquetes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE hydra_text_refinery_enquetes_id_seq OWNED BY hydra_text_refinery_enquetes.id;
-
-
---
 -- Name: medicament_choices; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -624,6 +310,110 @@ CREATE SEQUENCE medicaments_id_seq
 --
 
 ALTER SEQUENCE medicaments_id_seq OWNED BY medicaments.id;
+
+
+--
+-- Name: meta_type_members; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE meta_type_members (
+    id integer NOT NULL,
+    meta_type_id integer,
+    meta_type_property_id integer,
+    "position" integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: meta_type_members_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE meta_type_members_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: meta_type_members_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE meta_type_members_id_seq OWNED BY meta_type_members.id;
+
+
+--
+-- Name: meta_type_properties; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE meta_type_properties (
+    id integer NOT NULL,
+    sid character varying,
+    label character varying NOT NULL,
+    property_type_sid character varying NOT NULL,
+    required boolean DEFAULT false NOT NULL,
+    system boolean DEFAULT false NOT NULL,
+    dimension character varying,
+    default_value character varying,
+    choices character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: meta_type_properties_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE meta_type_properties_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: meta_type_properties_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE meta_type_properties_id_seq OWNED BY meta_type_properties.id;
+
+
+--
+-- Name: meta_types; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE meta_types (
+    id integer NOT NULL,
+    sid character varying NOT NULL,
+    type character varying,
+    title character varying NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: meta_types_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE meta_types_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: meta_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE meta_types_id_seq OWNED BY meta_types.id;
 
 
 --
@@ -1665,13 +1455,6 @@ ALTER TABLE ONLY dossiers ALTER COLUMN id SET DEFAULT nextval('dossiers_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY enquete_fields ALTER COLUMN id SET DEFAULT nextval('enquete_fields_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY enquetes ALTER COLUMN id SET DEFAULT nextval('enquetes_id_seq'::regclass);
 
 
@@ -1693,62 +1476,6 @@ ALTER TABLE ONLY evenements ALTER COLUMN id SET DEFAULT nextval('evenements_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY hydra_attributes ALTER COLUMN id SET DEFAULT nextval('hydra_attributes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY hydra_boolean_refinery_enquetes ALTER COLUMN id SET DEFAULT nextval('hydra_boolean_refinery_enquetes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY hydra_datetime_refinery_enquetes ALTER COLUMN id SET DEFAULT nextval('hydra_datetime_refinery_enquetes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY hydra_float_refinery_enquetes ALTER COLUMN id SET DEFAULT nextval('hydra_float_refinery_enquetes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY hydra_integer_refinery_enquetes ALTER COLUMN id SET DEFAULT nextval('hydra_integer_refinery_enquetes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY hydra_sets ALTER COLUMN id SET DEFAULT nextval('hydra_sets_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY hydra_string_refinery_enquetes ALTER COLUMN id SET DEFAULT nextval('hydra_string_refinery_enquetes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY hydra_text_refinery_enquetes ALTER COLUMN id SET DEFAULT nextval('hydra_text_refinery_enquetes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY medicament_choices ALTER COLUMN id SET DEFAULT nextval('medicament_choices_id_seq'::regclass);
 
 
@@ -1757,6 +1484,27 @@ ALTER TABLE ONLY medicament_choices ALTER COLUMN id SET DEFAULT nextval('medicam
 --
 
 ALTER TABLE ONLY medicaments ALTER COLUMN id SET DEFAULT nextval('medicaments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY meta_type_members ALTER COLUMN id SET DEFAULT nextval('meta_type_members_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY meta_type_properties ALTER COLUMN id SET DEFAULT nextval('meta_type_properties_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY meta_types ALTER COLUMN id SET DEFAULT nextval('meta_types_id_seq'::regclass);
 
 
 --
@@ -1965,11 +1713,11 @@ ALTER TABLE ONLY departements
 
 
 --
--- Name: enquete_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: dossiers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY enquete_fields
-    ADD CONSTRAINT enquete_fields_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY dossiers
+    ADD CONSTRAINT dossiers_pkey PRIMARY KEY (id);
 
 
 --
@@ -1997,70 +1745,6 @@ ALTER TABLE ONLY evenements
 
 
 --
--- Name: hydra_attributes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY hydra_attributes
-    ADD CONSTRAINT hydra_attributes_pkey PRIMARY KEY (id);
-
-
---
--- Name: hydra_boolean_refinery_enquetes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY hydra_boolean_refinery_enquetes
-    ADD CONSTRAINT hydra_boolean_refinery_enquetes_pkey PRIMARY KEY (id);
-
-
---
--- Name: hydra_datetime_refinery_enquetes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY hydra_datetime_refinery_enquetes
-    ADD CONSTRAINT hydra_datetime_refinery_enquetes_pkey PRIMARY KEY (id);
-
-
---
--- Name: hydra_float_refinery_enquetes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY hydra_float_refinery_enquetes
-    ADD CONSTRAINT hydra_float_refinery_enquetes_pkey PRIMARY KEY (id);
-
-
---
--- Name: hydra_integer_refinery_enquetes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY hydra_integer_refinery_enquetes
-    ADD CONSTRAINT hydra_integer_refinery_enquetes_pkey PRIMARY KEY (id);
-
-
---
--- Name: hydra_sets_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY hydra_sets
-    ADD CONSTRAINT hydra_sets_pkey PRIMARY KEY (id);
-
-
---
--- Name: hydra_string_refinery_enquetes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY hydra_string_refinery_enquetes
-    ADD CONSTRAINT hydra_string_refinery_enquetes_pkey PRIMARY KEY (id);
-
-
---
--- Name: hydra_text_refinery_enquetes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY hydra_text_refinery_enquetes
-    ADD CONSTRAINT hydra_text_refinery_enquetes_pkey PRIMARY KEY (id);
-
-
---
 -- Name: medicament_choices_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2074,6 +1758,46 @@ ALTER TABLE ONLY medicament_choices
 
 ALTER TABLE ONLY medicaments
     ADD CONSTRAINT medicaments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: meta_type_members_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY meta_type_members
+    ADD CONSTRAINT meta_type_members_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: meta_type_properties_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY meta_type_properties
+    ADD CONSTRAINT meta_type_properties_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: meta_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY meta_types
+    ADD CONSTRAINT meta_types_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: meta_types_sid_key; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY meta_types
+    ADD CONSTRAINT meta_types_sid_key UNIQUE (sid);
+
+
+--
+-- Name: meta_types_title_key; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY meta_types
+    ADD CONSTRAINT meta_types_title_key UNIQUE (title);
 
 
 --
@@ -2106,14 +1830,6 @@ ALTER TABLE ONLY refinery_documents_categories
 
 ALTER TABLE ONLY refinery_documents
     ADD CONSTRAINT refinery_documents_pkey PRIMARY KEY (id);
-
-
---
--- Name: refinery_enquetes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY dossiers
-    ADD CONSTRAINT refinery_enquetes_pkey PRIMARY KEY (id);
 
 
 --
@@ -2301,69 +2017,6 @@ ALTER TABLE ONLY traitements
 
 
 --
--- Name: hydra_attribute_sets_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX hydra_attribute_sets_index ON hydra_attribute_sets USING btree (hydra_attribute_id, hydra_set_id);
-
-
---
--- Name: hydra_attributes_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX hydra_attributes_index ON hydra_attributes USING btree (entity_type, name);
-
-
---
--- Name: hydra_boolean_refinery_enquetes_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX hydra_boolean_refinery_enquetes_index ON hydra_boolean_refinery_enquetes USING btree (entity_id, hydra_attribute_id);
-
-
---
--- Name: hydra_datetime_refinery_enquetes_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX hydra_datetime_refinery_enquetes_index ON hydra_datetime_refinery_enquetes USING btree (entity_id, hydra_attribute_id);
-
-
---
--- Name: hydra_float_refinery_enquetes_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX hydra_float_refinery_enquetes_index ON hydra_float_refinery_enquetes USING btree (entity_id, hydra_attribute_id);
-
-
---
--- Name: hydra_integer_refinery_enquetes_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX hydra_integer_refinery_enquetes_index ON hydra_integer_refinery_enquetes USING btree (entity_id, hydra_attribute_id);
-
-
---
--- Name: hydra_sets_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX hydra_sets_index ON hydra_sets USING btree (entity_type, name);
-
-
---
--- Name: hydra_string_refinery_enquetes_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX hydra_string_refinery_enquetes_index ON hydra_string_refinery_enquetes USING btree (entity_id, hydra_attribute_id);
-
-
---
--- Name: hydra_text_refinery_enquetes_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX hydra_text_refinery_enquetes_index ON hydra_text_refinery_enquetes USING btree (entity_id, hydra_attribute_id);
-
-
---
 -- Name: index_2605064b986486e26049fef85d6ee6d5c6b78479; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2406,10 +2059,10 @@ CREATE INDEX index_departements_on_name ON departements USING btree (name);
 
 
 --
--- Name: index_enquete_fields_on_enquete_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_evenement_choices_on_enquete_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_enquete_fields_on_enquete_id ON enquete_fields USING btree (enquete_id);
+CREATE INDEX index_evenement_choices_on_enquete_id ON evenement_choices USING btree (enquete_id);
 
 
 --
@@ -2417,13 +2070,6 @@ CREATE INDEX index_enquete_fields_on_enquete_id ON enquete_fields USING btree (e
 --
 
 CREATE INDEX index_evenement_choices_on_evenement_id ON evenement_choices USING btree (evenement_id);
-
-
---
--- Name: index_evenement_choices_on_type_enquete_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_evenement_choices_on_type_enquete_id ON evenement_choices USING btree (enquete_id);
 
 
 --
@@ -2455,10 +2101,10 @@ CREATE INDEX index_medicament_choices_on_medicament_id ON medicament_choices USI
 
 
 --
--- Name: index_patients_on_refinery_enquete_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_patients_on_dossier_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_patients_on_refinery_enquete_id ON patients USING btree (dossier_id);
+CREATE INDEX index_patients_on_dossier_id ON patients USING btree (dossier_id);
 
 
 --
@@ -2466,13 +2112,6 @@ CREATE INDEX index_patients_on_refinery_enquete_id ON patients USING btree (doss
 --
 
 CREATE INDEX index_refinery_crpvs_on_slug ON refinery_crpvs USING btree (slug);
-
-
---
--- Name: index_refinery_enquetes_on_refinery_crpv_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_refinery_enquetes_on_refinery_crpv_id ON dossiers USING btree (refinery_crpv_id);
 
 
 --
@@ -2714,17 +2353,50 @@ CREATE INDEX index_traitements_on_medicament_id ON traitements USING btree (medi
 
 
 --
--- Name: refinery_enquetes_hydra_set_id_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX refinery_enquetes_hydra_set_id_index ON dossiers USING btree (enquete_id);
-
-
---
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: dossiers_evenement_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY dossiers
+    ADD CONSTRAINT dossiers_evenement_id_fkey FOREIGN KEY (evenement_id) REFERENCES evenements(id);
+
+
+--
+-- Name: dossiers_meta_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY dossiers
+    ADD CONSTRAINT dossiers_meta_type_id_fkey FOREIGN KEY (meta_type_id) REFERENCES meta_types(id);
+
+
+--
+-- Name: dossiers_refinery_crpv_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY dossiers
+    ADD CONSTRAINT dossiers_refinery_crpv_id_fkey FOREIGN KEY (refinery_crpv_id) REFERENCES refinery_crpvs(id);
+
+
+--
+-- Name: meta_type_members_meta_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY meta_type_members
+    ADD CONSTRAINT meta_type_members_meta_type_id_fkey FOREIGN KEY (meta_type_id) REFERENCES meta_types(id);
+
+
+--
+-- Name: meta_type_members_meta_type_property_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY meta_type_members
+    ADD CONSTRAINT meta_type_members_meta_type_property_id_fkey FOREIGN KEY (meta_type_property_id) REFERENCES meta_type_properties(id);
 
 
 --
@@ -2811,50 +2483,26 @@ INSERT INTO schema_migrations (version) VALUES ('20130213131736');
 
 INSERT INTO schema_migrations (version) VALUES ('20130225101259');
 
-INSERT INTO schema_migrations (version) VALUES ('20130313125244');
-
-INSERT INTO schema_migrations (version) VALUES ('20130313130244');
-
 INSERT INTO schema_migrations (version) VALUES ('20130313131809');
-
-INSERT INTO schema_migrations (version) VALUES ('20130318081723');
 
 INSERT INTO schema_migrations (version) VALUES ('20130318131757');
 
-INSERT INTO schema_migrations (version) VALUES ('20130318131908');
-
-INSERT INTO schema_migrations (version) VALUES ('20130318132702');
-
 INSERT INTO schema_migrations (version) VALUES ('20130318133112');
-
-INSERT INTO schema_migrations (version) VALUES ('20130318144229');
-
-INSERT INTO schema_migrations (version) VALUES ('20130318160455');
-
-INSERT INTO schema_migrations (version) VALUES ('20130318161250');
 
 INSERT INTO schema_migrations (version) VALUES ('20130319125118');
 
 INSERT INTO schema_migrations (version) VALUES ('20130319125452');
 
-INSERT INTO schema_migrations (version) VALUES ('20130319131942');
-
-INSERT INTO schema_migrations (version) VALUES ('20130319132207');
-
-INSERT INTO schema_migrations (version) VALUES ('20130319153004');
-
-INSERT INTO schema_migrations (version) VALUES ('20130319164946');
-
 INSERT INTO schema_migrations (version) VALUES ('20130319171419');
-
-INSERT INTO schema_migrations (version) VALUES ('20130322085128');
 
 INSERT INTO schema_migrations (version) VALUES ('20130322091301');
 
-INSERT INTO schema_migrations (version) VALUES ('20130322091539');
-
-INSERT INTO schema_migrations (version) VALUES ('20130322113722');
-
-INSERT INTO schema_migrations (version) VALUES ('20130322114022');
-
 INSERT INTO schema_migrations (version) VALUES ('20130322123823');
+
+INSERT INTO schema_migrations (version) VALUES ('20130322131622');
+
+INSERT INTO schema_migrations (version) VALUES ('20130322131623');
+
+INSERT INTO schema_migrations (version) VALUES ('20130322131624');
+
+INSERT INTO schema_migrations (version) VALUES ('20130322131831');

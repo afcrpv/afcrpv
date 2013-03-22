@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322091539) do
+ActiveRecord::Schema.define(:version => 20130322114022) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -46,12 +46,13 @@ ActiveRecord::Schema.define(:version => 20130322091539) do
     t.integer  "position"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.integer  "hydra_set_id"
+    t.integer  "enquete_id"
     t.integer  "evenement_id"
     t.integer  "refinery_crpv_id"
+    t.text     "properties"
   end
 
-  add_index "dossiers", ["hydra_set_id"], :name => "refinery_enquetes_hydra_set_id_index"
+  add_index "dossiers", ["enquete_id"], :name => "refinery_enquetes_hydra_set_id_index"
   add_index "dossiers", ["refinery_crpv_id"], :name => "index_refinery_enquetes_on_refinery_crpv_id"
 
   create_table "enquete_fields", :force => true do |t|
