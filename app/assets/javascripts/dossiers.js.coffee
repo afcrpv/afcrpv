@@ -12,5 +12,9 @@ $ ->
   $("#dossier_concomitants").on "change", -> 
     showNextif $(@).val() is "Oui", $(@), $(".concomitant-field")
 
+  showNextif $("#dossier_contraception_apres").val() is "reprise", $("#dossier_contraception_apres"), $(".contraception-quoi")
+  $("#dossier_contraception_apres").on "change", -> 
+    showNextif $(@).val() is "reprise", $(@), $(".contraception-quoi")
+
 showNextif = (condition, element, next) ->
   if condition then $(next).show() else $(next).hide()

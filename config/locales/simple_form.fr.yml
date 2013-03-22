@@ -62,6 +62,8 @@ fr:
         contraception_ant: Contraception(s) antérieure(s)
         contraception_age: Age 1ère contraception
         concomitants: Autres médicaments en cours au moment de l’évènement
+        contraception_apres: Données sur la contraception après l’évènement
+        contraception_quoi: Préciser le contraceptif ou la forme
       patient:
         imc: IMC
 

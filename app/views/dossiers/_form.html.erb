@@ -118,7 +118,16 @@
         <%= f.input :"concomitant_#{i}_au", label: false, input_html: {class: "span4"}, include_blank: true %>
       </div>
     </div>
+  </div>
   <% end -%>
+  <div class="row-fluid">
+    <div class="span4">
+      <%= f.input :contraception_apres, as: :select, collection: Dossier::CONTRACEPTION_APRES, input_html: {class: "span10"} %>
+    </div>
+    <div class="span8 contraception-quoi">
+      <%= f.input :contraception_quoi, input_html: {class: "input-block-level"} %>
+    </div>
+  </div>
   <%= f.input :commentaire, input_html: {class: "input-block-level"}, hint: "Attention ! Pas de données nominatives directes ou indirectes dans ce champ." %>
   <div class="form-actions">
     <%= f.button :submit %>
