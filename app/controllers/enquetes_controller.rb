@@ -24,7 +24,7 @@ class EnquetesController < ApplicationController
   end
 
   def new
-    @enquete = Enquete.new(entity_type: "Dossier")
+    @enquete = Enquete.new
   end
 
   def create
