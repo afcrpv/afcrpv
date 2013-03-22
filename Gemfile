@@ -75,6 +75,7 @@ gem 'jquery-datatables-rails'
 gem "squeel"
 gem "workflow"
 gem "cocoon"
+gem "acts_as_list"
 
 group :development do
   gem 'meta_request'
