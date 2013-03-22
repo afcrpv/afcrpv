@@ -127,7 +127,6 @@ CREATE TABLE dossiers (
     meta_type_id integer,
     evenement_id integer,
     refinery_crpv_id integer,
-    properties_hstore hstore,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -159,7 +158,7 @@ ALTER SEQUENCE dossiers_id_seq OWNED BY dossiers.id;
 CREATE TABLE enquetes (
     id integer NOT NULL,
     name character varying(255),
-    description text,
+    description character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -2506,3 +2505,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130322131623');
 INSERT INTO schema_migrations (version) VALUES ('20130322131624');
 
 INSERT INTO schema_migrations (version) VALUES ('20130322131831');
+
+INSERT INTO schema_migrations (version) VALUES ('20130322150814');
+
+INSERT INTO schema_migrations (version) VALUES ('20130322151538');

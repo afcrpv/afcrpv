@@ -1,15 +1,6 @@
 <%= simple_form_for @enquete, html: {class: "form-vertical"} do |f| %>
-  <%= f.input :name, input_html: {class: "input-xxlarge", placeholder: "Nom"} %>
+  <%= f.input :name, input_html: {class: "input-xxlarge"} %>
   <%= f.input :description, input_html: {class: "input-block-level", rows: 1} %>
-  <h3>Champs personnalisés</h3>
-  <div id="fields">
-    <%= f.simple_fields_for :fields do |field| %>
-      <%= render "field_fields", f: field %>
-    <% end -%>
-    <div class="links">
-      <%= link_to_add_association "<i class='icon-plus'></i> Rajouter un champ".html_safe, f, :fields, class: "btn" %>
-    </div>
-  </div>
   <div class="form-actions">
     <%= f.button :submit, "Sauvegarder" %>
   </div>

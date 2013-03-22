@@ -8,7 +8,6 @@
       <thead>
         <tr>
           <th>Nom</th>
-          <th>Champs</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -16,7 +15,6 @@
       <% @enquetes.each do |enquete| %>
         <tr>
           <td><%= enquete.name %></td>
-          <td><%= enquete.fields.map(&:name).join(", ") %></td>
           <td>
             <%= link_to content_tag(:i, nil, class: "icon-pencil"), edit_enquete_path(enquete) %>
             <%= link_to content_tag(:i, nil, class: "icon-trash"), enquete, data: {confirm: "Etes-vous sûr ?"}, method: :delete %>
@@ -27,5 +25,13 @@
     </table>
   <% else %>
     <p>Aucune enquête en cours. <%= link_to "Voir les enquêtes terminées", "#", class: "btn" %></p>
+  <% end -%>
+
+  <%= form_tag new_dossier_path, method: :get, html: {class: "form-inline"} do %>
+    <div class="input-append">
+      <%= select_tag :enquete_id, options_from_collection_for_select(Enquete.all, :id, :name), class: "input-xlarge" %>
+      <%= submit_tag "Nouveau cas", name: nil, class: "btn" %>
+      <button class="btn" type="button" id="enquete-show-cas">Liste des cas</button>
+    </div>
   <% end -%>
 </div>
