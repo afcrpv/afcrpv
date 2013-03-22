@@ -18,7 +18,7 @@ class DossiersController < ApplicationController
   def create
     @dossier = Dossier.new(params[:dossier])
     if @dossier.save
-      redirect_to enquete_path(id: @dossier.enquete_id), succes: "Le dossier a été créé avec succès."
+      redirect_to enquete_path(params[:dossier][:enquete_id]), succes: "Le dossier a été créé avec succès."
     else
       render :new
     end
@@ -26,6 +26,7 @@ class DossiersController < ApplicationController
 
   def edit
     @dossier = Dossier.find(params[:id])
+    @dossier.build_patient unless @dossier.patient
     redirect_to enquetes_path(id: @dossier.enquete_id), notice: "Vous ne pouvez pas modifier ce dossier." unless user_crpv_owns_dossier? or current_refinery_user.is_admin?
   end
 
@@ -51,7 +52,7 @@ class DossiersController < ApplicationController
   end
 
   def enquete
-    @enquete ||= params[:id] ? @dossier.enquete : Enquete.find(params[:enquete_id])
+    @enquete ||= params[:id] ? @dossier.enquete : Enquete.find(params[:dossier][:enquete_id])
   end
 
   def evenements

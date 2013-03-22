@@ -6,7 +6,7 @@
       <%= f.input :code_bnpv %>
     </div>
     <div class="span4">
-      <%= f.input :date_recueil, as: :string %>
+      <%= f.input :date_recueil, input_html: {class: "span3"} %>
     </div>
     <div class="span4">
       <%= f.input :doublon, as: :radio, collection: %w(Oui Non), item_wrapper_class: "inline", hint: "(cas déjà notifié au CRPV)" %>
@@ -23,7 +23,7 @@
     <% end -%>
   </div>
   <%= f.association :evenement, collection: evenements, prompt: "Choisir un évènement", input_html: {class: "input-block-level"} %>
-  <%= f.input :comm_evenement, input_html: {class: "input-block-level", rows: 3} %>
+  <%= f.input :comm_evenement, input_html: {class: "input-block-level", rows: 3}, hint: "Attention ! Pas de données nominatives directes ou indirectes dans ce champ." %>
   <div class="row-fluid">
     <div class="span4">
       <div class="control-group">
@@ -43,20 +43,20 @@
     </div>
   </div>
   <h3>Traitement au moment de l'évènement</h3>
-  <div id="traitements">
-    <div class="row-fluid">
-      <div class="span3">
-        Médicament
-      </div>
-      <div class="span4">
-        Début de traitement
-      </div>
-      <div class="span4">
-        Fin de traitement
-      </div>
-      <div class="span1">
-      </div>
+  <div class="row-fluid">
+    <div class="span3">
+      Médicament
     </div>
+    <div class="span4">
+      Début de traitement
+    </div>
+    <div class="span4">
+      Fin de traitement
+    </div>
+    <div class="span1">
+    </div>
+  </div>
+  <div id="traitements">
     <%= f.simple_fields_for :traitements do |traitement| %>
       <%= render "traitement_fields", f: traitement %>
     <% end -%>
@@ -64,7 +64,34 @@
       <%= link_to_add_association "<i class='icon-plus'></i> Rajouter un traitement".html_safe, f, :traitements, class: "btn" %>
     </div>
   </div>
-  <%= f.input :commentaire, input_html: {class: "input-block-level"} %>
+  <div class="row-fluid">
+    <div class="span4">
+      <%= f.input :contraception_ant, as: :select, collection: Dossier::ONI %>
+    </div>
+    <div class="span4 contraception-field" style="display: none;">
+      <%= f.input :contraception_age, input_html: {class: "span3"} %>
+    </div>
+  </div>
+  <% (1..3).each do |i| %>
+    <div class="row-fluid contraception-field">
+      <div class="span4">
+        <%= f.input :"contraception_#{i}", label: false %>
+      </div>
+      <div class="span1">
+        <p>du</p>
+      </div>
+      <div class="span3">
+        <%= f.input :"contraception_#{i}_du", label: false, input_html: {class: "span4"}, include_blank: true %>
+      </div>
+      <div class="span1">
+        <p>au</p>
+      </div>
+      <div class="span3">
+        <%= f.input :"contraception_#{i}_au", label: false, input_html: {class: "span4"}, include_blank: true %>
+      </div>
+    </div>
+  <% end -%>
+  <%= f.input :commentaire, input_html: {class: "input-block-level"}, hint: "Attention ! Pas de données nominatives directes ou indirectes dans ce champ." %>
   <div class="form-actions">
     <%= f.button :submit %>
   </div>

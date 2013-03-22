@@ -128,7 +128,18 @@ CREATE TABLE dossiers (
     evenement_id integer,
     refinery_crpv_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    contraception_ant character varying(255),
+    contraception_age integer,
+    contraception_1 character varying(255),
+    contraception_1_du date,
+    contraception_1_au date,
+    contraception_2 character varying(255),
+    contraception_2_du date,
+    contraception_2_au date,
+    contraception_3 character varying(255),
+    contraception_3_du date,
+    contraception_3_au date
 );
 
 
@@ -2511,3 +2522,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130322150814');
 INSERT INTO schema_migrations (version) VALUES ('20130322151538');
 
 INSERT INTO schema_migrations (version) VALUES ('20130322152626');
+
+INSERT INTO schema_migrations (version) VALUES ('20130322161523');

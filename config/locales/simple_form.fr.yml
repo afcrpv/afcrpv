@@ -59,6 +59,8 @@ fr:
         evenement: Evènement
         comm_evenement: Précisions sur l'évènement
         gravite: Gravité
+        contraception_ant: Contraception(s) antérieure(s)
+        contraception_age: Age 1ère contraception
       patient:
         imc: IMC
 
