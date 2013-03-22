@@ -76,7 +76,7 @@ gem "squeel"
 gem "workflow"
 gem "cocoon"
 gem "acts_as_list"
-gem 'activerecord-postgres-hstore'
+gem 'activerecord-postgres-hstore', github: "softa/activerecord-postgres-hstore"
 gem "meta_types", github: 'metaminded/meta_types'
 
 group :development do
