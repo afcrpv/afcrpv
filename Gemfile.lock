@@ -104,7 +104,7 @@ GEM
       activerecord (>= 3.0.0)
     babosa (0.3.8)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.2.1.1)
+    bootstrap-sass (2.3.1.0)
       sass (~> 3.2)
     builder (3.0.4)
     chunky_png (1.2.6)
@@ -268,7 +268,7 @@ GEM
     routing-filter (0.3.1)
       actionpack
     ruby-hmac (0.4.0)
-    sass (3.2.3)
+    sass (3.2.7)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -321,7 +321,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 2.3.1)
   acts_as_list
-  bootstrap-sass (~> 2.2.1.1)
+  bootstrap-sass (~> 2.3.1.0)
   cocoon
   coffee-rails (~> 3.2.1)
   compass-rails
