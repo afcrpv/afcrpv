@@ -151,7 +151,47 @@ CREATE TABLE dossiers (
     concomitant_3_du date,
     concomitant_3_au date,
     contraception_apres character varying(255),
-    contraception_quoi character varying(255)
+    contraception_quoi character varying(255),
+    obesite character varying(255),
+    tabac character varying(255),
+    tabac_pa character varying(255),
+    thrombose_perso character varying(255),
+    thrombose_perso_quoi character varying(255),
+    thrombose_fam character varying(255),
+    thrombose_fam_quoi character varying(255),
+    cv_perso character varying(255),
+    cv_perso_quoi character varying(255),
+    cv_fam character varying(255),
+    cv_fam_quoi character varying(255),
+    hta character varying(255),
+    autoimmune character varying(255),
+    autoimmune_quoi character varying(255),
+    cancer character varying(255),
+    cancer_quoi character varying(255),
+    hhc_perso character varying(255),
+    hhc_fam character varying(255),
+    circonstance_chirurgie boolean,
+    circonstance_immobilisation boolean,
+    circonstance_voyage boolean,
+    circonstance_autre boolean,
+    circonstance_autre_quoi character varying(255),
+    post_partum character varying(255),
+    anomalie_hemostase_perso_bilan character varying(255),
+    anomalie_hemostase_perso_anomalie character varying(255),
+    anomalie_hemostase_perso_anomalie_quoi character varying(255),
+    migraine_perso character varying(255),
+    anomalie_hemostase_fam_bilan character varying(255),
+    anomalie_hemostase_fam_anomalie character varying(255),
+    anomalie_hemostase_fam_anomalie_quoi character varying(255),
+    migraine_fam character varying(255),
+    diabete character varying(255),
+    hyperglycemie character varying(255),
+    dyslipidemie character varying(255),
+    dyslipidemie_quoi character varying(255),
+    illicites character varying(255),
+    illicites_quoi character varying(255),
+    autres_cv character varying(255),
+    autres_cv_quoi character varying(255)
 );
 
 
@@ -2543,3 +2583,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130322191704');
 INSERT INTO schema_migrations (version) VALUES ('20130322200345');
 
 INSERT INTO schema_migrations (version) VALUES ('20130322202810');
+
+INSERT INTO schema_migrations (version) VALUES ('20130323191108');

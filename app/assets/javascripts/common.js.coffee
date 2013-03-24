@@ -7,6 +7,8 @@ $ ->
   $.fn.select2.defaults.formatSearching = -> "Recherche en cours..."
 
 
+  $("a[data-toggle='tooltip']").tooltip()
+
   $("a[href='#top']").click (e) ->
     e.preventDefault()
     $("html, body").animate

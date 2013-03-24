@@ -1,0 +1,10 @@
+<h3>Patient</h3>
+<div class="row-fluid">
+  <%= f.simple_fields_for :patient do |pf| %>
+    <% %w(age poids taille imc).each do |field| %>
+    <div class="span3">
+      <%= pf.input :"#{field}", input_html: {class: "span4"} %>
+    </div>
+    <% end -%>
+  <% end -%>
+</div>

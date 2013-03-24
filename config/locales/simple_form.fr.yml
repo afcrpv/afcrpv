@@ -62,8 +62,47 @@ fr:
         contraception_ant: Contraception(s) antérieure(s)
         contraception_age: Age 1ère contraception
         concomitants: Autres médicaments en cours au moment de l’évènement
-        contraception_apres: Données sur la contraception après l’évènement
-        contraception_quoi: Préciser le contraceptif ou la forme
+        contraception_apres: Contraception après l’évènement
+        contraception_quoi: "Préciser le contraceptif ou la forme :"
+        obesite: 1- Obesité
+        tabac: 2- Tabac
+        tabac_pa: "nombre PA :"
+        thrombose_perso: 3.1 Personnel
+        thrombose_perso_quoi: &perso "Si oui, préciser type et date :"
+        thrombose_fam: 3.2 Familial
+        thrombose_fam_quoi: &fam "Si oui, préciser type (+rang +âge) :"
+        cv_perso: 4.1 Personnel
+        cv_perso_quoi: *perso
+        cv_fam: 4.2 Familial
+        cv_fam_quoi: *fam
+        hta: 5- Hypertension
+        autoimmune: 6- Maladie auto-immune
+        autoimmune_quoi: "Si oui, préciser :"
+        cancer: 7- Cancer évolutif
+        cancer_quoi: "Si oui, préciser :"
+        hhc_perso: 8.1 Personnelle
+        hhc_fam: 8.2 Familiale
+        circonstance_chirurgie: intervention chirurgicale dans le mois précédent
+        circonstance_immobilisation: "immobilisation >3 jours"
+        circonstance_voyage: voyage de longue durée (>5h)
+        circonstance_autre: "autre, préciser :"
+        post_partum: "10- Post partum (< 3 semaines)"
+        anomalie_hemostase_perso_bilan: "11.1 Personnelle :"
+        anomalie_hemostase_perso_anomalie: "Résultats :"
+        anomalie_hemostase_perso_anomalie_quoi: "Si oui, préciser l'anomalie :"
+        anomalie_hemostase_fam_bilan: "11.2 Familiale :"
+        anomalie_hemostase_fam_anomalie: "Résultats :"
+        anomalie_hemostase_fam_anomalie_quoi: "Si oui, préciser l'anomalie (+rang) :"
+        migraine_perso: 12.1 Personnel
+        migraine_fam: 12.2 Familial
+        diabete: 13- Diabète
+        hyperglycemie: 14- Hyperglycémie
+        dyslipidemie: 15- Dyslipidémie
+        dyslipidemie_quoi: "Si oui, préciser :"
+        illicites: "16- Consommation de cannabis, cocaïne, amphétamines..."
+        illicites_quoi: "Si oui, préciser :"
+        autres_cv: "17- Autres facteurs de risque cardio-vasculaires mis en évidence après l’événement (foramen ovale perméable, troubles du rythme, etc.)"
+        autres_cv_quoi: "Si oui, préciser :"
       patient:
         imc: IMC
 
