@@ -8,7 +8,7 @@ class Dossier < ActiveRecord::Base
   end
   (1..3).each do |i|
     %w(contraception concomitant).each do |name|
-      attr_accessible :"name_#{i}", :"name_#{i}_du", :"name_#{i}_au"
+      attr_accessible :"#{name}_#{i}", :"#{name}_#{i}_du", :"#{name}_#{i}_au"
     end
   end
   %w(thrombose cv).each do |prefix|
@@ -44,10 +44,25 @@ class Dossier < ActiveRecord::Base
   accepts_nested_attributes_for :patient, reject_if: :all_blank
   accepts_nested_attributes_for :traitements, reject_if: :all_blank, allow_destroy: true
 
+  TABAC = [
+    ["oui", 0],
+    ["sevré", 1],
+    ["non", 2],
+    ["NSP", 3]
+  ]
+
   ONI = [
     "Oui",
     "Non",
     "NSP"
+  ]
+
+  HEMOSTASE = [
+    ["bilan avant évènement", "avant"],
+    ["bilan après évènement", "après"],
+    ["bilan non fait", "non"],
+    ["bilan prévu à distance", "distance"],
+    ["NSP", "nsp"]
   ]
 
   CONTRACEPTION_APRES = [
