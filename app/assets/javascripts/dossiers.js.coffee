@@ -24,6 +24,18 @@ $ ->
     $field.on "change", ->
       showNextif $(@).val() is "Oui", $(@), $(@).parents(".control-group").next()
 
+  $event_field = $("#dossier_evenement_id")
+  $event_condition_veineux = $event_field.val() in ["1", "2", "5"]
+  $event_condition_arterieux = $event_field.val() in ["3", "4"]
+
+  showNextif $event_condition_veineux, $event_field, $("#fdr-veineux")
+  $event_field.on "change", ->
+    showNextif $(@).val() in ["1", "2", "5"], $(@), $("#fdr-veineux")
+
+  showNextif $event_condition_arterieux, $event_field, $("#fdr-arterieux")
+  $event_field.on "change", ->
+    showNextif $(@).val() in ["3", "4"], $(@), $("#fdr-arterieux")
+
 showNextif = (condition, element, next) ->
   if condition
     $(next).show()
