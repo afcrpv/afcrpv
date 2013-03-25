@@ -1,9 +1,10 @@
 <%= show_for @medicament do |s| %>
   <%= s.attribute :name %>
-  <%= s.attribute :type %>
   <%= s.attribute :classe %>
   <%= s.attribute :forme %>
 <% end %>
 
-<%= link_to 'Edit', edit_medicament_path(@medicament) %> |
-<%= link_to 'Back', medicaments_path %>
+<div class="btn-group">
+  <%= link_to 'Modifier', edit_medicament_path(@medicament), class: "btn" %>
+  <%= link_to 'Retour à la liste', medicaments_path, class: "btn" %>
+</div>

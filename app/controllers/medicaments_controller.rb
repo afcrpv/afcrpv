@@ -62,7 +62,7 @@ class MedicamentsController < ApplicationController
 
     respond_to do |format|
       if @medicament.save
-        format.html { redirect_to @medicament, notice: 'Medicament was successfully created.' }
+        format.html { redirect_to medicaments_path, notice: "Médicament '#{@medicament.name}' créé avec succès." }
         format.json { render json: @medicament, status: :created, location: @medicament }
       else
         format.html { render action: "new" }
@@ -78,7 +78,7 @@ class MedicamentsController < ApplicationController
 
     respond_to do |format|
       if @medicament.update_attributes(params[:medicament])
-        format.html { redirect_to @medicament, notice: 'Medicament was successfully updated.' }
+        format.html { redirect_to medicaments_path, notice: "Médicament '#{@medicament.name}' mis à jour." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -94,7 +94,7 @@ class MedicamentsController < ApplicationController
     @medicament.destroy
 
     respond_to do |format|
-      format.html { redirect_to medicaments_url }
+      format.html { redirect_to medicaments_url, notice: "Médicament '#{@medicament.name}' détruit." }
       format.json { head :no_content }
     end
   end

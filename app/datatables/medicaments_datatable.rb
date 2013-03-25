@@ -25,7 +25,7 @@ class MedicamentsDatatable
         medicament.name,
         medicament.classe,
         medicament.forme,
-        link_to("<i class='icon-pencil'></i>".html_safe, edit_medicament_path(medicament), class: "btn btn-small")
+        link_to("<i class='icon-pencil'></i>".html_safe, edit_medicament_path(medicament), class: "btn btn-small") + link_to("<i class='icon-trash'></i>".html_safe, medicament, confirm: "Etes-vous sûr ?", method: :delete, class: "btn btn-small")
       ]
     end
   end
