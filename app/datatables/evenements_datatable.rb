@@ -24,7 +24,7 @@ class EvenementsDatatable
         content_tag(:td, check_box_tag("evenement_names[]", evenement.name)),
         evenement.name,
         evenement.ev_type,
-        link_to("<i class='icon-pencil'></i>".html_safe, edit_evenement_path(evenement), class: "btn btn-small")
+        link_to("<i class='icon-pencil'></i>".html_safe, edit_evenement_path(evenement), class: "btn btn-small") + link_to("<i class='icon-trash'></i>".html_safe, evenement, confirm: "Etes-vous sûr ?", method: :delete, class: "btn btn-small")
       ]
     end
   end
