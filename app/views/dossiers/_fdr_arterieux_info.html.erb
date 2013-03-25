@@ -1,0 +1,32 @@
+<div class="fdr-arterieux form-section">
+  <h4>Facteurs de risque établis pour les thromboses artérielles</h4>
+  <div id="migraine" class="atcd-columns">
+    <h5 class="text-center">12- Antécédent de migraine avec aura</h5>
+    <div class='row-fluid'>
+      <% %w(perso fam).each do |suffix| %>
+        <div class="span6">
+          <%= f.input :"migraine_#{suffix}", collection: Dossier::ONI %>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+  <div class='row-fluid'>
+    <% %w(diabete hyperglycemie).each do |field| %>
+      <div class="span4">
+        <%= f.input :"#{field}", collection: Dossier::ONI %>
+      </div>
+    <% end -%>
+    <div class="span4">
+      <%= f.input :dyslipidemie, collection: Dossier::ONI %>
+      <%= f.input :dyslipidemie_quoi, collection: %w(hypercholestérolémie hypertriglycéridémie NSP) %>
+    </div>
+  </div>
+  <div class='row-fluid'>
+    <% %w(illicites autres_cv).each do |field| %>
+      <div class="span6">
+        <%= f.input :"#{field}", collection: Dossier::ONI %>
+        <%= f.input :"#{field}_quoi" %>
+      </div>
+    <% end -%>
+  </div>
+</div>

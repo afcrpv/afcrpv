@@ -1,0 +1,38 @@
+<div class="fdr-communs form-section">
+  <h4>Evaluation de facteurs de risque établis pour les thromboses veineuses mais à compléter pour tout événement</h4>
+  <div class="row-fluid">
+    <div class="span6">
+      <p class="text-center"><strong>9- Circonstance(s) de survenue</strong></p>
+      <% %w(chirurgie immobilisation voyage).each do |suffix| -%>
+        <label class="checkbox">
+          <%= f.check_box :"circonstance_#{suffix}" %>
+          <%= t("simple_form.labels.dossier.circonstance_#{suffix}") %>
+        </label>
+      <% end -%>
+      <label class="checkbox">
+        <%= f.check_box :"circonstance_autre" %>
+        <%= t("simple_form.labels.dossier.circonstance_autre") %>
+        <%= f.text_field :circonstance_autre_quoi %>
+      </label>
+    </div>
+    <div class="span6">
+      <%= f.input :post_partum, collection: Dossier::ONI %>
+    </div>
+  </div>
+  <div id="hemostase" class="atcd-columns">
+    <h5 class="text-center">
+      11- Anomalie(s) de l'hémostase
+      <a href="#" data-toggle="tooltip" title="Protéine C, protéine S, antithrombine III, facteur V Leyden, mutation du gène de la prothrombine, anticorps antiphospholipides, anticorps anticardiolipine,lupus anticoagulant,  anticorps anti béta2glycoprotéine I…">(?)</a>
+    </h5>
+    <div class="row-fluid">
+      <% %w(perso fam).each do |prefix| %>
+        <div class="span6">
+          <% {"bilan" => Dossier::HEMOSTASE, "anomalie" => Dossier::ONI}.each do |suffix, collection| %>
+            <%= f.input :"anomalie_hemostase_#{prefix}_#{suffix}", collection: collection %>
+          <% end %>
+          <%= f.input :"anomalie_hemostase_#{prefix}_anomalie_quoi" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

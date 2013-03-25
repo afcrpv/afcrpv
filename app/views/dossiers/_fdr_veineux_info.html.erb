@@ -1,0 +1,48 @@
+<div class="fdr-veineux form-section">
+  <h4>Evaluation des facteurs de risque de thrombose</h4>
+  <div class="row-fluid">
+    <div class="span6">
+      <%= f.input :obesite, collection: Dossier::ONI %>
+    </div>
+    <div class="span6">
+      <%= f.input :tabac, collection: %w(oui sevré non NSP) %>
+      <%= f.input :tabac_pa %>
+    </div>
+  </div>
+  <% {"thrombose" => "3- Antécédent(s) de thrombose", "cv" => "4- Antécedent(s) cardiovasculaire(s)"}.each do |prefix, titre| %>
+    <div id=<%= prefix %> class="atcd-columns">
+      <h5 class="text-center"><%= titre %></h5>
+      <div class="row-fluid">
+        <% %w(perso fam).each do |suffix| %>
+          <div class="span6">
+            <%= f.input :"#{prefix}_#{suffix}", collection: Dossier::ONI %>
+            <%= f.input :"#{prefix}_#{suffix}_quoi" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row-fluid">
+    <div class="span4">
+      <%= f.input :hta, collection: Dossier::ONI %>
+    </div>
+    <div class="span4">
+      <%= f.input :autoimmune, collection: Dossier::ONI %>
+      <%= f.input :autoimmune_quoi %>
+    </div>
+    <div class="span4">
+      <%= f.input :cancer, collection: Dossier::ONI %>
+      <%= f.input :cancer_quoi %>
+    </div>
+  </div>
+  <div id="hhc" class="atcd-columns">
+    <h5 class="text-center">8- Hyperhomocystéinémie</h5>
+    <div class="row-fluid">
+      <% %w(perso fam).each do |suffix| %>
+        <div class="span6">
+          <%= f.input :"hhc_#{suffix}", collection: Dossier::ONI %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

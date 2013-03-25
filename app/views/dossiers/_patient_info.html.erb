@@ -1,10 +1,21 @@
-<h3>Patient</h3>
-<div class="row-fluid">
-  <%= f.simple_fields_for :patient do |pf| %>
-    <% %w(age poids taille imc).each do |field| %>
-    <div class="span3">
-      <%= pf.input :"#{field}", input_html: {class: "span4"} %>
-    </div>
+<div class="patient-info form-section">
+  <h4>Patient</h4>
+  <div class="row-fluid">
+    <%= f.simple_fields_for :patient do |pf| %>
+      <div class="span3">
+        <%= pf.input :age, input_html: {class: "span4"} %>
+      </div>
+      <% {"poids" => "kg", "taille" => "cm"}.each do |field, append| %>
+        <div class="span3">
+          <%= pf.input :"#{field}", wrapper: :append do %>
+            <%= pf.input_field :"#{field}", class: "span4", type: :number %>
+            <%= content_tag :span, append, class: "add-on" %>
+          <% end -%>
+        </div>
+      <% end -%>
+      <div class="span3">
+        <%= pf.input :imc, input_html: {class: "span4"} %>
+      </div>
     <% end -%>
-  <% end -%>
+  </div>
 </div>

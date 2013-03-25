@@ -1,20 +1,23 @@
-<%= f.association :evenement, collection: evenements, prompt: "Choisir un évènement", input_html: {class: "input-block-level"} %>
-<%= f.input :comm_evenement, input_html: {class: "input-block-level", rows: 3}, hint: "Attention ! Pas de données nominatives directes ou indirectes dans ce champ." %>
-<div class="row-fluid">
-  <div class="span4">
-    <div class="control-group">
-      <%= f.label :j_evenement, "Date de l'évenèment", class: "control-label" %>
-      <div class="controls controls-row">
-        <% %w(j m a).each do |prefix| %>
-          <%= f.text_field :"#{prefix}_evenement", class: "span3", placeholder: prefix*2 %>
-        <% end -%>
+<div class="evenement-info form-section">
+  <h4>Evènement thrombo-embolique</h4>
+  <%= f.association :evenement, collection: evenements, prompt: "Choisir un évènement", input_html: {class: "input-block-level"} %>
+  <%= f.input :comm_evenement, input_html: {class: "input-block-level", rows: 3}, hint: "Attention ! Pas de données nominatives directes ou indirectes dans ce champ." %>
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="control-group">
+        <%= f.label :j_evenement, "Date de l'évenèment", class: "control-label" %>
+        <div class="controls controls-row">
+          <% %w(j m a).each do |prefix| %>
+            <%= f.text_field :"#{prefix}_evenement", class: "span3", placeholder: prefix*2 %>
+          <% end -%>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="span4">
-    <%= f.input :gravite, as: :radio_buttons, collection: Dossier::GRAVITE %>
-  </div>
-  <div class="span4">
-    <%= f.input :evolution, as: :radio_buttons, collection: Dossier::EVOLUTION %>
+    <div class="span4">
+      <%= f.input :gravite, collection: Dossier::GRAVITE %>
+    </div>
+    <div class="span4">
+      <%= f.input :evolution, collection: Dossier::EVOLUTION %>
+    </div>
   </div>
 </div>
