@@ -17,7 +17,7 @@ Afcrpv::Application.routes.draw do
   resources :evenements do
     collection { get :liste}
   end
-  resources :dossiers, except: :index
+  resources :dossiers
   resources :enquetes do
     collection { post :add_medicaments }
     collection { post :add_evenements }

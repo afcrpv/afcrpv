@@ -3,6 +3,39 @@ $ = jQuery
 $ ->
   gaiSelected = []
 
+  dossiersoTable = $("#dossiers").dataTable
+    sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
+    sPaginationType: "bootstrap"
+    aoColumns: [
+      {sWidth: "15%"}
+      {sWidth: "30%"}
+      {sWidth: "30%", bSortable: false}
+      null
+      {sWidth: "10%", bSortable: false}
+    ]
+    bProcessing: true
+    bServerSide: true
+    sAjaxSource: $('#dossiers').data('source')
+    oLanguage:
+      "sProcessing":     "Traitement en cours..."
+      "sSearch":         "Recherche&nbsp;:"
+      "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments"
+      "sInfo":           "Affichage du dossier _START_ &agrave; _END_ sur _TOTAL_"
+      "sInfoEmpty":      "Affichage du dossier 0 &agrave; 0 sur 0"
+      "sInfoFiltered":   "(filtr&eacute; de _MAX_ dossiers au total)"
+      "sInfoPostFix":    ""
+      "sLoadingRecords": "Chargement en cours..."
+      "sZeroRecords":    "Aucun dossier &agrave; afficher"
+      "sEmptyTable":     "Aucune donnée disponible dans le tableau"
+      "oPaginate":
+        "sFirst":      "Premier"
+        "sPrevious":   "Pr&eacute;c&eacute;dent"
+        "sNext":       "Suivant"
+        "sLast":       "Dernier"
+      "oAria":
+        "sSortAscending":  ": activer pour trier la colonne par ordre croissant"
+        "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+
   evenementsoTable = $("#evenements").dataTable
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
     sPaginationType: "bootstrap"

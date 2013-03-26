@@ -20,7 +20,6 @@ class EnquetesController < ApplicationController
 
   def show
     @enquete = Enquete.find(params[:id])
-    @dossiers = @enquete.dossiers.all
   end
 
   def new

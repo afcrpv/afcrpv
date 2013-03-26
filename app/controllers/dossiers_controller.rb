@@ -6,6 +6,13 @@ class DossiersController < ApplicationController
   helper_method :authorised_dossiers_user?
   helper_method :enquete
 
+  def index
+    respond_to do |format|
+      format.html
+      format.json { render json: DossiersDatatable.new(view_context) }
+    end
+  end
+
   def show
     @dossier = Dossier.find(params[:id])
   end

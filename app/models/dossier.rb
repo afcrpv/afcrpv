@@ -33,6 +33,7 @@ class Dossier < ActiveRecord::Base
   end
 
   validates :code_bnpv, presence: true, uniqueness: true
+  validates :evenement_id, presence: true
 
   has_one :patient
   belongs_to :evenement
@@ -83,4 +84,19 @@ class Dossier < ActiveRecord::Base
     "décès du à l'effet",
     "NSP"
   ]
+
+  def self.code_bnpv_or_evenement_or_medicament_contains(string)
+    joins{[evenement, traitements.medicament]}.
+      where{
+        (code_bnpv.like "%#{string}%") |
+        (evenement.name.like "%#{string}%") |
+        (traitements.medicament.name.like "%#{string}%")
+    }
+  end
+
+  def medicaments_list
+    if medicaments.any?
+      medicaments.map(&:name).join(", ")
+    end
+  end
 end

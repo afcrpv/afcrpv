@@ -1,25 +1,14 @@
-<% if @dossiers.any? %>
-  <table class="table table-condensed table-striped table-bordered" id="dossiers">
-    <thead>
-      <tr>
-        <th>N° Cas BNPV</th>
-        <th>Evènement</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @dossiers.each do |dossier| %>
-        <tr>
-          <td><%= link_to dossier.code_bnpv, dossier %></td>
-          <td><%= dossier.evenement %></td>
-          <td>
-            <%= link_to content_tag(:i, nil, class: "icon-pencil"), edit_dossier_path(dossier) %>
-            <%= link_to content_tag(:i, nil, class: "icon-trash"), dossier, data: {confirm: "Etes-vous sûr ?"}, method: :delete if authorised_enquetes_user? %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  Aucun cas.
-<% end -%>
+<table class="table table-condensed table-striped table-bordered display" id="dossiers" data-source="<%= dossiers_url(format: :json) %>">
+  <thead>
+    <tr>
+      <th>N° Cas BNPV</th>
+      <th>Evènement</th>
+      <th>Médicament(s)</th>
+      <th>Date recueil</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<p><%= link_to "Nouveau dossier", new_dossier_path(enquete_id: enquete.id), class: "btn" %></p>
