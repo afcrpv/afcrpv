@@ -34,6 +34,7 @@ class Dossier < ActiveRecord::Base
 
   validates :code_bnpv, presence: true, uniqueness: true
   validates :evenement_id, presence: true
+  validates :date_recueil, presence: true
 
   has_one :patient
   belongs_to :evenement
