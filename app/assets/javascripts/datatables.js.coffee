@@ -19,8 +19,13 @@ $ ->
     fnServerParams: (aoData) ->
       date_recueil_conditions = {}
       for suffix in ["du", "au"]
-        date_recueil_conditions["date_recueil_#{suffix}"] = for date_item in ["day", "month", "year"]
+        date_recueil_conditions["date_recueil_#{suffix}"] = for date_item in ["year", "month", "day"]
           $("#date_recueil_#{suffix}_#{date_item}").val()
+
+      for param, value of date_recueil_conditions
+        aoData.push
+          name: param
+          value: value.join("-")
     oLanguage:
       "sProcessing":     "Traitement en cours..."
       "sSearch":         "Recherche&nbsp;:"
@@ -41,13 +46,13 @@ $ ->
         "sSortAscending":  ": activer pour trier la colonne par ordre croissant"
         "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
 
+  for prefix in ["du", "au"]
+    for date_item in ["day", "month", "year"]
+      $("#date_recueil_#{prefix}_#{date_item}").on "change", (e) ->
+        dossiersoTable.fnFilter($("#date_recueil_dummy").val(), 3)
 
-  for field in ["#search_tag", "#search_tag_condition"]
-    $(field).on "change", (e) ->
-      documentsoTable.fnFilter($("#search_tag").val(), 2)
-
-  $("#documents tfoot input").keyup ->
-    documentsoTable.fnFilter(@value, $("tfoot input").index(@))
+  $("#dossiers tfoot input").keyup ->
+    dossiersoTable.fnFilter(@value, $("tfoot input").index(@))
 
   evenementsoTable = $("#evenements").dataTable
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
@@ -289,6 +294,7 @@ $ ->
 
   $("#documents tfoot input").keyup ->
     documentsoTable.fnFilter(@value, $("tfoot input").index(@))
+
 
   $("#documents").on 'hover', ->
     $("[data-toggle='tooltip']").tooltip()
