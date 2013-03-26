@@ -59,7 +59,7 @@ class DossiersController < ApplicationController
   end
 
   def enquete
-    @enquete ||= params[:id] ? @dossier.enquete : Enquete.find(params[:dossier][:enquete_id])
+    @enquete ||= params[:id] ? @dossier.enquete : Enquete.find(params[:enquete_id])
   end
 
   def evenements
