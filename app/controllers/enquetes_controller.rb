@@ -2,7 +2,6 @@
 class EnquetesController < ApplicationController
   before_filter :redirect_unless_authorized, except: [:show, :index]
   before_filter :redirect_unless_connected
-  helper_method :authorised_enquetes_user?
 
   %w(evenement medicament).each do |method|
     define_method :"add_#{method}s" do
@@ -52,19 +51,5 @@ class EnquetesController < ApplicationController
     @enquete = Enquete.find(params[:id])
     @enquete.destroy
     redirect_to enquetes_path, notice: "Enquête : #{@enquete.name} détruite avec succès."
-  end
-
-  protected
-
-  def redirect_unless_authorized
-    redirect_to "/intranet", notice: "Vous n'êtes pas autorisé à voir cette page !" unless authorised_enquetes_user?
-  end
-
-  def redirect_unless_connected
-    redirect_to "/members/login?member_login=true&redirect=#{request.fullpath}", notice: "Veuillez vous connecter pour accéder à cette page." unless current_refinery_user
-  end
-
-  def authorised_enquetes_user?
-    current_refinery_user && (current_refinery_user.has_role?('enquetes') or current_refinery_user.is_admin?)
   end
 end

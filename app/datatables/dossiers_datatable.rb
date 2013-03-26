@@ -1,6 +1,6 @@
 #encoding: utf-8
 class DossiersDatatable
-  delegate :logger, :params, :l, :h, :link_to, :edit_dossier_path, :authorised_dossiers_user?, :content_tag, to: :@view
+  delegate :logger, :params, :l, :h, :link_to, :edit_dossier_path, :authorised_enquetes_user?, :content_tag, to: :@view
 
   def initialize(view)
     @view = view
@@ -24,7 +24,7 @@ class DossiersDatatable
         dossier.evenement.name,
         dossier.medicaments_list,
         l(dossier.date_recueil),
-        link_to("<i class='icon-pencil'></i>".html_safe, edit_dossier_path(dossier), class: "btn btn-small") + (authorised_dossiers_user? ? link_to("<i class='icon-trash'></i>".html_safe, dossier, confirm: "Etes-vous sûr ?", method: :delete, class: "btn btn-small") : "")
+        link_to("<i class='icon-pencil'></i>".html_safe, edit_dossier_path(dossier), class: "btn btn-small") + (authorised_enquetes_user? ? link_to("<i class='icon-trash'></i>".html_safe, dossier, confirm: "Etes-vous sûr ?", method: :delete, class: "btn btn-small") : "")
       ]
     end
   end
@@ -44,12 +44,8 @@ class DossiersDatatable
       dossiers = dossiers.joins{evenement}.where{evenement.name =~ my{"%#{params[:sSearch_1]}%"}}
     elsif params[:sSearch_2].present?#dossiers.traitements.medicament.name
       dossiers = dossiers.joins{traitements.medicament.name}.where{traitements.medicament.name =~ my{"%#{params[:sSearch_2]}%"}}
-    elsif params[:sSearch_3].present?#dossiers.date_recueil
-      #tags = params[:sSearch_2].split(",")
-      #tags_condition = {"2" => {match_all: true}, "1" => {any: true}}
-      #condition = tags.many? ? tags_condition[params[:tags_condition]] : {any: true}
-      #dossiers = dossiers.tagged_with(tags, condition)
-      dossiers = dossiers.where{(date_recueil < params[:sSearch3][:max]) & (date_recueil > params[:sSearch3][:min])}
+    elsif params[:date_recueil_au].present? && params[:date_recueil_du]#dossiers.date_recueil
+      dossiers = dossiers.where{(date_recueil <= my{params[:date_recueil_au]}) & (date_recueil >= my{params[:date_recueil_du]})}
     end
     dossiers
   end

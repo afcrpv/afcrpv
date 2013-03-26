@@ -3,7 +3,6 @@ class DossiersController < ApplicationController
   before_filter :redirect_unless_connected
   helper_method :evenements
   helper_method :medicaments
-  helper_method :authorised_dossiers_user?
   helper_method :enquete
 
   def index
@@ -54,10 +53,6 @@ class DossiersController < ApplicationController
 
   protected
 
-  def redirect_unless_connected
-    redirect_to "/members/login?member_login=true&redirect=#{request.fullpath}", notice: "Veuillez vous connecter pour accéder à cette page." unless current_refinery_user
-  end
-
   def enquete
     @enquete ||= params[:id] ? @dossier.enquete : Enquete.find(params[:enquete_id])
   end
@@ -68,10 +63,6 @@ class DossiersController < ApplicationController
 
   def medicaments
     @medicaments = Medicament.order("LOWER(name)")
-  end
-
-  def authorised_dossiers_user?
-    current_refinery_user && (current_refinery_user.has_role?('enquetes') or current_refinery_user.is_admin?)
   end
 
   def user_crpv_owns_dossier?
