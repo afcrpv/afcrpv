@@ -1,36 +1,46 @@
-<div class="fdr-communs form-section">
-  <h4>Evaluation de facteurs de risque établis pour les thromboses veineuses mais à compléter pour tout événement</h4>
+<div class="fdr-veineux form-section">
+  <h4>Evaluation des facteurs de risque de thrombose</h4>
   <div class="row-fluid">
     <div class="span6">
-      <p class="text-center"><strong>9- Circonstance(s) de survenue</strong></p>
-      <% %w(chirurgie immobilisation voyage).each do |suffix| -%>
-        <label class="checkbox">
-          <%= f.check_box :"circonstance_#{suffix}" %>
-          <%= t("simple_form.labels.dossier.circonstance_#{suffix}") %>
-        </label>
-      <% end -%>
-      <label class="checkbox">
-        <%= f.check_box :"circonstance_autre" %>
-        <%= t("simple_form.labels.dossier.circonstance_autre") %>
-        <%= f.text_field :circonstance_autre_quoi %>
-      </label>
+      <%= f.input :obesite, collection: Dossier::ONI %>
     </div>
     <div class="span6">
-      <%= f.input :post_partum, collection: Dossier::ONI %>
+      <%= f.input :tabac, collection: %w(oui sevré non NSP) %>
+      <%= f.input :tabac_pa %>
     </div>
   </div>
-  <div id="hemostase" class="atcd-columns">
-    <h5 class="text-center">
-      11- Anomalie(s) de l'hémostase
-      <a href="#" data-toggle="tooltip" title="Protéine C, protéine S, antithrombine III, facteur V Leyden, mutation du gène de la prothrombine, anticorps antiphospholipides, anticorps anticardiolipine,lupus anticoagulant,  anticorps anti béta2glycoprotéine I…">(?)</a>
-    </h5>
+  <% {"thrombose" => "3- Antécédent(s) de thrombose veineuse", "cv" => "4- Autre(s) antécedent(s) cardiovasculaire(s)"}.each do |prefix, titre| %>
+    <div id=<%= prefix %> class="atcd-columns">
+      <h5 class="text-center"><%= titre %></h5>
+      <div class="row-fluid">
+        <% %w(perso fam).each do |suffix| %>
+          <div class="span6">
+            <%= f.input :"#{prefix}_#{suffix}", collection: Dossier::ONI %>
+            <%= f.input :"#{prefix}_#{suffix}_quoi" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row-fluid">
+    <div class="span4">
+      <%= f.input :hta, collection: Dossier::ONI %>
+    </div>
+    <div class="span4">
+      <%= f.input :autoimmune, collection: Dossier::ONI %>
+      <%= f.input :autoimmune_quoi %>
+    </div>
+    <div class="span4">
+      <%= f.input :cancer, collection: Dossier::ONI %>
+      <%= f.input :cancer_quoi %>
+    </div>
+  </div>
+  <div id="hhc" class="atcd-columns">
+    <h5 class="text-center">8- Hyperhomocystéinémie</h5>
     <div class="row-fluid">
-      <% %w(perso fam).each do |prefix| %>
+      <% %w(perso fam).each do |suffix| %>
         <div class="span6">
-          <% {"bilan" => Dossier::HEMOSTASE, "anomalie" => Dossier::ONI}.each do |suffix, collection| %>
-            <%= f.input :"anomalie_hemostase_#{prefix}_#{suffix}", collection: collection %>
-          <% end %>
-          <%= f.input :"anomalie_hemostase_#{prefix}_anomalie_quoi" %>
+          <%= f.input :"hhc_#{suffix}", collection: Dossier::ONI %>
         </div>
       <% end %>
     </div>
