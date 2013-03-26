@@ -38,7 +38,7 @@ class MedicamentsDatatable
     medicaments = Medicament.order("LOWER(#{sort_column}) #{sort_direction}")
     medicaments = medicaments.page(page).per_page(per_page)
     if params[:sSearch].present?
-      medicaments = medicaments.name_contains params[:sSearch]
+      medicaments = medicaments.named_like params[:sSearch]
     end
     medicaments
   end

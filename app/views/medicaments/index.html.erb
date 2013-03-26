@@ -17,8 +17,10 @@
 
   <div id="medicaments-checkboxes" style="display: none;"></div>
 
-  <%= select_tag :enquete_id, options_from_collection_for_select(Enquete.all, :id, :name) %>
-  <%= submit_tag "Rajouter ces médicaments à l'enquête sélectionnée", class: "btn", name: nil %>
+  <% if Rails.env.development? %>
+    <%= select_tag :enquete_id, options_from_collection_for_select(Enquete.all, :id, :name) %>
+    <%= submit_tag "Rajouter ces médicaments à l'enquête sélectionnée", class: "btn", name: nil %>
+  <% end -%>
 <% end -%>
 
 <p><%= link_to 'Nouveau Medicament', new_medicament_path, class: "btn"%></p>
