@@ -9,6 +9,20 @@
     </tr>
   </thead>
   <tbody></tbody>
+  <tfoot>
+    <tr>
+      <th><input type="text" name="search_code_bnpv" placeholder="code BNPV" class="input-block-level"></th>
+      <th><input type="hidden" id="search_dossier_evenement_name" class="input-block-level" data-placeholder="Saisir le nom de l'évènement"></th>
+      <th>
+        <input type="hidden" id="search_dossier_traitements_medicament_name" class="input-block-level" data-placeholder="Saisir le nom du médicament">
+      </th>
+      <th>
+        du <%= select_date Dossier.all.min(&:date_recueil).date_recueil, {use_month_numbers: true, date_separator: "/", prefix: "date_recueil_du"}, class: "span3" %><br>
+        au <%= select_date Date.current, {use_month_numbers: true, date_separator: "/", prefix: "date_recueil_au" }, class: "span3" %>
+      </th>
+      <th>&nbsp;</th>
+    </tr>
+  </tfoot>
 </table>
 
 <p><%= link_to "Nouveau dossier", new_dossier_path(enquete_id: enquete.id), class: "btn" %></p>

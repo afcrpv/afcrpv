@@ -40,7 +40,7 @@ private
     if params[:sSearch].present?
       documents = documents.titre_or_category_name_or_mot_cle_contains params[:sSearch]
     elsif params[:sSearch_0].present?
-      documents = documents.where{titre =~ "%#{params[:sSearch_0]}%"}
+      documents = documents.where{titre =~ my{"%#{params[:sSearch_0]}%"}}
     elsif params[:sSearch_1].present?
       documents = documents.joins{document_category}.where{document_category_id == my{params[:sSearch_1]}}
     elsif params[:sSearch_2].present?

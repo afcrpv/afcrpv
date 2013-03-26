@@ -7,15 +7,20 @@ $ ->
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
     sPaginationType: "bootstrap"
     aoColumns: [
-      {sWidth: "15%"}
-      {sWidth: "30%"}
-      {sWidth: "30%", bSortable: false}
-      null
+      {sWidth: "10%"}
+      {sWidth: "25%"}
+      {sWidth: "25%", bSortable: false}
+      {sWidth: "23%"}
       {sWidth: "10%", bSortable: false}
     ]
     bProcessing: true
     bServerSide: true
     sAjaxSource: $('#dossiers').data('source')
+    fnServerParams: (aoData) ->
+      date_recueil_conditions = {}
+      for suffix in ["du", "au"]
+        date_recueil_conditions["date_recueil_#{suffix}"] = for date_item in ["day", "month", "year"]
+          $("#date_recueil_#{suffix}_#{date_item}").val()
     oLanguage:
       "sProcessing":     "Traitement en cours..."
       "sSearch":         "Recherche&nbsp;:"
@@ -35,6 +40,14 @@ $ ->
       "oAria":
         "sSortAscending":  ": activer pour trier la colonne par ordre croissant"
         "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+
+
+  for field in ["#search_tag", "#search_tag_condition"]
+    $(field).on "change", (e) ->
+      documentsoTable.fnFilter($("#search_tag").val(), 2)
+
+  $("#documents tfoot input").keyup ->
+    documentsoTable.fnFilter(@value, $("tfoot input").index(@))
 
   evenementsoTable = $("#evenements").dataTable
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
@@ -201,7 +214,6 @@ $ ->
   documentsoTable = $("#documents").dataTable
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
     sPaginationType: "bootstrap"
-    aaSorting: [[3, "desc"]]
     aoColumns: [
       {sWidth: "35%"}
       null
@@ -275,7 +287,7 @@ $ ->
     $(field).on "change", (e) ->
       documentsoTable.fnFilter($("#search_tag").val(), 2)
 
-  $("tfoot input").keyup ->
+  $("#documents tfoot input").keyup ->
     documentsoTable.fnFilter(@value, $("tfoot input").index(@))
 
   $("#documents").on 'hover', ->
