@@ -9,6 +9,7 @@ class DossiersController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: DossiersDatatable.new(view_context) }
+      format.csv { send_data DossiersDatatable.new(view_context).as_csv }
     end
   end
 
@@ -33,7 +34,7 @@ class DossiersController < ApplicationController
   def edit
     @dossier = Dossier.find(params[:id])
     @dossier.build_patient unless @dossier.patient
-    redirect_to enquetes_path(id: @dossier.enquete_id), notice: "Vous ne pouvez pas modifier ce dossier." unless user_crpv_owns_dossier? or current_refinery_user.is_admin?
+    redirect_to enquete_path(id: @dossier.enquete_id), notice: "Vous ne pouvez pas modifier ce dossier." unless user_crpv_owns_dossier? or current_refinery_user.is_admin?
   end
 
   def update
