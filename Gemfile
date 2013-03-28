@@ -71,11 +71,13 @@ gem 'show_for', github: "plataformatec/show_for"
 gem 'humanizer'
 gem "the_sortable_tree", "~> 2.3.0"
 gem "acts-as-taggable-on", "~> 2.3.1"
-gem 'jquery-datatables-rails'
+gem 'jquery-datatables-rails', git: "git://github.com/rweng/jquery-datatables-rails.git"
 gem "squeel"
 gem "workflow"
 gem "cocoon"
 gem "acts_as_list"
+gem "acts_as_xlsx"
+gem 'axlsx_rails'
 
 group :development do
   gem "pry-rails"

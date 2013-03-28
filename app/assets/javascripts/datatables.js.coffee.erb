@@ -4,8 +4,14 @@ $ ->
   gaiSelected = []
 
   dossiersoTable = $("#dossiers").dataTable
-    sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
+    sDom: "<'row-fluid'<'span6'l><'span6'fT>r>t<'row-fluid'<'span6'i><'span6'p>S>"
     sPaginationType: "bootstrap"
+    oTableTools:
+      aButtons: [
+        sExtends: "download"
+        sButtonText: "Exporter en format Excel"
+        sUrl: "/dossiers.xlsx"
+      ]
     aoColumns: [
       {sWidth: "10%"}
       {sWidth: "25%"}
@@ -13,19 +19,13 @@ $ ->
       {sWidth: "23%"}
       {sWidth: "10%", bSortable: false}
     ]
+    sScrollY: "400"
+    bScrollCollapse: true
+    bDeferRender: true
     bProcessing: true
     bServerSide: true
     sAjaxSource: $('#dossiers').data('source')
-    fnServerParams: (aoData) ->
-      date_recueil_conditions = {}
-      for suffix in ["du", "au"]
-        date_recueil_conditions["date_recueil_#{suffix}"] = for date_item in ["year", "month", "day"]
-          $("#date_recueil_#{suffix}_#{date_item}").val()
-
-      for param, value of date_recueil_conditions
-        aoData.push
-          name: param
-          value: value.join("-")
+    fnServerParams: (aoData) -> getDateRecueilFilters(aoData)
     oLanguage:
       "sProcessing":     "Traitement en cours..."
       "sSearch":         "Recherche&nbsp;:"
@@ -298,3 +298,42 @@ $ ->
 
   $("#documents").on 'hover', ->
     $("[data-toggle='tooltip']").tooltip()
+
+TableTools.BUTTONS.download =
+  "sAction": "text"
+  "sTag": "default"
+  "sFieldBoundary": ""
+  "sFieldSeperator": "\t"
+  "sNewLine": "<br>"
+  "sToolTip": ""
+  "sButtonClass": "DTTT_button_text"
+  "sButtonClassHover": "DTTT_button_text_hover"
+  "sButtonText": "Download"
+  "mColumns": "all"
+  "bHeader": true
+  "bFooter": true
+  "sDiv": ""
+  "fnMouseover": null
+  "fnMouseout": null
+  "fnClick": (nButton, oConfig) ->
+    aoData = this.s.dt.oApi._fnAjaxParameters(this.s.dt)
+    getDateRecueilFilters(aoData)
+    iframe = document.createElement('iframe')
+    iframe.style.height = "0px"
+    iframe.style.width = "0px"
+    iframe.src = oConfig.sUrl+"?"+$.param(aoData)
+    document.body.appendChild(iframe)
+  "fnSelect": null
+  "fnComplete": null
+  "fnInit": null
+
+getDateRecueilFilters = (aoData) ->
+  date_recueil_conditions = {}
+  for suffix in ["du", "au"]
+    date_recueil_conditions["date_recueil_#{suffix}"] = for date_item in ["year", "month", "day"]
+      $("#date_recueil_#{suffix}_#{date_item}").val()
+
+  for param, value of date_recueil_conditions
+    aoData.push
+      name: param
+      value: value.join("-")

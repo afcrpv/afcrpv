@@ -15,6 +15,9 @@
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
+//= require dataTables/extras/TableTools
+//= require dataTables/extras/ZeroClipboard
+//= require dataTables/extras/Scroller
 //= require bootstrap
 //= require jquery.ui.nestedSortable
 //= require sortable_tree/initializer

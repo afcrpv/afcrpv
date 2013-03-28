@@ -9,7 +9,10 @@ class DossiersController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: DossiersDatatable.new(view_context) }
-      format.csv { send_data DossiersDatatable.new(view_context).as_csv }
+      format.xlsx do
+        @dossiers = DossiersDatatable.new(view_context).as_xlsx
+        response.headers['Content-Disposition'] = "attachment; filename='#{Date.current}_dossiers.xlsx'"
+      end
     end
   end
 

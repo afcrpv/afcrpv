@@ -6,6 +6,10 @@ class DossiersDatatable
     @view = view
   end
 
+  def as_xlsx(options={})
+    dossiers
+  end
+
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
