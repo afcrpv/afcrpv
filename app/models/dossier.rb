@@ -1,6 +1,46 @@
 #encoding: utf-8
 class Dossier < ActiveRecord::Base
-  acts_as_xlsx
+  columns_for_xlsx = [:code_bnpv, :date_recueil, :doublon, :age, :poids, :taille, :imc, :date_evenement, :evenement, :comm_evenement, :gravite, :evolution]
+
+  (1..3).each do |i|
+    columns_for_xlsx << [:"medicament_#{i}", :"medicament_#{i}_du", :"medicament_#{i}_au"]
+  end
+  columns_for_xlsx << [:contraception_ant, :contraception_age]
+  (1..3).each do |i|
+    columns_for_xlsx << [:"contraception_#{i}", :"contraception_#{i}_du", :"contraception_#{i}_au"]
+  end
+  columns_for_xlsx << :concomitants
+  (1..3).each do |i|
+    columns_for_xlsx << [:"concomitant_#{i}", :"concomitant_#{i}_du", :"concomitant_#{i}_au"]
+  end
+  columns_for_xlsx << [:contraception_apres, :contraception_quoi, :obesite, :tabac, :tabac_pa]
+  %w(thrombose cv).each do |prefix|
+    %w(perso fam).each do |suffix|
+      columns_for_xlsx << [:"#{prefix}_#{suffix}", :"#{prefix}_#{suffix}_quoi"]
+    end
+  end
+  columns_for_xlsx << :hta
+  %w(autoimmune cancer).each do |name|
+    columns_for_xlsx << [:"#{name}", :"#{name}_quoi"]
+  end
+  columns_for_xlsx << [:hhc_perso, :hhc_fam]
+  %w(chirurgie immobilisation voyage autre_quoi).each do |name|
+    columns_for_xlsx << :"circonstance_#{name}"
+  end
+  columns_for_xlsx << :post_partum
+  %w(perso fam).each do |prefix|
+    %w(bilan anomalie anomalie_nombre anomalie_quoi).each do |suffix|
+      columns_for_xlsx << :"anomalie_hemostase_#{prefix}_#{suffix}"
+    end
+  end
+  columns_for_xlsx << [:migraine_perso, :migraine_fam, :diabete, :hyperglycemie]
+  %w(dyslipidemie illicites autres_cv).each do |prefix|
+    columns_for_xlsx << [:"#{prefix}", :"#{prefix}_quoi"]
+  end
+  columns_for_xlsx << :commentaire
+
+  acts_as_xlsx columns: columns_for_xlsx.flatten, i18n: 'activerecord.attributes'
+
   attr_accessible :code_bnpv, :date_recueil, :doublon, :j_evenement, :m_evenement, :a_evenement, :comm_evenement, :gravite, :evolution, :commentaire, :concomitants, :obesite, :tabac, :tabac_pa, :hta, :autoimmune, :autoimmune_quoi, :cancer, :cancer_quoi, :post_partum, :diabete, :hyperglycemie
   attr_accessible :patient_attributes, :traitements_attributes
   attr_accessible :enquete_id, :evenement_id, :refinery_crpv_id
@@ -46,6 +86,8 @@ class Dossier < ActiveRecord::Base
 
   accepts_nested_attributes_for :patient, reject_if: :all_blank
   accepts_nested_attributes_for :traitements, reject_if: :all_blank, allow_destroy: true
+
+  delegate :age, :poids, :taille, :imc, to: :patient, allow_nil: true
 
   TABAC = [
     ["oui", 0],
@@ -94,6 +136,26 @@ class Dossier < ActiveRecord::Base
         (evenement.name.like "%#{string}%") |
         (traitements.medicament.name.like "%#{string}%")
     }
+  end
+
+  def date_evenement
+    date_concat = []
+    %w(a m j).each do |date_item|
+      date_concat << self.send(:"#{date_item}_evenement")
+    end
+    Date.parse(date_concat.join("-"))
+  end
+
+  (1..3).each do |i|
+    define_method :"medicament_#{i}" do
+      traitements[i-1].medicament rescue nil
+    end
+    define_method :"medicament_#{i}_du" do
+      traitements[i-1].debut rescue nil
+    end
+    define_method :"medicament_#{i}_au" do
+      traitements.find[i-1].fin rescue nil
+    end
   end
 
   def medicaments_list
