@@ -90,8 +90,10 @@ fr:
         anomalie_hemostase_perso_bilan: "11.1 Personnelle :"
         anomalie_hemostase_perso_anomalie: "Anomalie :"
         anomalie_hemostase_perso_anomalie_quoi: "préciser l'anomalie :"
+        anomalie_hemostase_perso_anomalie_nombre: "Nombre d'anomalie(s) :"
         anomalie_hemostase_fam_bilan: "11.2 Familiale :"
         anomalie_hemostase_fam_anomalie: "Anomalie :"
+        anomalie_hemostase_fam_anomalie_nombre: "Nombre d'anomalie(s) :"
         anomalie_hemostase_fam_anomalie_quoi: "préciser l'anomalie (+rang) :"
         migraine_perso: 12.1 Personnel
         migraine_fam: 12.2 Familial
@@ -100,9 +102,9 @@ fr:
         dyslipidemie: 15- Dyslipidémie
         dyslipidemie_quoi: "préciser :"
         illicites: "16- Consommation de cannabis, cocaïne, amphétamines..."
-        illicites_quoi: "Si oui, préciser :"
+        illicites_quoi: "préciser :"
         autres_cv: "17- Autres facteurs de risque cardio-vasculaires mis en évidence après l’événement (foramen ovale perméable, troubles du rythme, etc.)"
-        autres_cv_quoi: "Si oui, préciser :"
+        autres_cv_quoi: "préciser :"
       patient:
         imc: IMC
 

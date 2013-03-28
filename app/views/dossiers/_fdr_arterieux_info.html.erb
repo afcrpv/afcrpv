@@ -25,7 +25,7 @@
     <% %w(illicites autres_cv).each do |field| %>
       <div class="span6">
         <%= f.input :"#{field}", collection: Dossier::ONI %>
-        <%= f.input :"#{field}_quoi" %>
+        <%= f.input :"#{field}_quoi", input_html: {class: "input-block-level"} %>
       </div>
     <% end -%>
   </div>

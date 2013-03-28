@@ -23,11 +23,17 @@ $ ->
   $tabac.on "change", ->
     showNextif $(@).val() in ["oui", "sevré"], $(@), $(@).parents(".control-group").next()
 
-  for name in ["thrombose_perso", "thrombose_fam", "cv_perso", "cv_fam", "autoimmune", "cancer", "anomalie_hemostase_perso_anomalie", "anomalie_hemostase_fam_anomalie", "dyslipidemie", "illicites", "autres_cv"]
+  for name in ["thrombose_perso", "thrombose_fam", "cv_perso", "cv_fam", "autoimmune", "cancer","dyslipidemie", "illicites", "autres_cv"]
     $field = $("#dossier_#{name}")
     showNextif $field.val() is "Oui", $field, $field.parents(".control-group").next()
     $field.on "change", ->
       showNextif $(@).val() is "Oui", $(@), $(@).parents(".control-group").next()
+
+  for prefix in ["perso", "fam"]
+    $field = $("#dossier_anomalie_hemostase_#{prefix}_anomalie")
+    showNextif $field.val() is "Oui", $field, $(".anomalie-hemostase-fields")
+    $field.on "change", ->
+      showNextif $(@).val() is "Oui", $(@), $(".anomalie-hemostase-fields")
 
 showNextif = (condition, element, next) ->
   if condition

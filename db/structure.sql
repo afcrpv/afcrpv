@@ -191,7 +191,9 @@ CREATE TABLE dossiers (
     illicites character varying(255),
     illicites_quoi character varying(255),
     autres_cv character varying(255),
-    autres_cv_quoi character varying(255)
+    autres_cv_quoi character varying(255),
+    anomalie_hemostase_perso_anomalie_nombre character varying(255),
+    anomalie_hemostase_fam_anomalie_nombre character varying(255)
 );
 
 
@@ -2585,3 +2587,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130322200345');
 INSERT INTO schema_migrations (version) VALUES ('20130322202810');
 
 INSERT INTO schema_migrations (version) VALUES ('20130323191108');
+
+INSERT INTO schema_migrations (version) VALUES ('20130328144953');

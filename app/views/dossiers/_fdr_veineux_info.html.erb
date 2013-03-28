@@ -30,7 +30,10 @@
           <% {"bilan" => Dossier::HEMOSTASE, "anomalie" => Dossier::ONI}.each do |suffix, collection| %>
             <%= f.input :"anomalie_hemostase_#{prefix}_#{suffix}", collection: collection %>
           <% end %>
-          <%= f.input :"anomalie_hemostase_#{prefix}_anomalie_quoi" %>
+          <div class="anomalie-hemostase-fields">
+            <%= f.input :"anomalie_hemostase_#{prefix}_anomalie_nombre", as: :select, collection: ["1", "2", ">2"] %>
+            <%= f.input :"anomalie_hemostase_#{prefix}_anomalie_quoi", input_html: {class: "input-block-level"} %>
+          </div>
         </div>
       <% end %>
     </div>

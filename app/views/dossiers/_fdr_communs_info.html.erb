@@ -16,7 +16,7 @@
         <% %w(perso fam).each do |suffix| %>
           <div class="span6">
             <%= f.input :"#{prefix}_#{suffix}", collection: Dossier::ONI %>
-            <%= f.input :"#{prefix}_#{suffix}_quoi" %>
+            <%= f.input :"#{prefix}_#{suffix}_quoi", input_html: {class: "input-block-level"} %>
           </div>
         <% end %>
       </div>
@@ -26,14 +26,13 @@
     <div class="span4">
       <%= f.input :hta, collection: Dossier::ONI %>
     </div>
-    <div class="span4">
-      <%= f.input :autoimmune, collection: Dossier::ONI %>
-      <%= f.input :autoimmune_quoi %>
-    </div>
-    <div class="span4">
-      <%= f.input :cancer, collection: Dossier::ONI %>
-      <%= f.input :cancer_quoi %>
-    </div>
+
+    <% %w(autoimmune cancer).each do |field| %>
+      <div class="span4">
+        <%= f.input :"#{field}", collection: Dossier::ONI %>
+        <%= f.input :"#{field}_quoi", input_html: {class: "input-block-level"} %>
+      </div>
+    <% end -%>
   </div>
   <div id="hhc" class="atcd-columns">
     <h5 class="text-center">8- Hyperhomocystéinémie</h5>

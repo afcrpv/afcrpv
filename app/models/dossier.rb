@@ -1,5 +1,6 @@
 #encoding: utf-8
 class Dossier < ActiveRecord::Base
+  acts_as_xlsx
   attr_accessible :code_bnpv, :date_recueil, :doublon, :j_evenement, :m_evenement, :a_evenement, :comm_evenement, :gravite, :evolution, :commentaire, :concomitants, :obesite, :tabac, :tabac_pa, :hta, :autoimmune, :autoimmune_quoi, :cancer, :cancer_quoi, :post_partum, :diabete, :hyperglycemie
   attr_accessible :patient_attributes, :traitements_attributes
   attr_accessible :enquete_id, :evenement_id, :refinery_crpv_id
@@ -23,7 +24,7 @@ class Dossier < ActiveRecord::Base
     attr_accessible :"circonstance_#{suffix}"
   end
   %w(perso fam).each do |prefix|
-    %w(bilan anomalie anomalie_quoi).each do |suffix|
+    %w(bilan anomalie anomalie_quoi anomalie_nombre).each do |suffix|
       attr_accessible :"anomalie_hemostase_#{prefix}_#{suffix}"
     end
     attr_accessible :"migraine_#{prefix}"
