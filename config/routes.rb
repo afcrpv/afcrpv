@@ -6,6 +6,9 @@ Refinery::Core::Engine.routes.prepend do
   get '/tags', to: 'tags#index', as: :tags
   get '/crpvs/paris', :to => 'crpvs/crpvs#paris', :as => :paris
   get '/crpvs/search', :to => 'crpvs/crpvs#search', :as => :crpvs_search
+  get '/enquetes/:id', to: 'enquetes#show', as: :enquete
+  get '/medicaments', to: 'medicaments#index', as: :medicaments
+  get '/evenements', to: 'evenements#index', as: :evenements
 end
 Afcrpv::Application.routes.draw do
   resources :medicaments do
