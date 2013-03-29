@@ -1,6 +1,7 @@
 #encoding: utf-8
 class DossiersController < ApplicationController
   before_filter :redirect_unless_connected
+  before_filter :find_dossier_for_edit
   helper_method :evenements
   helper_method :medicaments
   helper_method :indications
@@ -79,6 +80,17 @@ class DossiersController < ApplicationController
       @dossier.crpv == current_refinery_user.refinery_crpv
     else
       return false
+    end
+  end
+
+  def find_dossier_for_edit
+    if params[:code_bnpv]
+      @search = Dossier.where(code_bnpv: params[:code_bnpv]).first rescue nil
+      if @search
+        redirect_to edit_dossier_path(@search)
+      else
+        redirect_to enquetes_path, notice: "Aucun dossier avec le N° BNPV: #{params[:code_bnpv]}"
+      end
     end
   end
 end

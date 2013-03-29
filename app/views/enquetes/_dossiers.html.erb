@@ -28,4 +28,10 @@
   </tfoot>
 </table>
 
-<p><%= link_to "Nouveau dossier", new_dossier_path(enquete_id: enquete.id), class: "btn" %></p>
+<div class="dossiers-actions">
+  <%= form_tag dossiers_url, method: :get, class: "form-inline" do %>
+    <%= text_field_tag "code_bnpv", "", placeholder: "N° dossier", class: "input-small" %>
+    <%= submit_tag "Modifier ce dossier", name: nil, class: "btn" %>
+    <%= link_to "Nouveau dossier", new_dossier_path(enquete_id: enquete.id), class: "btn" %>
+  <% end -%>
+</div>
