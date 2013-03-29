@@ -42,12 +42,12 @@ class DossiersDatatable
     dossiers = dossiers.includes(:patient, :evenement, :traitements => :medicament).page(page).per_page(per_page)
     if params[:sSearch].present?
       dossiers = dossiers.code_bnpv_or_evenement_or_medicament_contains params[:sSearch]
-    elsif params[:sSearch_0].present?#dossiers.code_bnpv
-      dossiers = dossiers.where{code_bnpv =~ my{"%#{params[:sSearch_0]}%"}}
+    elsif params[:sSearch_0].present?#refinery_crpv_id
+      dossiers = dossiers.where{refinery_crpv_id == my{params[:sSearch_0]}}
     elsif params[:sSearch_1].present?#dossiers.evenement.name
       dossiers = dossiers.joins{evenement}.where{evenement.name =~ my{"%#{params[:sSearch_1]}%"}}
     elsif params[:sSearch_2].present?#dossiers.traitements.medicament.name
-      dossiers = dossiers.joins{traitements.medicament.name}.where{traitements.medicament.name =~ my{"%#{params[:sSearch_2]}%"}}
+      dossiers = dossiers.joins{traitements.medicament}.where{traitements.medicament.name == my{params[:sSearch_2]}}
     elsif params[:date_recueil_au].present? && params[:date_recueil_du]#dossiers.date_recueil
       dossiers = dossiers.where{(date_recueil <= my{params[:date_recueil_au]}) & (date_recueil >= my{params[:date_recueil_du]})}
     end

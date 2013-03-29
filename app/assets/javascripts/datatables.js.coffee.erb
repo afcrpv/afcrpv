@@ -4,7 +4,7 @@ $ ->
   gaiSelected = []
 
   dossiersoTable = $("#dossiers").dataTable
-    sDom: "<'row-fluid'<'span6'l><'span6'fT>r>t<'row-fluid'<'span6'i><'span6'p>S>"
+    sDom: "<'row-fluid'<'span6'l><'span6'T>r>t<'row-fluid'<'span6'i><'span6'p>S>"
     sPaginationType: "bootstrap"
     oTableTools:
       aButtons: [
@@ -51,8 +51,42 @@ $ ->
       $("#date_recueil_#{prefix}_#{date_item}").on "change", (e) ->
         dossiersoTable.fnFilter($("#date_recueil_dummy").val(), 3)
 
-  $("#dossiers tfoot input").keyup ->
-    dossiersoTable.fnFilter(@value, $("tfoot input").index(@))
+  $("#search_dossier_refinery_crpv_id").select2
+    ajax:
+      url: "/crpvs/search.json"
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        page_limit: 10
+      results: (data, page) ->
+        return {results: data}
+  $("#search_dossier_refinery_crpv_id").on "change", (e) ->
+    dossiersoTable.fnFilter(@value, 0)
+
+  $("#search_dossier_evenement_name").select2
+    ajax:
+      url: "/evenements/liste.json"
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        page_limit: 10
+      results: (data, page) ->
+        return {results: data}
+  $("#search_dossier_evenement_name").on "change", (e) ->
+    dossiersoTable.fnFilter(@value, 1)
+
+  $("#search_dossier_traitements_medicament_name").select2
+    minimumInputLength: 2
+    ajax:
+      url: "/medicaments/liste.json"
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        page_limit: 10
+      results: (data, page) ->
+        return {results: data}
+  $("#search_dossier_traitements_medicament_name").on "change", (e) ->
+    dossiersoTable.fnFilter(@value, 2)
 
   evenementsoTable = $("#evenements").dataTable
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
@@ -294,7 +328,6 @@ $ ->
 
   $("#documents tfoot input").keyup ->
     documentsoTable.fnFilter(@value, $("tfoot input").index(@))
-
 
   $("#documents").on 'hover', ->
     $("[data-toggle='tooltip']").tooltip()

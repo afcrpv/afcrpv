@@ -11,15 +11,17 @@
   <tbody></tbody>
   <tfoot>
     <tr>
-      <th><input type="text" name="search_code_bnpv" placeholder="code BNPV" class="input-block-level"></th>
-      <th><input type="hidden" id="search_dossier_evenement_name" class="input-block-level" data-placeholder="Saisir le nom de l'évènement"></th>
+      <th><input type="hidden" id="search_dossier_refinery_crpv_id" class="input-small" data-placeholder="CRPV"></th>
+      <th><input type="hidden" id="search_dossier_evenement_name" class="input-xxlarge" data-placeholder="Evènement"></th>
       <th>
-        <input type="hidden" id="search_dossier_traitements_medicament_name" class="input-block-level" data-placeholder="Saisir le nom du médicament">
+        <input type="hidden" id="search_dossier_traitements_medicament_name" class="input-large" data-placeholder="Médicament">
       </th>
       <th>
-        <input type="hidden" id="date_recueil_dummy">
-        du <%= select_date Dossier.minimum(:date_recueil), {use_month_numbers: true, date_separator: "/", prefix: "date_recueil_du"}, class: "span3" %><br>
-        au <%= select_date Date.current, {use_month_numbers: true, date_separator: "/", prefix: "date_recueil_au" }, class: "span3" %>
+        <% if Rails.env.development? %>
+          <input type="hidden" id="date_recueil_dummy">
+          du <%= select_date Dossier.minimum(:date_recueil), {use_month_numbers: true, date_separator: "/", prefix: "date_recueil_du"}, class: "span3" %><br>
+          au <%= select_date Date.current, {use_month_numbers: true, date_separator: "/", prefix: "date_recueil_au" }, class: "span3" %>
+        <% end -%>
       </th>
       <th>&nbsp;</th>
     </tr>
