@@ -16,6 +16,14 @@ module Refinery
       has_many :departements, :order => :name, :foreign_key => "refinery_crpv_id"
       has_many :arrondissements, :foreign_key => "refinery_crpv_id"
 
+      def self.with_name(string)
+        where{name =~ my{"%#{string}%"}}
+      end
+
+      def name_and_id
+        {id: id, text: name}
+      end
+
       def to_s
         name
       end

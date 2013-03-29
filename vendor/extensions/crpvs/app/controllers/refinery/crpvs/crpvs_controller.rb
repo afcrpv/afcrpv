@@ -18,10 +18,13 @@ module Refinery
       end
 
       def search
-        if params[:dep]
-          @crpv = Crpv.joins(:departements).where(departements: {cp: params[:dep]}).first
-          respond_to do |format|
-            format.js
+        respond_to do |format|
+          format.js do
+            @crpv = Crpv.joins(:departements).where(departements: {cp: params[:dep]}).first if params[:dep]
+          end
+          format.json do
+            @crpvs = Crpv.with_name(params[:q]).order(:name)
+            render json: @crpvs.map(&:name_and_id)
           end
         end
       end
