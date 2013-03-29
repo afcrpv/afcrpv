@@ -9,6 +9,7 @@ Refinery::Core::Engine.routes.prepend do
   get '/enquetes/:id', to: 'enquetes#show', as: :enquete
   get '/medicaments', to: 'medicaments#index', as: :medicaments
   get '/evenements', to: 'evenements#index', as: :evenements
+  get '/indications', to: 'indications#index', as: :indications
 end
 Afcrpv::Application.routes.draw do
   resources :indications
