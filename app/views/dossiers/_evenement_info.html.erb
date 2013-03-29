@@ -8,7 +8,7 @@
         <%= f.label :j_evenement, "Date de l'évenèment", class: "control-label" %>
         <div class="controls controls-row">
           <% %w(j m a).each do |prefix| %>
-            <%= f.text_field :"#{prefix}_evenement", class: "span3", placeholder: prefix*2 %>
+            <%= f.text_field :"#{prefix}_evenement", class: "span3", placeholder: prefix == "a" ? prefix*4 : prefix*2 %>
           <% end -%>
         </div>
       </div>
