@@ -25,7 +25,7 @@ $ ->
     bProcessing: true
     bServerSide: true
     sAjaxSource: $('#dossiers').data('source')
-    fnServerParams: (aoData) -> getDateRecueilFilters(aoData)
+    <%#fnServerParams: (aoData) -> getDateRecueilFilters(aoData)%>
     oLanguage:
       "sProcessing":     "Traitement en cours..."
       "sSearch":         "Recherche&nbsp;:"
@@ -46,10 +46,10 @@ $ ->
         "sSortAscending":  ": activer pour trier la colonne par ordre croissant"
         "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
 
-  for prefix in ["du", "au"]
-    for date_item in ["day", "month", "year"]
-      $("#date_recueil_#{prefix}_#{date_item}").on "change", (e) ->
-        dossiersoTable.fnFilter($("#date_recueil_dummy").val(), 3)
+  <%#for prefix in ["du", "au"]%>
+    <%#for date_item in ["day", "month", "year"]%>
+      <%#$("#date_recueil_#{prefix}_#{date_item}").on "change", (e) ->%>
+        <%#dossiersoTable.fnFilter($("#date_recueil_dummy").val(), 3)%>
 
   $("#search_dossier_refinery_crpv_id").select2
     ajax:
