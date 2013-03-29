@@ -34,7 +34,13 @@ describe IndicationsController do
     {}
   end
 
+  before(:all) do
+    login_as_admin
+  end
+
   describe "GET index" do
+    it "should redirect to login if not connected"
+    it "should redirect to intranet home if not authorized"
     it "assigns all indications as @indications" do
       indication = Indication.create! valid_attributes
       get :index, {}, valid_session

@@ -90,4 +90,8 @@ end
 group :development do
   gem "pry-rails"
   gem "quiet_assets", ">= 1.0.1"
+  gem 'rb-fsevent', :require => false
+  gem 'terminal-notifier-guard'
+  gem 'guard-spork'
+  gem "spork-rails"
 end

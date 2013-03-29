@@ -9,7 +9,6 @@ class DossiersController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html
       format.json { render json: DossiersDatatable.new(view_context) }
       format.xlsx do
         @dossiers = DossiersDatatable.new(view_context).as_xlsx
