@@ -1,7 +1,7 @@
 fr:
   helpers:
     submit:
-      create: Soumettre ce %{model}
+      create: Créer %{model}
       submit: Enregistrer ce %{model}
       update: Mettre à jour
 

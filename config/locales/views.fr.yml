@@ -1,0 +1,16 @@
+fr:
+  crud: &crud
+    index: Listing
+    show: Voir
+    edit: Modifier
+    destroy: Détruire
+    new: Création
+
+  dossiers:
+    index:
+      <<: *crud
+  indications:
+    index:
+      <<: *crud
+    new:
+      new: Création

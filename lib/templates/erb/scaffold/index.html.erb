@@ -1,0 +1,31 @@
+<h1><%%= t(".index") %> <%= plural_table_name %></h1>
+
+<table>
+  <thead>
+    <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <th><%= attribute.human_name %></th>
+<% end -%>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+    <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+<% end -%>
+      <td><%%= link_to t(".show"), <%= singular_table_name %>, class: "btn" %></td>
+      <td><%%= link_to t(".edit"), edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: "btn" %></td>
+      <td><%%= link_to t(".destroy"), <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></td>
+    </tr>
+    <%% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%%= link_to t(".new") + " <%= human_name %>", new_<%= singular_table_name %>_path, class: "btn" %>
