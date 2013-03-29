@@ -124,6 +124,7 @@ class Dossier < ActiveRecord::Base
 
   EVOLUTION = [
     "guérison sans séquelle",
+    "guérison en cours",
     "guérison avec séquelles",
     "décès du à l'effet",
     "NSP"
