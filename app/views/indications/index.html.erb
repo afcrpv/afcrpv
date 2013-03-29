@@ -1,0 +1,19 @@
+<h1><% t(".index") %> indications</h1>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @indications.each do |indication| %>
+  <tr>
+    <td><%= indication.name %></td>
+    <td><%= link_to t(".edit"), edit_indication_path(indication) %></td>
+    <td><%= link_to t(".destroy"), indication, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= link_to t(".new") + " Indication", new_indication_path, class: "btn" %></p>

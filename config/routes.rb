@@ -11,6 +11,7 @@ Refinery::Core::Engine.routes.prepend do
   get '/evenements', to: 'evenements#index', as: :evenements
 end
 Afcrpv::Application.routes.draw do
+  resources :indications
   resources :medicaments do
     collection do
       post :import

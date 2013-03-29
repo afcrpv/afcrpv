@@ -3,6 +3,7 @@ class DossiersController < ApplicationController
   before_filter :redirect_unless_connected
   helper_method :evenements
   helper_method :medicaments
+  helper_method :indications
   helper_method :enquete
 
   def index
@@ -59,6 +60,10 @@ class DossiersController < ApplicationController
 
   def enquete
     @enquete ||= params[:id] ? @dossier.enquete : Enquete.find(params[:enquete_id])
+  end
+
+  def indications
+    @indications = Indication.all
   end
 
   def evenements

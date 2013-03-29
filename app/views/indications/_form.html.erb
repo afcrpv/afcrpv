@@ -1,0 +1,8 @@
+<%= simple_form_for(@indication) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :name %>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

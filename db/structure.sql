@@ -313,6 +313,37 @@ ALTER SEQUENCE evenements_id_seq OWNED BY evenements.id;
 
 
 --
+-- Name: indications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE indications (
+    id integer NOT NULL,
+    name character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: indications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE indications_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: indications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE indications_id_seq OWNED BY indications.id;
+
+
+--
 -- Name: medicament_choices; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1472,7 +1503,11 @@ CREATE TABLE traitements (
     m_fin integer,
     a_fin integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    indication_id integer,
+    indication_autre_quoi character varying(255),
+    duree integer,
+    duree_unite character varying(255)
 );
 
 
@@ -1535,6 +1570,13 @@ ALTER TABLE ONLY evenement_choices ALTER COLUMN id SET DEFAULT nextval('evenemen
 --
 
 ALTER TABLE ONLY evenements ALTER COLUMN id SET DEFAULT nextval('evenements_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY indications ALTER COLUMN id SET DEFAULT nextval('indications_id_seq'::regclass);
 
 
 --
@@ -1807,6 +1849,14 @@ ALTER TABLE ONLY evenement_choices
 
 ALTER TABLE ONLY evenements
     ADD CONSTRAINT evenements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: indications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY indications
+    ADD CONSTRAINT indications_pkey PRIMARY KEY (id);
 
 
 --
@@ -2411,6 +2461,13 @@ CREATE INDEX index_traitements_on_dossier_id ON traitements USING btree (dossier
 
 
 --
+-- Name: index_traitements_on_indication_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_traitements_on_indication_id ON traitements USING btree (indication_id);
+
+
+--
 -- Name: index_traitements_on_medicament_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2589,3 +2646,11 @@ INSERT INTO schema_migrations (version) VALUES ('20130322202810');
 INSERT INTO schema_migrations (version) VALUES ('20130323191108');
 
 INSERT INTO schema_migrations (version) VALUES ('20130328144953');
+
+INSERT INTO schema_migrations (version) VALUES ('20130329094302');
+
+INSERT INTO schema_migrations (version) VALUES ('20130329094500');
+
+INSERT INTO schema_migrations (version) VALUES ('20130329103640');
+
+INSERT INTO schema_migrations (version) VALUES ('20130329104928');

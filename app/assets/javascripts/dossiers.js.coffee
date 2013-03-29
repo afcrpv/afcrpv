@@ -35,8 +35,41 @@ $ ->
     $field.on "change", ->
       showNextif $(@).val() is "Oui", $(@), $(".anomalie-hemostase-fields")
 
+  $(".indication").check_show_indication_autre()
+  $("[id$=medicament_id]").check_show_indication()
+
+  $("#traitements").bind 'cocoon:after-insert', ->
+    $("[id$=medicament_id]").check_show_indication()
+    $(".indication").check_show_indication_autre()
+
+$.fn.check_show_indication = ->
+  @each ->
+    $select = $(this)
+    $next = $($select.next(".indication"))
+    condition = /cyprotérone|diane/.test($select.find("option:selected").text())
+    showNextif condition, $select, $next
+
+    $select.on "change", ->
+      condition = /cyprotérone|diane/.test($(@).find("option:selected").text())
+      $next = $(@).next(".indication")
+      showNextif condition, $(@), $next
+
+$.fn.check_show_indication_autre = ->
+  @each ->
+    $select = $(this)
+    $next = $($select.next(".indication-quoi"))
+    condition = $select.find("option:selected").text() is "autre"
+    showNextif condition, $select, $next
+
+    $select.on "change", ->
+      condition = $(@).find("option:selected").text() is "autre"
+      $next = $(@).next(".indication-quoi")
+      showNextif condition, $(@), $next
+
 showNextif = (condition, element, next) ->
   if condition
     $(next).show()
+    $(next).css("visibility", "visible")
   else
     $(next).hide()
+    $(next).css("visibility", "hidden")
