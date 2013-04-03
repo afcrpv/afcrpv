@@ -46,11 +46,11 @@ $.fn.check_show_indication = ->
   @each ->
     $select = $(this)
     $next = $($select.next(".indication"))
-    condition = /cyprotérone|diane/.test($select.find("option:selected").text())
+    condition = /cyprotérone|diane|androcur/.test($select.find("option:selected").text())
     showNextif condition, $select, $next
 
     $select.on "change", ->
-      condition = /cyprotérone|diane/.test($(@).find("option:selected").text())
+      condition = /cyprotérone|diane|androcur/.test($(@).find("option:selected").text())
       $next = $(@).next(".indication")
       showNextif condition, $(@), $next
 
