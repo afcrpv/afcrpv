@@ -130,6 +130,13 @@ class Dossier < ActiveRecord::Base
     "NSP"
   ]
 
+  DUREE_COMP = [
+    "< de",
+    "> de",
+    "=",
+    "NSP"
+  ]
+
   def self.code_bnpv_or_evenement_or_medicament_contains(string)
     joins{[evenement, traitements.medicament]}.
       where{

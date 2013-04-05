@@ -1496,18 +1496,13 @@ CREATE TABLE traitements (
     id integer NOT NULL,
     dossier_id integer,
     medicament_id integer,
-    j_debut integer,
-    m_debut integer,
-    a_debut integer,
-    j_fin integer,
-    m_fin integer,
-    a_fin integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     indication_id integer,
     indication_autre_quoi character varying(255),
     duree integer,
-    duree_unite character varying(255)
+    duree_unite character varying(255),
+    duree_comp character varying(255)
 );
 
 
@@ -2654,3 +2649,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130329094500');
 INSERT INTO schema_migrations (version) VALUES ('20130329103640');
 
 INSERT INTO schema_migrations (version) VALUES ('20130329104928');
+
+INSERT INTO schema_migrations (version) VALUES ('20130405115553');

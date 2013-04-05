@@ -6,8 +6,9 @@
       <%= f.input_field :indication_autre_quoi, class: "span3 indication-quoi" %>
     </div>
     <div class="span3">
-      <%= f.input_field :duree, class: "span4" %>
-      <%= f.input_field :duree_unite, collection: %w(mois années), class: "span4" %>
+      <%= f.input_field :duree_comp, collection: Dossier::DUREE_COMP , class: "span4"%>
+      <%= f.input_field :duree, class: "span4 duree-traitement" %>
+      <%= f.input_field :duree_unite, collection: %w(mois années), class: "span4 duree-traitement" %>
     </div>
     <div class="span1">
       <%= link_to_remove_association "<i class='icon-remove'></i>".html_safe, f, class: "btn" %>
