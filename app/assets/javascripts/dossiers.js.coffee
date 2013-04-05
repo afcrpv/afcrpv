@@ -30,10 +30,15 @@ $ ->
       showNextif $(@).val() is "Oui", $(@), $(@).parents(".control-group").next()
 
   for prefix in ["perso", "fam"]
-    $field = $("#dossier_anomalie_hemostase_#{prefix}_anomalie")
-    showNextif $field.val() is "Oui", $field, $(".anomalie-hemostase-fields")
-    $field.on "change", ->
-      showNextif $(@).val() is "Oui", $(@), $(".anomalie-hemostase-fields")
+    $bilan_field = $("#dossier_anomalie_hemostase_#{prefix}_bilan")
+    $bilan_field.check_show_anomalie_hemostase("bilan")
+    $anomalie_field = $("#dossier_anomalie_hemostase_#{prefix}_anomalie")
+    $anomalie_field.check_show_anomalie_hemostase("anomalie")
+
+    #$anomalie_field = $("#dossier_anomalie_hemostase_#{prefix}_anomalie")
+    #showNextif $anomalie_field.val() is "Oui", $anomalie_field, $(".anomalie-hemostase-fields")
+    #$anomalie_field.on "change", ->
+      #showNextif $(@).val() is "Oui", $(@), $(".anomalie-hemostase-anomalie_fields")
 
   $(".indication").check_show_indication_autre()
   $("[id$=medicament_id]").check_show_indication()
@@ -41,6 +46,20 @@ $ ->
   $("#traitements").bind 'cocoon:after-insert', ->
     $("[id$=medicament_id]").check_show_indication()
     $(".indication").check_show_indication_autre()
+
+$.fn.check_show_anomalie_hemostase = (field) ->
+  $select = $(this)
+  condition = if field is "bilan" then ($select.val() in ["avant", "après"]) else ($select.val() is "Oui")
+  $next = $($select.parents(".control-group").next())
+  showNextif condition, $select, $next
+
+  $select.on "change", ->
+    $this = $(@)
+    console.log $this
+    $next = $($this.parents(".control-group").next())
+    console.log $next
+    condition = if field is "bilan" then ($this.val() in ["avant", "après"]) else ($this.val() is "Oui")
+    showNextif condition, $this, $next
 
 $.fn.check_show_indication = ->
   @each ->
