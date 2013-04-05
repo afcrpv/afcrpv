@@ -4,14 +4,7 @@
   <%= f.input :comm_evenement, input_html: {class: "input-block-level", rows: 3}, hint: "Attention ! Pas de données nominatives directes ou indirectes dans ce champ." %>
   <div class="row-fluid">
     <div class="span4">
-      <div class="control-group">
-        <%= f.label :j_evenement, "Date de l'évenèment", class: "control-label" %>
-        <div class="controls controls-row">
-          <% %w(j m a).each do |prefix| %>
-            <%= f.text_field :"#{prefix}_evenement", class: "span3", placeholder: prefix == "a" ? prefix*4 : prefix*2 %>
-          <% end -%>
-        </div>
-      </div>
+      <%= f.input :date_evenement, input_html: {class: "span3"} %>
     </div>
     <div class="span4">
       <%= f.input :gravite, collection: Dossier::GRAVITE %>

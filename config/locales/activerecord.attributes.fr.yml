@@ -16,35 +16,26 @@ fr:
         gravite: Gravité
         evolution: Evolution
         medicament_1: Médicament1
-        medicament_1_du: M1 debut
-        medicament_1_au: M1 fin
+        medicament_1_duree_ttt: M1 durée
         medicament_2: Médicament2
-        medicament_2_du: M2 debut
-        medicament_2_au: M2 fin
+        medicament_2_duree_ttt: M2 durée
         medicament_3: Médicament3
-        medicament_3_du: M3 debut
-        medicament_3_au: M3 fin
+        medicament_3_duree_ttt: M3 durée
         contraception_1: Contraception1
-        contraception_1_du: C1 debut
-        contraception_1_au: C1 fin
+        contraception_1_duree_ttt: C1 durée
         contraception_2: Contraception2
-        contraception_2_du: C2 debut
-        contraception_2_au: C2 fin
+        contraception_2_duree_ttt: C2 durée
         contraception_3: Contraception3
-        contraception_3_du: C3 debut
-        contraception_3_au: C3 fin
+        contraception_3_duree_ttt: C3 durée
         contraception_ant: Contraception Ant
         contraception_age: Age 1C
         concomitants: Concomitants
         concomitant_1: Concomitant1
-        concomitant_1_du: C1 debut
-        concomitant_1_au: C1 fin
+        concomitant_1_duree_ttt: C1 durée
         concomitant_2: Concomitant2
-        concomitant_2_du: C2 debut
-        concomitant_2_au: C2 fin
+        concomitant_2_duree_ttt: C2 durée
         concomitant_3: Concomitant3
-        concomitant_3_du: C3 debut
-        concomitant_3_au: C3 fin
+        concomitant_3_duree_ttt: C3 durée
         contraception_apres: Contraception après
         contraception_quoi: Contrac. après quoi
         obesite: 1- Obesité

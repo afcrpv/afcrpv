@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322114022) do
+ActiveRecord::Schema.define(:version => 20130405203249) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "name"
@@ -33,44 +33,97 @@ ActiveRecord::Schema.define(:version => 20130322114022) do
   add_index "departements", ["name"], :name => "index_departements_on_name"
 
   create_table "dossiers", :force => true do |t|
-    t.string   "code_bnpv"
+    t.string   "code_bnpv",                                :limit => nil
     t.date     "date_recueil"
-    t.boolean  "doublon"
-    t.integer  "j_evenement"
+    t.string   "doublon",                                  :limit => nil
     t.integer  "m_evenement"
     t.integer  "a_evenement"
     t.text     "comm_evenement"
-    t.string   "gravite"
-    t.string   "evolution"
+    t.string   "gravite",                                  :limit => nil
+    t.string   "evolution",                                :limit => nil
     t.text     "commentaire"
-    t.integer  "position"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
     t.integer  "enquete_id"
     t.integer  "evenement_id"
     t.integer  "refinery_crpv_id"
-    t.text     "properties"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "contraception_ant"
+    t.integer  "contraception_age"
+    t.string   "contraception_1"
+    t.string   "contraception_2"
+    t.string   "contraception_3"
+    t.string   "concomitants"
+    t.string   "concomitant_1"
+    t.string   "concomitant_2"
+    t.string   "concomitant_3"
+    t.string   "contraception_apres"
+    t.string   "contraception_quoi"
+    t.string   "obesite"
+    t.string   "tabac"
+    t.string   "tabac_pa"
+    t.string   "thrombose_perso"
+    t.string   "thrombose_perso_quoi"
+    t.string   "thrombose_fam"
+    t.string   "thrombose_fam_quoi"
+    t.string   "cv_perso"
+    t.string   "cv_perso_quoi"
+    t.string   "cv_fam"
+    t.string   "cv_fam_quoi"
+    t.string   "hta"
+    t.string   "autoimmune"
+    t.string   "autoimmune_quoi"
+    t.string   "cancer"
+    t.string   "cancer_quoi"
+    t.string   "hhc_perso"
+    t.string   "hhc_fam"
+    t.boolean  "circonstance_chirurgie"
+    t.boolean  "circonstance_immobilisation"
+    t.boolean  "circonstance_voyage"
+    t.boolean  "circonstance_autre"
+    t.string   "circonstance_autre_quoi"
+    t.string   "post_partum"
+    t.string   "anomalie_hemostase_perso_bilan"
+    t.string   "anomalie_hemostase_perso_anomalie"
+    t.string   "anomalie_hemostase_perso_anomalie_quoi"
+    t.string   "migraine_perso"
+    t.string   "anomalie_hemostase_fam_bilan"
+    t.string   "anomalie_hemostase_fam_anomalie"
+    t.string   "anomalie_hemostase_fam_anomalie_quoi"
+    t.string   "migraine_fam"
+    t.string   "diabete"
+    t.string   "hyperglycemie"
+    t.string   "dyslipidemie"
+    t.string   "dyslipidemie_quoi"
+    t.string   "illicites"
+    t.string   "illicites_quoi"
+    t.string   "autres_cv"
+    t.string   "autres_cv_quoi"
+    t.string   "anomalie_hemostase_perso_anomalie_nombre"
+    t.string   "anomalie_hemostase_fam_anomalie_nombre"
+    t.string   "contraception_1_duree_comp"
+    t.integer  "contraception_1_duree"
+    t.string   "contraception_1_duree_unite"
+    t.string   "contraception_2_duree_comp"
+    t.integer  "contraception_2_duree"
+    t.string   "contraception_2_duree_unite"
+    t.string   "contraception_3_duree_comp"
+    t.integer  "contraception_3_duree"
+    t.string   "contraception_3_duree_unite"
+    t.string   "concomitant_1_duree_comp"
+    t.integer  "concomitant_1_duree"
+    t.string   "concomitant_1_duree_unite"
+    t.string   "concomitant_2_duree_comp"
+    t.integer  "concomitant_2_duree"
+    t.string   "concomitant_2_duree_unite"
+    t.string   "concomitant_3_duree_comp"
+    t.integer  "concomitant_3_duree"
+    t.string   "concomitant_3_duree_unite"
+    t.date     "date_evenement"
   end
-
-  add_index "dossiers", ["enquete_id"], :name => "refinery_enquetes_hydra_set_id_index"
-  add_index "dossiers", ["refinery_crpv_id"], :name => "index_refinery_enquetes_on_refinery_crpv_id"
-
-  create_table "enquete_fields", :force => true do |t|
-    t.string   "name"
-    t.string   "libelle"
-    t.string   "field_type"
-    t.boolean  "required"
-    t.integer  "enquete_id"
-    t.integer  "position"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "enquete_fields", ["enquete_id"], :name => "index_enquete_fields_on_enquete_id"
 
   create_table "enquetes", :force => true do |t|
     t.string   "name"
-    t.text     "description"
+    t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -82,106 +135,23 @@ ActiveRecord::Schema.define(:version => 20130322114022) do
     t.datetime "updated_at",   :null => false
   end
 
-  add_index "evenement_choices", ["enquete_id"], :name => "index_evenement_choices_on_type_enquete_id"
+  add_index "evenement_choices", ["enquete_id"], :name => "index_evenement_choices_on_enquete_id"
   add_index "evenement_choices", ["evenement_id"], :name => "index_evenement_choices_on_evenement_id"
 
   create_table "evenements", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "ev_type"
   end
 
   add_index "evenements", ["name"], :name => "index_evenements_on_name"
 
-  create_table "hydra_attribute_sets", :id => false, :force => true do |t|
-    t.integer "hydra_attribute_id", :null => false
-    t.integer "hydra_set_id",       :null => false
+  create_table "indications", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  add_index "hydra_attribute_sets", ["hydra_attribute_id", "hydra_set_id"], :name => "hydra_attribute_sets_index", :unique => true
-
-  create_table "hydra_attributes", :force => true do |t|
-    t.string   "entity_type",   :limit => 32,                    :null => false
-    t.string   "name",          :limit => 32,                    :null => false
-    t.string   "backend_type",  :limit => 16,                    :null => false
-    t.string   "default_value"
-    t.boolean  "white_list",                  :default => false, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "position"
-  end
-
-  add_index "hydra_attributes", ["entity_type", "name"], :name => "hydra_attributes_index", :unique => true
-
-  create_table "hydra_boolean_refinery_enquetes", :force => true do |t|
-    t.integer  "entity_id",          :null => false
-    t.integer  "hydra_attribute_id", :null => false
-    t.boolean  "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "hydra_boolean_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_boolean_refinery_enquetes_index", :unique => true
-
-  create_table "hydra_datetime_refinery_enquetes", :force => true do |t|
-    t.integer  "entity_id",          :null => false
-    t.integer  "hydra_attribute_id", :null => false
-    t.datetime "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "hydra_datetime_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_datetime_refinery_enquetes_index", :unique => true
-
-  create_table "hydra_float_refinery_enquetes", :force => true do |t|
-    t.integer  "entity_id",          :null => false
-    t.integer  "hydra_attribute_id", :null => false
-    t.float    "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "hydra_float_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_float_refinery_enquetes_index", :unique => true
-
-  create_table "hydra_integer_refinery_enquetes", :force => true do |t|
-    t.integer  "entity_id",          :null => false
-    t.integer  "hydra_attribute_id", :null => false
-    t.integer  "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "hydra_integer_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_integer_refinery_enquetes_index", :unique => true
-
-  create_table "hydra_sets", :force => true do |t|
-    t.string   "entity_type", :limit => 32, :null => false
-    t.string   "name",        :limit => 32, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "description"
-  end
-
-  add_index "hydra_sets", ["entity_type", "name"], :name => "hydra_sets_index", :unique => true
-
-  create_table "hydra_string_refinery_enquetes", :force => true do |t|
-    t.integer  "entity_id",          :null => false
-    t.integer  "hydra_attribute_id", :null => false
-    t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "hydra_string_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_string_refinery_enquetes_index", :unique => true
-
-  create_table "hydra_text_refinery_enquetes", :force => true do |t|
-    t.integer  "entity_id",          :null => false
-    t.integer  "hydra_attribute_id", :null => false
-    t.text     "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "hydra_text_refinery_enquetes", ["entity_id", "hydra_attribute_id"], :name => "hydra_text_refinery_enquetes_index", :unique => true
 
   create_table "medicament_choices", :force => true do |t|
     t.integer  "medicament_id"
@@ -201,6 +171,38 @@ ActiveRecord::Schema.define(:version => 20130322114022) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "meta_type_members", :force => true do |t|
+    t.integer  "meta_type_id"
+    t.integer  "meta_type_property_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "meta_type_properties", :force => true do |t|
+    t.string   "sid",               :limit => nil
+    t.string   "label",             :limit => nil,                    :null => false
+    t.string   "property_type_sid", :limit => nil,                    :null => false
+    t.boolean  "required",                         :default => false, :null => false
+    t.boolean  "system",                           :default => false, :null => false
+    t.string   "dimension",         :limit => nil
+    t.string   "default_value",     :limit => nil
+    t.string   "choices",           :limit => nil
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "meta_types", :force => true do |t|
+    t.string   "sid",        :limit => nil, :null => false
+    t.string   "type",       :limit => nil
+    t.string   "title",      :limit => nil, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "meta_types", ["sid"], :name => "meta_types_sid_key", :unique => true
+  add_index "meta_types", ["title"], :name => "meta_types_title_key", :unique => true
+
   create_table "patients", :force => true do |t|
     t.integer  "age"
     t.integer  "poids"
@@ -211,7 +213,7 @@ ActiveRecord::Schema.define(:version => 20130322114022) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "patients", ["dossier_id"], :name => "index_patients_on_refinery_enquete_id"
+  add_index "patients", ["dossier_id"], :name => "index_patients_on_dossier_id"
 
   create_table "refinery_crpvs", :force => true do |t|
     t.string   "name"
@@ -570,17 +572,17 @@ ActiveRecord::Schema.define(:version => 20130322114022) do
   create_table "traitements", :force => true do |t|
     t.integer  "dossier_id"
     t.integer  "medicament_id"
-    t.integer  "j_debut"
-    t.integer  "m_debut"
-    t.integer  "a_debut"
-    t.integer  "j_fin"
-    t.integer  "m_fin"
-    t.integer  "a_fin"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.integer  "indication_id"
+    t.string   "indication_autre_quoi"
+    t.integer  "duree"
+    t.string   "duree_unite"
+    t.string   "duree_comp"
   end
 
   add_index "traitements", ["dossier_id"], :name => "index_traitements_on_dossier_id"
+  add_index "traitements", ["indication_id"], :name => "index_traitements_on_indication_id"
   add_index "traitements", ["medicament_id"], :name => "index_traitements_on_medicament_id"
 
 end

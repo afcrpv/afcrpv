@@ -117,9 +117,6 @@ CREATE TABLE dossiers (
     code_bnpv character varying,
     date_recueil date,
     doublon character varying,
-    j_evenement integer,
-    m_evenement integer,
-    a_evenement integer,
     comm_evenement text,
     gravite character varying,
     evolution character varying,
@@ -132,24 +129,12 @@ CREATE TABLE dossiers (
     contraception_ant character varying(255),
     contraception_age integer,
     contraception_1 character varying(255),
-    contraception_1_du date,
-    contraception_1_au date,
     contraception_2 character varying(255),
-    contraception_2_du date,
-    contraception_2_au date,
     contraception_3 character varying(255),
-    contraception_3_du date,
-    contraception_3_au date,
     concomitants character varying(255),
     concomitant_1 character varying(255),
-    concomitant_1_du date,
-    concomitant_1_au date,
     concomitant_2 character varying(255),
-    concomitant_2_du date,
-    concomitant_2_au date,
     concomitant_3 character varying(255),
-    concomitant_3_du date,
-    concomitant_3_au date,
     contraception_apres character varying(255),
     contraception_quoi character varying(255),
     obesite character varying(255),
@@ -193,7 +178,26 @@ CREATE TABLE dossiers (
     autres_cv character varying(255),
     autres_cv_quoi character varying(255),
     anomalie_hemostase_perso_anomalie_nombre character varying(255),
-    anomalie_hemostase_fam_anomalie_nombre character varying(255)
+    anomalie_hemostase_fam_anomalie_nombre character varying(255),
+    contraception_1_duree_comp character varying(255),
+    contraception_1_duree integer,
+    contraception_1_duree_unite character varying(255),
+    contraception_2_duree_comp character varying(255),
+    contraception_2_duree integer,
+    contraception_2_duree_unite character varying(255),
+    contraception_3_duree_comp character varying(255),
+    contraception_3_duree integer,
+    contraception_3_duree_unite character varying(255),
+    concomitant_1_duree_comp character varying(255),
+    concomitant_1_duree integer,
+    concomitant_1_duree_unite character varying(255),
+    concomitant_2_duree_comp character varying(255),
+    concomitant_2_duree integer,
+    concomitant_2_duree_unite character varying(255),
+    concomitant_3_duree_comp character varying(255),
+    concomitant_3_duree integer,
+    concomitant_3_duree_unite character varying(255),
+    date_evenement date
 );
 
 
@@ -2651,3 +2655,11 @@ INSERT INTO schema_migrations (version) VALUES ('20130329103640');
 INSERT INTO schema_migrations (version) VALUES ('20130329104928');
 
 INSERT INTO schema_migrations (version) VALUES ('20130405115553');
+
+INSERT INTO schema_migrations (version) VALUES ('20130405185848');
+
+INSERT INTO schema_migrations (version) VALUES ('20130405191155');
+
+INSERT INTO schema_migrations (version) VALUES ('20130405203042');
+
+INSERT INTO schema_migrations (version) VALUES ('20130405203249');

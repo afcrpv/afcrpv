@@ -3,15 +3,15 @@ class Dossier < ActiveRecord::Base
   columns_for_xlsx = [:code_bnpv, :date_recueil, :doublon, :age, :poids, :taille, :imc, :date_evenement, :evenement, :comm_evenement, :gravite, :evolution]
 
   (1..3).each do |i|
-    columns_for_xlsx << [:"medicament_#{i}", :"medicament_#{i}_du", :"medicament_#{i}_au"]
+    columns_for_xlsx << [:"medicament_#{i}", :"medicament_#{i}_duree_ttt"]
   end
   columns_for_xlsx << [:contraception_ant, :contraception_age]
   (1..3).each do |i|
-    columns_for_xlsx << [:"contraception_#{i}", :"contraception_#{i}_du", :"contraception_#{i}_au"]
+    columns_for_xlsx << [:"contraception_#{i}", :"contraception_#{i}_duree_ttt"]
   end
   columns_for_xlsx << :concomitants
   (1..3).each do |i|
-    columns_for_xlsx << [:"concomitant_#{i}", :"concomitant_#{i}_du", :"concomitant_#{i}_au"]
+    columns_for_xlsx << [:"concomitant_#{i}", :"concomitant_#{i}_duree_ttt"]
   end
   columns_for_xlsx << [:contraception_apres, :contraception_quoi, :obesite, :tabac, :tabac_pa]
   %w(thrombose cv).each do |prefix|
@@ -41,7 +41,7 @@ class Dossier < ActiveRecord::Base
 
   acts_as_xlsx columns: columns_for_xlsx.flatten, i18n: 'activerecord.attributes'
 
-  attr_accessible :code_bnpv, :date_recueil, :doublon, :j_evenement, :m_evenement, :a_evenement, :comm_evenement, :gravite, :evolution, :commentaire, :concomitants, :obesite, :tabac, :tabac_pa, :hta, :autoimmune, :autoimmune_quoi, :cancer, :cancer_quoi, :post_partum, :diabete, :hyperglycemie
+  attr_accessible :code_bnpv, :date_recueil, :doublon, :date_evenement, :comm_evenement, :gravite, :evolution, :commentaire, :concomitants, :obesite, :tabac, :tabac_pa, :hta, :autoimmune, :autoimmune_quoi, :cancer, :cancer_quoi, :post_partum, :diabete, :hyperglycemie
   attr_accessible :patient_attributes, :traitements_attributes
   attr_accessible :enquete_id, :evenement_id, :refinery_crpv_id
   %w(age ant apres quoi).each do |suffix|
@@ -49,7 +49,7 @@ class Dossier < ActiveRecord::Base
   end
   (1..3).each do |i|
     %w(contraception concomitant).each do |name|
-      attr_accessible :"#{name}_#{i}", :"#{name}_#{i}_du", :"#{name}_#{i}_au"
+      attr_accessible :"#{name}_#{i}", :"#{name}_#{i}_duree", :"#{name}_#{i}_duree_comp", :"#{name}_#{i}_duree_unite"
     end
   end
   %w(thrombose cv).each do |prefix|
@@ -146,23 +146,17 @@ class Dossier < ActiveRecord::Base
     }
   end
 
-  def date_evenement
-    date_concat = []
-    %w(a m j).each do |date_item|
-      date_concat << self.send(:"#{date_item}_evenement")
-    end
-    Date.parse(date_concat.join("-"))
-  end
-
   (1..3).each do |i|
     define_method :"medicament_#{i}" do
       traitements[i-1].medicament rescue nil
     end
-    define_method :"medicament_#{i}_du" do
-      traitements[i-1].debut rescue nil
+    define_method :"medicament_#{i}_duree_ttt" do
+      traitements[i-1].duree_ttt rescue nil
     end
-    define_method :"medicament_#{i}_au" do
-      traitements.find[i-1].fin rescue nil
+    %w(concomitant contraception).each do |med|
+      define_method :"#{med}_#{i}_duree_ttt" do
+        [send(:"#{med}_#{i}_duree_comp"), send(:"#{med}_#{i}_duree"), send(:"#{med}_#{i}_duree_unite")].compact.join(" ")
+      end
     end
   end
 
