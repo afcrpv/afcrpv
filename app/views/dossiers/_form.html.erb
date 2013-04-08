@@ -18,7 +18,7 @@
   <%= render 'fdr_communs_info', f: f %>
   <%= render 'fdr_veineux_info', f: f %>
   <%= render 'fdr_arterieux_info', f: f %>
-  <%= f.input :commentaire, input_html: {class: "input-block-level"}, hint: "Attention ! Pas de données nominatives directes ou indirectes dans ce champ." %>
+  <%= f.input :commentaire, input_html: {class: "input-block-level"}, label: "Commentaire - <span class='text-warning'>Attention ! Pas de données nominatives directes ou indirectes dans ce champ.</span>".html_safe %>
   <div class="form-actions">
     <%= f.button :submit %>
   </div>

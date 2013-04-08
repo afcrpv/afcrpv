@@ -1,7 +1,7 @@
 <div class="evenement-info form-section">
   <h4>Evènement thrombo-embolique</h4>
   <%= f.association :evenement, collection: evenements, prompt: "Choisir un évènement", input_html: {class: "input-block-level"} %>
-  <%= f.input :comm_evenement, input_html: {class: "input-block-level", rows: 3}, hint: "Attention ! Pas de données nominatives directes ou indirectes dans ce champ." %>
+  <%= f.input :comm_evenement, input_html: {class: "input-block-level", rows: 3}, label: "Précisions sur l'évènement - <span class='text-warning'>Attention ! Pas de données nominatives directes ou indirectes dans ce champ.</span>".html_safe %>
   <div class="row-fluid">
     <div class="span4">
       <%= f.input :date_evenement, input_html: {class: "span3"} %>
