@@ -60,15 +60,33 @@ $.fn.check_show_duree_traitement = ->
 
 $.fn.check_show_anomalie_hemostase = (field) ->
   $select = $(this)
-  condition = if field is "bilan" then ($select.val() in ["avant", "après"]) else ($select.val() is "Oui")
   $next = $($select.parents(".control-group").next())
+  if field is "bilan"
+    condition = $select.val() in ["avant", "après"]
+    unless condition
+      $select.parents(".control-group").next().find("select").val("")
+      $select.parents(".control-group").next().find("select").trigger("change")
+      $select.parents(".control-group").nextAll(".anomalie-hemostase-fields").find("select,input").each ->
+        $(@).val("")
+  else
+    condition = $select.val() is "Oui"
+
   showNextif condition, $select, $next
 
   $select.on "change", ->
-    $this = $(@)
-    $next = $($this.parents(".control-group").next())
-    condition = if field is "bilan" then ($this.val() in ["avant", "après"]) else ($this.val() is "Oui")
-    showNextif condition, $this, $next
+    $select = $(@)
+    $next = $($select.parents(".control-group").next())
+    if field is "bilan"
+      condition = $select.val() in ["avant", "après"]
+      unless condition
+        $select.parents(".control-group").next().find("select").val("")
+        $select.parents(".control-group").next().find("select").trigger("change")
+        $select.parents(".control-group").nextAll(".anomalie-hemostase-fields").find("select,input").each ->
+          $(@).val("")
+    else
+      condition = $select.val() is "Oui"
+
+    showNextif condition, $select, $next
 
 $.fn.check_show_indication = ->
   @each ->
