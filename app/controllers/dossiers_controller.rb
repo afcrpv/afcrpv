@@ -24,6 +24,7 @@ class DossiersController < ApplicationController
   def new
     @dossier = Dossier.new(enquete_id: params[:enquete_id], refinery_crpv_id: current_refinery_user.refinery_crpv_id)
     @dossier.build_patient
+    @dossier.traitements.build
   end
 
   def create
@@ -38,6 +39,7 @@ class DossiersController < ApplicationController
   def edit
     @dossier = Dossier.find(params[:id])
     @dossier.build_patient unless @dossier.patient
+    @dossier.traitements.build unless @dossier.traitements.any?
     redirect_to enquete_path(id: @dossier.enquete_id), notice: "Vous ne pouvez pas modifier ce dossier." unless user_crpv_owns_dossier? or authorised_enquetes_user? or current_refinery_user.is_admin?
   end
 
