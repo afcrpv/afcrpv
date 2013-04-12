@@ -4,7 +4,7 @@ $ ->
   gaiSelected = []
 
   dossiersoTable = $("#dossiers").dataTable
-    sDom: "<'row-fluid'<'span6'l><'span6'T>r>t<'row-fluid'<'span6'i><'span6'p>S>"
+    sDom: "<'row-fluid'<'span6'l><'span6'T>r>t<'row-fluid'<'span6'i><'span6'p>>"
     sPaginationType: "bootstrap"
     oTableTools:
       aButtons: [
@@ -19,8 +19,6 @@ $ ->
       {sWidth: "23%"}
       {sWidth: "10%", bSortable: false}
     ]
-    sScrollY: "200px"
-    bScrollCollapse: true
     bDeferRender: true
     bPaginate: false
     bProcessing: true

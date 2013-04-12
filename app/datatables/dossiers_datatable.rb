@@ -14,7 +14,7 @@ class DossiersDatatable
     {
       sEcho: params[:sEcho].to_i,
       iTotalRecords: Dossier.count,
-      iTotalDisplayRecords: dossiers.total_entries,
+      iTotalDisplayRecords: dossiers.count,
       aaData: data,
     }
   end
@@ -39,7 +39,7 @@ class DossiersDatatable
 
   def fetch_dossiers
     dossiers = Dossier.order("#{sort_column} #{sort_direction}")
-    dossiers = dossiers.includes(:patient, :evenement, :traitements => :medicament).page(page).per_page(per_page)
+    dossiers = dossiers.includes(:patient, :evenement, :traitements => :medicament)
     if params[:sSearch].present?
       dossiers = dossiers.code_bnpv_or_evenement_or_medicament_contains params[:sSearch]
     elsif params[:sSearch_0].present?#refinery_crpv_id
