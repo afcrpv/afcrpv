@@ -1,6 +1,6 @@
 #encoding: utf-8
 class DossiersDatatable
-  delegate :logger, :params, :l, :h, :link_to, :edit_dossier_path, :authorised_enquetes_user?, :content_tag, to: :@view
+  delegate :logger, :params, :l, :h, :link_to, :edit_dossier_path, :authorised_enquetes_user?, :current_refinery_user, :content_tag, to: :@view
 
   def initialize(view)
     @view = view
@@ -40,11 +40,8 @@ class DossiersDatatable
   def fetch_dossiers
     dossiers = Dossier.order("#{sort_column} #{sort_direction}")
     dossiers = dossiers.includes(:patient, :evenement, :traitements => :medicament)
-    if params[:sSearch].present?
-      dossiers = dossiers.code_bnpv_or_evenement_or_medicament_contains params[:sSearch]
-    elsif params[:sSearch_0].present?#refinery_crpv_id
-      dossiers = dossiers.where{refinery_crpv_id == my{params[:sSearch_0]}}
-    elsif params[:sSearch_1].present?#dossiers.evenement.name
+    dossiers = dossiers.where{refinery_crpv_id == my{current_refinery_user.refinery_crpv_id}} unless authorised_enquetes_user?
+    if params[:sSearch_1].present?#dossiers.evenement.name
       dossiers = dossiers.joins{evenement}.where{evenement.name =~ my{"%#{params[:sSearch_1]}%"}}
     elsif params[:sSearch_2].present?#dossiers.traitements.medicament.name
       dossiers = dossiers.joins{traitements.medicament}.where{traitements.medicament.name == my{params[:sSearch_2]}}

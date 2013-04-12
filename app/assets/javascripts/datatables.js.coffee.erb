@@ -50,18 +50,6 @@ $ ->
       <%#$("#date_recueil_#{prefix}_#{date_item}").on "change", (e) ->%>
         <%#dossiersoTable.fnFilter($("#date_recueil_dummy").val(), 3)%>
 
-  $("#search_dossier_refinery_crpv_id").select2
-    ajax:
-      url: "/crpvs/search.json"
-      dataType: "json"
-      data: (term, page) ->
-        q: term
-        page_limit: 10
-      results: (data, page) ->
-        return {results: data}
-  $("#search_dossier_refinery_crpv_id").on "change", (e) ->
-    dossiersoTable.fnFilter(@value, 0)
-
   $("#search_dossier_evenement_name").select2
     ajax:
       url: "/evenements/liste.json"
