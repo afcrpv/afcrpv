@@ -8,9 +8,15 @@ $ ->
     sPaginationType: "bootstrap"
     oTableTools:
       aButtons: [
-        sExtends: "download"
-        sButtonText: "Exporter en format Excel"
-        sUrl: "/dossiers.xlsx"
+        {
+          sExtends: "download"
+          sButtonText: "Exporter en format Excel"
+          sUrl: "/dossiers.xlsx"
+        },
+        {
+          sExtends: "print"
+          sInfo: "Appuyez sur la touche Echap une fois le document imprimé."
+        }
       ]
     aoColumns: [
       {sWidth: "10%"}

@@ -6,7 +6,7 @@ class DossiersDatatable
     @view = view
   end
 
-  def as_xlsx(options={})
+  def as_records(options={})
     dossiers
   end
 
