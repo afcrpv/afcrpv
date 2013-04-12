@@ -9,9 +9,12 @@
       <%= f.input :tabac_pa %>
     </div>
   </div>
-  <% {"thrombose" => "3- Antécédent(s) de thrombose veineuse", "cv" => "4- Autre(s) antécedent(s) cardiovasculaire(s)"}.each do |prefix, titre| %>
+  <% tooltip =
+      '<a href="#" data-toggle="tooltip" title="Exemple : AVC, IDM, décès d''origine cardiaque...">(?)</a>'.html_safe
+    %>
+  <% {"thrombose" => "3- Antécédent(s) de thrombose veineuse", "cv" => "4- Antécedent(s) cardiovasculaire(s) autre que hypertension"}.each do |prefix, titre| %>
     <div id=<%= prefix %> class="atcd-columns">
-      <h5 class="text-center"><%= titre %></h5>
+      <h5 class="text-center"><%= titre %><%= tooltip if prefix == "cv" %></h5>
       <div class="row-fluid">
         <% %w(perso fam).each do |suffix| %>
           <div class="span6">
