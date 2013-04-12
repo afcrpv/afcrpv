@@ -61,7 +61,7 @@ class DossiersController < ApplicationController
   protected
 
   def enquete
-    @enquete ||= params[:id] ? @dossier.enquete : Enquete.find(params[:enquete_id])
+    @enquete ||= params[:id] ? @dossier.enquete : (params[:dossier] ? Enquete.find(params[:dossier][:enquete_id]) : Enquete.find(params[:enquete_id]) )
   end
 
   def indications
