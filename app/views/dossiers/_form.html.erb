@@ -21,6 +21,12 @@
   <%= render 'fdr_arterieux_info', f: f %>
   <%= f.input :commentaire, input_html: {class: "input-block-level"}, label: "Commentaire - <span class='text-warning'>Attention ! Pas de données nominatives directes ou indirectes dans ce champ.</span>".html_safe %>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= button_tag type: :submit, disable_with: (save_and_continue = "Enregistrer et continuer"), name: "_continue", class: "btn btn-success" do %>
+      <%= save_and_continue %>
+    <% end -%>
+    <%= button_tag type: :submit, disable_with: (save_and_close = "Enregistrer et fermer"), class: "btn btn-info" do %>
+      <%= save_and_close %>
+    <% end -%>
+    <%= link_to "Fermer", enquete_path(enquete), class: "btn", data: {confirm: "Attention ! Voulez-vous fermer le dossier et abandonner les modifications ?"} %>
   </div>
 <% end -%>

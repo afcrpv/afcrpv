@@ -30,7 +30,7 @@ class DossiersController < ApplicationController
   def create
     @dossier = Dossier.new(params[:dossier])
     if @dossier.save
-      redirect_to enquete_path(params[:dossier][:enquete_id]), succes: "Le dossier a été créé avec succès."
+      redirect_on_success("Le dossier #{@dossier.code_bnpv} a été créé avec succès.")
     else
       render :new
     end
@@ -46,7 +46,7 @@ class DossiersController < ApplicationController
   def update
     @dossier = Dossier.find(params[:id])
     if @dossier.update_attributes(params[:dossier])
-      redirect_to enquete_path(id: @dossier.enquete_id), notice: "Dossier : #{@dossier.code_bnpv} mis à jour avec succès."
+      redirect_on_success("Le dossier #{@dossier.code_bnpv} a été mis à jour avec succès.")
     else
       render :edit
     end
@@ -92,6 +92,14 @@ class DossiersController < ApplicationController
       else
         redirect_to enquetes_path, notice: "Aucun dossier avec le N° BNPV: #{params[:code_bnpv]}"
       end
+    end
+  end
+
+  def redirect_on_success(flash_message)
+    if params[:_continue]
+      redirect_to edit_dossier_path(@dossier), notice: flash_message
+    else
+      redirect_to enquete_path(id: @dossier.enquete_id), notice: flash_message
     end
   end
 end
