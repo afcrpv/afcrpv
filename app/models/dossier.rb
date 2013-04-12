@@ -13,7 +13,7 @@ class Dossier < ActiveRecord::Base
   (1..3).each do |i|
     columns_for_xlsx << [:"concomitant_#{i}", :"concomitant_#{i}_duree_ttt"]
   end
-  columns_for_xlsx << [:contraception_apres, :contraception_quoi, :obesite, :tabac, :tabac_pa]
+  columns_for_xlsx << [:contraception_ci, :contraception_apres, :contraception_quoi, :obesite, :tabac, :tabac_pa]
   %w(thrombose cv).each do |prefix|
     %w(perso fam).each do |suffix|
       columns_for_xlsx << [:"#{prefix}_#{suffix}", :"#{prefix}_#{suffix}_quoi"]
@@ -44,7 +44,7 @@ class Dossier < ActiveRecord::Base
   attr_accessible :code_bnpv, :date_recueil, :doublon, :date_evenement, :comm_evenement, :gravite, :evolution, :commentaire, :concomitants, :obesite, :tabac, :tabac_pa, :hta, :autoimmune, :autoimmune_quoi, :cancer, :cancer_quoi, :post_partum, :diabete, :hyperglycemie
   attr_accessible :patient_attributes, :traitements_attributes
   attr_accessible :enquete_id, :evenement_id, :refinery_crpv_id
-  %w(age ant apres quoi).each do |suffix|
+  %w(age ant ci apres quoi).each do |suffix|
     attr_accessible :"contraception_#{suffix}"
   end
   (1..3).each do |i|
@@ -109,12 +109,6 @@ class Dossier < ActiveRecord::Base
     ["bilan après évènement", "après"],
     ["bilan non fait", "non"],
     ["bilan prévu à distance", "distance"],
-    ["NSP", "nsp"]
-  ]
-
-  CONTRACEPTION_APRES = [
-    ["reprise d’une contraception", "reprise"],
-    ["contre-indication d'une contraception", "ci"],
     ["NSP", "nsp"]
   ]
 

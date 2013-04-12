@@ -50,7 +50,7 @@
   <%= f.input :concomitants, as: :select, collection: Dossier::ONI %>
   <div class="row-fluid concomitant-field">
     <div class="span4">
-      Médicament
+      Médicament (nom de spécialité ou DCI)
     </div>
     <div class="span8">
       Durée de traitement
@@ -68,11 +68,15 @@
     </div>
   </div><!-- row-fluid concomitant-field -->
   <% end -%>
+  <h5 class="text-center">Contraception après l'évènement</h5>
   <div class="row-fluid">
-    <div class="span4">
-      <%= f.input :contraception_apres, as: :select, collection: Dossier::CONTRACEPTION_APRES, input_html: {class: "span10"} %>
+    <div class="span5">
+      <%= f.input :contraception_ci, as: :select, collection: Dossier::ONI, input_html: {class: "span4"} %>
     </div>
-    <div class="span8 contraception-quoi">
+    <div class="span3">
+      <%= f.input :contraception_apres, as: :select, collection: Dossier::ONI, input_html: {class: "span6"} %>
+    </div>
+    <div class="span4 contraception-quoi">
       <%= f.input :contraception_quoi, input_html: {class: "input-block-level"} %>
     </div>
   </div><!-- row-fluid -->

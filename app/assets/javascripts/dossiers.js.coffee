@@ -14,9 +14,9 @@ $ ->
   $concomitants_field.on "change", -> 
     showNextif $(@).val() is "Oui", $(@), $(".concomitant-field")
 
-  showNextif $("#dossier_contraception_apres").val() is "reprise", $("#dossier_contraception_apres"), $(".contraception-quoi")
+  showNextif $("#dossier_contraception_apres").val() is "Oui", $("#dossier_contraception_apres"), $(".contraception-quoi")
   $("#dossier_contraception_apres").on "change", -> 
-    showNextif $(@).val() is "reprise", $(@), $(".contraception-quoi")
+    showNextif $(@).val() is "Oui", $(@), $(".contraception-quoi")
 
   $tabac = $("#dossier_tabac")
   showNextif $tabac.val() in ["oui", "sevré"], $tabac, $tabac.parents(".control-group").next()

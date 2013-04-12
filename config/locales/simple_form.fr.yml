@@ -62,7 +62,8 @@ fr:
         contraception_ant: Contraception(s) antérieure(s)
         contraception_age: Age 1ère contraception
         concomitants: Autres médicaments en cours au moment de l’évènement
-        contraception_apres: Contraception après l’évènement
+        contraception_ci: Contre-indication d'une contraception oestroprogestative
+        contraception_apres: Reprise d'une contraception
         contraception_quoi: "Préciser le contraceptif ou la forme :"
         obesite: 1- Obesité
         tabac: 2- Tabac
