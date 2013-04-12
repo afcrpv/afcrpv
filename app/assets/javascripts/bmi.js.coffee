@@ -17,3 +17,5 @@ $.fn.calculateBMI = (result_container)->
       if weight and size
         bmi = new Bmi(weight, size)
         $(result_container).val(bmi.calculate())
+      else
+        $(result_container).val("")
