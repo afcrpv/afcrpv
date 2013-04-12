@@ -77,6 +77,8 @@ class Dossier < ActiveRecord::Base
   validates :evenement_id, presence: true
   validates :date_recueil, presence: true
 
+  validate :must_have_traitements
+
   has_one :patient
   belongs_to :evenement
   belongs_to :enquete
@@ -163,6 +165,12 @@ class Dossier < ActiveRecord::Base
   def medicaments_list
     if medicaments.any?
       medicaments.map(&:name).join(", ")
+    end
+  end
+
+  def must_have_traitements
+    if traitements.empty? or traitements.all? {|traitement| traitement.marked_for_destruction? }
+      errors.add(:traitements, "Vous devez saisir au moins 1 médicament")
     end
   end
 end
