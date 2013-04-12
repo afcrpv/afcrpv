@@ -9,7 +9,7 @@ $ ->
   $contraception_field.on "change", -> 
     showNextif $(@).val() is "Oui", $(@), $(".contraception-field")
 
-  $concomitants_field = $("#dossier_concomitants")
+  $concomitants_field = $("#dossier_concomitants_pres")
   showNextif $concomitants_field.val() is "Oui", $concomitants_field, $(".concomitant-field")
   $concomitants_field.on "change", -> 
     showNextif $(@).val() is "Oui", $(@), $(".concomitant-field")

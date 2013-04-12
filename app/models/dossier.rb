@@ -9,7 +9,7 @@ class Dossier < ActiveRecord::Base
   (1..3).each do |i|
     columns_for_xlsx << [:"contraception_#{i}", :"contraception_#{i}_duree_ttt"]
   end
-  columns_for_xlsx << :concomitants
+  columns_for_xlsx << :concomitants_pres
   (1..3).each do |i|
     columns_for_xlsx << [:"concomitant_#{i}", :"concomitant_#{i}_duree_ttt"]
   end
@@ -41,17 +41,17 @@ class Dossier < ActiveRecord::Base
 
   acts_as_xlsx columns: columns_for_xlsx.flatten, i18n: 'activerecord.attributes'
 
-  attr_accessible :code_bnpv, :date_recueil, :doublon, :date_evenement, :comm_evenement, :gravite, :evolution, :commentaire, :concomitants, :obesite, :tabac, :tabac_pa, :hta, :autoimmune, :autoimmune_quoi, :cancer, :cancer_quoi, :post_partum, :diabete, :hyperglycemie
-  attr_accessible :patient_attributes, :traitements_attributes
+  attr_accessible :code_bnpv, :date_recueil, :doublon, :date_evenement, :comm_evenement, :gravite, :evolution, :commentaire, :concomitants_pres, :obesite, :tabac, :tabac_pa, :hta, :autoimmune, :autoimmune_quoi, :cancer, :cancer_quoi, :post_partum, :diabete, :hyperglycemie
+  attr_accessible :patient_attributes, :incrimines_attributes, :contraceptions_attributes, :concomitants_attributes
   attr_accessible :enquete_id, :evenement_id, :refinery_crpv_id
   %w(age ant ci apres quoi).each do |suffix|
     attr_accessible :"contraception_#{suffix}"
   end
-  (1..3).each do |i|
-    %w(contraception concomitant).each do |name|
-      attr_accessible :"#{name}_#{i}", :"#{name}_#{i}_duree", :"#{name}_#{i}_duree_comp", :"#{name}_#{i}_duree_unite"
-    end
-  end
+  #(1..3).each do |i|
+    #%w(contraception concomitant).each do |name|
+      #attr_accessible :"#{name}_#{i}", :"#{name}_#{i}_duree", :"#{name}_#{i}_duree_comp", :"#{name}_#{i}_duree_unite"
+    #end
+  #end
   %w(thrombose cv).each do |prefix|
     %w(perso fam).each do |suffix|
       attr_accessible :"#{prefix}_#{suffix}", :"#{prefix}_#{suffix}_quoi"
@@ -83,11 +83,17 @@ class Dossier < ActiveRecord::Base
   belongs_to :evenement
   belongs_to :enquete
   belongs_to :crpv, class_name: "::Refinery::Crpvs::Crpv", foreign_key: :refinery_crpv_id
-  has_many :traitements, dependent: :destroy
-  has_many :medicaments, through: :traitements
+
+  has_many :incrimines, dependent: :destroy
+  has_many :medicaments, through: :incrimines
+
+  has_many :contraceptions, dependent: :destroy
+  has_many :concomitants, dependent: :destroy
 
   accepts_nested_attributes_for :patient, reject_if: :all_blank
-  accepts_nested_attributes_for :traitements, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :incrimines, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :contraceptions, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :concomitants, reject_if: :all_blank, allow_destroy: true
 
   delegate :age, :poids, :taille, :imc, to: :patient, allow_nil: true
 
@@ -144,10 +150,16 @@ class Dossier < ActiveRecord::Base
 
   (1..3).each do |i|
     define_method :"medicament_#{i}" do
-      traitements[i-1].medicament rescue nil
+      incrimines[i-1].medicament rescue nil
     end
     define_method :"medicament_#{i}_duree_ttt" do
-      traitements[i-1].duree_ttt rescue nil
+      incrimines[i-1].duree_ttt rescue nil
+    end
+    define_method :"contraception_#{i}" do
+      contraceptions[i-1].medicament rescue nil
+    end
+    define_method :"concomitant_#{i}" do
+      concomitants[i-1].libelle rescue nil
     end
     %w(concomitant contraception).each do |med|
       define_method :"#{med}_#{i}_duree_ttt" do
@@ -163,7 +175,7 @@ class Dossier < ActiveRecord::Base
   end
 
   def must_have_traitements
-    if traitements.empty? or traitements.all? {|traitement| traitement.marked_for_destruction? }
+    if incrimines.empty? or incrimines.all? {|traitement| traitement.marked_for_destruction? }
       errors.add(:traitements, "Vous devez saisir au moins 1 médicament")
     end
   end
