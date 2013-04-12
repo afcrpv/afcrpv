@@ -4,6 +4,6 @@ class Traitement < ActiveRecord::Base
   belongs_to :dossier
 
   def duree_ttt
-    [duree_comp, duree, duree_unite].compact.join(" ")
+    [duree_comp, duree, duree_unite].compact.join(" ").gsub("=", "")
   end
 end

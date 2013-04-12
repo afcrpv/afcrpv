@@ -39,12 +39,12 @@ class DossiersDatatable
 
   def fetch_dossiers
     dossiers = Dossier.order("#{sort_column} #{sort_direction}")
-    dossiers = dossiers.includes(:patient, :evenement, :traitements => :medicament)
+    dossiers = dossiers.includes(:patient, :evenement, :incrimines => :medicament)
     dossiers = dossiers.where{refinery_crpv_id == my{current_refinery_user.refinery_crpv_id}} unless authorised_enquetes_user?
     if params[:sSearch_1].present?#dossiers.evenement.name
       dossiers = dossiers.joins{evenement}.where{evenement.name =~ my{"%#{params[:sSearch_1]}%"}}
-    elsif params[:sSearch_2].present?#dossiers.traitements.medicament.name
-      dossiers = dossiers.joins{traitements.medicament}.where{traitements.medicament.name == my{params[:sSearch_2]}}
+    elsif params[:sSearch_2].present?#dossiers.incrimines.medicament.name
+      dossiers = dossiers.joins{incrimines.medicament}.where{incrimines.medicament.name == my{params[:sSearch_2]}}
     elsif params[:date_recueil_au].present? && params[:date_recueil_du]#dossiers.date_recueil
       dossiers = dossiers.where{(date_recueil <= my{params[:date_recueil_au]}) & (date_recueil >= my{params[:date_recueil_du]})}
     end
