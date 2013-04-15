@@ -133,8 +133,8 @@ class Dossier < ActiveRecord::Base
   ]
 
   DUREE_COMP = [
-    "< de",
-    "> de",
+    "< à",
+    "> à",
     "=",
     "NSP"
   ]
