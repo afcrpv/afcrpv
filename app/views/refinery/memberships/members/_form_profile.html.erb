@@ -1,5 +1,5 @@
-<%= f.input :last_name %>
-<%= f.input :first_name %>
+<%= f.input :last_name, as: :hidden %>
+<%= f.input :first_name, as: :hidden %>
 <% if @is_admin %>
   <div class="control-group">
     <%= f.label :membership_level, class: "control-label" %>
