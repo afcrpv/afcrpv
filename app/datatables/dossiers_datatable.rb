@@ -45,8 +45,8 @@ class DossiersDatatable
       dossiers = dossiers.joins{evenement}.where{evenement.name =~ my{"%#{params[:sSearch_1]}%"}}
     elsif params[:sSearch_2].present?#dossiers.incrimines.medicament.name
       dossiers = dossiers.joins{incrimines.medicament}.where{incrimines.medicament.name == my{params[:sSearch_2]}}
-    elsif params[:date_recueil_au].present? && params[:date_recueil_du]#dossiers.date_recueil
-      dossiers = dossiers.where{(date_recueil <= my{params[:date_recueil_au]}) & (date_recueil >= my{params[:date_recueil_du]})}
+    #elsif params[:date_recueil_au].present? && params[:date_recueil_du].present?#dossiers.date_recueil
+      #dossiers = dossiers.where{(date_recueil <= my{params[:date_recueil_au]}) & (date_recueil >= my{params[:date_recueil_du]})}
     end
     dossiers
   end
