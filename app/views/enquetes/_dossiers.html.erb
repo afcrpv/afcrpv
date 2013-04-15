@@ -9,6 +9,7 @@
     </tr>
   </thead>
   <tbody></tbody>
+  <% if Rails.env.development? %>
   <tfoot>
     <tr>
       <th></th>
@@ -17,15 +18,12 @@
         <input type="hidden" id="search_dossier_traitements_medicament_name" class="input-large" data-placeholder="Médicament">
       </th>
       <th>
-        <% if Rails.env.development? %>
-          <input type="hidden" id="date_recueil_dummy">
-          du <%= select_date Dossier.minimum(:date_recueil), {use_month_numbers: true, date_separator: "/", prefix: "date_recueil_du"}, class: "span3" %><br>
-          au <%= select_date Date.current, {use_month_numbers: true, date_separator: "/", prefix: "date_recueil_au" }, class: "span3" %>
-        <% end -%>
+         au <%= select_date Date.current, {use_month_numbers: true, date_separator: "/", prefix: "date_recueil_au" }, class: "span3" %>
       </th>
       <th>&nbsp;</th>
     </tr>
   </tfoot>
+  <% end -%>
 </table>
 
 <div class="dossiers-actions">
