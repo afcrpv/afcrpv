@@ -40,7 +40,7 @@ $ ->
   $("[id$=medicament_id]").check_show_indication()
   $(".indication").check_show_indication_autre()
 
-  $("#traitements").bind 'cocoon:after-insert', ->
+  $(".traitements").bind 'cocoon:after-insert', ->
     $("[id$=duree_comp]").check_show_duree_traitement()
     $("[id$=medicament_id]").check_show_indication()
     $(".indication").check_show_indication_autre()
