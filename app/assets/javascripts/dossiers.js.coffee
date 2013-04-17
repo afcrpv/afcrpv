@@ -4,6 +4,26 @@ $ ->
   # calc imc
   $("#dossier_patient_attributes_#{field}").calculateBMI("#dossier_patient_attributes_imc") for field in ["taille", "poids"]
 
+  # coherence obesite/imc
+  $obesite_hint = $(".dossier_obesite p")
+  $obesite_field = $("#dossier_obesite")
+  imc = $("#dossier_patient_attributes_imc").val()
+  condition_obesite = ($obesite_field.val() is "Oui" and imc < 30) or ($obesite_field.val() is "Non" and imc > 29)
+  showNextif condition_obesite, $obesite_field, $obesite_hint
+
+  $("#dossier_patient_attributes_imc").on "change", ->
+    $obesite_hint = $(".dossier_obesite p")
+    obesite = $("#dossier_obesite").val()
+    imc = $("#dossier_patient_attributes_imc").val()
+    condition_obesite = (obesite is "Oui" and imc < 30) or (obesite is "Non" and imc > 29)
+    showNextif condition_obesite, $(@), $obesite_hint
+
+  $obesite_field.on "change", ->
+    $obesite_hint = $(".dossier_obesite p")
+    imc = $("#dossier_patient_attributes_imc").val()
+    condition_obesite = ($(@).val() is "Oui" and imc < 30) or ($(@).val() is "Non" and imc > 29)
+    showNextif condition_obesite, $(@), $obesite_hint
+
   $contraception_field = $("#dossier_contraception_ant")
   showNextif $contraception_field.val() is "Oui", $contraception_field, $(".contraception-field")
   $contraception_field.on "change", -> 
