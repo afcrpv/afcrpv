@@ -79,7 +79,10 @@ gem "acts_as_list"
 gem "acts_as_xlsx"
 gem 'axlsx_rails'
 
-gem "rspec-rails", group: [:test, :development]
+group :test, :development do
+  gem "rspec-rails"
+  gem "zeus"
+end
 
 group :test do
   gem "factory_girl_rails"
