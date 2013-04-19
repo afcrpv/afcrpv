@@ -16,10 +16,13 @@ fr:
         gravite: Gravité
         evolution: Evolution
         medicament_1: Médicament1
+        medicament_1_indication: M1 indication
         medicament_1_duree_ttt: M1 durée
         medicament_2: Médicament2
+        medicament_2_indication: M2 indication
         medicament_2_duree_ttt: M2 durée
         medicament_3: Médicament3
+        medicament_3_indication: M3 indication
         medicament_3_duree_ttt: M3 durée
         contraception_1: Contraception1
         contraception_1_duree_ttt: C1 durée

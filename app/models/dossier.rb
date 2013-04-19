@@ -3,7 +3,7 @@ class Dossier < ActiveRecord::Base
   columns_for_xlsx = [:code_bnpv, :date_recueil, :doublon, :age, :poids, :taille, :imc, :date_evenement, :evenement, :comm_evenement, :gravite, :evolution]
 
   (1..3).each do |i|
-    columns_for_xlsx << [:"medicament_#{i}", :"medicament_#{i}_duree_ttt"]
+    columns_for_xlsx << [:"medicament_#{i}", :"medicament_#{i}_indication", :"medicament_#{i}_duree_ttt"]
   end
   columns_for_xlsx << [:contraception_ant, :contraception_age]
   (1..3).each do |i|
@@ -47,11 +47,6 @@ class Dossier < ActiveRecord::Base
   %w(age ant ci apres quoi).each do |suffix|
     attr_accessible :"contraception_#{suffix}"
   end
-  #(1..3).each do |i|
-    #%w(contraception concomitant).each do |name|
-      #attr_accessible :"#{name}_#{i}", :"#{name}_#{i}_duree", :"#{name}_#{i}_duree_comp", :"#{name}_#{i}_duree_unite"
-    #end
-  #end
   %w(thrombose cv).each do |prefix|
     %w(perso fam).each do |suffix|
       attr_accessible :"#{prefix}_#{suffix}", :"#{prefix}_#{suffix}_quoi"
@@ -96,6 +91,7 @@ class Dossier < ActiveRecord::Base
   accepts_nested_attributes_for :concomitants, reject_if: :all_blank, allow_destroy: true
 
   delegate :age, :poids, :taille, :imc, to: :patient, allow_nil: true
+  delegate :data, to: :patient, prefix: true
 
   TABAC = [
     ["oui", 0],
@@ -155,16 +151,20 @@ class Dossier < ActiveRecord::Base
     define_method :"medicament_#{i}_duree_ttt" do
       incrimines[i-1].duree_ttt rescue nil
     end
+    define_method :"medicament_#{i}_indication" do
+      incrimines[i-1].full_indication rescue nil
+    end
     define_method :"contraception_#{i}" do
       contraceptions[i-1].medicament rescue nil
+    end
+    define_method :"contraception_#{i}_duree_ttt" do
+      contraceptions[i-1].duree_ttt rescue nil
     end
     define_method :"concomitant_#{i}" do
       concomitants[i-1].libelle rescue nil
     end
-    %w(concomitant contraception).each do |med|
-      define_method :"#{med}_#{i}_duree_ttt" do
-        [send(:"#{med}_#{i}_duree_comp"), send(:"#{med}_#{i}_duree"), send(:"#{med}_#{i}_duree_unite")].compact.join(" ")
-      end
+    define_method :"concomitant_#{i}_duree_ttt" do
+      concomitants[i-1].duree_ttt rescue nil
     end
   end
 
