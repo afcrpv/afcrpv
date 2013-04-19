@@ -1,60 +1,18 @@
-<div id="body_content_title"</div>
-  Dossier <%= @dossier.code_bnpv %> de l'enquête <%= @dossier.type_enquete.name %>
-</div>
-
-<div id="body">
-  <section>
-    <h1>Date Recueil</h1>
-    <p>
-      <%=raw @dossier.date_recueil %>
-    </p>
-  </section>
-  <section>
-    <h1>Doublon</h1>
-    <p>
-      <%=raw @dossier.doublon %>
-    </p>
-  </section>
-  <section>
-    <h1>J Evenement</h1>
-    <p>
-      <%=raw @dossier.j_evenement %>
-    </p>
-  </section>
-  <section>
-    <h1>M Evenement</h1>
-    <p>
-      <%=raw @dossier.m_evenement %>
-    </p>
-  </section>
-  <section>
-    <h1>A Evenement</h1>
-    <p>
-      <%=raw @dossier.a_evenement %>
-    </p>
-  </section>
-  <section>
-    <h1>Comm Evenement</h1>
-    <p>
-      <%=raw @dossier.comm_evenement %>
-    </p>
-  </section>
-  <section>
-    <h1>Gravite</h1>
-    <p>
-      <%=raw @dossier.gravite %>
-    </p>
-  </section>
-  <section>
-    <h1>Evolution</h1>
-    <p>
-      <%=raw @dossier.evolution %>
-    </p>
-  </section>
-  <section>
-    <h1>Commentaire</h1>
-    <p>
-      <%=raw @dossier.commentaire %>
-    </p>
-  </section>
+<div class="dossier_fiche">
+  <div class="row">
+    <div class="span4">
+      <span class="libelle">Date recueil</span>
+      <%= l @dossier.date_recueil %>
+    </div>
+    <div class="span4 offset4">
+      <span class="libelle">Doublon</span>
+      <%= @dossier.doublon %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <span class="libelle">Age patient</span>
+      <%= @dossier.patient.age %>
+    </div>
+  </div>
 </div>

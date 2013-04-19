@@ -19,6 +19,7 @@ class DossiersController < ApplicationController
 
   def show
     @dossier = Dossier.find(params[:id])
+    render layout: false
   end
 
   def new

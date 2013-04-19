@@ -1,6 +1,19 @@
 $ = jQuery
 
 $ ->
+  $('body').on 'hidden', '.modal', ->
+    $(@).removeData('modal')
+
+  $('body').on 'click', '[data-toggle=modal]', (ev) ->
+    ev.preventDefault()
+    dossier_code = $(@).data('dossierCode')
+    dossier_edit_url = $(@).data('editUrl')
+    console.log $(@)
+    $($(@).attr('data-target') + " .codeBnpv").html(dossier_code)
+    $($(@).attr('data-target') + " .edit-dossier").attr("href", dossier_edit_url)
+    $($(@).attr('data-target') + " .modal-body").load $(@).attr('href'), ->
+      $($(@).attr('data-target')).modal('show')
+
   # calc imc
   $("#dossier_patient_attributes_#{field}").calculateBMI("#dossier_patient_attributes_imc") for field in ["taille", "poids"]
 
