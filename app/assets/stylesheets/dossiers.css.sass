@@ -1,3 +1,25 @@
+.modal
+  width: 940px
+  left: 35%
+  top: 40%
+  .modal-body
+    max-height: 500px
+    overflow-x: hidden
+  .row
+    padding: 5px 0
+    margin-left: 2px
+    border: 1px solid $tableBorder
+    &:nth-child(odd)
+      background-color: $tableBackgroundAccent
+    &:nth-child(even)
+      background-color: $tableBackground
+
+span.libelle
+  clear: left
+  font-weight: bold
+  &:after
+    content: " : "
+
 .form-section
   border-top: 1px solid #777
   margin-bottom: 5px
