@@ -19,16 +19,7 @@ class DossiersController < ApplicationController
 
   def show
     @dossier = Dossier.find(params[:id])
-    respond_to do |format|
-      format.html {render layout: false}
-      format.pdf do
-        dossier = present(@dossier)
-        pdf = DossierPdf.new(dossier, view_context)
-        send_data pdf.render, filename: "dossier_#{dossier.code_bnpv}.pdf",
-                              type: "application/pdf",
-                              disposition: "inline"
-      end
-    end
+    render layout: false
   end
 
   def new
