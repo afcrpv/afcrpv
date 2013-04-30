@@ -28,7 +28,7 @@ class DossiersDatatable
         dossier.evenement.name,
         dossier.medicaments_list,
         l(dossier.date_recueil),
-        link_to(content_tag(:i, nil, class: "icon-eye-open"), dossier_path(dossier), data: {target: "#dossier_modal", toggle: "modal", dossier_code: dossier.code_bnpv, edit_url: edit_dossier_path(dossier)}, class: "btn btn-small", title: "Voir le dossier") + link_to("<i class='icon-pencil'></i>".html_safe, edit_dossier_path(dossier), class: "btn btn-small") + (authorised_enquetes_user? ? link_to("<i class='icon-trash'></i>".html_safe, dossier, confirm: "Etes-vous sûr ?", method: :delete, class: "btn btn-small") : "")
+        link_to(content_tag(:i, nil, class: "icon-eye-open"), dossier_path(dossier), data: {target: "#dossier_modal", toggle: "modal", dossier_code: dossier.code_bnpv, edit_url: edit_dossier_path(dossier), print_url: dossier_path(dossier, format: :pdf)}, class: "btn btn-small", title: "Voir le dossier") + link_to("<i class='icon-pencil'></i>".html_safe, edit_dossier_path(dossier), class: "btn btn-small") + (authorised_enquetes_user? ? link_to("<i class='icon-trash'></i>".html_safe, dossier, confirm: "Etes-vous sûr ?", method: :delete, class: "btn btn-small") : "")
       ]
     end
   end

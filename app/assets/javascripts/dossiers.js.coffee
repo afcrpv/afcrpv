@@ -8,9 +8,10 @@ $ ->
     ev.preventDefault()
     dossier_code = $(@).data('dossierCode')
     dossier_edit_url = $(@).data('editUrl')
-    console.log $(@)
+    dossier_print_url = $(@).data('printUrl')
     $($(@).attr('data-target') + " .codeBnpv").html(dossier_code)
     $($(@).attr('data-target') + " .edit-dossier").attr("href", dossier_edit_url)
+    $($(@).attr('data-target') + " .print-dossier").attr("href", dossier_print_url)
     $($(@).attr('data-target') + " .modal-body").load $(@).attr('href'), ->
       $($(@).attr('data-target')).modal('show')
 

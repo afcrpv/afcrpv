@@ -1,7 +1,7 @@
 #encoding: utf-8
 class DossierPresenter < BasePresenter
   presents :dossier
-  delegate :doublon, :evenement, :comm_evenement, :gravite, :evolution, :incrimines, :contraception_age, :contraception_ant, :contraceptions, :concomitants_pres, :concomitants, :contraception_ci, :contraception_apres, to: :dossier
+  delegate :code_bnpv, :doublon, :evenement, :comm_evenement, :gravite, :evolution, :incrimines, :contraception_age, :contraception_ant, :contraceptions, :concomitants_pres, :concomitants, :contraception_ci, :contraception_apres, to: :dossier
 
   def date_recueil
     date(dossier.date_recueil)
@@ -11,14 +11,29 @@ class DossierPresenter < BasePresenter
     date(dossier.date_evenement)
   end
 
+  def age
+    value_with_unit dossier.age, "ans"
+  end
+
+  def poids
+    value_with_unit dossier.poids, "kg"
+  end
+
+  def taille
+    value_with_unit dossier.taille, "cm"
+  end
+
+  def imc
+    dossier.imc if dossier.imc
+  end
+
+  def poids_taille_imc
+    result = [poids, taille].join(" x ")
+    result << " (IMC #{imc})" if imc
+  end
+
   def patient_data
-    patient = dossier.patient
-    result = [
-      {field: patient.age.to_s, unit: " ans"},
-      {field: patient.poids.to_s, unit: " kg"},
-      {field: patient.taille.to_s, unit: " cm"}
-    ].map {|field_unit| field_unit[:field] + field_unit[:unit] if field_unit[:field]}.compact.join(", ")
-    result << " (IMC #{patient.imc})" if patient.imc
+    [age, poids_taille_imc].compact.join(", ")
   end
 
   def age_1ere_contraception
@@ -44,12 +59,8 @@ class DossierPresenter < BasePresenter
   %w(thrombose cv).each do |prefix|
     %w(perso fam).each do |suffix|
       define_method :"#{prefix}_#{suffix}" do
-        if dossier.send(:"#{prefix}_#{suffix}") != "Non"
-          if dossier.send(:"#{prefix}_#{suffix}") == "Oui"
-            dossier.send(:"#{prefix}_#{suffix}_quoi")
-          else
-            "NSP"
-          end
+        if dossier.send(:"#{prefix}_#{suffix}") == "Oui"
+          dossier.send(:"#{prefix}_#{suffix}_quoi")
         end
       end
     end
@@ -57,19 +68,19 @@ class DossierPresenter < BasePresenter
 
   %w(hta post_partum diabete hyperglycemie migraine_perso migraine_fam).each do |field|
     define_method field do
-      dossier.send(field) if dossier.send(field) != "Non"
+      dossier.send(field) if dossier.send(field) == "Oui"
     end
   end
 
   %w(autoimmune cancer dyslipidemie illicites autres_cv).each do |prefix|
     define_method prefix do
-      dossier.send(:"#{prefix}_quoi") if dossier.send(prefix) != "Non"
+      dossier.send(:"#{prefix}_quoi") if dossier.send(prefix) == "Oui"
     end
   end
 
   %w(perso fam).each do |suffix|
     define_method :"hhc_#{suffix}" do
-      dossier.send(:"hhc_#{suffix}") if dossier.send(:"hhc_#{suffix}") != "Non"
+      dossier.send(:"hhc_#{suffix}") if dossier.send(:"hhc_#{suffix}") == "Oui"
     end
   end
 
@@ -84,19 +95,15 @@ class DossierPresenter < BasePresenter
 
   %w(perso fam).each do |prefix|
     define_method :"anomalie_hemostase_#{prefix}_bilan" do
-      if dossier.send(:"anomalie_hemostase_#{prefix}_bilan") == "nsp"
-        return "NSP"
-      else
-        if ["avant", "après"].include?(dossier.send(:"anomalie_hemostase_#{prefix}_bilan"))
-          out = "bilan " + dossier.send(:"anomalie_hemostase_#{prefix}_bilan") + " évènement"
-          if dossier.send(:"anomalie_hemostase_#{prefix}_anomalie") == "Oui"
-            out += " (" + dossier.send(:"anomalie_hemostase_#{prefix}_anomalie_nombre") + " anomalies = "
-            out += dossier.send(:"anomalie_hemostase_#{prefix}_anomalie_quoi") + ")"
-          else
-            out += " (négatif)"
-          end
-          out
+      if ["avant", "après"].include?(dossier.send(:"anomalie_hemostase_#{prefix}_bilan"))
+        out = "bilan " + dossier.send(:"anomalie_hemostase_#{prefix}_bilan") + " évènement"
+        if dossier.send(:"anomalie_hemostase_#{prefix}_anomalie") == "Oui"
+          out += " (" + dossier.send(:"anomalie_hemostase_#{prefix}_anomalie_nombre") + " anomalies = "
+          out += dossier.send(:"anomalie_hemostase_#{prefix}_anomalie_quoi") + ")"
+        else
+          out += " (négatif)"
         end
+        out
       end
     end
   end
@@ -107,6 +114,13 @@ class DossierPresenter < BasePresenter
 
 
   private
+
+  def value_with_unit(value, unit)
+    if value.present?
+      "#{value} #{unit}"
+    end
+  end
+
 
   def date(date_value)
     l date_value

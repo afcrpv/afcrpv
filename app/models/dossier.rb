@@ -75,6 +75,8 @@ class Dossier < ActiveRecord::Base
   validate :must_have_traitements
 
   has_one :patient
+  delegate :age, :poids, :taille, :imc, to: :patient
+
   belongs_to :evenement
   belongs_to :enquete
   belongs_to :crpv, class_name: "::Refinery::Crpvs::Crpv", foreign_key: :refinery_crpv_id
