@@ -90,6 +90,8 @@ class Dossier < ActiveRecord::Base
   accepts_nested_attributes_for :contraceptions, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :concomitants, reject_if: :all_blank, allow_destroy: true
 
+  delegate :age, :poids, :taille, :imc, to: :patient
+
   TABAC = [
     ["oui", 0],
     ["sevré", 1],

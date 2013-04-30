@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def present(object, klass = nil)
+    DossierPresenter.new(object, view_context)
+  end
+
   def redirect_unless_authorized
     redirect_to "/intranet", notice: "Vous n'êtes pas autorisé à voir cette page !" unless authorised_enquetes_user?
   end

@@ -1,7 +1,7 @@
 #encoding: utf-8
 class DossierPresenter < BasePresenter
   presents :dossier
-  delegate :doublon, :evenement, :comm_evenement, :gravite, :evolution, :incrimines, :contraception_age, :contraception_ant, :contraceptions, :concomitants_pres, :concomitants, :contraception_ci, :contraception_apres, to: :dossier
+  delegate :code_bnpv, :doublon, :evenement, :comm_evenement, :gravite, :evolution, :incrimines, :contraception_age, :contraception_ant, :contraceptions, :concomitants_pres, :concomitants, :contraception_ci, :contraception_apres, to: :dossier
 
   def date_recueil
     date(dossier.date_recueil)
@@ -11,14 +11,29 @@ class DossierPresenter < BasePresenter
     date(dossier.date_evenement)
   end
 
+  def age
+    value_with_unit dossier.age, "ans"
+  end
+
+  def poids
+    value_with_unit dossier.poids, "kg"
+  end
+
+  def taille
+    value_with_unit dossier.taille, "cm"
+  end
+
+  def imc
+    dossier.imc if dossier.imc
+  end
+
+  def poids_taille_imc
+    result = [poids, taille].join(" x ")
+    result << " (IMC #{imc})" if imc
+  end
+
   def patient_data
-    patient = dossier.patient
-    result = [
-      {field: patient.age.to_s, unit: " ans"},
-      {field: patient.poids.to_s, unit: " kg"},
-      {field: patient.taille.to_s, unit: " cm"}
-    ].map {|field_unit| field_unit[:field] + field_unit[:unit] if field_unit[:field]}.compact.join(", ")
-    result << " (IMC #{patient.imc})" if patient.imc
+    [age, poids_taille_imc].compact.join(", ")
   end
 
   def age_1ere_contraception
@@ -107,6 +122,12 @@ class DossierPresenter < BasePresenter
 
 
   private
+
+  def value_with_unit(value, unit)
+    if value.present?
+      "#{value} #{unit}"
+    end
+  end
 
   def date(date_value)
     l date_value

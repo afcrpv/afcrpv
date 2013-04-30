@@ -78,6 +78,7 @@ gem "cocoon"
 gem "acts_as_list"
 gem "acts_as_xlsx"
 gem 'axlsx_rails'
+gem 'prawn', github: "prawnpdf/prawn"
 
 group :test, :development do
   gem "rspec-rails"
