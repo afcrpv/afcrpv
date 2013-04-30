@@ -1,6 +1,13 @@
 # encoding: UTF-8
 
 module ApplicationHelper
+  def present(object, klass = nil)
+    klass ||= "#{object.class}Presenter".constantize
+    presenter = klass.new(object, self)
+    yield presenter if block_given?
+    presenter
+  end
+
   def periode_inclusion(projet)
     "#{l projet.debut_inclusion} - #{l projet.fin_inclusion} (#{projet.type_inclusion})"
   end

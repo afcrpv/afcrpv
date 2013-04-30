@@ -45,42 +45,26 @@ fr:
         obesite: 1- Obesité
         tabac: 2- Tabac
         tabac_pa: "nombre PA :"
-        thrombose_perso: 3.1 Thrombose perso
-        thrombose_perso_quoi: Thrombose perso quoi
-        thrombose_fam: 3.2 Thrombose fam
-        thrombose_fam_quoi: Thrombose fam quoi
-        cv_perso: 4.1 CV perso
-        cv_perso_quoi: CV perso quoi
-        cv_fam: 4.2 CV fam
-        cv_fam_quoi: CV fam quoi
+        thrombose_perso: 3.1 Thrombose veineuse (perso)
+        thrombose_fam: 3.2 Thrombose veineuse (fam.)
+        cv_perso: 4.1 CV (perso)
+        cv_fam: 4.2 CV (fam.)
         hta: 5- HTA
         autoimmune: 6- Autoimmune
         autoimmune_quoi: Autoimmune quoi
         cancer: 7- Cancer
         cancer_quoi: Cancer quoi
-        hhc_perso: 8.1 HHC perso
-        hhc_fam: 8.2 HHC quoi
-        circonstance_chirurgie: 9- chirurgie
-        circonstance_immobilisation: 9- immobilisation
-        circonstance_voyage: 9- voyage
-        circonstance_autre_quoi: 9- autre
+        hhc_perso: 8.1 HHC (perso)
+        hhc_fam: 8.2 HHC (fam.)
+        circonstances_survenue: 9- Circonstance(s)
         post_partum: "10- Postpartum"
-        anomalie_hemostase_perso_bilan: "11.1 Ano Hémostase perso"
-        anomalie_hemostase_perso_anomalie: Ano hémostase perso
-        anomalie_hemostase_perso_anomalie_quoi: Ano hémostase perso quoi
-        anomalie_hemostase_perso_anomalie_nombre: Ano hémostase perso nb
-        anomalie_hemostase_fam_bilan: "11.2 Ano. hémostase fam :"
-        anomalie_hemostase_fam_anomalie: Ano hémostase fam
-        anomalie_hemostase_fam_anomalie_quoi: Ano hémostase fam quoi
-        anomalie_hemostase_fam_anomalie_nombre: Ano hémostase fam nb
-        migraine_perso: 12.1 Migraine perso
-        migraine_fam: 12.2 Migraine fam
+        anomalie_hemostase_perso_bilan: "11.1 Anom. hémostase (perso)"
+        anomalie_hemostase_fam_bilan: "11.2 Anom. hémostase (fam.)"
+        migraine_perso: 12.1 Migraine (perso)
+        migraine_fam: 12.2 Migraine (fam.)
         diabete: 13- Diabète
         hyperglycemie: 14- Hyperglycémie
         dyslipidemie: 15- Dyslipidémie
-        dyslipidemie_quoi: Dyslipidémie quoi
-        illicites: "16- Consommation de cannabis, cocaïne, amphétamines..."
-        illicites_quoi: "Si oui, préciser :"
-        autres_cv: "17- Autres facteurs de risque cardio-vasculaires mis en évidence après l’événement (foramen ovale perméable, troubles du rythme, etc.)"
-        autres_cv_quoi: "Si oui, préciser :"
+        illicites: 16- Illicites
+        autres_cv: 17- Autres fdr cv
         commentaire: Commentaire
