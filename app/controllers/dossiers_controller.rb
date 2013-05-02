@@ -22,7 +22,7 @@ class DossiersController < ApplicationController
     respond_to do |format|
       format.html {render layout: false}
       format.pdf do
-        dossier = present(@dossier)
+        dossier = dossier_present(@dossier)
         pdf = DossierPdf.new(dossier, view_context)
         send_data pdf.render, filename: "dossier_#{dossier.code_bnpv}.pdf",
                               type: "application/pdf",
@@ -73,6 +73,10 @@ class DossiersController < ApplicationController
   end
 
   protected
+
+  def dossier_present(object, klass = nil)
+    DossierPresenter.new(object, view_context)
+  end
 
   def enquete
     @enquete ||= params[:id] ? @dossier.enquete : (params[:dossier] ? Enquete.find(params[:dossier][:enquete_id]) : Enquete.find(params[:enquete_id]) )
