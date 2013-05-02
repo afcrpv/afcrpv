@@ -91,17 +91,24 @@
     </div>
   </div>
   <h4>Facteurs de risque</h4>
-  <%= row_fdr_for(dossier, [:obesite, :tabac]) %>
-  <%= row_fdr_for(dossier, [:thrombose_perso, :thrombose_fam]) %>
-  <%= row_fdr_for(dossier, [:cv_perso, :cv_fam]) %>
-  <%= row_fdr_for(dossier, [:hta, :autoimmune, :cancer]) %>
-  <%= row_fdr_for(dossier, [:hhc_perso, :hhc_fam]) %>
-  <%= row_fdr_for(dossier, [:circonstances_survenue, :post_partum]) %>
-  <%= row_fdr_for(dossier, [:anomalie_hemostase_perso_bilan]) %>
-  <%= row_fdr_for(dossier, [:anomalie_hemostase_fam_bilan]) %>
-  <%= row_fdr_for(dossier, [:migraine_perso, :migraine_fam]) %>
-  <%= row_fdr_for(dossier, [:diabete, :hyperglycemie, :dyslipidemie]) %>
-  <%= row_fdr_for(dossier, [:illicites, :autres_cv]) %>
+  <div class="row">
+    <div class="span12">
+      <span class="libelle">Communs</span>
+      <%= dossier.fdr_communs %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <span class="libelle">Veineux</span>
+      <%= dossier.fdr_veineux %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <span class="libelle">Artérieux</span>
+      <%= dossier.fdr_arterieux %>
+    </div>
+  </div>
   <h4>Commentaire</h4>
   <%= dossier.commentaire %>
 </div>

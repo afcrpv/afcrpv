@@ -42,29 +42,18 @@ fr:
         concomitant_3_duree_ttt: C3 durée
         contraception_apres: Contraception Reprise
         contraception_quoi: Contrac. Reprise quoi
-        obesite: 1- Obesité
-        tabac: 2- Tabac
-        tabac_pa: "nombre PA :"
-        thrombose_perso: 3.1 Thrombose veineuse (perso)
-        thrombose_fam: 3.2 Thrombose veineuse (fam.)
-        cv_perso: 4.1 CV (perso)
-        cv_fam: 4.2 CV (fam.)
-        hta: 5- HTA
-        autoimmune: 6- Autoimmune
-        autoimmune_quoi: Autoimmune quoi
-        cancer: 7- Cancer
-        cancer_quoi: Cancer quoi
-        hhc_perso: 8.1 HHC (perso)
-        hhc_fam: 8.2 HHC (fam.)
-        circonstances_survenue: 9- Circonstance(s)
-        post_partum: "10- Postpartum"
-        anomalie_hemostase_perso_bilan: "11.1 Anom. hémostase (perso)"
-        anomalie_hemostase_fam_bilan: "11.2 Anom. hémostase (fam.)"
-        migraine_perso: 12.1 Migraine (perso)
-        migraine_fam: 12.2 Migraine (fam.)
-        diabete: 13- Diabète
-        hyperglycemie: 14- Hyperglycémie
-        dyslipidemie: 15- Dyslipidémie
-        illicites: 16- Illicites
-        autres_cv: 17- Autres fdr cv
+        obesite: obesité
+        tabac: tabac
+        tabac_pa: " (%{pa} PA)"
+        hta: hypertension arterielle
+        hhc_perso: hyperhomocystéinémie
+        hhc_fam: hyperhomocystéinémie familiale
+        post_partum: postpartum
+        migraine_perso: migraine
+        migraine_fam: migraine familiale
+        diabete: diabète
+        hyperglycemie: hyperglycémie
+        dyslipidemie: dyslipidémie
+        illicites: illicites
+        autres_cv: autres facteurs de risques cardio-vasculaires
         commentaire: Commentaire

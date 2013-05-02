@@ -44,16 +44,43 @@ class DossierPresenter < BasePresenter
     "= #{dossier.contraception_quoi}" if dossier.contraception_apres == "Oui"
   end
 
+  def fdr_communs
+    [obesite, tabac, thrombose, cv, hta, autoimmune, cancer, hhc].compact.join(", ")
+  end
+
+  def fdr_veineux
+    [circonstances_survenue, post_partum, hemostase].compact.join(", ")
+  end
+
+  def fdr_arterieux
+    [migraine, diabete, hyperglycemie, dyslipidemie, illicites, autres_cv].compact.join(", ")
+  end
+
   def obesite
-    dossier.obesite if dossier.obesite == "Oui"
+    Dossier.human_attribute_name(:obesite) if dossier.obesite == "Oui"
   end
 
   def tabac
     if ["oui", "sevré"].include?(dossier.tabac)
-      out = dossier.tabac
-      out += " (#{dossier.tabac_pa} PA)"
+      out = Dossier.human_attribute_name(:tabac)
+      out += t("activerecord.attributes.dossier.tabac_pa", pa: dossier.tabac_pa)
       out
     end
+  end
+
+  def thrombose
+    out = [thrombose_perso, thrombose_fam].compact
+    out.join(", ") if out.any?
+  end
+
+  def cv
+    out = [cv_perso, cv_fam].compact
+    out.join(", ") if out.any?
+  end
+
+  def hhc
+    out = [hhc_perso, hhc_fam].compact
+    out.join(", ") if out.any?
   end
 
   %w(thrombose cv).each do |prefix|
@@ -66,9 +93,14 @@ class DossierPresenter < BasePresenter
     end
   end
 
+  def migraine
+    out = [migraine_perso, migraine_fam].compact
+    out.join(", ") if out.any?
+  end
+
   %w(hta post_partum diabete hyperglycemie migraine_perso migraine_fam).each do |field|
     define_method field do
-      dossier.send(field) if dossier.send(field) == "Oui"
+      Dossier.human_attribute_name(field) if dossier.send(field) == "Oui"
     end
   end
 
@@ -80,7 +112,7 @@ class DossierPresenter < BasePresenter
 
   %w(perso fam).each do |suffix|
     define_method :"hhc_#{suffix}" do
-      dossier.send(:"hhc_#{suffix}") if dossier.send(:"hhc_#{suffix}") == "Oui"
+      Dossier.human_attribute_name(:"hhc_#{suffix}") if dossier.send(:"hhc_#{suffix}") == "Oui"
     end
   end
 
@@ -90,20 +122,24 @@ class DossierPresenter < BasePresenter
       out << suffix if dossier.send(:"circonstance_#{suffix}")
     end
     out << dossier.circonstance_autre_quoi if dossier.circonstance_autre && dossier.circonstance_autre_quoi
-    out = out.any? ? out.join(", ") : nil
+    out.join(", ") if out.any?
+  end
+
+  def hemostase
+    out = [hemostase_perso, hemostase_fam].compact
+    out.join(", ") if out.any?
   end
 
   %w(perso fam).each do |prefix|
-    define_method :"anomalie_hemostase_#{prefix}_bilan" do
+    define_method :"hemostase_#{prefix}" do
       if ["avant", "après"].include?(dossier.send(:"anomalie_hemostase_#{prefix}_bilan"))
-        out = "bilan " + dossier.send(:"anomalie_hemostase_#{prefix}_bilan") + " évènement"
         if dossier.send(:"anomalie_hemostase_#{prefix}_anomalie") == "Oui"
-          out += " (" + dossier.send(:"anomalie_hemostase_#{prefix}_anomalie_nombre") + " anomalies = "
-          out += dossier.send(:"anomalie_hemostase_#{prefix}_anomalie_quoi") + ")"
-        else
-          out += " (négatif)"
+          out = []
+          out << pluralize(dossier.send(:"anomalie_hemostase_#{prefix}_anomalie_nombre").to_i, "anomalie")
+          out << "de l'hemostase"
+          out << "(#{dossier.send(:"anomalie_hemostase_#{prefix}_anomalie_quoi")})"
+          out.join(" ") if out.any?
         end
-        out
       end
     end
   end
