@@ -15,13 +15,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="span6">
+    <div class="span12">
       <span class="libelle">Evènement</span>
       <%= dossier.evenement %>
-    </div>
-    <div class="span6">
-      <span class="libelle">Précisions</span>
-      <%= dossier.comm_evenement %>
     </div>
   </div>
   <div class="row">
@@ -81,34 +77,27 @@
   <h4>Contraception après l'évènement</h4>
   <div class="row">
     <div class="span6">
-      <span class="libelle">Contre-indication d'une contraception oestroprogestative</span>
       <%= dossier.contraception_ci %>
     </div>
     <div class="span6">
-      <span class="libelle">Reprise d'une contraception</span>
       <%= dossier.contraception_apres %>
-      <%= dossier.contraception_quoi %>
     </div>
   </div>
   <h4>Facteurs de risque</h4>
+  <% [
+      {label: "Communs", value: "fdr_communs"},
+      {label: "Veineux", value: "fdr_veineux"},
+      {label: "Artérieux", value: "fdr_arterieux"},
+  ].each do |item| %>
   <div class="row">
-    <div class="span12">
-      <span class="libelle">Communs</span>
-      <%= dossier.fdr_communs %>
+    <div class="span2">
+      <span class="libelle"><%= item[:label] %></span>
+    </div>
+    <div class="span10">
+      <%= dossier.send(item[:value]) %>
     </div>
   </div>
-  <div class="row">
-    <div class="span12">
-      <span class="libelle">Veineux</span>
-      <%= dossier.fdr_veineux %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span12">
-      <span class="libelle">Artérieux</span>
-      <%= dossier.fdr_arterieux %>
-    </div>
-  </div>
+  <% end %>
   <h4>Commentaire</h4>
   <%= dossier.commentaire %>
 </div>
