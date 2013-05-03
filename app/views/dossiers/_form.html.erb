@@ -18,7 +18,7 @@
   <%= render 'traitement_info', f: f %>
   <%= render 'fdr_communs_info', f: f %>
   <%= render 'fdr_veineux_info', f: f %>
-  <%= render 'fdr_arterieux_info', f: f %>
+  <%= render 'fdr_arteriels_info', f: f %>
   <%= f.input :commentaire, input_html: {class: "input-block-level"}, label: "Commentaire - <span class='text-warning'>Attention ! Pas de données nominatives directes ou indirectes dans ce champ.</span>".html_safe %>
   <div class="form-actions">
     <%= button_tag type: :submit, disable_with: (save_and_continue = "Enregistrer et continuer"), name: "_continue", class: "btn btn-success" do %>
