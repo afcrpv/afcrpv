@@ -13,7 +13,9 @@ class DossierPresenter < BasePresenter
   end
 
   def date_evenement
-    date(dossier.date_evenement)
+    handle_none dossier.date_evenement do
+      date(dossier.date_evenement)
+    end
   end
 
   def age
@@ -172,8 +174,15 @@ class DossierPresenter < BasePresenter
     end
   end
 
-
   def date(date_value)
     l date_value
+  end
+
+  def handle_none(value)
+    if value.present?
+      yield
+    else
+      content_tag :span, "NS", class: "none"
+    end
   end
 end
