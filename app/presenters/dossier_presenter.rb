@@ -1,10 +1,15 @@
 #encoding: utf-8
 class DossierPresenter < BasePresenter
   presents :dossier
-  delegate :code_bnpv, :doublon, :evenement, :comm_evenement, :gravite, :evolution, :incrimines, :contraception_age, :contraception_ant, :contraceptions, :concomitants_pres, :concomitants, :contraception_ci, :contraception_apres, to: :dossier
+  delegate :code_bnpv, :doublon, :gravite, :evolution, :incrimines, :contraception_age, :contraception_ant, :contraceptions, :concomitants_pres, :concomitants, to: :dossier
 
   def date_recueil
     date(dossier.date_recueil)
+  end
+
+  def evenement
+    out = dossier.evenement.to_s
+    out << " (#{dossier.comm_evenement})" if dossier.comm_evenement.present?
   end
 
   def date_evenement
@@ -40,8 +45,18 @@ class DossierPresenter < BasePresenter
     "(âge 1ère contraception : #{dossier.contraception_age} ans)" if dossier.contraception_age
   end
 
-  def contraception_quoi
-    "= #{dossier.contraception_quoi}" if dossier.contraception_apres == "Oui"
+  def contraception_ci
+    prefix = dossier.contraception_ci == "Non" ? "pas de " : ""
+    out = prefix + "contre-indication d'une contraception oestroprogestative"
+  end
+
+  def contraception_apres
+    if dossier.contraception_apres != "Oui"
+      "contraception non reprise"
+    else
+      out = "reprise d'une contraception"
+      out += " par #{dossier.contraception_quoi}" if dossier.contraception_quoi
+    end
   end
 
   def fdr_communs
@@ -144,8 +159,8 @@ class DossierPresenter < BasePresenter
     end
   end
 
-  def commentaire
-    simple_format dossier.commentaire
+  def commentaire(parse=true)
+    parse ? simple_format(dossier.commentaire) : dossier.commentaire
   end
 
 
