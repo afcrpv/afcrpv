@@ -75,7 +75,7 @@ class Dossier < ActiveRecord::Base
   validate :must_have_traitements
 
   has_one :patient
-  delegate :age, :poids, :taille, :imc, to: :patient
+  delegate :age, :poids, :taille, :imc, to: :patient, allow_nil: true
 
   belongs_to :evenement
   belongs_to :enquete
@@ -172,6 +172,8 @@ class Dossier < ActiveRecord::Base
       medicaments.map(&:name).join(", ")
     end
   end
+
+  private
 
   def must_have_traitements
     if incrimines.empty? or incrimines.all? {|traitement| traitement.marked_for_destruction? }
