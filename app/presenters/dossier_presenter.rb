@@ -154,6 +154,7 @@ class DossierPresenter < BasePresenter
           out = []
           out << pluralize(dossier.send(:"anomalie_hemostase_#{prefix}_anomalie_nombre").to_i, "anomalie")
           out << "de l'hemostase"
+          out << "familiale" if prefix == "fam"
           out << "(#{dossier.send(:"anomalie_hemostase_#{prefix}_anomalie_quoi")})"
           out.join(" ") if out.any?
         end
