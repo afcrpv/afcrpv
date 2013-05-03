@@ -129,7 +129,7 @@ class DossierPdf < Prawn::Document
     liste_fdr = [
       {label: "Communs", value: @dossier.fdr_communs},
       {label: "Veineux", value: @dossier.fdr_veineux},
-      {label: "Artérieux", value: @dossier.fdr_arterieux},
+      {label: "Artériels", value: @dossier.fdr_arteriels},
     ]
     data = []
     liste_fdr.each do |item|

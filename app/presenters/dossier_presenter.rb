@@ -69,7 +69,7 @@ class DossierPresenter < BasePresenter
     [circonstances_survenue, post_partum, hemostase].compact.join(", ")
   end
 
-  def fdr_arterieux
+  def fdr_arteriels
     [migraine, diabete, hyperglycemie, dyslipidemie, illicites, autres_cv].compact.join(", ")
   end
 
