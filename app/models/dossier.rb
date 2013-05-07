@@ -68,7 +68,7 @@ class Dossier < ActiveRecord::Base
     attr_accessible :"#{prefix}", :"#{prefix}_quoi"
   end
 
-  validates :code_bnpv, presence: true, uniqueness: true
+  validates :code_bnpv, presence: true, uniqueness: { case_sensitive: false }
   validates :evenement_id, presence: true
   validates :date_recueil, presence: true
 
