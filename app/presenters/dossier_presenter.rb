@@ -10,6 +10,7 @@ class DossierPresenter < BasePresenter
   def evenement
     out = dossier.evenement.to_s
     out << " (#{dossier.comm_evenement})" if dossier.comm_evenement.present?
+    out
   end
 
   def date_evenement
@@ -37,6 +38,7 @@ class DossierPresenter < BasePresenter
   def poids_taille_imc
     result = [poids, taille].join(" x ")
     result << " (IMC #{imc})" if imc
+    result
   end
 
   def patient_data
@@ -58,6 +60,7 @@ class DossierPresenter < BasePresenter
     else
       out = "reprise d'une contraception"
       out += " par #{dossier.contraception_quoi}" if dossier.contraception_quoi
+      out
     end
   end
 
