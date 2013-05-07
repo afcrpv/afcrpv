@@ -80,7 +80,7 @@ class DossierPresenter < BasePresenter
   def tabac
     if ["oui", "sevré"].include?(dossier.tabac)
       out = Dossier.human_attribute_name(:tabac)
-      out += " (%{dossier.tabac_pa} PA)"
+      out += " (#{dossier.tabac_pa} PA)"
       out
     end
   end
