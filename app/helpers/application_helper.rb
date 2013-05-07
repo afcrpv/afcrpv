@@ -8,9 +8,27 @@ module ApplicationHelper
     presenter
   end
 
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    css_class = column == sort_column ? "current #{sort_direction}" : nil
+    direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+    icon_class = case css_class
+                 when "current asc"
+                   "icon-arrow-up"
+                 when "current desc"
+                   "icon-arrow-down"
+                 else
+                   "icon-resize-vertical"
+                 end
+    icon = content_tag(:i, nil, class: icon_class)
+    title = [icon, title].compact.join(" ").html_safe
+    link_to title, params.merge(sort: column, direction: direction, page: nil), {class: css_class, remote: true}
+  end
+
   def periode_inclusion(projet)
     "#{l projet.debut_inclusion} - #{l projet.fin_inclusion} (#{projet.type_inclusion})"
   end
+
   def def_item_for_object(object, field, content=nil)
     object_name = object.class.to_s.downcase.gsub('::', '/')
     content = general_def_content(object, field).html_safe unless content

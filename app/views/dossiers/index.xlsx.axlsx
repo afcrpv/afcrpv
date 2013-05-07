@@ -1,3 +1,0 @@
-@dossiers.to_xlsx(package: xlsx_package)
-wb = xlsx_package.workbook
-style_shout = wb.styles.add_style sz: 16, b: true, alignment: { horizontal: :center }

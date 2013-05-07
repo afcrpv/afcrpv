@@ -14,6 +14,13 @@ class DossiersController < ApplicationController
         @dossiers = DossiersDatatable.new(view_context).as_records
         response.headers['Content-Disposition'] = "attachment; filename='#{Date.current}_dossiers.xlsx'"
       end
+      format.pdf do
+        @dossiers = DossiersDatatable.new(view_context).as_records
+        pdf = DossierListPdf.new(@dossiers, crpv_name, view_context)
+        send_data pdf.render, filename: "dossiers_#{crpv_name}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
     end
   end
 

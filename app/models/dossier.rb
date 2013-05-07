@@ -39,7 +39,7 @@ class Dossier < ActiveRecord::Base
   end
   columns_for_xlsx << :commentaire
 
-  acts_as_xlsx columns: columns_for_xlsx.flatten, i18n: 'activerecord.attributes'
+  COLUMNS_FOR_XLSX = columns_for_xlsx.flatten
 
   attr_accessible :code_bnpv, :date_recueil, :doublon, :date_evenement, :comm_evenement, :gravite, :evolution, :commentaire, :concomitants_pres, :obesite, :tabac, :tabac_pa, :hta, :autoimmune, :autoimmune_quoi, :cancer, :cancer_quoi, :post_partum, :diabete, :hyperglycemie
   attr_accessible :patient_attributes, :incrimines_attributes, :contraceptions_attributes, :concomitants_attributes
@@ -133,6 +133,15 @@ class Dossier < ActiveRecord::Base
     "=",
     "NSP"
   ]
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << COLUMNS_FOR_XLSX.map {|column| human_attribute_name(column) }
+      all.each do |dossier|
+        csv << COLUMNS_FOR_XLSX.map {|column| dossier.send(column) }
+      end
+    end
+  end
 
   def self.code_bnpv_or_evenement_or_medicament_contains(string)
     joins{[evenement, traitements.medicament]}.

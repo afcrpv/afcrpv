@@ -44,7 +44,7 @@ fr:
         contraception_quoi: Contrac. Reprise quoi
         obesite: obesité
         tabac: tabac
-        tabac_pa: " (%{pa} PA)"
+        tabac_pa: paquets/années
         hta: hypertension arterielle
         hhc_perso: hyperhomocystéinémie
         hhc_fam: hyperhomocystéinémie familiale

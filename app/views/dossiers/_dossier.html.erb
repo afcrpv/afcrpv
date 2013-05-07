@@ -1,0 +1,16 @@
+<tr>
+  <td><%= dossier.code_bnpv %></td>
+  <td><%= dossier.evenement %></td>
+  <td><%= dossier.medicaments_list %></td>
+  <td><%= l dossier.date_recueil %></td>
+  <td>
+    <div class="btn-group">
+      <%= link_to content_tag(:i, nil, class: "icon-print"), dossier_path(dossier),
+        data: {target: "#dossier_modal", toggle: "modal", dossier_code: dossier.code_bnpv, edit_url: edit_dossier_path(dossier), print_url: dossier_path(dossier, format: :pdf)}, title: "Imprimer le dossier #{dossier.code_bnpv}", class: "btn btn-small" %>
+      <%= link_to content_tag(:i, nil, class: "icon-pencil"), edit_dossier_path(dossier), title: "Modifier dossier #{dossier.code_bnpv}", class: "btn btn-small" %>
+      <%= link_to content_tag(:i, nil, class: "icon-trash"), dossier, title: "Détruire dossier #{dossier.code_bnpv}", data: {confirm: "Etes-vous sûr ?"}, method: :delete, class: "btn btn-small" if authorised_enquetes_user? %>
+    </div>
+  </td>
+</tr>
+
+<%= render 'dossiers/dossier_modal', dossier: dossier %>

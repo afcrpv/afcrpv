@@ -1,0 +1,14 @@
+<table class="table table-bordered table-hover table-condensed table-striped">
+  <thead>
+    <tr>
+      <th><%= sortable "code_bnpv", "N° BNPV" %></th>
+      <th><%= sortable "evenement_id", "Evènement" %></th>
+      <th>Médicament(s)</th>
+      <th><%= sortable "date_recueil", "Recueil" %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @dossiers %>
+  </tbody>
+</table>

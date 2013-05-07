@@ -1,5 +1,7 @@
 #encoding: utf-8
+require "iconv"
 class EnquetesController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_filter :redirect_unless_authorized, except: [:show, :index]
   before_filter :redirect_unless_connected
 
@@ -19,6 +21,19 @@ class EnquetesController < ApplicationController
 
   def show
     @enquete = Enquete.find(params[:id])
+    @dossiers = @enquete.dossiers.order(sort_column + " " + sort_direction)
+    respond_to do |format|
+      format.html
+      format.js
+      format.csv { send_data Iconv.conv('iso-8859-1//IGNORE', 'utf-8', @dossiers.to_csv(col_sep: ";")), filename: "#{@enquete.name}_dossiers.csv" }
+      format.xls
+      format.pdf do
+        pdf = EnquetePdf.new(@enquete, view_context)
+        send_data pdf.render, filename: "#{@enquete.name}_dossiers.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   def new
@@ -51,5 +66,15 @@ class EnquetesController < ApplicationController
     @enquete = Enquete.find(params[:id])
     @enquete.destroy
     redirect_to enquetes_path, notice: "Enquête : #{@enquete.name} détruite avec succès."
+  end
+
+  private
+
+  def sort_column
+    Dossier.column_names.include?(params[:sort]) ? params[:sort] : "date_recueil"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
