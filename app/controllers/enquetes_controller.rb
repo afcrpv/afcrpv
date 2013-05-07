@@ -21,7 +21,10 @@ class EnquetesController < ApplicationController
 
   def show
     @enquete = Enquete.find(params[:id])
-    @dossiers = @enquete.dossiers.order(sort_column + " " + sort_direction)
+    dossiers = @enquete.dossiers.includes(:patient, :evenement, :incrimines => :medicament)
+    dossiers = dossiers.where{refinery_crpv_id == my{current_refinery_user.refinery_crpv_id}} unless authorised_enquetes_user?
+    @dossiers = dossiers.order(sort_column + " " + sort_direction)
+
     respond_to do |format|
       format.html
       format.js
