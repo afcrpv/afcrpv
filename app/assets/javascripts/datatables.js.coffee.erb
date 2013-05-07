@@ -3,59 +3,6 @@ $ = jQuery
 $ ->
   gaiSelected = []
 
-  dossiersoTable = $("#dossiers").dataTable
-    sDom: "<'row-fluid'<'span6'l><'span6'T>r>t<'row-fluid'<'span6'i><'span6'p>>"
-    sPaginationType: "bootstrap"
-    oTableTools:
-      aButtons: [
-        {
-          sExtends: "download"
-          sButtonText: "Exporter en format Excel"
-          sUrl: "/dossiers.xlsx"
-        },
-        {
-          sExtends: "print"
-          sInfo: "Appuyez sur la touche Echap une fois le document imprimé."
-        }
-      ]
-    aoColumns: [
-      {sWidth: "10%"}
-      {sWidth: "25%"}
-      {sWidth: "25%", bSortable: false}
-      {sWidth: "23%"}
-      {sWidth: "10%", bSortable: false}
-    ]
-    bDeferRender: true
-    bPaginate: false
-    bProcessing: true
-    bServerSide: true
-    sAjaxSource: $('#dossiers').data('source')
-    <%#fnServerParams: (aoData) -> getDateRecueilFilters(aoData)%>
-    oLanguage:
-      "sProcessing":     "Traitement en cours..."
-      "sSearch":         "Recherche&nbsp;:"
-      "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments"
-      "sInfo":           "Affichage du dossier _START_ &agrave; _END_ sur _TOTAL_"
-      "sInfoEmpty":      "Affichage du dossier 0 &agrave; 0 sur 0"
-      "sInfoFiltered":   "(filtr&eacute; de _MAX_ dossiers au total)"
-      "sInfoPostFix":    ""
-      "sLoadingRecords": "Chargement en cours..."
-      "sZeroRecords":    "Aucun dossier &agrave; afficher"
-      "sEmptyTable":     "Aucune donnée disponible dans le tableau"
-      "oPaginate":
-        "sFirst":      "Premier"
-        "sPrevious":   "Pr&eacute;c&eacute;dent"
-        "sNext":       "Suivant"
-        "sLast":       "Dernier"
-      "oAria":
-        "sSortAscending":  ": activer pour trier la colonne par ordre croissant"
-        "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
-
-  <%#for prefix in ["du", "au"]%>
-    <%#for date_item in ["day", "month", "year"]%>
-      <%#$("#date_recueil_#{prefix}_#{date_item}").on "change", (e) ->%>
-        <%#dossiersoTable.fnFilter($("#date_recueil_dummy").val(), 3)%>
-
   $("#search_dossier_evenement_name").select2
     ajax:
       url: "/evenements/liste.json"
@@ -65,8 +12,6 @@ $ ->
         page_limit: 10
       results: (data, page) ->
         return {results: data}
-  $("#search_dossier_evenement_name").on "change", (e) ->
-    dossiersoTable.fnFilter(@value, 1)
 
   $("#search_dossier_traitements_medicament_name").select2
     minimumInputLength: 2
@@ -78,12 +23,8 @@ $ ->
         page_limit: 10
       results: (data, page) ->
         return {results: data}
-  $("#search_dossier_traitements_medicament_name").on "change", (e) ->
-    dossiersoTable.fnFilter(@value, 2)
 
   evenementsoTable = $("#evenements").dataTable
-    sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
-    sPaginationType: "bootstrap"
     aoColumns: [
       {bVisible: false}
       {sWidth: "2%", bSortable: false}
@@ -324,42 +265,3 @@ $ ->
 
   $("#documents").on 'hover', ->
     $("[data-toggle='tooltip']").tooltip()
-
-TableTools.BUTTONS.download =
-  "sAction": "text"
-  "sTag": "default"
-  "sFieldBoundary": ""
-  "sFieldSeperator": "\t"
-  "sNewLine": "<br>"
-  "sToolTip": ""
-  "sButtonClass": "DTTT_button_text"
-  "sButtonClassHover": "DTTT_button_text_hover"
-  "sButtonText": "Download"
-  "mColumns": "all"
-  "bHeader": true
-  "bFooter": true
-  "sDiv": ""
-  "fnMouseover": null
-  "fnMouseout": null
-  "fnClick": (nButton, oConfig) ->
-    aoData = this.s.dt.oApi._fnAjaxParameters(this.s.dt)
-    getDateRecueilFilters(aoData)
-    iframe = document.createElement('iframe')
-    iframe.style.height = "0px"
-    iframe.style.width = "0px"
-    iframe.src = oConfig.sUrl+"?"+$.param(aoData)
-    document.body.appendChild(iframe)
-  "fnSelect": null
-  "fnComplete": null
-  "fnInit": null
-
-getDateRecueilFilters = (aoData) ->
-  date_recueil_conditions = {}
-  for suffix in ["du", "au"]
-    date_recueil_conditions["date_recueil_#{suffix}"] = for date_item in ["year", "month", "day"]
-      $("#date_recueil_#{suffix}_#{date_item}").val()
-
-  for param, value of date_recueil_conditions
-    aoData.push
-      name: param
-      value: value.join("-")

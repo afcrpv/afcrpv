@@ -1,5 +1,9 @@
 $ = jQuery
 
+$.extend true, $.fn.dataTable.defaults, ->
+  sDom: "<'row-fluid'<'span6'l><'span6'T>r>t<'row-fluid'<'span6'i><'span6'p>>",
+  sPaginationType: "bootstrap",
+
 $ ->
   $.fn.select2.defaults.allowClear = true
   $.fn.select2.defaults.formatNoMatches = -> "Aucun résultat"
