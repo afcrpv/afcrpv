@@ -31,7 +31,7 @@ class EnquetesController < ApplicationController
       format.csv { send_data Iconv.conv('iso-8859-1//IGNORE', 'utf-8', @dossiers.to_csv(col_sep: ";")), filename: "#{@enquete.name}_dossiers.csv" }
       format.xls
       format.pdf do
-        pdf = EnquetePdf.new(@enquete, view_context)
+        pdf = EnquetePdf.new(@enquete, view_context, @dossiers)
         send_data pdf.render, filename: "#{@enquete.name}_dossiers.pdf",
                               type: "application/pdf",
                               disposition: "inline"
