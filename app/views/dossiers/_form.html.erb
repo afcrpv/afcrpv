@@ -27,6 +27,6 @@
     <%= button_tag type: :submit, disable_with: (save_and_close = "Enregistrer et fermer"), class: "btn btn-info" do %>
       <%= save_and_close %>
     <% end -%>
-    <%= link_to "Fermer", enquete_path(enquete), class: "btn", data: {confirm: "Attention ! Voulez-vous fermer le dossier et abandonner les modifications ?"} %>
+    <%= link_to "Fermer et revenir à la liste", enquete_path(enquete), class: "btn", data: {confirm: "Attention ! Voulez-vous fermer le dossier et abandonner les modifications ?"} %>
   </div>
 <% end -%>
