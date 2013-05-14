@@ -2,6 +2,7 @@
 require "iconv"
 class EnquetesController < ApplicationController
   helper_method :sort_column, :sort_direction
+  before_filter :find_dossier_for_edit, only: [:show]
   before_filter :redirect_unless_authorized, except: [:show, :index]
   before_filter :redirect_unless_connected
 
@@ -22,13 +23,19 @@ class EnquetesController < ApplicationController
   def show
     @enquete = Enquete.find(params[:id])
     dossiers = @enquete.dossiers.includes(:patient, :evenement, :incrimines => :medicament)
-    dossiers = dossiers.where{refinery_crpv_id == my{current_refinery_user.refinery_crpv_id}} unless authorised_enquetes_user?
+    if authorised_enquetes_user?
+      dossiers = dossiers.where{refinery_crpv_id == my{params[:search]}} if params[:search].present?
+    else
+      dossiers = dossiers.where{refinery_crpv_id == my{current_refinery_user.refinery_crpv_id}}
+    end
+
     @dossiers = dossiers.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html
       format.js
-      format.csv { send_data Iconv.conv('iso-8859-1//IGNORE', 'utf-8', @dossiers.to_csv(col_sep: ";")), filename: "#{@enquete.name}_dossiers.csv" }
+      format.csv { send_data Iconv.conv('iso-8859-1//IGNORE', 'utf-8', @dossiers.to_csv(col_sep: ";")),
+                   filename: "#{@enquete.name}_dossiers.csv" }
       format.xls
       format.pdf do
         pdf = EnquetePdf.new(@enquete, view_context, @dossiers)
@@ -72,6 +79,18 @@ class EnquetesController < ApplicationController
   end
 
   private
+
+  def find_dossier_for_edit
+    if params[:code_bnpv].present?
+      @search = Dossier.where(code_bnpv: params[:code_bnpv]).first rescue nil
+      if @search
+        redirect_to edit_dossier_path(@search)
+      else
+        redirect_to enquetes_path, notice: "Aucun dossier avec le N° BNPV: #{params[:code_bnpv]}"
+      end
+    end
+  end
+
 
   def sort_column
     Dossier.column_names.include?(params[:sort]) ? params[:sort] : "date_recueil"
