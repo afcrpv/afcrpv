@@ -18,11 +18,11 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><%= link_to "Thrombose-contraception", enquete_path(Enquete.first) %></li>
+          <li><%= link_to "Thrombose-contraception", refinery.enquete_path(Enquete.first) %></li>
           <% if authorised_enquetes_user? %>
-            <li><%= link_to "Gestion médicaments", medicaments_path %></li>
-            <li><%= link_to "Gestion évenements", evenements_path %></li>
-            <li><%= link_to "Gestion indications", indications_path %></li>
+            <li><%= link_to "Gestion médicaments", refinery.medicaments_path %></li>
+            <li><%= link_to "Gestion évenements", refinery.evenements_path %></li>
+            <li><%= link_to "Gestion indications", refinery.indications_path %></li>
           <% end -%>
         </ul>
       </li>
