@@ -1,28 +1,10 @@
 #encoding: utf-8
 class DossiersController < ApplicationController
   before_filter :redirect_unless_connected
-  before_filter :find_dossier_for_edit
   helper_method :evenements
   helper_method :medicaments
   helper_method :indications
   helper_method :enquete
-
-  def index
-    respond_to do |format|
-      format.json { render json: DossiersDatatable.new(view_context) }
-      format.xlsx do
-        @dossiers = DossiersDatatable.new(view_context).as_records
-        response.headers['Content-Disposition'] = "attachment; filename='#{Date.current}_dossiers.xlsx'"
-      end
-      format.pdf do
-        @dossiers = DossiersDatatable.new(view_context).as_records
-        pdf = DossierListPdf.new(@dossiers, crpv_name, view_context)
-        send_data pdf.render, filename: "dossiers_#{crpv_name}.pdf",
-                              type: "application/pdf",
-                              disposition: "inline"
-      end
-    end
-  end
 
   def show
     @dossier = Dossier.find(params[:id])
@@ -106,17 +88,6 @@ class DossiersController < ApplicationController
       @dossier.crpv == current_refinery_user.refinery_crpv
     else
       return false
-    end
-  end
-
-  def find_dossier_for_edit
-    if params[:code_bnpv]
-      @search = Dossier.where(code_bnpv: params[:code_bnpv]).first rescue nil
-      if @search
-        redirect_to edit_dossier_path(@search)
-      else
-        redirect_to enquetes_path, notice: "Aucun dossier avec le N° BNPV: #{params[:code_bnpv]}"
-      end
     end
   end
 
