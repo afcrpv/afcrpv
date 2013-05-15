@@ -49,19 +49,33 @@ class DossierPresenter < BasePresenter
     "(âge 1ère contraception : #{dossier.contraception_age} ans)" if dossier.contraception_age
   end
 
-  def contraception_ci
-    prefix = dossier.contraception_ci == "Non" ? "pas de " : ""
-    out = prefix + "contre-indication d'une contraception oestroprogestative"
+  def contraception_posthoc(parse=true)
+    return content_tag(:div, "NSP", class: "span6") if [dossier.contraception_ci, dossier.contraception_apres].all? {|item| ["NSP", ""].include? item}
+    [:contraception_ci, :contraception_apres].map do |method|
+      parse ? content_tag(:div, send(method), class: "span6") : send(method)
+    end.compact.join("\n").html_safe
   end
 
-  def contraception_apres
-    if dossier.contraception_apres != "Oui"
-      "contraception non reprise"
-    else
-      out = "reprise d'une contraception"
-      out += " par #{dossier.contraception_quoi}" if dossier.contraception_quoi
-      out
-    end
+  def contraception_ci(parse=true)
+    ("Contre-indication : " +
+    handle_none(dossier.contraception_ci, parse) do
+      dossier.contraception_ci
+    end).html_safe
+  end
+
+  def contraception_apres(parse=true)
+    ("Reprise d'une contraception : " +
+    handle_none(dossier.contraception_apres, parse) do
+      dossier.contraception_apres == "Oui" ? contraception_quoi(parse) : "Non"
+    end).html_safe
+  end
+
+  def contraception_quoi(parse=true)
+    ("oui (par : " +
+    handle_none(dossier.contraception_quoi, parse) do
+      dossier.contraception_quoi
+    end +
+    ")").html_safe
   end
 
   def fdr_communs
@@ -182,11 +196,11 @@ class DossierPresenter < BasePresenter
     l date_value
   end
 
-  def handle_none(value)
+  def handle_none(value, parse=true)
     if value.present?
       yield
     else
-      content_tag :span, "NS", class: "none"
+      parse ? content_tag(:span, "non specifié", class: "muted") : "non specifié"
     end
   end
 end

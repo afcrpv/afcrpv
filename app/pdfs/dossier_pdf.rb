@@ -111,7 +111,7 @@ class DossierPdf < Prawn::Document
     move_down 20
     text "Contraception après l'évènement", size: 10, style: :bold
     data = [
-      [{content: @dossier.contraception_ci, colspan: 6}, {content: @dossier.contraception_apres, colspan: 6}]
+      [{content: @dossier.contraception_ci(false), colspan: 6}, {content: @dossier.contraception_apres(false), colspan: 6}]
     ]
     font_size(10) do
       table data, position: :center, width: 560 do
