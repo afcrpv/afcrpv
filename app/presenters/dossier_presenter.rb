@@ -49,29 +49,20 @@ class DossierPresenter < BasePresenter
     "(âge 1ère contraception : #{dossier.contraception_age} ans)" if dossier.contraception_age
   end
 
-  def contraception_posthoc(parse=true)
-    return content_tag(:div, "NSP", class: "span6") if [dossier.contraception_ci, dossier.contraception_apres].all? {|item| ["NSP", ""].include? item}
-    [:contraception_ci, :contraception_apres].map do |method|
-      parse ? content_tag(:div, send(method), class: "span6") : send(method)
-    end.compact.join("\n").html_safe
-  end
-
   def contraception_ci(parse=true)
-    ("Contre-indication : " +
     handle_none(dossier.contraception_ci, parse) do
       dossier.contraception_ci
-    end).html_safe
+    end
   end
 
   def contraception_apres(parse=true)
-    ("Reprise d'une contraception : " +
     handle_none(dossier.contraception_apres, parse) do
-      dossier.contraception_apres == "Oui" ? contraception_quoi(parse) : "Non"
-    end).html_safe
+      dossier.contraception_apres == "Oui" ? "Oui " + contraception_quoi(parse) : "Non"
+    end
   end
 
   def contraception_quoi(parse=true)
-    ("oui (par : " +
+    ("(par : " +
     handle_none(dossier.contraception_quoi, parse) do
       dossier.contraception_quoi
     end +

@@ -76,7 +76,14 @@
   <% end -%>
   <h4>Contraception après l'évènement</h4>
   <div class="row">
-    <%= dossier.contraception_posthoc %>
+    <div class="span6">
+      <span class="libelle">Contre-indication</span>
+      <%= dossier.contraception_ci %>
+    </div>
+    <div class="span6">
+      <span class="libelle">Reprise d'une contraception</span>
+      <%= dossier.contraception_apres %>
+    </div>
   </div>
   <h4>Facteurs de risque</h4>
   <% [
