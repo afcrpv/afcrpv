@@ -4,6 +4,8 @@ class Incrimine < Traitement
   belongs_to :indication
   belongs_to :medicament
 
+  delegate :classe, to: :medicament
+
   def full_indication
     if indication_autre_quoi
       indication_autre_quoi

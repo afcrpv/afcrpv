@@ -3,7 +3,9 @@ class Dossier < ActiveRecord::Base
   columns_for_xlsx = [:code_bnpv, :date_recueil, :doublon, :age, :poids, :taille, :imc, :date_evenement, :evenement, :comm_evenement, :gravite, :evolution]
 
   (1..3).each do |i|
-    columns_for_xlsx << [:"medicament_#{i}", :"medicament_#{i}_indication", :"medicament_#{i}_duree_ttt"]
+    columns_for_xlsx << :"medicament_#{i}"
+    columns_for_xlsx << :"medicament_#{i}_classe" if i == 1
+    columns_for_xlsx << [:"medicament_#{i}_indication", :"medicament_#{i}_duree_ttt"]
   end
   columns_for_xlsx << [:contraception_ant, :contraception_age]
   (1..3).each do |i|
@@ -155,6 +157,11 @@ class Dossier < ActiveRecord::Base
   (1..3).each do |i|
     define_method :"medicament_#{i}" do
       incrimines[i-1].medicament rescue nil
+    end
+    if i == 1
+      define_method :"medicament_#{i}_classe" do
+        incrimines[i-1].classe rescue nil
+      end
     end
     define_method :"medicament_#{i}_duree_ttt" do
       incrimines[i-1].duree_ttt rescue nil
