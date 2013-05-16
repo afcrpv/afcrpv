@@ -4,8 +4,12 @@ class Dossier < ActiveRecord::Base
 
   (1..3).each do |i|
     columns_for_xlsx << :"medicament_#{i}"
-    columns_for_xlsx << :"medicament_#{i}_classe" if i == 1
-    columns_for_xlsx << [:"medicament_#{i}_indication", :"medicament_#{i}_duree_ttt"]
+    if i == 1
+      columns_for_xlsx << :"medicament_#{i}_classe"
+      columns_for_xlsx << [:"medicament_#{i}_duree_comp", :"medicament_#{i}_duree", :"medicament_#{i}_duree_unite"]
+    end
+    columns_for_xlsx << :"medicament_#{i}_indication"
+    columns_for_xlsx << :"medicament_#{i}_duree_ttt" unless i == 1
   end
   columns_for_xlsx << [:contraception_ant, :contraception_age]
   (1..3).each do |i|
@@ -162,9 +166,16 @@ class Dossier < ActiveRecord::Base
       define_method :"medicament_#{i}_classe" do
         incrimines[i-1].classe rescue nil
       end
+      %w(duree_comp duree duree_unite).each do |suffix|
+        define_method :"medicament_#{i}_#{suffix}" do
+          incrimines[i-1].send(:"#{suffix}") rescue nil
+        end
+      end
     end
-    define_method :"medicament_#{i}_duree_ttt" do
-      incrimines[i-1].duree_ttt rescue nil
+    if i != 1
+      define_method :"medicament_#{i}_duree_ttt" do
+        incrimines[i-1].duree_ttt rescue nil
+      end
     end
     define_method :"medicament_#{i}_indication" do
       incrimines[i-1].full_indication rescue nil
