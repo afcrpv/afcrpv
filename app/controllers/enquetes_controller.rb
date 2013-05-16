@@ -86,7 +86,7 @@ class EnquetesController < ApplicationController
       if @search
         redirect_to edit_dossier_path(@search)
       else
-        redirect_to enquetes_path, notice: "Aucun dossier avec le N° BNPV: #{params[:code_bnpv]}"
+        redirect_to enquete_path(params[:id], search: params[:search]), notice: "Aucun dossier avec le N° BNPV: #{params[:code_bnpv]}"
       end
     end
   end
