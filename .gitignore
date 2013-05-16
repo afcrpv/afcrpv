@@ -98,5 +98,3 @@ vendor/extensions/**/spec/dummy
 .rbenv-version
 
 *.dump
-
-config/database.yml
