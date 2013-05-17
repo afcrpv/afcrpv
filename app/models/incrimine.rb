@@ -7,10 +7,10 @@ class Incrimine < Traitement
   delegate :classe, to: :medicament
 
   def full_indication
-    if indication_autre_quoi
+    if indication_autre_quoi.present?
       indication_autre_quoi
     else
-      indication
+      indication.to_s
     end
   end
 end
