@@ -97,13 +97,14 @@ $.fn.check_show_anomalie_hemostase = (field) ->
   $next = $($select.parents(".control-group").next())
   if field is "bilan"
     condition = $select.val() in ["avant", "après"]
-    unless condition
-      $select.parents(".control-group").next().find("select").val("")
-      $select.parents(".control-group").next().find("select").trigger("change")
-      $select.parents(".control-group").nextAll(".anomalie-hemostase-fields").find("select,input").each ->
-        $(@).val("")
   else
     condition = $select.val() is "Oui"
+
+  unless condition
+    $select.parents(".control-group").next().find("select").val("")
+    $select.parents(".control-group").next().find("select").trigger("change")
+    $select.parents(".control-group").nextAll(".anomalie-hemostase-fields").find("select,input").each ->
+      $(@).val("")
 
   showNextif condition, $select, $next
 
@@ -112,13 +113,15 @@ $.fn.check_show_anomalie_hemostase = (field) ->
     $next = $($select.parents(".control-group").next())
     if field is "bilan"
       condition = $select.val() in ["avant", "après"]
-      unless condition
-        $select.parents(".control-group").next().find("select").val("")
-        $select.parents(".control-group").next().find("select").trigger("change")
-        $select.parents(".control-group").nextAll(".anomalie-hemostase-fields").find("select,input").each ->
-          $(@).val("")
     else
       condition = $select.val() is "Oui"
+
+    unless condition
+      $select.parents(".control-group").next().find("select").val("")
+      $select.parents(".control-group").next().find("select").trigger("change")
+      $select.parents(".control-group").nextAll(".anomalie-hemostase-fields").find("select,input").each ->
+        console.log $(@)
+        $(@).val("")
 
     showNextif condition, $select, $next
 
